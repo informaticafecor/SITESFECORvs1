@@ -1,0 +1,282 @@
+/* Quitar scroll global */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Contenedor principal con fondo azul oscuro */
+.mp-carousel-wrapper {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* Carrusel principal */
+.mp-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ocultar radio buttons */
+.mp-carousel input[type="radio"] {
+    display: none;
+}
+
+/* Contenedor de slides centrado */
+.mp-slides-container {
+    position: relative;
+    width: 85%;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slides individuales - MÁS GRANDES */
+.mp-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+    z-index: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    background: #f8f9fa;
+}
+
+.mp-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mostrar slide activo */
+.mp-carousel input#slide1:checked ~ .mp-slides-container .mp-slide:nth-child(1),
+.mp-carousel input#slide2:checked ~ .mp-slides-container .mp-slide:nth-child(2),
+.mp-carousel input#slide3:checked ~ .mp-slides-container .mp-slide:nth-child(3) {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Contador estilo "1/3" */
+.mp-counter {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 10;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Contador dinámico */
+.mp-carousel input#slide1:checked ~ .mp-counter::after { content: "1/3"; }
+.mp-carousel input#slide2:checked ~ .mp-counter::after { content: "2/3"; }
+.mp-carousel input#slide3:checked ~ .mp-counter::after { content: "3/3"; }
+
+/* Botón Saltar Intro */
+.mp-skip {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.mp-skip:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+/* Flechas de navegación - estilo minimalista */
+.mp-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 8;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.mp-nav:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.mp-nav-prev { left: 50px; }
+.mp-nav-next { right: 50px; }
+
+/* Indicadores de puntos - estilo minimalista */
+.mp-indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 8;
+}
+
+.mp-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.mp-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+}
+
+/* Indicadores activos */
+.mp-carousel input#slide1:checked ~ .mp-indicators .mp-indicator:nth-child(1),
+.mp-carousel input#slide2:checked ~ .mp-indicators .mp-indicator:nth-child(2),
+.mp-carousel input#slide3:checked ~ .mp-indicators .mp-indicator:nth-child(3) {
+    background: white !important;
+    transform: scale(1.3) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Fallbacks para imágenes */
+.mp-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mp-fallback-2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.mp-fallback-3 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.mp-fallback-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.mp-fallback-title {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.mp-fallback-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Auto-slide cada 8 segundos */
+@keyframes mp-auto-cycle {
+    0%, 30% { opacity: 1; }
+    33%, 63% { opacity: 0; }
+    66%, 96% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.mp-carousel input#slide1:checked ~ .mp-slides-container .mp-slide:nth-child(1) {
+    animation: mp-auto-cycle 24s infinite;
+}
+
+.mp-carousel input#slide1:checked ~ .mp-slides-container .mp-slide:nth-child(2) {
+    animation: mp-auto-cycle 24s infinite 8s;
+}
+
+.mp-carousel input#slide1:checked ~ .mp-slides-container .mp-slide:nth-child(3) {
+    animation: mp-auto-cycle 24s infinite 16s;
+}
+
+/* CSS para mostrar flechas según slide activo */
+/* Slide 1 activo */
+.mp-carousel input#slide1:checked ~ label.mp-nav-prev:nth-of-type(4) { display: flex; }
+.mp-carousel input#slide1:checked ~ label.mp-nav-next:nth-of-type(7) { display: flex; }
+
+/* Slide 2 activo */
+.mp-carousel input#slide2:checked ~ label.mp-nav-prev:nth-of-type(5) { display: flex; }
+.mp-carousel input#slide2:checked ~ label.mp-nav-next:nth-of-type(8) { display: flex; }
+
+/* Slide 3 activo */
+.mp-carousel input#slide3:checked ~ label.mp-nav-prev:nth-of-type(6) { display: flex; }
+.mp-carousel input#slide3:checked ~ label.mp-nav-next:nth-of-type(9) { display: flex; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mp-slides-container {
+        width: 95%;
+        height: 70%;
+    }
+    
+    .mp-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .mp-nav-prev { left: 20px; }
+    .mp-nav-next { right: 20px; }
+    
+    .mp-counter, .mp-skip {
+        top: 20px;
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}

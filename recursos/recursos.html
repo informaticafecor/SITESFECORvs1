@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Logísticos y otros para la Investigación</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+ 
+</head>
+
+<body>
+    <div class="container">
+        <!-- Título y descripción principal -->
+        <h1 class="main-title">Recursos Logísticos y otros para la Investigación</h1>
+        
+        <div class="main-description">
+            Esta sección está dedicada a analizar los recursos logísticos necesarios para llevar a cabo investigaciones exitosas contra 
+            el crimen organizado. Desde dispositivos especializados hasta tecnología de última generación, te mostraremos cómo 
+            estos elementos son fundamentales para obtener resultados efectivos.
+        </div>
+
+        <!-- Buscador global -->
+        <div class="global-search">
+            <div class="search-container">
+                <input type="text" id="globalSearch" placeholder="Buscar en todos los recursos, manuales, software..." onkeyup="searchAllResources()" oninput="searchAllResources()">
+            </div>
+        </div>
+
+        <!-- Contador de resultados -->
+        <div class="results-counter" id="resultsCounter"></div>
+
+        <!-- Mensaje cuando no hay resultados -->
+        <div class="no-results" id="noResults">
+            <p>No se encontraron recursos</p>
+            <small>Intenta con otros términos de búsqueda</small>
+        </div>
+
+        <!-- Grid de secciones de recursos -->
+        <div class="sections-grid" id="sectionsGrid">
+            
+            <!-- Sección: Equipamiento Tecnológico -->
+            <div class="resource-section" data-section="equipamiento">
+                <!--<div class="section-icon">🚁</div> -->
+                <div class="section-icon">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/refs/heads/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" 
+                    alt="Dron" style="width: 300px; height: auto;">
+                </div>
+
+                <h2 class="section-title">Equipamiento Tecnológico</h2>
+                <ul class="resources-list">
+                    <li class="resource-item">
+                        <a href="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/refs/heads/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg"
+                         target="_blank" class="resource-link info">Drones: Se comunica con carácter de urgente la necesidad inmediata del uso de drones para videovigilancia y otras diligencias, en las Fiscalías Especializadas contra la Criminalidad Organizada.</a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="#" class="resource-link manual">Cámara: Manual de Cámaras Espía</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sección: Software y Sistemas -->
+            <div class="resource-section" data-section="software">
+                <div class="section-icon">💻</div>
+                <h2 class="section-title">Software y Sistemas</h2>
+                <ul class="resources-list">
+                    <li class="resource-item">
+                        <a href="#" class="resource-link software">Software Foliador y Sello: Manual de Foliador y Sello Virtual de archivos PDF</a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="#" class="resource-link">Tarjetas de presentación digital institucional (QR)</a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="#" class="resource-link circular">OFICIO MÚLTIPLE N°000032-2025-MP-FN-FSCN</a>
+                        <ul class="sub-resource">
+                            <li class="resource-item">
+                                <a href="#" class="resource-link">Diseño propuesto: tarjeta de presentación (QR)</a>
+                            </li>
+                            <li class="resource-item">
+                                <a href="#" class="resource-link manual">Manual de Wallet (iOS)</a>
+                            </li>
+                            <li class="resource-item">
+                                <a href="#" class="resource-link manual">Manual de Wallet (Android)</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="resource-item">
+                        <a href="#" class="resource-link circular">OFICIO CIRCULAR N°145-2025: Obtención de información del sistema apis mp, alert y otros administrados por la Sección de Registro y Control Migratorio.</a>
+                    </li>
+                    <li class="resource-item">
+                        <a href="#" class="resource-link info">Información sobre teléfonos públicos penitenciarios administrados por Prisontec</a>
+                        <ul class="sub-resource">
+                            <li class="resource-item">
+                                <a href="#" class="resource-link list">Lista consolidada de penales operados por PRISONTEC</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sección: Recurso Logístico -->
+            <div class="resource-section" data-section="logistico">
+                <div class="section-icon">🎽</div>
+                <h2 class="section-title">Recurso Logístico</h2>
+                <ul class="resources-list">
+                    <li class="resource-item">
+                        <a href="#" class="resource-link">Chalecos Antibalas: 2025 - Código Patrimonial - Def Chalecos Antibala - Carabaya</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Botón para limpiar búsqueda -->
+        <div class="clear-search">
+            <button onclick="clearAllSearch()">Limpiar Búsqueda</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

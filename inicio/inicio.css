@@ -1,0 +1,738 @@
+/* Variables CSS consistentes */
+:root {
+    --primary-color: #0F2C52;
+    --secondary-color: #0075bf;
+    --accent-color: #00cc99;
+    --golden-color: #FFD040;
+    --text-color: white;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-heavy: rgba(0, 0, 0, 0.5);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0F2C52 0%, #1a3660 50%, #0075bf 100%);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* HEADER PRINCIPAL */
+.hero-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(15, 44, 82, 0.95) 0%, rgba(0, 117, 191, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 3px solid rgba(0, 204, 153, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 204, 153, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--accent-color), var(--golden-color), #00ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 20px 0;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 30px rgba(0, 204, 153, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* CARRUSEL DE IMÁGENES SUPERIOR */
+.image-carousel-section {
+    padding: 40px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.image-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px var(--shadow-heavy);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.image-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-slide.active {
+    opacity: 1;
+}
+
+.image-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 44, 82, 0.7), rgba(0, 117, 191, 0.5));
+}
+
+.image-slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.image-slide h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--golden-color), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.image-slide p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+.image-carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.image-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-indicator.active {
+    background: var(--accent-color);
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(0, 204, 153, 0.5);
+}
+
+/* LAYOUT PRINCIPAL INTERACTIVO - PROPORCIONES MEJORADAS */
+.main-interactive-layout {
+    display: grid;
+    grid-template-areas: 
+        "left-modules video-center right-modules";
+    grid-template-columns: 200px 1fr 200px;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+    /* ASEGURAR QUE EL GRID SE RESPETE */
+    box-sizing: border-box;
+}
+
+/* MÓDULOS LATERALES */
+.modules-left {
+    grid-area: left-modules;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modules-right {
+    grid-area: right-modules;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.module-card {
+    background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(0, 117, 191, 0.7));
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(0, 204, 153, 0.2);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 208, 64, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.module-card:hover::before {
+    left: 100%;
+}
+
+.module-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 50px rgba(0, 204, 153, 0.4);
+}
+
+.module-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 5px 15px rgba(0, 204, 153, 0.3));
+}
+
+.module-card:hover .module-icon {
+    transform: scale(1.2) rotateY(360deg);
+    filter: drop-shadow(0 8px 25px rgba(255, 208, 64, 0.5));
+}
+
+.module-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.module-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+/* CENTRO - CARRUSEL DE VIDEOS CON TAMAÑO FIJO */
+.video-center {
+    grid-area: video-center;
+    background: linear-gradient(145deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.8));
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 35px 30px;
+    border: 2px solid rgba(0, 204, 153, 0.3);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    /* FORZAR QUE RESPETE SU COLUMNA */
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.video-center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--golden-color), var(--accent-color));
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.video-section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(0, 204, 153, 0.3);
+}
+
+.video-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    /* ASEGURAR QUE NO SE SALGA */
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.video-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.video-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.video-slide.prev {
+    transform: translateX(-100%);
+}
+
+/* YouTube Embed Styling - CENTRADO Y CONTENIDO */
+.youtube-embed {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    object-fit: contain;
+    background: #000;
+}
+
+/* Fallback for custom video content */
+.video-content {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.video-play-btn {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 204, 153, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: 4px solid var(--golden-color);
+    box-shadow: 0 0 30px rgba(0, 204, 153, 0.5);
+}
+
+.video-play-btn:hover {
+    transform: scale(1.15);
+    background: var(--accent-color);
+    box-shadow: 0 0 50px rgba(255, 208, 64, 0.8);
+}
+
+.play-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-left: 5px;
+}
+
+.video-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.video-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* CONTROLES DEL CARRUSEL DE VIDEOS */
+.video-carousel-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+}
+
+.video-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.video-indicator.active {
+    background: var(--accent-color);
+    border-color: var(--golden-color);
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(0, 204, 153, 0.7);
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 204, 153, 0.8);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.carousel-nav:hover {
+    background: var(--accent-color);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 204, 153, 0.6);
+}
+
+.carousel-prev {
+    left: 20px;
+}
+
+.carousel-next {
+    right: 20px;
+}
+
+/* SERVICIOS ADICIONALES MEJORADOS CON DISEÑO ATRACTIVO */
+.additional-services-section {
+    padding: 60px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(15, 44, 82, 0.4), rgba(0, 117, 191, 0.3));
+    border-radius: 30px;
+    margin-top: 40px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 204, 153, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.additional-services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2220%22 cy=%2220%22 r=%222%22 fill=%22%2300cc99%22 opacity=%220.1%22/><circle cx=%2280%22 cy=%2280%22 r=%223%22 fill=%22%23FFD040%22 opacity=%220.1%22/><circle cx=%2250%22 cy=%2210%22 r=%221.5%22 fill=%22%2300cc99%22 opacity=%220.1%22/></svg>');
+    pointer-events: none;
+}
+
+.additional-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(0, 204, 153, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.additional-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.additional-card {
+    background: linear-gradient(145deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.8));
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(0, 204, 153, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.additional-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--golden-color), var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.additional-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 204, 153, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.additional-card:hover::before,
+.additional-card:hover::after {
+    opacity: 1;
+}
+
+.additional-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 30px 60px rgba(0, 204, 153, 0.4), 0 0 30px rgba(0, 204, 153, 0.2);
+}
+
+.additional-card .module-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 8px 20px rgba(0, 204, 153, 0.3));
+    display: block;
+}
+
+.additional-card:hover .module-icon {
+    transform: scale(1.3) rotateY(360deg);
+    filter: drop-shadow(0 12px 30px rgba(255, 208, 64, 0.6));
+}
+
+.additional-card h4 {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ANIMACIONES */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-left {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-right {
+    animation: slideInRight 0.8s ease-out;
+}
+
+.animate-up {
+    animation: slideInUp 0.8s ease-out;
+}
+
+/* RESPONSIVE MEJORADO */
+@media (max-width: 1200px) {
+    .main-interactive-layout {
+        grid-template-areas: 
+            "video-center"
+            "left-modules"
+            "right-modules";
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .video-center {
+        width: 100%;
+        padding: 30px 25px;
+    }
+
+    .modules-left, .modules-right {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .additional-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .main-interactive-layout {
+        padding: 30px 20px;
+    }
+
+    .video-center {
+        padding: 25px;
+    }
+
+    .video-carousel-container {
+        height: 300px;
+    }
+
+    .video-section-title {
+        font-size: 2rem;
+    }
+
+    .modules-left, .modules-right {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-header {
+        padding: 40px 15px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .video-center {
+        padding: 20px;
+    }
+
+    .video-carousel-container {
+        height: 250px;
+    }
+
+    .video-play-btn {
+        width: 80px;
+        height: 80px;
+    }
+
+    .play-icon {
+        font-size: 2rem;
+    }
+}

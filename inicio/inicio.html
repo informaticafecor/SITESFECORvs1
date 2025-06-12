@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FECCOR - Inicio Rediseñado</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<body>
+    <!-- CARRUSEL DE IMÁGENES SUPERIOR -->
+    <div class="image-carousel-section">
+        <div class="image-carousel-container">
+            <!-- Imagen Slide 1 -->
+            <div class="image-slide active" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230F2C52%22 width=%221200%22 height=%22300%22/><rect fill=%22%23ffffff%22 x=%22100%22 y=%2250%22 width=%221000%22 height=%22200%22 opacity=%220.1%22/><circle cx=%22600%22 cy=%22150%22 r=%22100%22 fill=%22%2300cc99%22 opacity=%220.3%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Bienvenidos a FECCOR</h3>
+                    <p>Portal integral de información especializada contra la criminalidad organizada</p>
+                </div>
+            </div>
+
+            <!-- Imagen Slide 2 -->
+            <div class="image-slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230075bf%22 width=%221200%22 height=%22300%22/><rect fill=%22%23FFD040%22 x=%22150%22 y=%2270%22 width=%22900%22 height=%22160%22 opacity=%220.2%22/><polygon points=%22600,50 700,150 500,150%22 fill=%22%2300cc99%22 opacity=%220.4%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Operativos en Acción</h3>
+                    <p>Resultados efectivos en investigaciones y operativos contra el crimen organizado a nivel nacional</p>
+                </div>
+            </div>
+
+            <!-- Imagen Slide 3 -->
+            <div class="image-slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230F2C52%22 width=%221200%22 height=%22300%22/><rect fill=%22%23ffffff%22 x=%22200%22 y=%2280%22 width=%22800%22 height=%22140%22 opacity=%220.15%22/><rect fill=%22%2300cc99%22 x=%22300%22 y=%22100%22 width=%22600%22 height=%22100%22 opacity=%220.25%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Coordinación Interinstitucional</h3>
+                    <p>Trabajando unidos con instituciones nacionales e internacionales por la justicia y seguridad ciudadana</p>
+                </div>
+            </div>
+
+            <!-- Indicadores del carrusel de imágenes -->
+            <div class="image-carousel-indicators">
+                <span class="image-indicator active" onclick="currentImageSlide(1)"></span>
+                <span class="image-indicator" onclick="currentImageSlide(2)"></span>
+                <span class="image-indicator" onclick="currentImageSlide(3)"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER PRINCIPAL -->
+    <div class="hero-header">
+        <h1 class="hero-title">FECCOR</h1>
+        <p class="hero-subtitle">
+            Fiscalía Especializada Contra la Criminalidad Organizada - Portal integral de información especializada
+        </p>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL INTERACTIVO -->
+    <div class="main-interactive-layout">
+        
+        <!-- MÓDULOS IZQUIERDA -->
+        <div class="modules-left animate-left">
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE1', '_blank')">
+                <span class="module-icon">📋</span>
+                <div class="module-title">Normativa y Guías</div>
+                <div class="module-subtitle">Protocolos y normativas actualizadas</div>
+            </div>
+
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE2', '_blank')">
+                <span class="module-icon">🔍</span>
+                <div class="module-title">Unidad de Pericias</div>
+                <div class="module-subtitle">Análisis forense especializado</div>
+            </div>
+
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE3', '_blank')">
+                <span class="module-icon">✅</span>
+                <div class="module-title">Competencias</div>
+                <div class="module-subtitle">Ámbitos y criterios jurisdiccionales</div>
+            </div>
+        </div>
+
+        <!-- CENTRO - CARRUSEL DE VIDEOS -->
+        <div class="video-center animate-up">
+            <h2 class="video-section-title">Videos Destacados</h2>
+            
+            <div class="video-carousel-container">
+                <!-- Video Slide 1 - YouTube Embed -->
+                <div class="video-slide active">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/VIDEO_ID_1?rel=0&modestbranding=1&enablejsapi=1" 
+                            title="Operativo Amanecer Seguro"
+                            allowfullscreen
+                            id="youtube-player-1">
+                    </iframe>
+                </div>
+
+                <!-- Video Slide 2 - YouTube Embed -->
+                <div class="video-slide">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1&enablejsapi=1" 
+                            title="Captura en Lima"
+                            allowfullscreen
+                            id="youtube-player-2">
+                    </iframe>
+                </div>
+
+                <!-- Video Slide 3 - YouTube Embed -->
+                <div class="video-slide">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/VIDEO_ID_3?rel=0&modestbranding=1&enablejsapi=1" 
+                            title="Coordinación Internacional"
+                            allowfullscreen
+                            id="youtube-player-3">
+                    </iframe>
+                </div>
+
+                <!-- Controles de navegación -->
+                <button class="carousel-nav carousel-prev" onclick="changeVideoSlide(-1)">‹</button>
+                <button class="carousel-nav carousel-next" onclick="changeVideoSlide(1)">›</button>
+
+                <!-- Indicadores -->
+                <div class="video-carousel-controls">
+                    <span class="video-indicator active" onclick="currentVideoSlide(1)"></span>
+                    <span class="video-indicator" onclick="currentVideoSlide(2)"></span>
+                    <span class="video-indicator" onclick="currentVideoSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÓDULOS DERECHA -->
+        <div class="modules-right animate-right">
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE4', '_blank')">
+                <span class="module-icon">🤝</span>
+                <div class="module-title">Coordinaciones</div>
+                <div class="module-subtitle">Relaciones interinstitucionales</div>
+            </div>
+
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE5', '_blank')">
+                <span class="module-icon">⚖️</span>
+                <div class="module-title">Defensores Públicos</div>
+                <div class="module-subtitle">Defensa pública especializada</div>
+            </div>
+
+            <div class="module-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE6', '_blank')">
+                <span class="module-icon">👥</span>
+                <div class="module-title">Convocatorias</div>
+                <div class="module-subtitle">Oportunidades profesionales</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIOS ADICIONALES -->
+    <div class="additional-services-section">
+        <h2 class="additional-title">Servicios Complementarios</h2>
+        <p class="additional-subtitle">
+            Accede a herramientas especializadas, recursos informativos y servicios de apoyo 
+            diseñados para fortalecer la lucha contra el crimen organizado
+        </p>
+        <div class="additional-grid">
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE7', '_blank')">
+                <span class="module-icon">📢</span>
+                <h4>Noticias y Comunicados</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE8', '_blank')">
+                <span class="module-icon">💻</span>
+                <h4>Soporte Informático</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE9', '_blank')">
+                <span class="module-icon">🚛</span>
+                <h4>Recursos Logísticos</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE10', '_blank')">
+                <span class="module-icon">❓</span>
+                <h4>Preguntas Frecuentes</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE11', '_blank')">
+                <span class="module-icon">🚗</span>
+                <h4>Unidades Vehiculares</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE12', '_blank')">
+                <span class="module-icon">📊</span>
+                <h4>Boletines Estadísticos</h4>
+            </div>
+
+            <!-- NUEVOS MÓDULOS AGREGADOS -->
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE13', '_blank')">
+                <span class="module-icon">🎓</span>
+                <h4>Capacitación</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE14', '_blank')">
+                <span class="module-icon">📞</span>
+                <h4>Directorios de Contacto</h4>
+            </div>
+
+            <div class="additional-card" onclick="window.open('https://drive.google.com/drive/folders/ENLACE15', '_blank')">
+                <span class="module-icon">📰</span>
+                <h4>Revista de las Fiscalías de Crimen Organizado</h4>
+            </div>
+        </div>
+    </div>
+
+    <script src="inicio.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+/* Variables CSS */
+        :root {
+            --primary-color: #0F2C52;
+            --accent-color: #00cc99;
+            --text-color: white;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+            --yellow-accent: #FFC107;
+        }
+
+        /* Estilo general */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F2C52 0%, #1a3660 100%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Descripción */
+        .service-description {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.1);
+            text-align: center;
+        }
+
+        .service-description p {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ========================================
+           SECCIÓN PRINCIPAL SIMPLIFICADA
+           ======================================== */
+
+        .coordinaciones-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.15);
+        }
+
+        .coordinaciones-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 204, 153, 0.2);
+        }
+
+        /* Ícono simplificado */
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--yellow-accent), #FFD54F);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+            flex-shrink: 0;
+        }
+
+        .main-icon {
+            width: 45px;
+            height: 45px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .header-text h2 {
+            font-size: 1.6em;
+            color: var(--text-color);
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            font-size: 1em;
+            color: var(--accent-color);
+            margin: 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========================================
+           LISTA DE DOCUMENTOS SIMPLIFICADA
+           ======================================== */
+
+        .documents-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(0, 204, 153, 0.2);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .document-item:hover {
+            background: rgba(0, 204, 153, 0.15);
+            border-color: var(--accent-color);
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px rgba(0, 204, 153, 0.2);
+        }
+
+        .document-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .document-text {
+            font-size: 1em;
+            font-weight: 500;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .document-item::after {
+            content: '→';
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .document-item:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* ========================================
+           RESPONSIVE SIMPLIFICADO
+           ======================================== */
+
+        @media (max-width: 768px) {
+            .coordinaciones-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .icon-container {
+                width: 70px;
+                height: 70px;
+            }
+
+            .main-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .header-text h2 {
+                font-size: 1.4em;
+            }
+
+            .document-item:hover {
+                transform: translateY(-3px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .coordinaciones-section {
+                padding: 20px;
+            }
+
+            .document-item {
+                padding: 12px 15px;
+                gap: 12px;
+            }
+
+            .document-text {
+                font-size: 0.95em;
+            }
+        }
+
+        /* Animación de entrada */
+        .coordinaciones-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .document-item {
+            animation: fadeInLeft 0.4s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .document-item:nth-child(1) { animation-delay: 0.1s; }
+        .document-item:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }

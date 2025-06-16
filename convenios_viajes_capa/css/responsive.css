@@ -1,0 +1,85 @@
+/* ===================================
+   RESPONSIVE DESIGN - CAPACITACIÓN
+   =================================== */
+
+/* Estilos responsivos para pantallas medianas */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .sidebar-right {
+        width: 100%;
+        order: -1;
+        position: static;
+        padding: 20px;
+    }
+
+    .filters-vertical .filter-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .filters-vertical .filter-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .search-container input {
+        width: 85%;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .sidebar-right {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .header-section {
+        padding: 20px;
+    }
+
+    .search-container input {
+        width: 95%;
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .filters-vertical .filter-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .filters-vertical .filter-btn {
+        font-size: 0.85em;
+        padding: 10px 14px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

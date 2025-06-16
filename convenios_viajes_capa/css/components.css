@@ -1,0 +1,272 @@
+/* ===================================
+   COMPONENTES - CAPACITACIÓN
+   =================================== */
+
+/* Filtros verticales en sidebar */
+.filters-vertical {
+    margin-bottom: 25px;
+}
+
+.filters-vertical .filter-label {
+    font-size: 1em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.filters-vertical .filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Estilo de los botones de filtro verticales */
+.filters-vertical .filter-btn {
+    padding: 12px 16px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+.filters-vertical .filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.filters-vertical .filter-btn:hover::before {
+    left: 100%;
+}
+
+.filters-vertical .filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+/* Estilo cuando el botón está activo */
+.filters-vertical .filter-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 204, 153, 0.3);
+}
+
+/* Botón para limpiar filtros en sidebar */
+.clear-filters {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9em;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.clear-filters:hover {
+    background: rgba(0, 204, 153, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Separador en sidebar */
+.sidebar-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 204, 153, 0.3), transparent);
+    margin: 25px 0;
+}
+
+/* Contador de resultados */
+.results-counter {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+}
+
+/* Mensaje cuando no hay resultados */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1em;
+    display: none;
+}
+
+.no-results::before {
+    content: '📚';
+    display: block;
+    font-size: 3em;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+/* Estilo de cada tarjeta */
+.news-card {
+    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    position: relative;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), #00ffcc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Efecto hover sobre las tarjetas */
+.news-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px var(--shadow-heavy);
+}
+
+.news-card:hover::before {
+    opacity: 1;
+}
+
+/* Imagen de la tarjeta */
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Contenido dentro de la tarjeta */
+.news-content {
+    padding: 20px;
+    position: relative;
+}
+
+.news-content h2 {
+    font-size: 1.3em;
+    margin: 0 0 12px 0;
+    color: var(--text-color);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.news-content p {
+    font-size: 0.95em;
+    margin: 0 0 15px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+/* Estilo de los enlaces */
+.news-content a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(0, 204, 153, 0.1);
+    border: 1px solid rgba(0, 204, 153, 0.3);
+}
+
+.news-content a::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.news-content a:hover {
+    background: var(--accent-color);
+    color: #0F2C52;
+    transform: translateX(5px);
+}
+
+.news-content a:hover::after {
+    transform: translateX(3px);
+}
+
+/* Indicadores de tipo específicos */
+.news-card.capacitacion::after {
+    content: 'CAPACITACIÓN';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 204, 153, 0.9);
+    color: #0F2C52;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.convenios::after {
+    content: 'CONVENIO';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 193, 7, 0.9);
+    color: #0F2C52;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.viajes::after {
+    content: 'VIAJE';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+/* Animación de carga */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.news-card {
+    animation: fadeIn 0.5s ease-out;
+}

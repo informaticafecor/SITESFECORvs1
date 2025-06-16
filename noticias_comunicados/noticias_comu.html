@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias y Comunicados</title>
+        <link rel="stylesheet" href="css/styles.css">
+
+   
+</head>
+
+<body>
+    <!-- Estructura principal con barra lateral y contenido -->
+    <div class="container">
+        <!-- Barra lateral con filtros -->
+        <div class="sidebar">
+            <!-- Filtro por tipo -->
+            <div class="filters" id="typeFilters">
+                <h3>Tipo</h3>
+                <button onclick="filterType('noticia')" id="btn-noticia">Noticias</button>
+                <button onclick="filterType('comunicado')" id="btn-comunicado">Comunicados</button>
+            </div>
+
+            <!-- Filtro por año -->
+            <div class="filters" id="yearFilters">
+                <h3>Años</h3>
+                <button onclick="selectYear('2025')" id="btn-2025">2025</button>
+            </div>
+
+            <!-- Filtro por mes (oculto al inicio) -->
+            <div class="filters" id="monthFilters" style="display:none;">
+                <h3>Meses</h3>
+                <button onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                <button onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                <button onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                <button onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                <button onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                <button onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+            </div>
+
+            <!-- Botón para limpiar filtros -->
+            <button class="clear-filters" onclick="clearAllFilters()">
+                Limpiar Filtros
+            </button>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="content">
+            <!-- Buscador de noticias -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar noticias y comunicados..." onkeyup="searchNews()" oninput="searchNews()">
+            </div>
+
+            <!-- Contador de resultados -->
+            <div class="results-counter" id="resultsCounter"></div>
+
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-results" id="noResults">
+                <p>No se encontraron resultados</p>
+                <small>Intenta con otros términos de búsqueda o ajusta los filtros</small>
+            </div>
+
+            <!-- Contenedor donde se mostrarán las noticias -->
+            <div class="news-grid" id="newsGrid">
+                <div class="news-card noticia 2024 enero">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/00cc99?text=Operativos+2024" alt="Imagen noticia enero 2024">
+                    <div class="news-content">
+                        <h2>Inicio de Operativos 2024</h2>
+                        <p>Los operativos iniciaron con gran éxito en varias regiones del país durante enero, estableciendo nuevos estándares de eficiencia.</p>
+                        <a href="https://tusitio.com/noticia-operativos-enero" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2024 febrero">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Procedimientos" alt="Imagen comunicado febrero 2024">
+                    <div class="news-content">
+                        <h2>Comunicado Oficial de Procedimientos</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados.</p>
+                        <a href="https://tusitio.com/comunicado-procedimientos" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2024 febrero">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Procedimientos" alt="Imagen comunicado febrero 2024">
+                    <div class="news-content">
+                        <h2>Comunicado Oficial de Procedimientos</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados.</p>
+                        <a href="https://tusitio.com/comunicado-procedimientos" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2024 mayo">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Procedimientos" alt="Imagen comunicado febrero 2024">
+                    <div class="news-content">
+                        <h2>Comunicado Oficial de Procedimientos</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados.</p>
+                        <a href="https://tusitio.com/comunicado-procedimientos" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2024 junio">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Procedimientos" alt="Imagen comunicado febrero 2024">
+                    <div class="news-content">
+                        <h2>Comunicado Oficial de Procedimientos</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados.</p>
+                        <a href="https://tusitio.com/comunicado-procedimientos" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2024 junio">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Procedimientos" alt="Imagen comunicado febrero 2024">
+                    <div class="news-content">
+                        <h2>Comunicado Oficial de Procedimientos</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados.</p>
+                        <a href="https://tusitio.com/comunicado-procedimientos" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card noticia 2024 marzo">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/00cc99?text=Tecnología" alt="Imagen noticia marzo 2024">
+                    <div class="news-content">
+                        <h2>Nuevas Herramientas Tecnológicas</h2>
+                        <p>Se implementaron nuevas herramientas digitales para el trabajo en campo, modernizando nuestros procesos operativos.</p>
+                        <a href="https://tusitio.com/noticia-herramientas-marzo" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2025 enero">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Plan+2025" alt="Imagen comunicado enero 2025">
+                    <div class="news-content">
+                        <h2>Plan Anual de Operativos 2025</h2>
+                        <p>Se publica el plan anual que guiará los operativos y acciones estratégicas de este año, marcando nuevos objetivos.</p>
+                        <a href="https://tusitio.com/plan-anual-2025" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card noticia 2025 junio">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/00cc99?text=Resultados" alt="Imagen noticia junio 2025">
+                    <div class="news-content">
+                        <h2>Resultados de Operativos en Junio</h2>
+                        <p>Los operativos del mes han generado resultados positivos y eficientes, superando las expectativas establecidas.</p>
+                        <a href="https://tusitio.com/resultados-operativos-junio" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+                <div class="news-card comunicado 2025 marzo">
+                    <img src="https://via.placeholder.com/300x200/0F2C52/ffc107?text=Seguridad" alt="Imagen comunicado marzo 2025">
+                    <div class="news-content">
+                        <h2>Nuevo Protocolo de Seguridad</h2>
+                        <p>Se establece un nuevo protocolo de seguridad para todas las operaciones de campo, priorizando la protección del personal.</p>
+                        <a href="https://tusitio.com/protocolo-seguridad-2025" target="_blank">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+
+ </body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revistas Especializadas - FECCO</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título principal -->
+        <h1>Revistas Especializadas</h1>
+
+        <!-- Sección de bienvenida -->
+        <div class="welcome-section">
+            <p>Bienvenido a la sección de Revistas de la Fiscalías Especializadas contra la Criminalidad Organizada, donde encontrarás análisis profundos y artículos especializados sobre temas de relevancia jurídica y criminal.</p>
+        </div>
+
+        <!-- Sección de revistas por año -->
+        <div class="revistas-section">
+            <div class="revistas-grid">
+                <!-- Revista 2022 -->
+                <div class="revista-card year-2022" onclick="downloadRevista('2022')">
+                    <div class="revista-cover">
+                        <div class="revista-logo">
+                            <!-- Logo FECCO simplificado -->
+                            <svg viewBox="0 0 80 80" fill="white">
+                                <circle cx="40" cy="25" r="15" fill="white"/>
+                                <rect x="30" y="35" width="20" height="25" rx="3" fill="white"/>
+                                <text x="40" y="50" text-anchor="middle" font-size="8" font-weight="bold" fill="#0F2C52">MP</text>
+                            </svg>
+                        </div>
+                        <div class="revista-title">
+                            MINISTERIO PÚBLICO<br>
+                            FISCALÍAS ESPECIALIZADAS CONTRA LA<br>
+                            FECOR
+                        </div>
+                        <div class="revista-year-band">
+                            <span>REVISTA ESPECIALIZADA FISCALÍAS CONTRA LA CRIMINALIDAD ORGANIZADA</span>
+                        </div>
+                        <div style="position: absolute; bottom: 10px; right: 15px; font-size: 2em; font-weight: bold; color: #0F2C52;">2022</div>
+                    </div>
+                    <div class="revista-footer">
+                        <div class="revista-edition">EDICIÓN N° 001</div>
+                        <a href="#" class="revista-download" onclick="event.stopPropagation(); downloadRevista('2022')">
+                            📄 Descargar PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Revista 2023 -->
+                <div class="revista-card year-2023" onclick="downloadRevista('2023')">
+                    <div class="revista-cover">
+                        <div class="revista-logo">
+                            <svg viewBox="0 0 80 80" fill="white">
+                                <circle cx="40" cy="25" r="15" fill="white"/>
+                                <rect x="30" y="35" width="20" height="25" rx="3" fill="white"/>
+                                <text x="40" y="50" text-anchor="middle" font-size="8" font-weight="bold" fill="#0F2C52">MP</text>
+                            </svg>
+                        </div>
+                        <div class="revista-title">
+                            MINISTERIO PÚBLICO<br>
+                            FISCALÍAS ESPECIALIZADAS CONTRA LA<br>
+                            FECOR
+                        </div>
+                        <div class="revista-year-band">
+                            <span>REVISTA ESPECIALIZADA FISCALÍAS CONTRA LA CRIMINALIDAD ORGANIZADA</span>
+                        </div>
+                        <div style="position: absolute; bottom: 10px; right: 15px; font-size: 2em; font-weight: bold; color: #0F2C52;">2023</div>
+                    </div>
+                    <div class="revista-footer">
+                        <div class="revista-edition">EDICIÓN N° 002</div>
+                        <a href="#" class="revista-download" onclick="event.stopPropagation(); downloadRevista('2023')">
+                            📄 Descargar PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Revista 2024 -->
+                <div class="revista-card year-2024" onclick="downloadRevista('2024')">
+                    <div class="revista-cover">
+                        <div class="revista-logo">
+                            <svg viewBox="0 0 80 80" fill="white">
+                                <circle cx="40" cy="25" r="15" fill="white"/>
+                                <rect x="30" y="35" width="20" height="25" rx="3" fill="white"/>
+                                <text x="40" y="50" text-anchor="middle" font-size="8" font-weight="bold" fill="#0F2C52">MP</text>
+                            </svg>
+                        </div>
+                        <div class="revista-title">
+                            MINISTERIO PÚBLICO<br>
+                            FISCALÍAS ESPECIALIZADAS CONTRA LA<br>
+                            FECOR
+                        </div>
+                        <div class="revista-year-band">
+                            <span>REVISTA ESPECIALIZADA FISCALÍAS CONTRA LA CRIMINALIDAD ORGANIZADA</span>
+                        </div>
+                        <div style="position: absolute; bottom: 10px; right: 15px; font-size: 2em; font-weight: bold; color: #0F2C52;">2024</div>
+                    </div>
+                    <div class="revista-footer">
+                        <div class="revista-edition">EDICIÓN N° 003</div>
+                        <a href="#" class="revista-download" onclick="event.stopPropagation(); downloadRevista('2024')">
+                            📄 Descargar PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de publicación de artículos -->
+        <div class="publicacion-section">
+            <div class="publicacion-header">
+                <div class="publicacion-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0F2C52" stroke-width="2"/>
+                        <path d="M7 7h10M7 11h10M7 15h6" stroke="#0F2C52" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="17" cy="17" r="3" fill="#0F2C52"/>
+                        <path d="M19 19l-1-1" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h2 class="publicacion-title">PUBLICACIÓN DE ARTÍCULOS</h2>
+            </div>
+
+            <div class="publicacion-links">
+                <a href="#" class="publicacion-link" onclick="openForm('pautas-academicos')">
+                    <div class="link-icon">📋</div>
+                    <div class="link-text">Anexo 1 - Pautas de presentación de artículos académicos</div>
+                </a>
+
+                <a href="#" class="publicacion-link" onclick="openForm('pautas-reportes')">
+                    <div class="link-icon">📊</div>
+                    <div class="link-text">Anexo 2 - Pautas para la presentación de reportes</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad de Peritajes</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar izquierdo con navegación -->
+        <div class="sidebar-left">
+            <h1 class="sidebar-title">Unidad de Peritajes</h1>
+            <p class="sidebar-description">
+                Aquí encontrarás información sobre las distintas técnicas y herramientas utilizadas por las Unidades de Peritajes para 
+                realizar análisis y opinión sobre hechos objeto de investigación.
+            </p>
+            
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link active" onclick="showSection('acustica'); return false;" id="nav-acustica">
+                            <span class="nav-icon">🎧</span>
+                            <span>Acústica</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link" onclick="showSection('antropologia'); return false;" id="nav-antropologia">
+                            <span class="nav-icon">🦴</span>
+                            <span>Antropología</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link" onclick="showSection('criminalistica'); return false;" id="nav-criminalistica">
+                            <span class="nav-icon">🔬</span>
+                            <span>Criminalística</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link" onclick="showSection('informatica'); return false;" id="nav-informatica">
+                            <span class="nav-icon">💻</span>
+                            <span>Informática</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <!-- Buscador flotante -->
+            <div class="floating-search">
+                <input type="text" id="searchInput" placeholder="Buscar en peritajes..." onkeyup="searchContent()">
+            </div>
+
+            <!-- Sección Acústica -->
+            <div class="peritaje-section active" id="section-acustica">
+                <div class="section-header">
+                    <div class="section-main-icon">🎧</div>
+                    <h2 class="section-title">Acústica</h2>
+                </div>
+                
+                <p class="section-description">
+                    Algunas de las principales actividades que se vienen desarrollando; las tomas de muestras de voz
+                    (muestras de índole criminalística), visualización de discos ópticos conteniendo los audios/videos 
+                    dubitados/indubitados, etc. En lo que respecta al proceso de homologación de voz, una de las principales 
+                    actividades es el recorte o segmentación de los audios incriminados (dubitados) de los investigados, 
+                    esto con la finalidad de aislar los fragmentos de audio a ser peritados. Dependiendo de la cantidad de 
+                    los archivos de audio dubitados de cada investigado, este proceso puede tardar entre 3 y 4 días por 
+                    cada uno de los investigados. Así mismo, se viene participando presencial o virtualmente de las citaciones 
+                    de juicio oral y audiencias en atención a las notificaciones de juzgados y/o fiscalías para la ratificación 
+                    de los informes periciales emitidos.
+                </p>
+
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Tipos de Análisis Acústicos</h3>
+                        <ul>
+                            <li>Análisis de voz y habla</li>
+                            <li>Identificación de locutores</li>
+                            <li>Autenticidad de grabaciones</li>
+                            <li>Mejoramiento de audio</li>
+                            <li>Análisis de ruidos ambientales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>Procedimientos Técnicos</h3>
+                        <p>Los peritajes acústicos utilizan tecnología avanzada para el análisis espectral, comparación de patrones vocales y verificación de integridad de archivos de audio.</p>
+                        <p>Se emplean software especializados y equipos de alta precisión para garantizar resultados confiables en procesos judiciales.</p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <h3 class="resources-title">Recursos y Enlaces</h3>
+                    <a href="#" class="resource-link">Manual de Peritajes Acústicos</a>
+                    <a href="#" class="resource-link">Protocolos de Análisis de Voz</a>
+                    <a href="#" class="resource-link">Software Especializado</a>
+                </div>
+            </div>
+
+            <!-- Sección Antropología -->
+            <div class="peritaje-section" id="section-antropologia">
+                <div class="section-header">
+                    <div class="section-main-icon">🦴</div>
+                    <h2 class="section-title">Antropología</h2>
+                </div>
+                
+                <p class="section-description">
+                    Comprende los exámenes técnicos orientados en determinar las características morfológicas, determinación de 
+                    sexo, estimación de edad, talla, identificación de características individualizantes y otros realizados por 
+                    expertos antropólogos en las diferentes modalidades.
+                </p>
+
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Métodos de Identificación</h3>
+                        <ul>
+                            <li>Análisis osteológico</li>
+                            <li>Determinación de sexo</li>
+                            <li>Estimación de edad</li>
+                            <li>Cálculo de estatura</li>
+                            <li>Identificación de traumas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>Tecnología Aplicada</h3>
+                        <p>Utilización de técnicas forenses avanzadas, análisis morfométrico y comparación con bases de datos antropológicas.</p>
+                        <p>Aplicación de métodos científicos validados para la identificación humana en contextos forenses.</p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <h3 class="resources-title">Recursos y Enlaces</h3>
+                    <a href="#" class="resource-link">Protocolos Antropológicos</a>
+                    <a href="#" class="resource-link">Atlas Osteológico</a>
+                    <a href="#" class="resource-link">Metodología de Identificación</a>
+                </div>
+            </div>
+
+            <!-- Sección Criminalística -->
+            <div class="peritaje-section" id="section-criminalistica">
+                <div class="section-header">
+                    <div class="section-main-icon">🔬</div>
+                    <h2 class="section-title">Criminalística</h2>
+                </div>
+                
+                <p class="section-description">
+                    Comprende los exámenes técnicos orientados en la investigación de hechos y evidencias criminales mediante la 
+                    aplicación de métodos científicos. Incluye análisis balísticos, dactiloscópicos, grafotécnicos y otros 
+                    estudios especializados.
+                </p>
+
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Áreas de Especialización</h3>
+                        <ul>
+                            <li>Balística forense</li>
+                            <li>Dactiloscopia</li>
+                            <li>Grafotecnia</li>
+                            <li>Análisis de documentos</li>
+                            <li>Química forense</li>
+                            <li>Fotografía criminalística</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>Metodología Científica</h3>
+                        <p>Aplicación rigurosa del método científico en la investigación criminal, garantizando la objetividad y reproducibilidad de los resultados.</p>
+                        <p>Uso de tecnología de vanguardia y técnicas validadas internacionalmente para el análisis de evidencias.</p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <h3 class="resources-title">Recursos y Enlaces</h3>
+                    <a href="#" class="resource-link">Manual de Criminalística</a>
+                    <a href="#" class="resource-link">Protocolos de Evidencia</a>
+                    <a href="#" class="resource-link">Técnicas de Análisis</a>
+                    <a href="#" class="resource-link">Base de Datos AFIS</a>
+                </div>
+            </div>
+
+            <!-- Sección Informática -->
+            <div class="peritaje-section" id="section-informatica">
+                <div class="section-header">
+                    <div class="section-main-icon">💻</div>
+                    <h2 class="section-title">Informática</h2>
+                </div>
+                
+                <p class="section-description">
+                    Comprende los exámenes técnicos orientados en el análisis de sistemas informáticos, recuperación de datos, 
+                    análisis de dispositivos digitales y investigación de delitos cibernéticos mediante herramientas forenses 
+                    especializadas.
+                </p>
+
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Servicios Especializados</h3>
+                        <ul>
+                            <li>Análisis forense digital</li>
+                            <li>Recuperación de datos</li>
+                            <li>Análisis de dispositivos móviles</li>
+                            <li>Investigación de redes</li>
+                            <li>Análisis de malware</li>
+                            <li>Peritaje de páginas web</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3>Herramientas Forenses</h3>
+                        <p>Utilización de software forense certificado y metodologías estandarizadas para garantizar la admisibilidad legal de las evidencias digitales.</p>
+                        <p>Aplicación de protocolos internacionales para la preservación y análisis de evidencia digital.</p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <h3 class="resources-title">Recursos y Enlaces</h3>
+                    <a href="#" class="resource-link">Manual de Informática Forense</a>
+                    <a href="#" class="resource-link">Herramientas FECODI</a>
+                    <a href="#" class="resource-link">Protocolos Digitales</a>
+                    <a href="#" class="resource-link">Software Especializado</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

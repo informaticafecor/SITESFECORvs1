@@ -5,7 +5,7 @@
 async function loadOficiosFromGitHub() {
     try {
         const GITHUB_USER = 'informaticafecor';
-        const REPO_NAME = 'SITESFECCORVS1';
+        const REPO_NAME = 'SITESFECCORvs1';
         const BRANCH = 'main';
         
         // PASO 3: Cambiar estas 3 rutas

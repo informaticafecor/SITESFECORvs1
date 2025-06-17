@@ -29,82 +29,19 @@
             <div class="documents-section">
                 <h2>Rol de turnos de defensores públicos</h2>
 
-                <!-- Sección Enero -->
-                <div class="month-section">
-                    <h3>Enero</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-enero.pdf')">
-                            📄 Turno - Enero
-                        </a>
-                    </div>
+                <!-- Selector de meses -->
+                <div class="month-selector">
+                    <button class="month-btn active" data-month="enero" onclick="selectMonth('enero')">Enero</button>
+                    <button class="month-btn" data-month="febrero" onclick="selectMonth('febrero')">Febrero</button>
+                    <button class="month-btn" data-month="marzo" onclick="selectMonth('marzo')">Marzo</button>
+                    <button class="month-btn" data-month="abril" onclick="selectMonth('abril')">Abril</button>
+                    <button class="month-btn" data-month="mayo" onclick="selectMonth('mayo')">Mayo</button>
+                    <button class="month-btn" data-month="junio" onclick="selectMonth('junio')">Junio</button>
                 </div>
 
-                <!-- Sección Febrero -->
-                <div class="month-section">
-                    <h3>Febrero</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-febrero-1.pdf')">
-                            📄 Rol de turnos de Defensores Públicos de Defensa Penal I
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-febrero-2.pdf')">
-                            📄 Rol de turnos de Defensores Públicos de Defensa Penal II
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-febrero-3.pdf')">
-                            📄 Rol de turnos de Defensores Públicos de Defensa Penal III
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sección Marzo -->
-                <div class="month-section">
-                    <h3>Marzo</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('anexo-2-marzo.pdf')">
-                            📄 ANEXO II - ROL DE DEFENSORES PÚBLICOS DE DEFENSA PENAL 2025
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('anexo-3-marzo.pdf')">
-                            📄 ANEXO III - ROL DE DEFENSORES PÚBLICOS DE DEFENSA PENAL 2025
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('anexo-5-marzo.pdf')">
-                            📄 ANEXO V - ROL DE DEFENSORES PÚBLICOS DE DEFENSA PENAL 2025
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sección Abril -->
-                <div class="month-section">
-                    <h3>Abril</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-abril.pdf')">
-                            📄 Rol de turnos de Defensores Públicos - Abril 2025
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sección Mayo -->
-                <div class="month-section">
-                    <h3>Mayo</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-mayo.pdf')">
-                            📄 Rol de turnos de Defensores Públicos - Mayo 2025
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('directorio-mayo.pdf')">
-                            📄 Directorio de Defensores Públicos Especializados
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sección Junio -->
-                <div class="month-section">
-                    <h3>Junio</h3>
-                    <div class="document-links">
-                        <a href="#" class="document-link" onclick="downloadDocument('turno-junio.pdf')">
-                            📄 Rol de turnos de Defensores Públicos - Junio 2025
-                        </a>
-                        <a href="#" class="document-link" onclick="downloadDocument('manual-procedimientos.pdf')">
-                            📄 Manual de Procedimientos para Defensa Especializada
-                        </a>
-                    </div>
+                <!-- Contenedor de documentos dinámico -->
+                <div class="documents-container" id="documentsContainer">
+                    <!-- Los documentos se cargarán dinámicamente aquí -->
                 </div>
             </div>
         </div>

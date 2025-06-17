@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defensores Públicos - FECCOR</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Defensores Públicos</h1>
+        
+        <!-- Descripción introductoria -->
+        <div class="intro-section">
+            <div class="intro-content">
+                <div class="intro-icon">⚖️</div>
+                <p>Esta sección ha sido creada para facilitar la comunicación y el trabajo en equipo entre defensores públicos y las fiscalías especializadas contra la criminalidad organizada. Aquí encontrarás información útil, recursos prácticos y herramientas para mejorar tu labor.</p>
+            </div>
+        </div>
+
+        <!-- Buscador en la parte superior -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar recursos, documentos, turnos o defensores..." onkeyup="searchDefensores()" oninput="searchDefensores()">
+            </div>
+        </div>
+
+        <!-- Filtros en pestañas horizontales -->
+        <div class="filters-tabs">
+            <div class="tabs-header">
+                <h3>Categorías</h3>
+            </div>
+            <div class="tabs-container">
+                <button class="tab-btn" onclick="filterType('turnos')" id="btn-turnos">Rol de Turnos</button>
+                <button class="tab-btn" onclick="filterType('recursos')" id="btn-recursos">Recursos y Documentos</button>
+                <button class="tab-btn" onclick="filterType('contactos')" id="btn-contactos">Directorio de Contactos</button>
+                <button class="tab-btn" onclick="filterType('capacitacion')" id="btn-capacitacion">Capacitación</button>
+
+                <!-- Botón limpiar filtros -->
+                <button class="clear-filters" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+            </div>
+
+            <!-- Separador visual -->
+            <div class="filter-separator"></div>
+
+            <!-- Filtros de fecha -->
+            <div class="date-filters">
+                <!-- Filtro por año -->
+                <div class="date-filter-group">
+                    <div class="date-filter-label">Año</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
+                        <button class="date-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                    </div>
+                </div>
+
+                <!-- Filtro por mes -->
+                <div class="date-filter-group" id="monthGroup" style="display:none;">
+                    <div class="date-filter-label">Mes</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                        <button class="date-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                        <button class="date-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                        <button class="date-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                        <button class="date-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                        <button class="date-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                        <button class="date-btn" onclick="filterMonth('julio')" id="btn-julio">Julio</button>
+                        <button class="date-btn" onclick="filterMonth('agosto')" id="btn-agosto">Agosto</button>
+                        <button class="date-btn" onclick="filterMonth('septiembre')" id="btn-septiembre">Septiembre</button>
+                        <button class="date-btn" onclick="filterMonth('octubre')" id="btn-octubre">Octubre</button>
+                        <button class="date-btn" onclick="filterMonth('noviembre')" id="btn-noviembre">Noviembre</button>
+                        <button class="date-btn" onclick="filterMonth('diciembre')" id="btn-diciembre">Diciembre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros de Estado (Sección Separada) -->
+        <div class="status-filters-section">
+            <div class="status-header">
+                <h3>🔍 Filtrar por Estado</h3>
+            </div>
+            <div class="status-filters">
+                <button class="status-btn status-active" onclick="filterStatus('vigente')" id="btn-vigente">
+                    <span class="status-icon">✅</span>
+                    <span>Vigentes</span>
+                </button>
+                <button class="status-btn status-process" onclick="filterStatus('proceso')" id="btn-proceso">
+                    <span class="status-icon">⏳</span>
+                    <span>En Actualización</span>
+                </button>
+                <button class="status-btn status-closed" onclick="filterStatus('archivado')" id="btn-archivado">
+                    <span class="status-icon">📁</span>
+                    <span>Archivados</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contador de resultados -->
+        <div class="results-counter" id="resultsCounter"></div>
+
+        <!-- Layout principal con slider central y detalles laterales -->
+        <div class="main-layout">
+            <!-- Panel izquierdo con lista de elementos -->
+            <div class="defensores-sidebar left-sidebar">
+                <h3>📋 Recursos Disponibles</h3>
+                <div class="defensores-list" id="defensoresList">
+                    <!-- Los elementos se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+
+            <!-- Slider central -->
+            <div class="slider-section">
+                <div class="slider-header">
+                    <h2>📢 Información Destacada</h2>
+                    <div class="slider-controls">
+                        <button class="slider-btn" onclick="previousSlide()" id="prevBtn">‹</button>
+                        <span class="slide-counter">
+                            <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+                        </span>
+                        <button class="slider-btn" onclick="nextSlide()" id="nextBtn">›</button>
+                    </div>
+                </div>
+                
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Los slides se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+
+                <!-- Indicadores del slider -->
+                <div class="slider-indicators" id="sliderIndicators">
+                    <!-- Los indicadores se generarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Panel derecho con detalles -->
+            <div class="defensores-sidebar right-sidebar">
+                <h3>ℹ️ Detalles del Recurso</h3>
+                <div class="details-container" id="detailsContainer">
+                    <div class="no-selection">
+                        <div class="no-selection-icon">🎯</div>
+                        <p>Selecciona un recurso para ver los detalles completos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje cuando no hay resultados -->
+        <div class="no-results" id="noResults">
+            <p>No se encontraron recursos</p>
+            <small>Intenta con otros términos de búsqueda o selecciona una categoría diferente</small>
+        </div>
+
+        <!-- Grid de recursos (vista alternativa para móviles) -->
+        <div class="defensores-grid" id="defensoresGrid">
+            <!-- Las tarjetas se mostrarán aquí en vista móvil -->
+        </div>
+    </div>
+
+    <!-- Modal para vista previa detallada -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle">Detalles del Recurso</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- El contenido del modal se cargará dinámicamente -->
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn primary" onclick="closeModal()">Cerrar</button>
+                <button class="modal-btn secondary" id="modalDownloadBtn">Descargar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

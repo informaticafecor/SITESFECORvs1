@@ -23,7 +23,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
-    padding: 60px 20px;
+    padding: 40px 20px;;
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -32,7 +32,7 @@ body {
     margin: 0 auto;
     background: linear-gradient(145deg, rgba(15, 44, 82, 0.3), rgba(0, 117, 191, 0.2));
     border-radius: 30px;
-    padding: 50px 40px;
+    padding: 30px 25px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 204, 153, 0.2);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
@@ -44,7 +44,7 @@ body {
     grid-template-columns: auto 1fr;
     gap: 40px;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     padding-bottom: 30px;
     border-bottom: 2px solid rgba(0, 204, 153, 0.3);
 }
@@ -427,7 +427,7 @@ body {
     }
 
     .directorios-container {
-        padding: 40px 30px;
+        padding: 25px 20px;
     }
 
     .equipos-grid,
@@ -440,7 +440,7 @@ body {
 
 @media (max-width: 768px) {
     body {
-        padding: 30px 15px;
+        padding: 20px 15px;
     }
 
     .section-title {
@@ -484,7 +484,7 @@ body {
     }
 
     .directorios-container {
-        padding: 25px 15px;
+        padding: 15px 10px;
     }
 
     .section-description {

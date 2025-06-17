@@ -226,3 +226,4 @@ function createParticle() {
 
 // Crear partículas ocasionalmente
 setInterval(createParticle, 3000);
+

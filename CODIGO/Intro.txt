@@ -1,19 +1,17 @@
-<div id="defensores-content">Cargando defensores...</div>
-
+<!-- C�digo para cargar INTRO desde GitHub -->
+<div id="intro-content">Cargando introducci�n...</div>
 <script>
-// PASO 2: Cambiar nombre de función aquí
-async function loadDefensoresFromGitHub() {
+async function loadIntroFromGitHub() {
     try {
         const GITHUB_USER = 'informaticafecor';
         const REPO_NAME = 'SITESFECCORVS1';
         const BRANCH = 'main';
         
-        // PASO 3: Cambiar estas 3 rutas
-        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/defensores_publicos/defensores.html`;
-        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/defensores_publicos/css/styles.css`;
-        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/defensores_publicos/js/script.js`;
+        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/intro.html`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/intro.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/intro.js`;
         
-        console.log('Cargando defensores desde:', htmlUrl);
+        console.log('Cargando INTRO desde:', htmlUrl);
         
         // Fetch del HTML
         const htmlResponse = await fetch(htmlUrl);
@@ -39,29 +37,25 @@ async function loadDefensoresFromGitHub() {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlContent;
         const bodyContent = tempDiv.querySelector('body')?.innerHTML || htmlContent;
-        // PASO 4: Cambiar ID aquí
-        document.getElementById('defensores-content').innerHTML = bodyContent;
+        document.getElementById('intro-content').innerHTML = bodyContent;
         
         // Inyectar y ejecutar JS
         const scriptElement = document.createElement('script');
         scriptElement.textContent = jsContent;
         document.body.appendChild(scriptElement);
         
-        console.log('✅ defensores cargado exitosamente desde GitHub');
+        console.log('? INTRO cargado exitosamente desde GitHub');
         
     } catch (error) {
-        console.error('❌ Error cargando defensores:', error);
-        // PASO 4: Cambiar ID aquí también
-        document.getElementById('defensores-content').innerHTML = `
+        console.error('? Error cargando INTRO:', error);
+        document.getElementById('intro-content').innerHTML = `
             <div style="padding: 20px; border: 2px solid #ff6b6b; background: rgba(255, 107, 107, 0.1); border-radius: 10px; color: white;">
-                <h3>❌ Error al cargar defensores</h3>
+                <h3>? Error al cargar INTRO</h3>
                 <p><strong>Error:</strong> ${error.message}</p>
-                <p>Verifica que los archivos existan en: defensores/</p>
+                <p>Verifica que los archivos existan en: intro/</p>
             </div>
         `;
     }
 }
-
-// PASO 2: Cambiar nombre de función aquí también
-document.addEventListener('DOMContentLoaded', loadDefensoresFromGitHub);
+document.addEventListener('DOMContentLoaded', loadIntroFromGitHub);
 </script>

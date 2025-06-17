@@ -1,0 +1,62 @@
+<!-- Código para cargar UNIDADES VEHICULARES desde GitHub -->
+<div id="vehiculares-content">Cargando unidades vehiculares...</div>
+<script>
+async function loadVehicularesFromGitHub() {
+    try {
+        const GITHUB_USER = 'informaticafecor';
+        const REPO_NAME = 'SITESFECCORVS1';
+        const BRANCH = 'main';
+        
+        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.html`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.js`;
+      
+
+        console.log('Cargando UNIDADES VEHICULARES desde:', htmlUrl);
+        
+        // Fetch del HTML
+        const htmlResponse = await fetch(htmlUrl);
+        if (!htmlResponse.ok) throw new Error(`Error HTML: ${htmlResponse.status}`);
+        const htmlContent = await htmlResponse.text();
+        
+        // Fetch del CSS
+        const cssResponse = await fetch(cssUrl);
+        if (!cssResponse.ok) throw new Error(`Error CSS: ${cssResponse.status}`);
+        const cssContent = await cssResponse.text();
+        
+        // Fetch del JS
+        const jsResponse = await fetch(jsUrl);
+        if (!jsResponse.ok) throw new Error(`Error JS: ${jsResponse.status}`);
+        const jsContent = await jsResponse.text();
+        
+        // Inyectar CSS
+        const styleElement = document.createElement('style');
+        styleElement.textContent = cssContent;
+        document.head.appendChild(styleElement);
+        
+        // Inyectar HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const bodyContent = tempDiv.querySelector('body')?.innerHTML || htmlContent;
+        document.getElementById('vehiculares-content').innerHTML = bodyContent;
+        
+        // Inyectar y ejecutar JS
+        const scriptElement = document.createElement('script');
+        scriptElement.textContent = jsContent;
+        document.body.appendChild(scriptElement);
+        
+        console.log('? UNIDADES VEHICULARES cargado exitosamente desde GitHub');
+        
+    } catch (error) {
+        console.error('? Error cargando UNIDADES VEHICULARES:', error);
+        document.getElementById('vehiculares-content').innerHTML = `
+            <div style="padding: 20px; border: 2px solid #ff6b6b; background: rgba(255, 107, 107, 0.1); border-radius: 10px; color: white;">
+                <h3>? Error al cargar UNIDADES VEHICULARES</h3>
+                <p><strong>Error:</strong> ${error.message}</p>
+                <p>Verifica que los archivos existan en: UnidadesVehiculares/</p>
+            </div>
+        `;
+    }
+}
+document.addEventListener('DOMContentLoaded', loadVehicularesFromGitHub);
+</script>

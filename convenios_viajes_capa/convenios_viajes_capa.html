@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación, Convenios y Viajes de Representación</title>
+    
+    <!-- Enlaces a archivos CSS en orden de importancia -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Precargar archivos para mejor performance -->
+    <link rel="preload" href="js/filters.js" as="script">
+    <link rel="preload" href="js/search.js" as="script">
+    <link rel="preload" href="js/main.js" as="script">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <h1>Capacitación, Convenios y Viajes de Representación</h1>
+
+            <!-- Header con buscador -->
+            <div class="header-section">
+                <!-- Buscador -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar capacitaciones, convenios o viajes...">
+                </div>
+            </div>
+
+            <!-- Contador de resultados -->
+            <div class="results-counter" id="resultsCounter"></div>
+
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-results" id="noResults">
+                <p>No se encontraron resultados</p>
+                <small>Intenta con otros términos de búsqueda o ajusta los filtros</small>
+            </div>
+
+            <!-- Contenedor donde se mostrarán las tarjetas -->
+            <div class="news-grid" id="newsGrid">
+
+                <div class="news-card capacitacion 2025 enero">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/00cc99?text=Capacitación+Liderazgo" alt="Imagen capacitación enero 2025">
+                    <div class="news-content">
+                        <h2>Capacitación en Liderazgo Institucional</h2>
+                        <p>Programa intensivo de capacitación dirigido a funcionarios de alto nivel para fortalecer las competencias de liderazgo y gestión institucional.</p>
+                        <a href="https://tusitio.com/capacitacion-liderazgo" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="news-card convenios 2025 febrero">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/ffc107?text=Convenio+Universidad" alt="Imagen convenio febrero 2025">
+                    <div class="news-content">
+                        <h2>Convenio Marco con Universidad Nacional</h2>
+                        <p>Firma del convenio de cooperación interinstitucional con la Universidad Nacional para el desarrollo de programas de investigación y capacitación.</p>
+                        <a href="https://tusitio.com/convenio-universidad" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="news-card viajes 2025 marzo">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/9c27b0?text=Viaje+Colombia" alt="Imagen viaje marzo 2025">
+                    <div class="news-content">
+                        <h2>Viaje de Representación a Colombia</h2>
+                        <p>Misión oficial a Bogotá para participar en el Foro Internacional de Gestión Pública y establecer vínculos de cooperación bilateral.</p>
+                        <a href="https://tusitio.com/viaje-colombia" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="news-card capacitacion 2024 diciembre">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/00cc99?text=Capacitación+Digital" alt="Imagen capacitación diciembre 2024">
+                    <div class="news-content">
+                        <h2>Capacitación en Transformación Digital</h2>
+                        <p>Taller especializado sobre herramientas digitales y modernización de procesos administrativos para mejorar la eficiencia institucional.</p>
+                        <a href="https://tusitio.com/capacitacion-digital" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="news-card convenios 2025 abril">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/ffc107?text=Convenio+Ministerio" alt="Imagen convenio abril 2025">
+                    <div class="news-content">
+                        <h2>Convenio con Ministerio de Trabajo</h2>
+                        <p>Acuerdo de colaboración para el intercambio de mejores prácticas en gestión de recursos humanos y desarrollo organizacional.</p>
+                        <a href="https://tusitio.com/convenio-ministerio" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+                <div class="news-card viajes 2025 mayo">
+                    <img src="https://via.placeholder.com/320x200/0F2C52/9c27b0?text=Viaje+Chile" alt="Imagen viaje mayo 2025">
+                    <div class="news-content">
+                        <h2>Viaje de Representación a Chile</h2>
+                        <p>Participación en la Conferencia Sudamericana de Administración Pública en Santiago, presentando los avances en modernización del Estado.</p>
+                        <a href="https://tusitio.com/viaje-chile" target="_blank">Ver detalles</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Sidebar derecho con filtros -->
+        <div class="sidebar-right">
+            <h3>Filtros</h3>
+
+            <!-- Filtros por tipo -->
+            <div class="filters-vertical">
+                <div class="filter-label">Tipo</div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="filterType('capacitacion')" id="btn-capacitacion">Capacitación</button>
+                    <button class="filter-btn" onclick="filterType('convenios')" id="btn-convenios">Convenios</button>
+                    <button class="filter-btn" onclick="filterType('viajes')" id="btn-viajes">Viajes</button>
+                </div>
+            </div>
+
+            <!-- Separador visual -->
+            <div class="sidebar-separator"></div>
+
+            <!-- Filtros de fecha -->
+            <div class="filters-vertical">
+                <div class="filter-label">Año</div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
+                    <button class="filter-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                </div>
+            </div>
+
+            <!-- Filtro por mes -->
+            <div class="filters-vertical" id="monthGroup" style="display:none;">
+                <div class="filter-label">Mes</div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                    <button class="filter-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                    <button class="filter-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                    <button class="filter-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                    <button class="filter-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                    <button class="filter-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                </div>
+            </div>
+
+            <!-- Botón limpiar filtros -->
+            <button class="clear-filters" onclick="clearAllFilters()">
+                Limpiar Filtros
+            </button>
+        </div>
+    </div>
+
+    <!-- Enlaces a archivos JavaScript en orden de dependencia -->
+    <script src="js/filters.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <script src="js/main.js" defer></script>
+    
+    <!-- Fallback para funcionalidad básica sin JavaScript -->
+    <noscript>
+        <style>
+            .filter-btn, .clear-filters {
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+            .no-results {
+                display: block !important;
+            }
+            .no-results p {
+                color: #ff6b6b;
+            }
+            .no-results p::before {
+                content: "⚠️ ";
+            }
+            .no-results p::after {
+                content: " - JavaScript requerido para filtros";
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>

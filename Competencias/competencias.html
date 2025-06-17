@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competencias</title>
+    
+    <!-- Enlaces a archivos CSS según tu estructura -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Precargar archivos para mejor performance -->
+    <link rel="preload" href="js/filtros.js" as="script">
+    <link rel="preload" href="js/busqueda.js" as="script">
+    <link rel="preload" href="js/vistas.js" as="script">
+    <link rel="preload" href="js/principal.js" as="script">
+</head>
+
+<body>
+    <div class="main-layout">
+        <!-- Header superior -->
+        <div class="header-section">
+            <h1 class="main-title">Competencias</h1>
+            <p class="header-description">
+                Encuentra información especializada sobre competencias en segunda instancia, jurisprudencia, normas, resoluciones y documentos internos relacionados con el ámbito judicial y administrativo.
+            </p>
+        </div>
+
+        <!-- Panel de filtros -->
+        <div class="filters-panel">
+            <h2 class="filters-title">Filtros de Búsqueda</h2>
+            
+            <!-- Buscador -->
+            <div class="search-in-filters">
+                <input type="text" id="searchInput" placeholder="Buscar competencias...">
+            </div>
+
+            <!-- Filtro por tipo -->
+            <div class="filter-group">
+                <div class="filter-group-title">Tipo de Competencia</div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="filterType('segunda-instancia')" id="btn-segunda-instancia">Segunda Instancia</button>
+                    <button class="filter-btn" onclick="filterType('jurisprudencia')" id="btn-jurisprudencia">Jurisprudencia</button>
+                    <button class="filter-btn" onclick="filterType('normas')" id="btn-normas">Normas</button>
+                    <button class="filter-btn" onclick="filterType('resolucion-fn')" id="btn-resolucion-fn">Resolución FN</button>
+                    <button class="filter-btn" onclick="filterType('documentos-internos')" id="btn-documentos-internos">Documentos Internos</button>
+                </div>
+            </div>
+
+            <!-- Filtro por año -->
+            <div class="filter-group">
+                <div class="filter-group-title">Año</div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
+                    <button class="filter-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                </div>
+            </div>
+
+            <!-- Filtro por mes -->
+            <div class="filter-group" id="monthGroup" style="display:none;">
+                <div class="filter-group-title">Mes</div>
+                <div class="filter-buttons date-filters">
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('enero')" id="btn-enero">Ene</button>
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('febrero')" id="btn-febrero">Feb</button>
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('marzo')" id="btn-marzo">Mar</button>
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('abril')" id="btn-abril">Abr</button>
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('mayo')" id="btn-mayo">May</button>
+                    <button class="filter-btn date-filter-btn" onclick="filterMonth('junio')" id="btn-junio">Jun</button>
+                </div>
+            </div>
+
+            <!-- Botón limpiar filtros -->
+            <button class="clear-all-filters" onclick="clearAllFilters()">
+                Limpiar Todos los Filtros
+            </button>
+        </div>
+
+        <!-- Área de contenido -->
+        <div class="content-area">
+            <!-- Información de resultados -->
+            <div class="results-info">
+                <div class="results-counter" id="resultsCounter"></div>
+                <div class="view-toggle">
+                    <button class="view-btn active" onclick="toggleView('grid')" id="grid-view">Vista Grid</button>
+                    <button class="view-btn" onclick="toggleView('list')" id="list-view">Vista Lista</button>
+                </div>
+            </div>
+
+            <!-- Mensaje sin resultados -->
+            <div class="no-results" id="noResults">
+                <p>No se encontraron competencias</p>
+                <small>Intenta ajustar los filtros o términos de búsqueda</small>
+            </div>
+
+            <!-- Grid de competencias -->
+            <div class="competencias-grid" id="competenciasContainer">
+
+                <div class="competencia-card segunda-instancia 2025 enero">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/00cc99?text=Segunda+Instancia" alt="Competencia Segunda Instancia">
+                    <div class="card-content">
+                        <h2>Competencia en Apelación Penal</h2>
+                        <div class="card-date">Publicado: 15 de Enero, 2025</div>
+                        <p>Resolución sobre competencia territorial en casos de apelación penal para delitos contra la administración pública.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+                <div class="competencia-card jurisprudencia 2025 febrero">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/ffc107?text=Jurisprudencia" alt="Jurisprudencia">
+                    <div class="card-content">
+                        <h2>Jurisprudencia Vinculante sobre Competencia</h2>
+                        <div class="card-date">Publicado: 8 de Febrero, 2025</div>
+                        <p>Pronunciamiento de la Corte Suprema sobre criterios de competencia en delitos complejos y conexos.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+                <div class="competencia-card normas 2025 marzo">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/2196f3?text=Normas+Legales" alt="Normas">
+                    <div class="card-content">
+                        <h2>Nueva Normativa sobre Competencia Funcional</h2>
+                        <div class="card-date">Publicado: 22 de Marzo, 2025</div>
+                        <p>Marco normativo actualizado para determinar competencia funcional en investigaciones del Ministerio Público.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+                <div class="competencia-card resolucion-fn 2024 diciembre">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/9c27b0?text=Resolución+FN" alt="Resolución FN">
+                    <div class="card-content">
+                        <h2>Resolución FN N° 245-2024</h2>
+                        <div class="card-date">Publicado: 10 de Diciembre, 2024</div>
+                        <p>Resolución de Fiscalía de la Nación sobre competencia en casos de criminalidad organizada transnacional.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+                <div class="competencia-card documentos-internos 2025 abril">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/4caf50?text=Documentos+Internos" alt="Documentos Internos">
+                    <div class="card-content">
+                        <h2>Protocolo Interno de Competencia</h2>
+                        <div class="card-date">Publicado: 5 de Abril, 2025</div>
+                        <p>Documento interno que establece criterios uniformes para la determinación de competencia territorial.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+                <div class="competencia-card jurisprudencia 2025 mayo">
+                    <img src="https://via.placeholder.com/380x200/0F2C52/ffc107?text=Jurisprudencia+Penal" alt="Jurisprudencia Penal">
+                    <div class="card-content">
+                        <h2>Precedente sobre Competencia Penal</h2>
+                        <div class="card-date">Publicado: 18 de Mayo, 2025</div>
+                        <p>Precedente judicial establecido por la Sala Penal Permanente sobre conflictos de competencia territorial.</p>
+                        <a href="#" target="_blank">Ver documento</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlaces a archivos JavaScript según tu estructura -->
+    <script src="js/filtros.js" defer></script>
+    <script src="js/busqueda.js" defer></script>
+    <script src="js/vistas.js" defer></script>
+    <script src="js/principal.js" defer></script>
+    
+    <!-- Fallback para funcionalidad básica sin JavaScript -->
+    <noscript>
+        <style>
+            .filter-btn, .view-btn, .clear-all-filters {
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+            .no-results {
+                display: block !important;
+            }
+            .no-results p {
+                color: #ff6b6b;
+            }
+            .no-results p::before {
+                content: "⚠️ ";
+            }
+            .no-results p::after {
+                content: " - JavaScript requerido para filtros";
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>

@@ -1,0 +1,550 @@
+/* Variables CSS para mejor mantenimiento */
+:root {
+    --primary-color: #0F2C52;
+    --accent-color: #00cc99;
+    --text-color: white;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-heavy: rgba(0, 0, 0, 0.5);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0F2C52;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Contenedor principal centrado */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Buscador en la parte superior */
+.search-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.search-container input {
+    padding: 15px 25px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    width: 80%;
+    max-width: 600px;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.2);
+}
+
+.search-container input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Filtros en pestañas horizontales */
+.filters-tabs {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tabs-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Separador entre secciones de filtros */
+.filter-separator {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 204, 153, 0.3), transparent);
+    margin: 20px 0;
+}
+
+/* Contenedor para filtros de fecha */
+.date-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-filter-label {
+    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.date-filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Estilo de los botones de filtro tipo pestañas */
+.tab-btn, .date-btn {
+    padding: 12px 20px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tab-btn::before, .date-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.tab-btn:hover::before, .date-btn:hover::before {
+    left: 100%;
+}
+
+.tab-btn:hover, .date-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+}
+
+/* Estilo cuando el botón está activo */
+.tab-btn.active, .date-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
+}
+
+/* Botones de fecha más pequeños */
+.date-btn {
+    padding: 8px 16px;
+    font-size: 0.85em;
+}
+
+/* Botón para limpiar filtros */
+.clear-filters {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+.clear-filters:hover {
+    background: rgba(0, 204, 153, 0.2);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.2);
+}
+
+/* Contador de resultados */
+.results-counter {
+    text-align: center;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1em;
+}
+
+/* Mensaje cuando no hay resultados */
+.no-results {
+    text-align: center;
+    padding: 50px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    display: none;
+}
+
+.no-results::before {
+    content: '📋';
+    display: block;
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+/* Diseño de las tarjetas en formato grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Estilo de cada tarjeta */
+.news-card {
+    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    position: relative;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), #00ffcc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Efecto hover sobre las tarjetas */
+.news-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow-heavy);
+}
+
+.news-card:hover::before {
+    opacity: 1;
+}
+
+/* Imagen de la tarjeta */
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Contenido dentro de la tarjeta */
+.news-content {
+    padding: 25px;
+    position: relative;
+}
+
+.news-content h2 {
+    font-size: 1.4em;
+    margin: 0 0 15px 0;
+    color: var(--text-color);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.news-content p {
+    font-size: 1em;
+    margin: 0 0 18px 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+/* Estilo de los enlaces */
+.news-content a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: rgba(0, 204, 153, 0.1);
+    border: 2px solid rgba(0, 204, 153, 0.3);
+}
+
+.news-content a::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.news-content a:hover {
+    background: var(--accent-color);
+    color: #0F2C52;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 204, 153, 0.3);
+}
+
+.news-content a:hover::after {
+    transform: translateX(5px);
+}
+
+/* Indicadores de tipo específicos */
+.news-card.resoluciones::after {
+    content: 'RESOLUCIÓN';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 204, 153, 0.9);
+    color: #0F2C52;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.lineamientos::after {
+    content: 'LINEAMIENTO';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 193, 7, 0.9);
+    color: #0F2C52;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.normas::after {
+    content: 'NORMA';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(33, 150, 243, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.formatos::after {
+    content: 'FORMATO';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.news-card.guias::after {
+    content: 'GUÍA PRÁCTICA';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+/* Animación de carga */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.news-card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Estilos responsivos para pantallas medianas */
+@media (max-width: 900px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .search-container input {
+        width: 90%;
+    }
+
+    .tabs-container,
+    .date-filters {
+        gap: 8px;
+    }
+
+    .tab-btn, .date-btn {
+        font-size: 0.85em;
+        padding: 10px 16px;
+    }
+
+    .date-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.9em;
+        margin-bottom: 15px;
+    }
+
+    .search-section,
+    .filters-tabs {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .search-container input {
+        width: 95%;
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .tabs-container,
+    .date-filters {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .date-filter-group {
+        width: 100%;
+    }
+
+    .date-filter-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .tab-btn, .date-btn {
+        font-size: 0.8em;
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    .date-btn {
+        padding: 8px 12px;
+        font-size: 0.75em;
+    }
+
+    .clear-filters {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .news-content {
+        padding: 20px;
+    }
+
+    .news-content h2 {
+        font-size: 1.2em;
+    }
+
+    .news-content p {
+        font-size: 0.95em;
+    }
+}

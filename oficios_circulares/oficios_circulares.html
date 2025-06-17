@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficios Circulares</title>
+    <link rel="stylesheet" href="css/styles.css">
+   
+</head>
+
+<body>
+    <div class="container">
+        <h1>Oficios Circulares</h1>
+
+        <!-- Descripción del servicio -->
+        <div class="service-description">
+            <p>Esta sección permite acceder a documentos oficiales que establecen normas de carácter general, instrucciones o lineamientos que la coordinación nacional comunica a todos los despachos fiscales.</p>
+        </div>
+
+        <!-- Buscador -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar oficios circulares por código o contenido...">
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters-tabs">
+            <div class="tabs-header">
+                <h3>Filtrar por Fecha</h3>
+            </div>
+
+            <div class="date-filters">
+                <div class="date-filter-group">
+                    <div class="date-filter-label">Año</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
+                        <button class="date-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                    </div>
+                </div>
+
+                <div class="date-filter-group" id="monthGroup" style="display:none;">
+                    <div class="date-filter-label">Mes</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                        <button class="date-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                        <button class="date-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                        <button class="date-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                        <button class="date-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                        <button class="date-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="clear-filters" onclick="clearAllFilters()">
+                Limpiar Filtros
+            </button>
+        </div>
+
+        <!-- Contador de resultados -->
+        <div class="results-info">
+            <div class="results-counter" id="resultsCounter"></div>
+            <div class="pagination-info" id="paginationInfo"></div>
+        </div>
+
+        <!-- Sin resultados -->
+        <div class="no-results" id="noResults">
+            <p>No se encontraron oficios circulares</p>
+            <small>Intenta con otros términos de búsqueda</small>
+        </div>
+
+        <!-- Grid de oficios -->
+        <div class="news-grid" id="newsGrid">
+            <!-- Se llenan dinámicamente -->
+        </div>
+
+        <!-- Paginación -->
+        <div class="pagination-container" id="paginationContainer">
+            <button class="pagination-btn" id="prevBtn" onclick="changePage('prev')">
+                ← Anterior
+            </button>
+            
+            <div class="pagination-numbers" id="paginationNumbers">
+                <!-- Se generan dinámicamente -->
+            </div>
+            
+            <button class="pagination-btn" id="nextBtn" onclick="changePage('next')">
+                Siguiente →
+            </button>
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

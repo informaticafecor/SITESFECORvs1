@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normativa y Guías Prácticas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Normativa y Guías Prácticas</h1>
+
+        <!-- Buscador en la parte superior -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar resoluciones, lineamientos, normas, formatos o guías..." onkeyup="searchNews()" oninput="searchNews()">
+            </div>
+        </div>
+
+        <!-- Filtros en pestañas horizontales -->
+        <div class="filters-tabs">
+            <div class="tabs-header">
+                <h3>Categorías</h3>
+            </div>
+            <div class="tabs-container">
+                <button class="tab-btn" onclick="filterType('resoluciones')" id="btn-resoluciones">Resoluciones de la Fiscalía</button>
+                <button class="tab-btn" onclick="filterType('lineamientos')" id="btn-lineamientos">Lineamientos</button>
+                <button class="tab-btn" onclick="filterType('normas')" id="btn-normas">Normas</button>
+                <button class="tab-btn" onclick="filterType('formatos')" id="btn-formatos">Formatos</button>
+                <button class="tab-btn" onclick="filterType('guias')" id="btn-guias">Guías Prácticas</button>
+
+                <!-- Botón limpiar filtros -->
+                <button class="clear-filters" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+            </div>
+
+            <!-- Separador visual -->
+            <div class="filter-separator"></div>
+
+            <!-- Filtros de fecha -->
+            <div class="date-filters">
+                <!-- Filtro por año -->
+                <div class="date-filter-group">
+                    <div class="date-filter-label">Año</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
+                        <button class="date-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                    </div>
+                </div>
+
+                <!-- Filtro por mes -->
+                <div class="date-filter-group" id="monthGroup" style="display:none;">
+                    <div class="date-filter-label">Mes</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                        <button class="date-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                        <button class="date-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                        <button class="date-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                        <button class="date-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                        <button class="date-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contador de resultados -->
+        <div class="results-counter" id="resultsCounter"></div>
+
+        <!-- Mensaje cuando no hay resultados -->
+        <div class="no-results" id="noResults">
+            <p>No se encontraron documentos</p>
+            <small>Intenta con otros términos de búsqueda o selecciona una categoría diferente</small>
+        </div>
+
+        <!-- Contenedor donde se mostrarán las tarjetas -->
+        <div class="news-grid" id="newsGrid">
+
+            <div class="news-card resoluciones 2025 enero">
+                <img src="https://via.placeholder.com/350x220/0F2C52/00cc99?text=Resolución+001" alt="Resolución de la Fiscalía">
+                <div class="news-content">
+                    <h2>Resolución N° 001-2025-MP-FN</h2>
+                    <p>Resolución que establece lineamientos para la gestión de casos especiales y procedimientos administrativos en el ámbito del Ministerio Público.</p>
+                    <a href="https://tusitio.com/resolucion-001-2025" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+
+            <div class="news-card lineamientos 2025 febrero">
+                <img src="https://via.placeholder.com/350x220/0F2C52/ffc107?text=Lineamiento+Técnico" alt="Lineamiento técnico">
+                <div class="news-content">
+                    <h2>Lineamientos Técnicos de Investigación</h2>
+                    <p>Directrices técnicas para la conducción de investigaciones penales complejas y manejo de evidencia digital en el proceso penal.</p>
+                    <a href="https://tusitio.com/lineamientos-investigacion" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+
+            <div class="news-card normas 2025 marzo">
+                <img src="https://via.placeholder.com/350x220/0F2C52/2196f3?text=Norma+Procedimiento" alt="Norma de procedimiento">
+                <div class="news-content">
+                    <h2>Norma de Procedimiento Administrativo</h2>
+                    <p>Norma que regula los procedimientos administrativos internos y establece los plazos y requisitos para trámites institucionales.</p>
+                    <a href="https://tusitio.com/norma-procedimiento" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+
+            <div class="news-card formatos 2024 diciembre">
+                <img src="https://via.placeholder.com/350x220/0F2C52/9c27b0?text=Formatos+Oficiales" alt="Formatos oficiales">
+                <div class="news-content">
+                    <h2>Formatos Oficiales Actualizados</h2>
+                    <p>Colección de formatos oficiales para denuncias, solicitudes y documentos administrativos con las últimas actualizaciones normativas.</p>
+                    <a href="https://tusitio.com/formatos-oficiales" target="_blank">Descargar ZIP</a>
+                </div>
+            </div>
+
+            <div class="news-card guias 2025 abril">
+                <img src="https://via.placeholder.com/350x220/0F2C52/4caf50?text=Guía+Práctica" alt="Guía práctica">
+                <div class="news-content">
+                    <h2>Guía Práctica de Litigación Oral</h2>
+                    <p>Manual práctico con técnicas y estrategias para la litigación oral en audiencias penales, incluyendo casos de estudio y ejemplos.</p>
+                    <a href="https://tusitio.com/guia-litigacion-oral" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+
+            <div class="news-card resoluciones 2025 mayo">
+                <img src="https://via.placeholder.com/350x220/0F2C52/00cc99?text=Resolución+002" alt="Resolución administrativa">
+                <div class="news-content">
+                    <h2>Resolución N° 002-2025-MP-FN</h2>
+                    <p>Resolución sobre implementación de nuevos protocolos de atención al usuario y modernización de servicios institucionales.</p>
+                    <a href="https://tusitio.com/resolucion-002-2025" target="_blank">Descargar PDF</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

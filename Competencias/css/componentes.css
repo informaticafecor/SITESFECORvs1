@@ -1,0 +1,395 @@
+/* ===================================
+   COMPONENTES - COMPETENCIAS
+   =================================== */
+
+/* Buscador en panel de filtros */
+.search-in-filters {
+    margin-bottom: 30px;
+}
+
+.search-in-filters input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 0.95em;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    box-shadow: 0 4px 10px var(--shadow-light);
+    box-sizing: border-box;
+}
+
+.search-in-filters input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.2);
+}
+
+.search-in-filters input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Grupos de filtros */
+.filter-group {
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.filter-group-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Botones de filtro */
+.filter-btn {
+    padding: 10px 15px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.filter-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 204, 153, 0.3);
+}
+
+/* Filtros de fecha en línea */
+.date-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.date-filter-btn {
+    padding: 6px 12px;
+    font-size: 0.8em;
+    flex: 1;
+    min-width: 70px;
+}
+
+/* Botón limpiar filtros */
+.clear-all-filters {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95em;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.clear-all-filters:hover {
+    background: rgba(0, 204, 153, 0.2);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Contador de resultados */
+.results-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.results-counter {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 8px 15px;
+    background: transparent;
+    border: 2px solid rgba(0, 204, 153, 0.3);
+    color: var(--accent-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: var(--transition);
+}
+
+.view-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* Tarjeta de competencia */
+.competencia-card {
+    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    position: relative;
+}
+
+.competencia-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), #00ffcc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.competencia-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px var(--shadow-heavy);
+}
+
+.competencia-card:hover::before {
+    opacity: 1;
+}
+
+/* Imagen de la tarjeta */
+.competencia-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.competencia-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    padding: 25px;
+    position: relative;
+}
+
+.card-content h2 {
+    font-size: 1.3em;
+    margin: 0 0 12px 0;
+    color: var(--text-color);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.card-content p {
+    font-size: 0.95em;
+    margin: 0 0 15px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+.card-date {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
+}
+
+/* Enlaces de competencia */
+.card-content a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(0, 204, 153, 0.1);
+    border: 1px solid rgba(0, 204, 153, 0.3);
+}
+
+.card-content a::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.card-content a:hover {
+    background: var(--accent-color);
+    color: #0F2C52;
+    transform: translateX(5px);
+}
+
+.card-content a:hover::after {
+    transform: translateX(3px);
+}
+
+/* Indicadores de tipo */
+.competencia-card.segunda-instancia::after {
+    content: 'SEGUNDA INSTANCIA';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 204, 153, 0.9);
+    color: #0F2C52;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.competencia-card.jurisprudencia::after {
+    content: 'JURISPRUDENCIA';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 193, 7, 0.9);
+    color: #0F2C52;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.competencia-card.normas::after {
+    content: 'NORMAS';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(33, 150, 243, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.competencia-card.resolucion-fn::after {
+    content: 'RESOLUCIÓN FN';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+.competencia-card.documentos-internos::after {
+    content: 'DOC. INTERNOS';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+}
+
+/* Vista de lista */
+.list-view .competencia-card {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.list-view .competencia-card img {
+    width: 150px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.list-view .card-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Mensaje sin resultados */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    display: none;
+}
+
+.no-results::before {
+    content: '⚖️';
+    display: block;
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.competencia-card {
+    animation: fadeIn 0.5s ease-out;
+}

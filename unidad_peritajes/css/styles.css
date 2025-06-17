@@ -1,0 +1,419 @@
+/* Variables CSS para mejor mantenimiento */
+        :root {
+            --primary-color: #0F2C52;
+            --accent-color: #00cc99;
+            --text-color: white;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-heavy: rgba(0, 0, 0, 0.5);
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+            --gold-color: #ffd700;
+        }
+
+        /* Estilo general del cuerpo */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0F2C52;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal con sidebar izquierdo */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar izquierdo con navegación */
+        .sidebar-left {
+            width: 300px;
+            background: linear-gradient(180deg, rgba(15, 44, 82, 0.95) 0%, rgba(26, 54, 96, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            padding: 30px 25px;
+            box-shadow: 2px 0 15px var(--shadow-heavy);
+            border-right: 3px solid rgba(0, 204, 153, 0.3);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* Título del sidebar */
+        .sidebar-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+        }
+
+        /* Descripción del sidebar */
+        .sidebar-description {
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Lista de navegación */
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-bottom: 15px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 204, 153, 0.1);
+            color: var(--accent-color);
+            border-color: rgba(0, 204, 153, 0.3);
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, rgba(0, 204, 153, 0.2), rgba(0, 255, 204, 0.1));
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            font-size: 1.8em;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Sección de peritaje */
+        .peritaje-section {
+            background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(26, 54, 96, 0.8));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.1);
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .peritaje-section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .peritaje-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), #00ffcc);
+        }
+
+        /* Header de la sección */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 204, 153, 0.2);
+        }
+
+        .section-main-icon {
+            font-size: 4em;
+            color: var(--gold-color);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Descripción de la sección */
+        .section-description {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Grid de contenido */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Bloques de contenido */
+        .content-block {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(0, 204, 153, 0.1);
+            transition: var(--transition);
+        }
+
+        .content-block:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--shadow-light);
+        }
+
+        .content-block h3 {
+            color: var(--accent-color);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .content-block p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .content-block ul {
+            color: rgba(255, 255, 255, 0.85);
+            padding-left: 20px;
+        }
+
+        .content-block li {
+            margin-bottom: 8px;
+        }
+
+        /* Enlaces y recursos */
+        .resources-section {
+            background: rgba(0, 204, 153, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(0, 204, 153, 0.2);
+        }
+
+        .resources-title {
+            color: var(--accent-color);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(0, 204, 153, 0.1);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 5px;
+            border: 2px solid rgba(0, 204, 153, 0.3);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .resource-link:hover {
+            background: var(--accent-color);
+            color: #0F2C52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 204, 153, 0.3);
+        }
+
+        .resource-link::before {
+            content: '📎';
+            font-size: 1.1em;
+        }
+
+        /* Buscador flotante */
+        .floating-search {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(15, 44, 82, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: 2px solid rgba(0, 204, 153, 0.3);
+            box-shadow: 0 8px 25px var(--shadow-heavy);
+        }
+
+        .floating-search input {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 0.9em;
+            width: 200px;
+            padding: 5px;
+            outline: none;
+        }
+
+        .floating-search input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos responsivos para pantallas medianas */
+        @media (max-width: 1000px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar-left {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 3px solid rgba(0, 204, 153, 0.3);
+            }
+
+            .nav-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .nav-item {
+                margin-bottom: 0;
+            }
+
+            .nav-link {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .floating-search {
+                position: static;
+                margin-bottom: 20px;
+                align-self: center;
+            }
+        }
+
+        /* Estilos responsivos para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 20px;
+            }
+
+            .peritaje-section {
+                padding: 25px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .section-main-icon {
+                font-size: 3em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .sidebar-left {
+                padding: 20px;
+            }
+
+            .nav-list {
+                flex-direction: column;
+            }
+
+            .nav-link {
+                text-align: center;
+            }
+
+            .content-block {
+                padding: 20px;
+            }
+
+            .floating-search input {
+                width: 150px;
+            }
+        }
+
+        /* Estilo para secciones encontradas en búsqueda */
+        .search-result {
+            border: 2px solid rgba(0, 204, 153, 0.5) !important;
+            box-shadow: 0 0 20px rgba(0, 204, 153, 0.3) !important;
+        }
+
+        /* Scroll personalizado para sidebar */
+        .sidebar-left::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar-left::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .sidebar-left::-webkit-scrollbar-thumb {
+            background: rgba(0, 204, 153, 0.6);
+            border-radius: 4px;
+        }
+
+        .sidebar-left::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 204, 153, 0.8);
+        }

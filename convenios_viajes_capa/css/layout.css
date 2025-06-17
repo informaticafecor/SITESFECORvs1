@@ -1,0 +1,105 @@
+/* ===================================
+   LAYOUT Y ESTRUCTURA - CAPACITACIÓN
+   =================================== */
+
+/* Contenedor principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    gap: 30px;
+}
+
+/* Contenido principal */
+.main-content {
+    flex: 1;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Header con buscador */
+.header-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+/* Sidebar derecho con filtros */
+.sidebar-right {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.sidebar-right h3 {
+    margin: 0 0 20px 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+/* Contenedor de búsqueda centrado */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.search-container input {
+    padding: 15px 25px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    width: 70%;
+    max-width: 500px;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.2);
+}
+
+.search-container input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Diseño de las tarjetas en formato grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Informático - FECCO</title>
+    <link rel="stylesheet" href="css/styles.css">
+  
+</head>
+<body>
+    <div class="container">
+        <!-- Título principal mejorado -->
+        <h1>💻 Soporte Informático</h1>
+
+        <!-- Sección de bienvenida mejorada -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-title">¡Bienvenido al Centro de Innovación Tecnológica!</div>
+                <div class="welcome-description">
+                    Descubre el fascinante ecosistema tecnológico de las Fiscalías Especializadas contra la Criminalidad Organizada. Aquí convergen las herramientas más avanzadas de análisis, procesamiento de datos y soporte técnico para potenciar las investigaciones fiscales con tecnología de vanguardia.
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de servicios mejorado -->
+        <div class="services-grid">
+            <!-- Tarjeta Estadística e Indicadores -->
+            <div class="service-card estadistica" onclick="showServiceDetails('estadistica')">
+                <div class="service-header">
+                    <div class="service-icon estadistica">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="18" width="4" height="3" fill="#0F2C52" rx="1"/>
+                            <rect x="9" y="14" width="4" height="7" fill="#0F2C52" rx="1"/>
+                            <rect x="15" y="10" width="4" height="11" fill="#0F2C52" rx="1"/>
+                            <path d="M5 19L11 15L17 11" stroke="#0F2C52" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="5" cy="19" r="2" fill="#0F2C52"/>
+                            <circle cx="11" cy="15" r="2" fill="#0F2C52"/>
+                            <circle cx="17" cy="11" r="2" fill="#0F2C52"/>
+                        </svg>
+                    </div>
+                    <div class="service-title-header">
+                        <div class="service-label">Análisis de Datos</div>
+                        <div class="service-name">Estadística e Indicadores</div>
+                    </div>
+                </div>
+                <div class="service-description">
+                    Centro neurálgico de análisis de información sobre delitos vinculados al crimen organizado. Procesamos datos a nivel nacional para generar insights estratégicos que impulsan la toma de decisiones basada en evidencia.
+                </div>
+                <div class="service-details">
+                    💡 Generamos reportes estadísticos avanzados sobre carga procesal, indicadores de rendimiento, operativos exitosos y análisis predictivo de tendencias criminales para optimizar recursos y estrategias fiscales.
+                </div>
+            </div>
+
+            <!-- Tarjeta Soporte Informático -->
+            <div class="service-card soporte" onclick="showServiceDetails('soporte')">
+                <div class="service-header">
+                    <div class="service-icon soporte">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="4" width="18" height="12" rx="2" stroke="#0F2C52" stroke-width="2" fill="none"/>
+                            <rect x="5" y="6" width="14" height="8" fill="#0F2C52" rx="1"/>
+                            <rect x="10" y="16" width="4" height="2" fill="#0F2C52" rx="1"/>
+                            <rect x="8" y="18" width="8" height="1" fill="#0F2C52" rx="0.5"/>
+                            <circle cx="12" cy="10" r="2" fill="white"/>
+                            <path d="M8 14c0-2 1.8-3 4-3s4 1 4 3" stroke="white" stroke-width="1.5" fill="none"/>
+                            <g transform="translate(16, 2)">
+                                <rect x="0" y="0" width="1" height="4" fill="#0F2C52" rx="0.5"/>
+                                <circle cx="0.5" cy="4.5" r="1" fill="#0F2C52"/>
+                                <rect x="2" y="1" width="0.8" height="3" fill="#0F2C52" rx="0.4"/>
+                                <rect x="1.6" y="0.5" width="1.6" height="0.8" fill="#0F2C52" rx="0.4"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="service-title-header">
+                        <div class="service-label">Infraestructura Digital</div>
+                        <div class="service-name">Soporte Técnico Avanzado</div>
+                    </div>
+                </div>
+                <div class="service-description">
+                    Guardián de la infraestructura tecnológica crítica. Garantizamos operatividad 24/7 de sistemas especializados, brindamos soporte técnico experto y mantenemos la conectividad esencial para investigaciones ininterrumpidas.
+                </div>
+                <div class="service-details">
+                    🔧 Especialistas en capacitación tecnológica, respuesta rápida ante incidentes críticos, optimización de recursos digitales y implementación de soluciones innovadoras para maximizar la eficiencia operativa.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de instructivos mejorada -->
+        <div class="instructivos-section">
+            <div class="instructivos-header">
+                <div class="instructivos-icon">
+                    <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                        <path d="M12 2L13.09 8.26L19 7L17.74 13.09L24 12L17.74 10.91L19 17L13.09 15.74L12 22L10.91 15.74L5 17L6.26 10.91L0 12L6.26 13.09L5 7L10.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <h2 class="instructivos-title">📚 Recursos Técnicos</h2>
+            </div>
+            <a href="#" class="instructivo-link" onclick="openInstructivo()">
+                <span>🔍</span>
+                <span>Guía Avanzada: Generación y Validación de Hash Criptográfico para Evidencia Digital</span>
+                <span>→</span>
+            </a>
+        </div>
+
+        <!-- Sección de contacto mejorada -->
+        <div class="contact-section">
+            <div class="contact-grid">
+                <!-- Información de contacto izquierda -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-label">📞 Anexo</div>
+                        <div class="contact-value">1133B</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">✉️ Correo</div>
+                        <div class="contact-value">fcccrco_meet2@mpfn.gob.pe</div>
+                    </div>
+                </div>
+
+                <!-- Ícono central mejorado -->
+                <div class="contact-icon-center">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <!-- Teléfono -->
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="#0F2C52" stroke-width="2" fill="none"/>
+                        <!-- Email -->
+                        <rect x="2" y="6" width="20" height="10" rx="2" stroke="#0F2C52" stroke-width="1.5" fill="none"/>
+                        <path d="M2 6l10 6 10-6" stroke="#0F2C52" stroke-width="1.5"/>
+                        <!-- Calculator -->
+                        <rect x="14" y="2" width="8" height="8" rx="1" stroke="#0F2C52" stroke-width="1" fill="none"/>
+                        <rect x="15" y="3" width="2" height="0.8" fill="#0F2C52"/>
+                        <rect x="18" y="3" width="3" height="0.8" fill="#0F2C52"/>
+                        <rect x="15" y="5" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="17" y="5" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="19" y="5" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="15" y="7" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="17" y="7" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="19" y="7" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="15" y="8.5" width="1" height="0.8" fill="#0F2C52"/>
+                        <rect x="17" y="8.5" width="3" height="0.8" fill="#0F2C52"/>
+                    </svg>
+                </div>
+
+                <!-- Enlaces directorio derecha -->
+                <div class="directorio-links">
+                    <a href="#" class="directorio-link" onclick="openDirectorio()">
+                        <span>📋</span>
+                        <span>Directorio Informática - FECCOR</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#" class="directorio-link" onclick="openFunciones()">
+                        <span>⚙️</span>
+                        <span>Funciones</span>
+                        <span>→</span>
+                    </a>
+                </div>

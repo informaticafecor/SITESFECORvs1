@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - FECCO</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Título principal -->
+        <h1>Preguntas Frecuentes</h1>
+
+        <!-- Introducción -->
+        <div class="intro-section">
+            <div class="intro-content">
+                <div class="intro-title">Centro de Ayuda FECCO</div>
+                <div class="intro-description">
+                    Encuentra respuestas rápidas a las consultas más comunes sobre las Fiscalías Especializadas contra la Criminalidad Organizada. Nuestro equipo ha recopilado las preguntas más frecuentes para brindarte información clara y actualizada.
+                </div>
+            </div>
+        </div>
+
+        <!-- Buscador -->
+        <div class="search-section">
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Buscar preguntas frecuentes..."
+                    id="searchInput"
+                    onkeyup="searchFAQ()"
+                >
+            </div>
+            <div class="search-results-count" id="resultsCount">
+                Mostrando todas las preguntas disponibles
+            </div>
+        </div>
+
+        <!-- Categorías -->
+        <div class="categories-section">
+            <div class="categories-title">Filtrar por Categoría</div>
+            <div class="categories-filter" id="categoriesFilter">
+                <!-- Se generan automáticamente desde JavaScript -->
+            </div>
+        </div>
+
+        <!-- Lista de Preguntas Frecuentes -->
+        <div class="faq-container" id="faqContainer">
+            <!-- Se generan automáticamente desde JavaScript -->
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="faq-stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalQuestions">0</span>
+                <span class="stat-label">Preguntas Frecuentes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="totalCategories">0</span>
+                <span class="stat-label">Categorías</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Disponibilidad</span>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+
+   
+</body>
+</html>

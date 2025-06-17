@@ -1,0 +1,451 @@
+ /* Variables CSS */
+        :root {
+            --primary-color: #0F2C52;
+            --accent-color: #00cc99;
+            --text-color: white;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-heavy: rgba(0, 0, 0, 0.5);
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+            --yellow-accent: #FFC107;
+            --orange-accent: #FF6B35;
+        }
+
+        /* Estilo general */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F2C52 0%, #1a3660 100%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* ========================================
+           DESCRIPCIÓN DE BIENVENIDA
+           ======================================== */
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.1);
+            text-align: center;
+        }
+
+        .welcome-section p {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           SECCIÓN DE REVISTAS POR AÑO
+           ======================================== */
+
+        .revistas-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.15);
+        }
+
+        .revistas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* ========================================
+           TARJETAS DE REVISTA
+           ======================================== */
+
+        .revista-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-heavy);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .revista-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow-heavy);
+        }
+
+        /* Portada de la revista */
+        .revista-cover {
+            height: 350px;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px 0 20px;
+        }
+
+        /* Logo FECCO en la portada */
+        .revista-logo {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(15, 44, 82, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .revista-logo-content {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+        }
+
+        .revista-logo-content::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+
+        /* Título de la revista en la portada */
+        .revista-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Banda de color por año */
+        .revista-year-band {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 10px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .revista-year-number {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 36px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Colores específicos por año */
+        .revista-card.year-2022 .revista-year-band {
+            background: linear-gradient(45deg, var(--orange-accent), #FF8A50);
+        }
+
+        .revista-card.year-2023 .revista-year-band {
+            background: linear-gradient(45deg, var(--yellow-accent), #FFD54F);
+            color: var(--primary-color);
+        }
+
+        .revista-card.year-2024 .revista-year-band {
+            background: linear-gradient(45deg, var(--accent-color), #4ECDC4);
+            color: var(--primary-color);
+        }
+
+        /* Footer de la tarjeta */
+        .revista-footer {
+            background: var(--primary-color);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .revista-edition {
+            color: var(--accent-color);
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .revista-download {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .revista-download:hover {
+            background: #00ffcc;
+            transform: scale(1.05);
+        }
+
+        /* ========================================
+           SECCIÓN DE PUBLICACIÓN DE ARTÍCULOS
+           ======================================== */
+
+        .publicacion-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid rgba(0, 204, 153, 0.15);
+        }
+
+        .publicacion-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .publicacion-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--yellow-accent), #FFD54F);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.3);
+            flex-shrink: 0;
+        }
+
+        .publicacion-icon svg {
+            width: 35px;
+            height: 35px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .publicacion-title {
+            font-size: 1.4em;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .publicacion-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .publicacion-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(0, 204, 153, 0.2);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .publicacion-link:hover {
+            background: rgba(0, 204, 153, 0.15);
+            border-color: var(--accent-color);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 204, 153, 0.2);
+        }
+
+        .link-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--accent-color);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .link-text {
+            font-size: 0.95em;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .publicacion-link::after {
+            content: '→';
+            font-size: 1em;
+            font-weight: bold;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .publicacion-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+
+        @media (max-width: 768px) {
+            .revistas-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .publicacion-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .publicacion-link:hover {
+                transform: translateY(-3px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .revistas-section, .publicacion-section {
+                padding: 20px;
+            }
+
+            .revista-cover {
+                height: 250px;
+                padding: 15px;
+            }
+
+            .revista-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .publicacion-link {
+                padding: 10px 15px;
+                gap: 10px;
+            }
+        }
+
+        /* ========================================
+           ANIMACIONES
+           ======================================== */
+
+        .revistas-section, .publicacion-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .revista-card {
+            animation: fadeInScale 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .revista-card:nth-child(1) { animation-delay: 0.1s; }
+        .revista-card:nth-child(2) { animation-delay: 0.2s; }
+        .revista-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .publicacion-link {
+            animation: fadeInLeft 0.4s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .publicacion-link:nth-child(1) { animation-delay: 0.1s; }
+        .publicacion-link:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }

@@ -3,6 +3,7 @@
    =================================== */
 
 // Variables para los filtros activos
+/*
 let selectedType = '';
 let selectedYear = '';
 let currentMonth = '';
@@ -99,4 +100,206 @@ function clearAllFilters() {
     });
 
     updateResultsCounter();
+}*/
+
+/* ===================================
+   SISTEMA DE FILTROS CORREGIDO - CAPACITACIÓN
+   =================================== */
+
+// Variables para los filtros activos
+let selectedType = '';
+let selectedYear = '';
+let currentMonth = '';
+
+// Filtrar por tipo
+function filterType(type) {
+    selectedType = type;
+
+    // Remover clase activa de todos los botones de tipo
+    document.querySelectorAll('[id^="btn-capacitacion"], [id^="btn-convenios"], [id^="btn-viajes"]').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Agregar clase activa al botón seleccionado
+    const selectedBtn = document.getElementById('btn-' + type);
+    if (selectedBtn) {
+        selectedBtn.classList.add('active');
+    }
+
+    // Aplicar filtros
+    applyFilters();
+}
+
+// Seleccionar año
+function selectYear(year) {
+    selectedYear = year;
+    currentMonth = ''; // Limpiar selección de mes
+
+    // Remover clase activa de todos los botones de año
+    document.querySelectorAll('[id^="btn-2024"], [id^="btn-2025"]').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Agregar clase activa al año seleccionado
+    const selectedBtn = document.getElementById('btn-' + year);
+    if (selectedBtn) {
+        selectedBtn.classList.add('active');
+    }
+
+    // Mostrar sección de meses
+    const monthGroup = document.getElementById('monthGroup');
+    if (monthGroup) {
+        monthGroup.style.display = 'flex';
+    }
+
+    // Limpiar selección de meses
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Aplicar filtros
+    applyFilters();
+}
+
+// Filtrar por mes
+function filterMonth(month) {
+    currentMonth = month;
+
+    // Remover clase activa de todos los botones de mes
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Agregar clase activa al mes seleccionado
+    const selectedBtn = document.getElementById('btn-' + month);
+    if (selectedBtn) {
+        selectedBtn.classList.add('active');
+    }
+
+    // Aplicar filtros
+    applyFilters();
+}
+
+// Función mejorada para aplicar todos los filtros
+function applyFilters() {
+    const searchInput = document.getElementById('searchInput');
+    const searchText = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    
+    console.log('Aplicando filtros:', {
+        searchText,
+        selectedType,
+        selectedYear,
+        currentMonth
+    });
+    
+    let visibleCount = 0;
+    
+    document.querySelectorAll('.news-card').forEach(card => {
+        // Obtener texto para búsqueda
+        const title = card.querySelector('h2')?.textContent?.toLowerCase() || '';
+        const description = card.querySelector('p')?.textContent?.toLowerCase() || '';
+        
+        // Verificar coincidencia de búsqueda
+        const matchesSearch = searchText === '' || 
+            title.includes(searchText) || 
+            description.includes(searchText);
+        
+        // Verificar tipo (capacitacion, convenios, viajes)
+        const matchesType = selectedType === '' || card.classList.contains(selectedType);
+        
+        // Verificar año (2024, 2025)
+        const matchesYear = selectedYear === '' || card.classList.contains(selectedYear);
+        
+        // Verificar mes (enero, febrero, etc.)
+        const matchesMonth = currentMonth === '' || card.classList.contains(currentMonth);
+        
+        // Mostrar/ocultar tarjeta según todos los criterios
+        if (matchesSearch && matchesType && matchesYear && matchesMonth) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+        }
+    });
+    
+    console.log(`Tarjetas visibles: ${visibleCount}`);
+    updateResultsCounter();
+}
+
+// Limpiar todos los filtros
+function clearAllFilters() {
+    console.log('Limpiando todos los filtros');
+    
+    // Reiniciar variables
+    selectedType = '';
+    selectedYear = '';
+    currentMonth = '';
+
+    // Eliminar clases activas de todos los botones
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Ocultar los filtros de meses
+    const monthGroup = document.getElementById('monthGroup');
+    if (monthGroup) {
+        monthGroup.style.display = 'none';
+    }
+
+    // Limpiar el buscador
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+
+    // Mostrar todas las tarjetas con animación
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.style.display = 'block';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    });
+
+    updateResultsCounter();
+}
+
+// Función mejorada para actualizar contador de resultados
+function updateResultsCounter() {
+    const allCards = document.querySelectorAll('.news-card');
+    const visibleCards = Array.from(allCards).filter(card => 
+        card.style.display !== 'none' && 
+        getComputedStyle(card).display !== 'none'
+    );
+    
+    const visibleCount = visibleCards.length;
+    const totalCount = allCards.length;
+    
+    const counter = document.getElementById('resultsCounter');
+    const noResults = document.getElementById('noResults');
+    
+    if (visibleCount === 0) {
+        if (counter) counter.style.display = 'none';
+        if (noResults) noResults.style.display = 'block';
+    } else {
+        if (counter) {
+            counter.style.display = 'block';
+            counter.textContent = `Mostrando ${visibleCount} de ${totalCount} resultados`;
+        }
+        if (noResults) noResults.style.display = 'none';
+    }
+    
+    console.log(`Contador actualizado: ${visibleCount}/${totalCount}`);
+}
+
+// Función para depurar - ver qué clases tienen las tarjetas
+function debugCards() {
+    document.querySelectorAll('.news-card').forEach((card, index) => {
+        console.log(`Tarjeta ${index + 1}:`, {
+            clases: Array.from(card.classList),
+            titulo: card.querySelector('h2')?.textContent?.substring(0, 50) + '...'
+        });
+    });
 }

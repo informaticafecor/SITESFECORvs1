@@ -20,6 +20,15 @@
          * Muestra vista previa de la revista en modal
          */
         function showRevistaPreview(year) {
+            const pdfs = {
+                '2022': '1zXa2cT2OMY-MYFdoNHgSxtH9RcF8xQXr',
+                '2023': '1Vlzu25YriW_CmUGYaKJMA-jGvyrRFYX7',
+                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y'
+            };
+
+            const pdfId = pdfs[year];
+            const pdfPreviewURL = `https://drive.google.com/file/d/${pdfId}/preview`;
+
             const modal = document.createElement('div');
             modal.className = 'revista-modal';
             modal.innerHTML = `
@@ -31,17 +40,12 @@
                     <div class="modal-body">
                         <div class="revista-preview">
                             <iframe 
-                                src="about:blank" 
+                                src="${pdfPreviewURL}" 
                                 width="100%" 
                                 height="600px" 
                                 style="border: none; background: white;">
                                 <p>Cargando vista previa...</p>
                             </iframe>
-                        </div>
-                        <div class="preview-message">
-                            <p>📖 Vista previa de la Revista FECCO ${year}</p>
-                            <p>Esta sería la vista previa del PDF. En tu implementación real, aquí cargarías el PDF usando:</p>
-                            <code>src="revistas/revista-fecco-${year}.pdf"</code>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -54,33 +58,35 @@
                     </div>
                 </div>
             `;
-            
+
             document.body.appendChild(modal);
-            
-            // Agregar estilos del modal
+
+            // Agregar estilos del modal si no existen
             addModalStyles();
-            
-            // Animar entrada
+
+            // Mostrar con animación
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
         }
-
         /**
          * Descarga directa del PDF
          */
         function downloadDirecto(year) {
-            const ediciones = {
-                '2022': '001',
-                '2023': '002',
-                '2024': '003'
+            const pdfs = {
+                '2022': '1zXa2cT2OMY-MYFdoNHgSxtH9RcF8xQXr',
+                '2023': '1Vlzu25YriW_CmUGYaKJMA-jGvyrRFYX7',
+                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y'
             };
-            
-            alert(`📄 Descargando Revista FECCO ${year} - Edición N° ${ediciones[year]}`);
-            
-            // Aquí iría la descarga real
-            // window.open(`revistas/revista-fecco-${year}.pdf`, '_blank');
-            
+
+            const fileId = pdfs[year];
+
+            // Enlace de descarga directa
+            const downloadURL = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+            // Abrir en nueva pestaña
+            window.open(downloadURL, '_blank');
+
             closeModal();
         }
 

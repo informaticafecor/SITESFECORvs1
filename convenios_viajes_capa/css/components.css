@@ -270,3 +270,28 @@
 .news-card {
     animation: fadeIn 0.5s ease-out;
 }
+
+
+/* del boton mostrar mas */
+.show-all-btn {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9em;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.show-all-btn:hover {
+    background: linear-gradient(45deg, #00ffcc, var(--accent-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.3);
+}

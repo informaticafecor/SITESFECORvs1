@@ -33,7 +33,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 50%;
             background: 
                 radial-gradient(circle at 20% 20%, rgba(0, 255, 204, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.08) 0%, transparent 50%),

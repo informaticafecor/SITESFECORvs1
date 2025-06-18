@@ -1,20 +1,15 @@
-        // Variables globales
-        var selectedYear = '';
-        var currentMonth = '';
-        var currentPage = 1;
-        var itemsPerPage = 9;
-        var allOffices = [];
-        var filteredOffices = [];
+// ===================================
+// BASE DE DATOS SIMPLIFICADA - FÁCIL DE EDITAR
+// ===================================
 
-        // Base de datos de oficios
-        var officesDatabase = [
+var oficiosDatabase = {
+    "2025": {
+        "mayo": [
             {
                 code: "OFICIO CIRCULAR-R13706-2025-FSCN-FECCO",
                 title: "Circular sobre procedimientos de coordinación nacional",
                 description: "Establece lineamientos para el fortalecimiento del sistema fiscal y la coordinación efectiva entre todos los despachos fiscales a nivel nacional.",
-                date: "15 de Mayo, 2025",
-                year: "2025",
-                month: "mayo",
+                link: "https://drive.google.com/file/d/1KPhdxrKruGd1bVlNMoM2ry-egO4iVS5Z/view",
                 hasAnnexes: true,
                 annexCount: 3
             },
@@ -22,9 +17,7 @@
                 code: "OFICIO CIRCULAR 145-2025",
                 title: "Obtención de información del sistema APIS-PNR",
                 description: "Lineamientos para la obtención de información del sistema APIS-PNR, alert y otros administrados por la Dirección de Registro y Control Migratorio.",
-                date: "12 de Mayo, 2025",
-                year: "2025",
-                month: "mayo",
+                link: "https://drive.google.com/file/d/ejemplo2",
                 hasAnnexes: false,
                 annexCount: 0
             },
@@ -32,9 +25,7 @@
                 code: "OFICIO CIRCULAR 002-2025-MP-FN",
                 title: "Directrices para el fortalecimiento del sistema fiscal",
                 description: "Establece directrices y procedimientos administrativos actualizados en el ámbito del Ministerio Público para mejorar la eficiencia institucional.",
-                date: "8 de Mayo, 2025",
-                year: "2025",
-                month: "mayo",
+                link: "https://drive.google.com/file/d/ejemplo3",
                 hasAnnexes: true,
                 annexCount: 2
             },
@@ -42,318 +33,344 @@
                 code: "OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO",
                 title: "Criterios uniformes de archivos liminares",
                 description: "Criterios uniformes de los fiscales superiores nacionales referido a criterios aplicables a los archivos liminares y procedimientos relacionados.",
-                date: "5 de Mayo, 2025",
-                year: "2025",
-                month: "mayo",
+                link: "https://drive.google.com/file/d/ejemplo4",
                 hasAnnexes: false,
                 annexCount: 0
             },
             {
-                code: "OFICIO CIRCULAR 089-2025-MP-FN",
-                title: "Actualización de procedimientos internos",
+                code: "Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN",
+                title: "Resolución especial de procedimientos",
                 description: "Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados en la administración de justicia.",
-                date: "22 de Abril, 2025",
-                year: "2025",
-                month: "abril",
-                hasAnnexes: true,
-                annexCount: 5
+                link: "https://drive.google.com/file/d/ejemplo5",
+                hasAnnexes: false,
+                annexCount: 0
             },
             {
-                code: "OFICIO CIRCULAR 067-2025-MP-FN",
-                title: "Optimización de procesos administrativos",
+                code: "Resolución de la Fiscalía de la Nación N°- DIRECTIVA",
+                title: "Directiva de procedimientos internos",
                 description: "Lineamientos para la optimización de procesos administrativos y modernización de los sistemas de gestión institucional del Ministerio Público.",
-                date: "18 de Marzo, 2025",
-                year: "2025",
-                month: "marzo",
-                hasAnnexes: false,
-                annexCount: 0
-            },
-            {
-                code: "OFICIO CIRCULAR-D31224-2024-FSCN",
-                title: "Balance anual y proyecciones 2025",
-                description: "Balance del ejercicio fiscal 2024 y establece las directrices para el cierre del período con proyecciones estratégicas para el año siguiente.",
-                date: "28 de Diciembre, 2024",
-                year: "2024",
-                month: "diciembre",
+                link: "https://drive.google.com/file/d/ejemplo6",
                 hasAnnexes: true,
-                annexCount: 4
-            },
-            {
-                code: "OFICIO CIRCULAR 234-2024-MP-FN",
-                title: "Implementación de herramientas digitales",
-                description: "Lineamientos para la implementación de nuevas herramientas digitales para el trabajo en campo y modernización de procesos operativos.",
-                date: "15 de Noviembre, 2024",
-                year: "2024",
-                month: "noviembre",
-                hasAnnexes: false,
-                annexCount: 0
-            },
-            {
-                code: "OFICIO CIRCULAR 198-2024-MP-FN",
-                title: "Protocolos de seguridad institucional",
-                description: "Nuevos protocolos de seguridad y medidas preventivas para garantizar la integridad del personal y la información institucional.",
-                date: "3 de Noviembre, 2024",
-                year: "2024",
-                month: "noviembre",
-                hasAnnexes: true,
-                annexCount: 3
-            },
-            {
-                code: "OFICIO CIRCULAR 176-2024-MP-FN",
-                title: "Capacitación continua del personal fiscal",
-                description: "Programa de capacitación continua para el personal fiscal con énfasis en nuevas normativas y procedimientos actualizados.",
-                date: "22 de Octubre, 2024",
-                year: "2024",
-                month: "octubre",
-                hasAnnexes: true,
-                annexCount: 2
-            },
-            {
-                code: "OFICIO CIRCULAR 145-2024-MP-FN",
-                title: "Gestión de casos complejos",
-                description: "Directrices especiales para la gestión y seguimiento de casos complejos de criminalidad organizada y corrupción.",
-                date: "8 de Octubre, 2024",
-                year: "2024",
-                month: "octubre",
-                hasAnnexes: false,
-                annexCount: 0
-            },
-            {
-                code: "OFICIO CIRCULAR 123-2024-MP-FN",
-                title: "Coordinación interinstitucional",
-                description: "Lineamientos para fortalecer la coordinación con otras instituciones del sistema de justicia y organismos internacionales.",
-                date: "15 de Septiembre, 2024",
-                year: "2024",
-                month: "septiembre",
-                hasAnnexes: true,
-                annexCount: 6
+                annexCount: 1
             }
-        ];
+        ]
+    }
+};
 
-        function createOfficeCard(office) {
-            var annexesButton = office.hasAnnexes ? 
-                '<a href="#" class="btn-annexes" onclick="viewAnnexes(\'' + office.code + '\', ' + office.annexCount + ')">📎 Ver Anexos (' + office.annexCount + ')</a>' :
-                '<a href="#" class="btn-secondary" onclick="viewOnline(\'' + office.code + '\')">🔗 Ver Online</a>';
+// ===================================
+// VARIABLES GLOBALES
+// ===================================
+var selectedYear = '';
+var currentMonth = '';
+var currentPage = 1;
+var itemsPerPage = 9;
+var allOffices = [];
+var filteredOffices = [];
 
-            return '<div class="news-card ' + (office.hasAnnexes ? 'has-annexes' : '') + '">' +
-                '<img src="https://via.placeholder.com/350x220/0F2C52/00cc99?text=Oficio+Circular" alt="' + office.title + '">' +
-                '<div class="news-content">' +
-                '<div class="office-code">' + office.code + '</div>' +
-                '<div class="office-date">' + office.date + '</div>' +
-                '<h2>' + office.title + '</h2>' +
-                '<p>' + office.description + '</p>' +
-                '<div class="office-actions">' +
-                '<a href="#" class="btn-primary" onclick="downloadPDF(\'' + office.code + '\')">📄 Descargar PDF</a>' +
-                annexesButton +
-                '</div>' +
-                '</div>' +
-                '</div>';
+// ===================================
+// CONVERSIÓN DE ESTRUCTURA PARA COMPATIBILIDAD
+// ===================================
+function convertDatabaseToOldFormat() {
+    allOffices = [];
+    
+    for (let year in oficiosDatabase) {
+        for (let month in oficiosDatabase[year]) {
+            oficiosDatabase[year][month].forEach(oficio => {
+                // Convertir al formato original con fechas bonitas
+                allOffices.push({
+                    code: oficio.code,
+                    title: oficio.title,
+                    description: oficio.description,
+                    date: formatDate(month, year),
+                    year: year,
+                    month: month,
+                    hasAnnexes: oficio.hasAnnexes,
+                    annexCount: oficio.annexCount || 0,
+                    link: oficio.link
+                });
+            });
         }
+    }
+    
+    // Ordenar por fecha (más recientes primero)
+    allOffices.sort((a, b) => {
+        if (a.year !== b.year) return b.year.localeCompare(a.year);
+        return getMonthNumber(b.month) - getMonthNumber(a.month);
+    });
+}
 
-        function filterOffices() {
-            var searchInput = document.getElementById('searchInput').value.toLowerCase();
-            
-            filteredOffices = [];
-            for (var i = 0; i < allOffices.length; i++) {
-                var office = allOffices[i];
-                var matchesSearch = searchInput === '' || 
-                    office.title.toLowerCase().indexOf(searchInput) > -1 || 
-                    office.description.toLowerCase().indexOf(searchInput) > -1 || 
-                    office.code.toLowerCase().indexOf(searchInput) > -1;
-                
-                var matchesYear = selectedYear === '' || office.year === selectedYear;
-                var matchesMonth = currentMonth === '' || office.month === currentMonth;
+function formatDate(month, year) {
+    const monthNames = {
+        'enero': 'Enero',
+        'febrero': 'Febrero', 
+        'marzo': 'Marzo',
+        'abril': 'Abril',
+        'mayo': 'Mayo',
+        'junio': 'Junio',
+        'julio': 'Julio',
+        'agosto': 'Agosto',
+        'septiembre': 'Septiembre',
+        'octubre': 'Octubre',
+        'noviembre': 'Noviembre',
+        'diciembre': 'Diciembre'
+    };
+    
+    return `${monthNames[month] || month}, ${year}`;
+}
 
-                if (matchesSearch && matchesYear && matchesMonth) {
-                    filteredOffices.push(office);
-                }
-            }
+function getMonthNumber(month) {
+    const months = {
+        'enero': 1, 'febrero': 2, 'marzo': 3, 'abril': 4,
+        'mayo': 5, 'junio': 6, 'julio': 7, 'agosto': 8,
+        'septiembre': 9, 'octubre': 10, 'noviembre': 11, 'diciembre': 12
+    };
+    return months[month] || 0;
+}
 
-            currentPage = 1;
-            displayCurrentPage();
-            updatePagination();
+// ===================================
+// FUNCIONES ORIGINALES ADAPTADAS
+// ===================================
+
+function createOfficeCard(office) {
+    var annexesButton = office.hasAnnexes ? 
+        `<a href="${office.link}" class="btn-annexes" target="_blank" onclick="viewAnnexes('${office.code}', ${office.annexCount})">📎 Ver Anexos (${office.annexCount})</a>` :
+        `<a href="${office.link}" class="btn-secondary" target="_blank" onclick="viewOnline('${office.code}')">🔗 Ver Online</a>`;
+
+    return `<div class="news-card ${office.hasAnnexes ? 'has-annexes' : ''}">
+        <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/refs/heads/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="${office.title}">
+        <div class="news-content">
+            <div class="office-code">${office.code}</div>
+            <div class="office-date">${office.date}</div>
+            <h2>${office.title}</h2>
+            <p>${office.description}</p>
+            <div class="office-actions">
+                <a href="${office.link}" class="btn-primary" target="_blank" onclick="downloadPDF('${office.code}')">📄 Ver PDF</a>
+                ${annexesButton}
+            </div>
+        </div>
+    </div>`;
+}
+
+function filterOffices() {
+    var searchInput = document.getElementById('searchInput').value.toLowerCase();
+    
+    filteredOffices = [];
+    for (var i = 0; i < allOffices.length; i++) {
+        var office = allOffices[i];
+        var matchesSearch = searchInput === '' || 
+            office.title.toLowerCase().indexOf(searchInput) > -1 || 
+            office.description.toLowerCase().indexOf(searchInput) > -1 || 
+            office.code.toLowerCase().indexOf(searchInput) > -1;
+        
+        var matchesYear = selectedYear === '' || office.year === selectedYear;
+        var matchesMonth = currentMonth === '' || office.month === currentMonth;
+
+        if (matchesSearch && matchesYear && matchesMonth) {
+            filteredOffices.push(office);
         }
+    }
 
-        function displayCurrentPage() {
-            var startIndex = (currentPage - 1) * itemsPerPage;
-            var endIndex = startIndex + itemsPerPage;
-            var pageOffices = filteredOffices.slice(startIndex, endIndex);
+    currentPage = 1;
+    displayCurrentPage();
+    updatePagination();
+}
 
-            var newsGrid = document.getElementById('newsGrid');
-            var noResults = document.getElementById('noResults');
+function displayCurrentPage() {
+    var startIndex = (currentPage - 1) * itemsPerPage;
+    var endIndex = startIndex + itemsPerPage;
+    var pageOffices = filteredOffices.slice(startIndex, endIndex);
 
-            if (pageOffices.length === 0 && filteredOffices.length === 0) {
-                newsGrid.style.display = 'none';
-                noResults.style.display = 'block';
-            } else {
-                var html = '';
-                for (var i = 0; i < pageOffices.length; i++) {
-                    html += createOfficeCard(pageOffices[i]);
-                }
-                newsGrid.innerHTML = html;
-                newsGrid.style.display = 'grid';
-                noResults.style.display = 'none';
-            }
+    var newsGrid = document.getElementById('newsGrid');
+    var noResults = document.getElementById('noResults');
 
-            updateResultsCounter();
+    if (pageOffices.length === 0 && filteredOffices.length === 0) {
+        newsGrid.style.display = 'none';
+        noResults.style.display = 'block';
+    } else {
+        var html = '';
+        for (var i = 0; i < pageOffices.length; i++) {
+            html += createOfficeCard(pageOffices[i]);
         }
+        newsGrid.innerHTML = html;
+        newsGrid.style.display = 'grid';
+        noResults.style.display = 'none';
+    }
 
-        function updateResultsCounter() {
-            var counter = document.getElementById('resultsCounter');
-            var paginationInfo = document.getElementById('paginationInfo');
-            
-            if (filteredOffices.length === 0) {
-                counter.textContent = 'No se encontraron oficios circulares';
-                paginationInfo.textContent = '';
-            } else {
-                var startIndex = (currentPage - 1) * itemsPerPage + 1;
-                var endIndex = Math.min(currentPage * itemsPerPage, filteredOffices.length);
-                
-                counter.textContent = 'Mostrando ' + startIndex + '-' + endIndex + ' de ' + filteredOffices.length + ' oficios circulares';
-                paginationInfo.textContent = 'Página ' + currentPage + ' de ' + Math.ceil(filteredOffices.length / itemsPerPage);
-            }
+    updateResultsCounter();
+}
+
+function updateResultsCounter() {
+    var counter = document.getElementById('resultsCounter');
+    var paginationInfo = document.getElementById('paginationInfo');
+    
+    if (filteredOffices.length === 0) {
+        counter.textContent = 'No se encontraron oficios circulares';
+        paginationInfo.textContent = '';
+    } else {
+        var startIndex = (currentPage - 1) * itemsPerPage + 1;
+        var endIndex = Math.min(currentPage * itemsPerPage, filteredOffices.length);
+        
+        counter.textContent = 'Mostrando ' + startIndex + '-' + endIndex + ' de ' + filteredOffices.length + ' oficios circulares';
+        paginationInfo.textContent = 'Página ' + currentPage + ' de ' + Math.ceil(filteredOffices.length / itemsPerPage);
+    }
+}
+
+function updatePagination() {
+    var totalPages = Math.ceil(filteredOffices.length / itemsPerPage);
+    var paginationContainer = document.getElementById('paginationContainer');
+    var paginationNumbers = document.getElementById('paginationNumbers');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+
+    if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+    }
+
+    paginationContainer.style.display = 'flex';
+
+    // Configurar botones anterior/siguiente
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+
+    // Limpiar números de página anteriores
+    paginationNumbers.innerHTML = '';
+    
+    var maxVisiblePages = 5;
+    var startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    var endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    // Crear botones de página
+    for (var i = startPage; i <= endPage; i++) {
+        var pageBtn = document.createElement('button');
+        
+        if (i === currentPage) {
+            pageBtn.className = 'page-number active';
+        } else {
+            pageBtn.className = 'page-number';
         }
         
-        function updatePagination() {
-            var totalPages = Math.ceil(filteredOffices.length / itemsPerPage);
-            var paginationContainer = document.getElementById('paginationContainer');
-            var paginationNumbers = document.getElementById('paginationNumbers');
-            var prevBtn = document.getElementById('prevBtn');
-            var nextBtn = document.getElementById('nextBtn');
+        pageBtn.textContent = i;
+        pageBtn.onclick = function(page) {
+            return function() { goToPage(page); };
+        }(i);
+        paginationNumbers.appendChild(pageBtn);
+    }
+}
 
-            if (totalPages <= 1) {
-                paginationContainer.style.display = 'none';
-                return;
-            }
+function goToPage(page) {
+    currentPage = page;
+    displayCurrentPage();
+    updatePagination();
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-            paginationContainer.style.display = 'flex';
+function changePage(direction) {
+    var totalPages = Math.ceil(filteredOffices.length / itemsPerPage);
+    
+    if (direction === 'prev' && currentPage > 1) {
+        goToPage(currentPage - 1);
+    } else if (direction === 'next' && currentPage < totalPages) {
+        goToPage(currentPage + 1);
+    }
+}
 
-            // Configurar botones anterior/siguiente
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
+function selectYear(year) {
+    selectedYear = year;
+    currentMonth = '';
 
-            // Limpiar números de página anteriores
-            paginationNumbers.innerHTML = '';
-            
-            var maxVisiblePages = 5;
-            var startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            var endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-            
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
+    var yearButtons = document.querySelectorAll('[id^="btn-2024"], [id^="btn-2025"]');
+    for (var i = 0; i < yearButtons.length; i++) {
+        yearButtons[i].classList.remove('active');
+    }
+    
+    var yearBtn = document.getElementById('btn-' + year);
+    if (yearBtn) {
+        yearBtn.classList.add('active');
+        document.getElementById('monthGroup').style.display = 'flex';
+    }
 
-            // Crear botones de página
-            for (var i = startPage; i <= endPage; i++) {
-                var pageBtn = document.createElement('button');
-                
-                // ✅ CORRECCIÓN AQUÍ:
-                if (i === currentPage) {
-                    pageBtn.className = 'page-number active';
-                } else {
-                    pageBtn.className = 'page-number';
-                }
-                
-                pageBtn.textContent = i;
-                pageBtn.onclick = function(page) {
-                    return function() { goToPage(page); };
-                }(i);
-                paginationNumbers.appendChild(pageBtn);
-            }
-        }    
+    var monthButtons = document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]');
+    for (var i = 0; i < monthButtons.length; i++) {
+        monthButtons[i].classList.remove('active');
+    }
 
+    filterOffices();
+}
 
+function filterMonth(month) {
+    currentMonth = month;
 
-        function goToPage(page) {
-            currentPage = page;
-            displayCurrentPage();
-            updatePagination();
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    var monthButtons = document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]');
+    for (var i = 0; i < monthButtons.length; i++) {
+        monthButtons[i].classList.remove('active');
+    }
+    
+    var monthBtn = document.getElementById('btn-' + month);
+    if (monthBtn) {
+        monthBtn.classList.add('active');
+    }
 
-        function changePage(direction) {
-            var totalPages = Math.ceil(filteredOffices.length / itemsPerPage);
-            
-            if (direction === 'prev' && currentPage > 1) {
-                goToPage(currentPage - 1);
-            } else if (direction === 'next' && currentPage < totalPages) {
-                goToPage(currentPage + 1);
-            }
-        }
+    filterOffices();
+}
 
-        function selectYear(year) {
-            selectedYear = year;
-            currentMonth = '';
+function clearAllFilters() {
+    selectedYear = '';
+    currentMonth = '';
 
-            var yearButtons = document.querySelectorAll('[id^="btn-2024"], [id^="btn-2025"]');
-            for (var i = 0; i < yearButtons.length; i++) {
-                yearButtons[i].classList.remove('active');
-            }
-            document.getElementById('btn-' + year).classList.add('active');
+    var dateButtons = document.querySelectorAll('.date-btn');
+    for (var i = 0; i < dateButtons.length; i++) {
+        dateButtons[i].classList.remove('active');
+    }
 
-            document.getElementById('monthGroup').style.display = 'flex';
+    document.getElementById('monthGroup').style.display = 'none';
+    document.getElementById('searchInput').value = '';
 
-            var monthButtons = document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]');
-            for (var i = 0; i < monthButtons.length; i++) {
-                monthButtons[i].classList.remove('active');
-            }
+    filterOffices();
+}
 
-            filterOffices();
-        }
+function downloadPDF(officeCode) {
+    console.log('Descargando PDF: ' + officeCode);
+    // Ya no necesitas alert, el link funciona automáticamente
+}
 
-        function filterMonth(month) {
-            currentMonth = month;
+function viewAnnexes(officeCode, annexCount) {
+    console.log('Viendo ' + annexCount + ' anexos del oficio: ' + officeCode);
+    // Ya no necesitas alert, el link funciona automáticamente
+}
 
-            var monthButtons = document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]');
-            for (var i = 0; i < monthButtons.length; i++) {
-                monthButtons[i].classList.remove('active');
-            }
-            document.getElementById('btn-' + month).classList.add('active');
+function viewOnline(officeCode) {
+    console.log('Viendo online: ' + officeCode);
+    // Ya no necesitas alert, el link funciona automáticamente
+}
 
-            filterOffices();
-        }
+// ===================================
+// INICIALIZACIÓN
+// ===================================
+window.onload = function() {
+    console.log('🚀 Inicializando sistema de oficios...');
+    
+    // Convertir la nueva estructura a la antigua para compatibilidad
+    convertDatabaseToOldFormat();
+    
+    // Inicializar filtros
+    filteredOffices = allOffices.slice();
+    
+    displayCurrentPage();
+    updatePagination();
 
-        function clearAllFilters() {
-            selectedYear = '';
-            currentMonth = '';
-
-            var dateButtons = document.querySelectorAll('.date-btn');
-            for (var i = 0; i < dateButtons.length; i++) {
-                dateButtons[i].classList.remove('active');
-            }
-
-            document.getElementById('monthGroup').style.display = 'none';
-            document.getElementById('searchInput').value = '';
-
-            filterOffices();
-        }
-
-        function downloadPDF(officeCode) {
-            alert('Descargando PDF: ' + officeCode);
-        }
-
-        function viewAnnexes(officeCode, annexCount) {
-            alert('Viendo ' + annexCount + ' anexos del oficio: ' + officeCode);
-        }
-
-        function viewOnline(officeCode) {
-            alert('Viendo online: ' + officeCode);
-        }
-
-        // Inicialización
-        window.onload = function() {
-            allOffices = officesDatabase.slice();
-            filteredOffices = allOffices.slice();
-            
-            displayCurrentPage();
-            updatePagination();
-
-            // Event listener para búsqueda
-            var searchInput = document.getElementById('searchInput');
-            var searchTimeout;
-            searchInput.addEventListener('input', function() {
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(filterOffices, 300);
-            });
-        };
+    // Event listener para búsqueda
+    var searchInput = document.getElementById('searchInput');
+    var searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(filterOffices, 300);
+    });
+    
+    console.log('✅ Sistema inicializado con', allOffices.length, 'oficios');
+};

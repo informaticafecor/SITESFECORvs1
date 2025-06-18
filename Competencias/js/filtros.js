@@ -123,6 +123,10 @@ function clearAllFilters() {
    SISTEMA DE FILTROS - COMPETENCIAS CORREGIDO
    =================================== */
 
+/* ===================================
+   SISTEMA DE FILTROS - COMPETENCIAS CORREGIDO
+   =================================== */
+
 // Variables para los filtros activos
 let selectedType = '';
 let selectedYear = '';
@@ -194,30 +198,41 @@ function filterMonth(month) {
 
 // Función centralizada para aplicar todos los filtros - CORREGIDA
 function applyFilters() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const searchInput = document.getElementById('searchInput');
+    const searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
     let visibleCount = 0;
     
-    console.log('Aplicando filtros:', { tipo: selectedType, año: selectedYear, mes: currentMonth, busqueda: searchInput }); // Debug
+    console.log('Aplicando filtros:', { 
+        tipo: selectedType, 
+        año: selectedYear, 
+        mes: currentMonth, 
+        busqueda: searchQuery 
+    });
     
     document.querySelectorAll('.competencia-card').forEach((card, index) => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
+        const titleElement = card.querySelector('h2');
         const descriptionElement = card.querySelector('p');
+        
+        const title = titleElement ? titleElement.textContent.toLowerCase() : '';
         const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
         
         // Verificar cada condición por separado
-        const matchesSearch = searchInput === '' || title.includes(searchInput) || description.includes(searchInput);
+        const matchesSearch = searchQuery === '' || 
+                             title.includes(searchQuery) || 
+                             description.includes(searchQuery);
+        
         const matchesType = selectedType === '' || card.classList.contains(selectedType);
         const matchesYear = selectedYear === '' || card.classList.contains(selectedYear);
         const matchesMonth = currentMonth === '' || card.classList.contains(currentMonth);
 
-        // Debug para cada tarjeta
-        if (selectedType && selectedType !== '') {
+        // Debug detallado para búsqueda
+        if (searchQuery !== '' && searchQuery.length > 2) {
             console.log(`Tarjeta ${index + 1}:`, {
-                titulo: title.substring(0, 30) + '...',
-                clases: Array.from(card.classList),
-                tieneClaseTipo: card.classList.contains(selectedType),
-                matchesType: matchesType,
-                visible: matchesSearch && matchesType && matchesYear && matchesMonth
+                titulo: title.substring(0, 40) + '...',
+                busquedaEnTitulo: title.includes(searchQuery),
+                busquedaEnDesc: description.includes(searchQuery),
+                matchesSearch: matchesSearch,
+                searchQuery: searchQuery
             });
         }
 
@@ -232,7 +247,7 @@ function applyFilters() {
         }
     });
 
-    console.log(`Tarjetas visibles: ${visibleCount}`); // Debug
+    console.log(`Tarjetas visibles: ${visibleCount}`);
     updateResultsCounter();
 }
 
@@ -286,6 +301,7 @@ function debugFilterType(type) {
     selectedType = type;
     applyFilters();
 }
+
 // Nueva función: Mostrar todas las competencias
 function showAllCompetencias() {
     document.querySelectorAll('.competencia-card').forEach(card => {

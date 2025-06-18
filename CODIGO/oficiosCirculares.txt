@@ -10,8 +10,6 @@ async function loadOficiosFromGitHub() {
         
         // PASO 3: Cambiar estas 3 rutas
         const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/oficios_circulares.html`;
-        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECCORvs1/main/oficios_circulares/oficios_circulares.html`;
-
         const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/css/styles.css`;
         const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/js/script.js`;
         

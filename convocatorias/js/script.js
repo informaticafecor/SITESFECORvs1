@@ -19,7 +19,6 @@ const convocatoriasData = [
         deadline: "25/01/2025",
         description: "Convocatoria para cubrir plaza de Fiscal Adjunto Provincial Especializado en Criminalidad Organizada con sede en Lima Metropolitana.",
         requirements: "Título de abogado, colegiatura vigente, experiencia mínima 5 años en derecho penal, especialización en criminalidad organizada",
-        salary: "S/ 8,500.00",
         modality: "Nombrado",
         image: "https://images.unsplash.com/photo-1589829545434-9df3e0a2e2e6?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-fiscal-1"
@@ -34,7 +33,6 @@ const convocatoriasData = [
         deadline: "15/02/2025",
         description: "Convocatoria para Fiscal Provincial Titular especializado en delitos de lavado de activos y financiamiento del terrorismo.",
         requirements: "Título de abogado, experiencia mínima 8 años, maestría en derecho penal económico o afín",
-        salary: "S/ 12,500.00",
         modality: "Nombrado",
         image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-fiscal-2"
@@ -49,7 +47,6 @@ const convocatoriasData = [
         deadline: "30/01/2025",
         description: "Convocatoria para Asistente Administrativo en el área legal de la Fiscalía Especializada Contra la Criminalidad Organizada.",
         requirements: "Estudios técnicos o universitarios en derecho, administración o afines, conocimientos de ofimática",
-        salary: "S/ 2,800.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-1"
@@ -64,7 +61,6 @@ const convocatoriasData = [
         deadline: "10/03/2025",
         description: "Convocatoria para Especialista en Tecnología e Informática Forense para el área de análisis digital y soporte técnico especializado.",
         requirements: "Título universitario en ingeniería de sistemas, informática o telecomunicaciones, certificaciones en informática forense",
-        salary: "S/ 5,200.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-2"
@@ -79,7 +75,6 @@ const convocatoriasData = [
         deadline: "20/04/2025",
         description: "Convocatoria para Secretario Judicial especializado en procedimientos penales complejos y criminalidad organizada.",
         requirements: "Título universitario en derecho, experiencia mínima 3 años en procedimientos judiciales",
-        salary: "S/ 3,800.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-3"
@@ -94,7 +89,6 @@ const convocatoriasData = [
         deadline: "05/05/2025",
         description: "Convocatoria para Fiscal Adjunto Provincial especializado en delitos de tráfico ilícito de drogas y sustancias controladas.",
         requirements: "Título de abogado, colegiatura vigente, experiencia mínima 6 años en derecho penal",
-        salary: "S/ 9,200.00",
         modality: "Nombrado",
         image: "https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-fiscal-3"
@@ -109,7 +103,6 @@ const convocatoriasData = [
         deadline: "15/06/2025",
         description: "Convocatoria para Analista de Inteligencia Financiera especializado en investigación de operaciones sospechosas y lavado de activos.",
         requirements: "Título universitario en economía, contabilidad o finanzas, experiencia en análisis financiero",
-        salary: "S/ 4,500.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-4"
@@ -124,7 +117,6 @@ const convocatoriasData = [
         deadline: "31/07/2025",
         description: "Convocatoria para Fiscal Superior Titular especializado en criminalidad organizada transnacional y delitos complejos.",
         requirements: "Título de abogado, experiencia mínima 12 años como fiscal, maestría en derecho penal",
-        salary: "S/ 15,800.00",
         modality: "Nombrado",
         image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-fiscal-5"
@@ -139,7 +131,6 @@ const convocatoriasData = [
         deadline: "30/11/2024",
         description: "Convocatoria para Coordinador Administrativo encargado de la gestión y coordinación de actividades administrativas.",
         requirements: "Título universitario en administración, experiencia mínima 4 años en gestión administrativa",
-        salary: "S/ 4,200.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-5"
@@ -154,7 +145,6 @@ const convocatoriasData = [
         deadline: "15/08/2025",
         description: "Convocatoria para Asistente de Archivo especializado en gestión documental y preservación de expedientes judiciales.",
         requirements: "Estudios técnicos en archivística o bibliotecología, conocimientos en gestión documental",
-        salary: "S/ 2,500.00",
         modality: "Contrato CAS",
         image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop&crop=center",
         link: "https://example.com/convocatoria-admin-7"

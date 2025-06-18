@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,166 +12,86 @@
 </head>
 
 <body>
+    
     <div class="container">
-        <h1>Convocatorias Laborales</h1>
+        <!-- Header -->
+        <h1>Convocatorias de Plazas de Fiscales Provisionales</h1>
+        <p class="subtitle">
+            En esta sección te mantendremos informado sobre todas las convocatorias de plazas de fiscales provisionales en las fiscalías de crimen organizado.
+        </p>
 
-        <!-- Buscador en la parte superior -->
-        <div class="search-section">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar convocatorias por puesto, área o requisitos..." onkeyup="searchConvocatorias()" oninput="searchConvocatorias()">
-            </div>
+        <!-- Fecha actual -->
+        <div style="margin-bottom: 30px;">
+            <h2 style="color: #FFD040; font-size: 1.5em; margin-bottom: 10px;">MAYO 2025</h2>
         </div>
 
-        <!-- Filtros en pestañas horizontales -->
-        <div class="filters-tabs">
-            <div class="tabs-header">
-                <h3>Categorías</h3>
-            </div>
-            <div class="tabs-container">
-                <button class="tab-btn" onclick="filterType('fiscal')" id="btn-fiscal">Personal Fiscal Provisional</button>
-                <button class="tab-btn" onclick="filterType('administrativo')" id="btn-administrativo">Personal Administrativo</button>
-
-                <!-- Botón limpiar filtros -->
-                <button class="clear-filters" onclick="clearAllFilters()">
-                    Limpiar Filtros
-                </button>
+        <!-- Convocatoria Principal -->
+        <div class="convocatoria-card">
+            <div class="card-header">
+                <h2 class="card-title">👥 CONVOCATORIA N°16-2025-MP-FN-FSCN-FECOR 👥</h2>
+                <div class="card-subtitle">Fiscal Provisional Especializado</div>
             </div>
 
-            <!-- Separador visual -->
-            <div class="filter-separator"></div>
-
-            <!-- Filtros de fecha -->
-            <div class="date-filters">
-                <!-- Filtro por año -->
-                <div class="date-filter-group">
-                    <div class="date-filter-label">Año</div>
-                    <div class="date-filter-buttons">
-                        <button class="date-btn" onclick="selectYear('2024')" id="btn-2024">2024</button>
-                        <button class="date-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+            <div class="card-content">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">📅 Fecha Límite</div>
+                        <div class="info-value">31 de Mayo, 2025</div>
+                    </div>
+                   <!--  <div class="info-item">
+                        <div class="info-label">💰 Remuneración</div>
+                        <div class="info-value">S/ 12,500.00</div>
+                    </div> -->
+                    <div class="info-item">
+                        <div class="info-label">📍 Modalidad</div>
+                        <div class="info-value">Provisional</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">📊 Estado</div>
+                        <div class="info-value">
+                            <span class="status status-vigente">✅ Vigente</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Filtro por mes -->
-                <div class="date-filter-group" id="monthGroup" style="display:none;">
-                    <div class="date-filter-label">Mes</div>
-                    <div class="date-filter-buttons">
-                        <button class="date-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
-                        <button class="date-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
-                        <button class="date-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
-                        <button class="date-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
-                        <button class="date-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
-                        <button class="date-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
-                        <button class="date-btn" onclick="filterMonth('julio')" id="btn-julio">Julio</button>
-                        <button class="date-btn" onclick="filterMonth('agosto')" id="btn-agosto">Agosto</button>
-                        <button class="date-btn" onclick="filterMonth('septiembre')" id="btn-septiembre">Septiembre</button>
-                        <button class="date-btn" onclick="filterMonth('octubre')" id="btn-octubre">Octubre</button>
-                        <button class="date-btn" onclick="filterMonth('noviembre')" id="btn-noviembre">Noviembre</button>
-                        <button class="date-btn" onclick="filterMonth('diciembre')" id="btn-diciembre">Diciembre</button>
-                    </div>
+                <div class="description">
+                    <h3>📋 Descripción del Puesto</h3>
+                    <p>
+                        Convocatoria para cubrir plaza de Fiscal Provisional especializado en criminalidad organizada 
+                        transnacional y delitos complejos. El profesional seleccionado formará parte del equipo 
+                        especializado de la Fiscalía Especializada Contra la Criminalidad Organizada.
+                    </p>
                 </div>
+
+                <!-- <div class="description">
+                    <h3>🎓 Requisitos Principales</h3>
+                    <p>
+                        • Título de abogado colegiado<br>
+                        • Experiencia mínima de 8 años en derecho penal<br>
+                        • Especialización en criminalidad organizada<br>
+                        • Maestría en derecho penal o afín (deseable)
+                    </p>
+                </div>-->
+            </div>
+
+            <div class="btn-container">
+                <a href="https://drive.google.com/file/d/1w1-jD2LsZutn_bhUjLYQMlMCjaf6csZT/view" class="btn btn-primary">
+                    📄 Ver mas informacion
+                </a>
+                <!--<a href="#" class="btn btn-secondary">
+                    📝 Postular Ahora
+                </a>-->
             </div>
         </div>
 
-        <!-- Filtros de Estado (Sección Separada) -->
-        <div class="status-filters-section">
-            <div class="status-header">
-                <h3>🔍 Filtrar por Estado</h3>
-            </div>
-            <div class="status-filters">
-                <button class="status-btn status-active" onclick="filterStatus('vigente')" id="btn-vigente">
-                    <span class="status-icon">✅</span>
-                    <span>Vigentes</span>
-                </button>
-                <button class="status-btn status-process" onclick="filterStatus('proceso')" id="btn-proceso">
-                    <span class="status-icon">⏳</span>
-                    <span>En Proceso</span>
-                </button>
-                <button class="status-btn status-closed" onclick="filterStatus('cerrado')" id="btn-cerrado">
-                    <span class="status-icon">❌</span>
-                    <span>Cerradas</span>
-                </button>
-            </div>
+        <!-- Footer informativo -->
+        <div class="footer-info">
+            <p><strong>ℹ️ Información Importante:</strong></p>
+            <p>Esta convocatoria se rige por la normativa vigente del Ministerio Público. 
+            Para más información sobre el proceso de selección y requisitos específicos, 
+            consulte las bases completas del concurso.</p>
         </div>
-
-        <!-- Contador de resultados -->
-        <div class="results-counter" id="resultsCounter"></div>
-
-        <!-- Layout principal con slider central y detalles laterales -->
-        <div class="main-layout">
-            <!-- Panel izquierdo con lista de convocatorias -->
-            <div class="convocatorias-sidebar left-sidebar">
-                <h3>📋 Convocatorias Disponibles</h3>
-                <div class="convocatorias-list" id="convocatoriasList">
-                    <!-- Las convocatorias se cargarán dinámicamente aquí -->
-                </div>
-            </div>
-
-            <!-- Slider central -->
-            <div class="slider-section">
-                <div class="slider-header">
-                    <h2>📢 Convocatorias Destacadas</h2>
-                    <div class="slider-controls">
-                        <button class="slider-btn" onclick="previousSlide()" id="prevBtn">‹</button>
-                        <span class="slide-counter">
-                            <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
-                        </span>
-                        <button class="slider-btn" onclick="nextSlide()" id="nextBtn">›</button>
-                    </div>
-                </div>
-                
-                <div class="slider-container" id="sliderContainer">
-                    <div class="slider-track" id="sliderTrack">
-                        <!-- Los slides se cargarán dinámicamente aquí -->
-                    </div>
-                </div>
-
-                <!-- Indicadores del slider -->
-                <div class="slider-indicators" id="sliderIndicators">
-                    <!-- Los indicadores se generarán dinámicamente -->
-                </div>
-            </div>
-
-            <!-- Panel derecho con detalles -->
-            <div class="convocatorias-sidebar right-sidebar">
-                <h3>ℹ️ Detalles de la Convocatoria</h3>
-                <div class="details-container" id="detailsContainer">
-                    <div class="no-selection">
-                        <div class="no-selection-icon">🎯</div>
-                        <p>Selecciona una convocatoria para ver los detalles completos</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mensaje cuando no hay resultados -->
-        <div class="no-results" id="noResults">
-            <p>No se encontraron convocatorias</p>
-            <small>Intenta con otros términos de búsqueda o selecciona una categoría diferente</small>
-        </div>
-
-        <!-- Grid de convocatorias (vista alternativa para móviles) -->
-        <div class="convocatorias-grid" id="convocatoriasGrid">
-            <!-- Las tarjetas se mostrarán aquí en vista móvil -->
-        </div>
-    </div>
-
-    <!-- Modal para vista previa detallada -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-        <div class="modal-container" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h3 id="modalTitle">Detalles de la Convocatoria</h3>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-content" id="modalContent">
-                <!-- El contenido del modal se cargará dinámicamente -->
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn primary" onclick="closeModal()">Cerrar</button>
-                <button class="modal-btn secondary" id="modalApplyBtn">Postular Ahora</button>
-            </div>
-        </div>
-    </div>
-
+    </div>  
     <script src="js/script.js"></script>
 </body>
 

@@ -393,3 +393,26 @@
 .competencia-card {
     animation: fadeIn 0.5s ease-out;
 }
+
+/* Botón mostrar todas las competencias */
+.show-all-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--accent-color), #00ffcc);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95em;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.show-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.3);
+    background: linear-gradient(135deg, #00ffcc, var(--accent-color));
+}

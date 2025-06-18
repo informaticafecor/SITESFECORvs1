@@ -7,17 +7,17 @@ var oficiosDatabase = {
         "mayo": [
             {
                 code: "OFICIO CIRCULAR-R13706-2025-FSCN-FECCO",
-                title: "Circular sobre procedimientos de coordinación nacional",
-                description: "Establece lineamientos para el fortalecimiento del sistema fiscal y la coordinación efectiva entre todos los despachos fiscales a nivel nacional.",
+                title: "OFICIO CIRCULAR-R13706-2025-FSCN-FECCO",
+                description: "Se pone en conocimiento Oficiales de enlace de la UIF - PERU.",
                 link: "https://drive.google.com/file/d/1KPhdxrKruGd1bVlNMoM2ry-egO4iVS5Z/view",
                 hasAnnexes: true,
                 annexCount: 3
             },
             {
                 code: "OFICIO CIRCULAR 145-2025",
-                title: "Obtención de información del sistema APIS-PNR",
+                title: "OFICIO CIRCULAR 145-2025",
                 description: "Lineamientos para la obtención de información del sistema APIS-PNR, alert y otros administrados por la Dirección de Registro y Control Migratorio.",
-                link: "https://drive.google.com/file/d/ejemplo2",
+                link: "https://drive.google.com/file/d/1RtioBOZD4uxm-LiDazK9ELJSG4Nls68S/view",
                 hasAnnexes: false,
                 annexCount: 0
             },
@@ -25,31 +25,31 @@ var oficiosDatabase = {
                 code: "OFICIO CIRCULAR 002-2025-MP-FN",
                 title: "Directrices para el fortalecimiento del sistema fiscal",
                 description: "Establece directrices y procedimientos administrativos actualizados en el ámbito del Ministerio Público para mejorar la eficiencia institucional.",
-                link: "https://drive.google.com/file/d/ejemplo3",
+                link: "https://drive.google.com/file/d/1HzAw63Xii2_Pi6Odjpzt5kjpoB8rYXe-/view",
                 hasAnnexes: true,
                 annexCount: 2
             },
             {
                 code: "OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO",
-                title: "Criterios uniformes de archivos liminares",
-                description: "Criterios uniformes de los fiscales superiores nacionales referido a criterios aplicables a los archivos liminares y procedimientos relacionados.",
-                link: "https://drive.google.com/file/d/ejemplo4",
+                title: "OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO",
+                description: "Se pone en conocimiento la directiva denominada Atencion de denuncias y otorgamientos de medidas de proteccion al denunciante o al testigo por presuntos actos de corrupcion y/o faltas a la etica publica -2025",
+                link: "https://drive.google.com/file/d/112NesUJL_rYoIhlH2MkM5FHUyayj46om/view",
                 hasAnnexes: false,
                 annexCount: 0
             },
             {
                 code: "Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN",
-                title: "Resolución especial de procedimientos",
+                title: "Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN",
                 description: "Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados en la administración de justicia.",
-                link: "https://drive.google.com/file/d/ejemplo5",
+                link: "https://drive.google.com/file/d/1SViq0ZP3mFT5oh59b5-AXWSBuHHrmFlX/view",
                 hasAnnexes: false,
                 annexCount: 0
             },
             {
                 code: "Resolución de la Fiscalía de la Nación N°- DIRECTIVA",
-                title: "Directiva de procedimientos internos",
+                title: "Resolución de la Fiscalía de la Nación N°- DIRECTIVA",
                 description: "Lineamientos para la optimización de procesos administrativos y modernización de los sistemas de gestión institucional del Ministerio Público.",
-                link: "https://drive.google.com/file/d/ejemplo6",
+                link: "https://drive.google.com/file/d/1PoMPoVVFtdW4oBCVXrYgoSF7BKT54vh5/view",
                 hasAnnexes: true,
                 annexCount: 1
             }
@@ -137,7 +137,7 @@ function createOfficeCard(office) {
         `<a href="${office.link}" class="btn-secondary" target="_blank" onclick="viewOnline('${office.code}')">🔗 Ver Online</a>`;
 
     return `<div class="news-card ${office.hasAnnexes ? 'has-annexes' : ''}">
-        <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/refs/heads/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="${office.title}">
+        <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="${office.title}">
         <div class="news-content">
             <div class="office-code">${office.code}</div>
             <div class="office-date">${office.date}</div>

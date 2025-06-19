@@ -26,6 +26,10 @@ body {
     margin: 0 auto;
     padding: 20px;
     min-height: 100vh;
+    
+    width: 100%; /* 👈 NUEVO */
+    box-sizing: border-box; /* 👈 NUEVO: Incluye padding en el ancho */
+    overflow-x: hidden; /* 👈 NUEVO */
 }
 
 /* Título principal */

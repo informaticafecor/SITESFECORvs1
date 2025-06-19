@@ -29,7 +29,7 @@
             document.getElementById('btn-' + year).classList.add('active');
 
             // Mostrar sección de meses
-            document.getElementById('monthFiltersGroup').style.display = 'flex';
+            document.getElementById('monthFilters').style.display = 'block';
 
             // Desactivar botones de mes
             document.querySelectorAll('#monthFilters button').forEach(btn => btn.classList.remove('active'));
@@ -90,7 +90,7 @@
             });
 
             // Ocultar los filtros de meses
-            document.getElementById('monthFiltersGroup').style.display = 'none';
+            document.getElementById('monthFilters').style.display = 'none';
 
             // Limpiar el buscador
             document.getElementById('searchInput').value = '';

@@ -258,6 +258,10 @@ h1 {
     gap: 30px;
     opacity: 1;
     transition: opacity 0.3s ease;
+
+    justify-items: center; /* 👈 NUEVO: Centra las tarjetas */
+    max-width: 1200px; /* 👈 NUEVO: Limita el ancho total */
+    margin: 0 auto; /* 👈 NUEVO: Centra el grid */
 }
 
 /* Estilo de cada tarjeta */
@@ -270,6 +274,10 @@ h1 {
     transition: var(--transition);
     border: 1px solid rgba(0, 204, 153, 0.1);
     position: relative;
+    width: 100%; /* 👈 MODIFICADO */
+    max-width: 400px; /* 👈 NUEVO: Ancho máximo de cada tarjeta */
+
+
 }
 
 .news-card::before {
@@ -282,6 +290,8 @@ h1 {
     background: linear-gradient(90deg, var(--accent-color), #00ffcc);
     opacity: 0;
     transition: opacity 0.3s ease;
+
+    
 }
 
 /* Efecto hover sobre las tarjetas */

@@ -20,6 +20,7 @@ function updateResultsCounter() {
     }
 }
 
+/*
 // Filtrar por tipo
 function filterType(type) {
     selectedType = type;
@@ -33,7 +34,23 @@ function filterType(type) {
 
     // Aplicar filtros
     applyFilters();
+}*/
+
+// Filtrar por tipo
+function filterType(type) {
+    selectedType = type;
+
+    // Resaltar solo el botón seleccionado
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.classList.contains('clear-filters')) return;
+        btn.classList.remove('active');
+    });
+    document.getElementById('btn-' + type).classList.add('active');
+
+    // Aplicar filtros
+    applyFilters();
 }
+
 
 // Seleccionar año
 function selectYear(year) {
@@ -66,6 +83,7 @@ function filterMonth(month) {
     applyFilters();
 }
 
+/*
 // Función centralizada para aplicar todos los filtros
 function applyFilters() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
@@ -88,6 +106,33 @@ function applyFilters() {
     });
 
     updateResultsCounter();
+}*/
+
+
+// Función centralizada para aplicar todos los filtros
+function applyFilters() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    
+    document.querySelectorAll('.news-card').forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const description = card.querySelector('p') ? card.querySelector('p').textContent.toLowerCase() : '';
+        const matchesSearch = searchInput === '' || title.includes(searchInput) || description.includes(searchInput);
+        
+        // CORREGIR: Verificar si la tarjeta tiene la clase del tipo seleccionado
+        const matchesType = selectedType === '' || card.classList.contains(selectedType);
+        const matchesYear = selectedYear === '' || card.classList.contains(selectedYear);
+        const matchesMonth = currentMonth === '' || card.classList.contains(currentMonth);
+
+        if (matchesSearch && matchesType && matchesYear && matchesMonth) {
+            card.style.display = 'block';
+            card.classList.add('show');
+        } else {
+            card.style.display = 'none';
+            card.classList.remove('show');
+        }
+    });
+
+    updateResultsCounter();
 }
 
 // Búsqueda por texto
@@ -95,6 +140,8 @@ function searchNews() {
     applyFilters();
 }
 
+
+/*
 // Limpiar todos los filtros
 function clearAllFilters() {
     // Reiniciar variables
@@ -120,7 +167,31 @@ function clearAllFilters() {
     });
 
     updateResultsCounter();
+}*/
+
+// Limpiar todos los filtros
+function clearAllFilters() {
+    // Reiniciar variables
+    selectedType = '';
+    selectedYear = '';
+    currentMonth = '';
+
+    // Eliminar clases activas de todos los botones
+    document.querySelectorAll('.tab-btn, .date-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Ocultar los filtros de meses
+    document.getElementById('monthGroup').style.display = 'none';
+
+    // Limpiar el buscador
+    document.getElementById('searchInput').value = '';
+
+    // Mostrar solo las primeras 6 tarjetas
+    showInitialCards();
 }
+
+
 
 // Mejorar la experiencia de búsqueda con debounce
 let searchTimeout;
@@ -129,6 +200,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
     searchTimeout = setTimeout(searchNews, 300);
 });
 
+/*
 // Inicialización
 window.addEventListener('DOMContentLoaded', function() {
     // Limpiar todos los filtros al cargar
@@ -138,7 +210,37 @@ window.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.news-card').forEach((card, normativa_guias) => {
         card.style.animationDelay = `${normativa_guias * 0.1}s`;
     });
+});*/
+
+// Inicialización
+window.addEventListener('DOMContentLoaded', function() {
+    // Mostrar solo las primeras 6 tarjetas por defecto
+    showInitialCards();
+    
+    // Animar las tarjetas al cargar
+    document.querySelectorAll('.news-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
 });
+
+// Nueva función para mostrar solo algunas tarjetas inicialmente
+function showInitialCards() {
+    const allCards = document.querySelectorAll('.news-card');
+    
+    allCards.forEach((card, index) => {
+        if (index < 6) {  // Mostrar solo las primeras 6
+            card.style.display = 'block';
+            card.classList.add('show');
+        } else {
+            card.style.display = 'none';
+            card.classList.remove('show');
+        }
+    });
+    
+    updateResultsCounter();
+}
+
+
 
 // Navegación con teclado
 document.addEventListener('keydown', function(e) {
@@ -146,3 +248,27 @@ document.addEventListener('keydown', function(e) {
         clearAllFilters();
     }
 });
+
+// Función para mostrar todas las tarjetas
+function showAllCards() {
+    // Limpiar filtros activos
+    selectedType = '';
+    selectedYear = '';
+    currentMonth = '';
+    
+    // Quitar clases activas
+    document.querySelectorAll('.tab-btn, .date-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Activar botón "Ver Todos"
+    document.getElementById('btn-todos').classList.add('active');
+    
+    // Mostrar todas las tarjetas
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.style.display = 'block';
+        card.classList.add('show');
+    });
+
+    updateResultsCounter();
+}

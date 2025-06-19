@@ -117,3 +117,139 @@
         });
 
 
+
+        /* ============================================
+        DIRECTORIO PERITOS FECCOR - FUNCIONES SIMPLES
+        ============================================ */
+
+        // URL del directorio (CAMBIA ESTA URL POR LA TUYA)
+        const DIRECTORIO_URL = "https://tu-link-del-directorio.com";
+
+        // Función para redirigir al directorio
+        function redirectToDirectory() {
+            // Cambiar la URL por la tuya
+            window.open(DIRECTORIO_URL, '_blank');
+            
+            // Mostrar notificación opcional
+            showDirectoryNotification('Abriendo Directorio Peritos FECCOR...', 'info');
+        }
+
+        // Función simple para mostrar notificaciones
+        function showDirectoryNotification(message, type = 'info') {
+            // Remover notificación existente
+            const existing = document.querySelector('.directory-notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = 'directory-notification';
+            
+            const bgColor = type === 'success' ? '#4caf50' : 
+                        type === 'warning' ? '#ff9800' : '#2196f3';
+            const icon = type === 'success' ? '✅' : 
+                        type === 'warning' ? '⚠️' : 'ℹ️';
+            
+            notification.innerHTML = `
+                <span>${icon}</span>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${bgColor};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            // Estilo del botón cerrar
+            const closeBtn = notification.querySelector('button');
+            closeBtn.style.cssText = `
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.2em;
+                cursor: pointer;
+                padding: 0 5px;
+                border-radius: 3px;
+                transition: background 0.2s;
+            `;
+            
+            closeBtn.addEventListener('mouseenter', () => {
+                closeBtn.style.background = 'rgba(255,255,255,0.2)';
+            });
+            
+            closeBtn.addEventListener('mouseleave', () => {
+                closeBtn.style.background = 'none';
+            });
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remover después de 3 segundos
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 3000);
+        }
+
+        // Agregar animaciones para las notificaciones
+        if (!document.querySelector('#directory-animations')) {
+            const style = document.createElement('style');
+            style.id = 'directory-animations';
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes slideOut {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Funciones opcionales para los iconos (si quieres que también sean clicables)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hacer los iconos clicables también
+            const phoneIcon = document.querySelector('.phone-icon');
+            const emailIcon = document.querySelector('.email-icon');
+            
+            if (phoneIcon) {
+                phoneIcon.addEventListener('click', function() {
+                    window.open('tel:+51920044344', '_self');
+                    showDirectoryNotification('Llamando a FECCOR...', 'info');
+                });
+            }
+            
+            if (emailIcon) {
+                emailIcon.addEventListener('click', function() {
+                    window.open('mailto:peritajes.feccor@mpfn.gob.pe', '_self');
+                    showDirectoryNotification('Abriendo correo...', 'info');
+                });
+            }
+        });       

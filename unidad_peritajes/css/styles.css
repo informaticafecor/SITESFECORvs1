@@ -419,4 +419,191 @@
         }
 
 
-        
+
+        /* ============================================
+   DIRECTORIO PERITOS FECCOR - ESTILO SIMPLE
+   ============================================ */
+
+.directorio-feccor-container {
+    background: var(--primary-color);
+    width: 100%;
+    padding: 30px 0;
+    border-top: 3px solid var(--accent-color);
+    margin-top: 50px;
+}
+
+.feccor-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 0 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 204, 153, 0.2);
+    box-shadow: 0 10px 30px var(--shadow-light);
+}
+
+/* Información de contacto (izquierda) */
+.contact-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.contact-label {
+    font-size: 0.85em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-value {
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Iconos centrales */
+.icons-center {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.icon-box {
+    width: 70px;
+    height: 70px;
+    border: 3px solid var(--gold-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.icon-box:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(255, 208, 64, 0.4);
+}
+
+/* Botón del directorio (derecha) */
+.directory-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.directory-btn {
+    background: linear-gradient(45deg, var(--accent-color), var(--gold-color));
+    color: var(--primary-color);
+    border: none;
+    padding: 20px 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 20px rgba(0, 204, 153, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.directory-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+}
+
+.directory-btn:hover::before {
+    left: 100%;
+}
+
+.directory-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 204, 153, 0.5);
+}
+
+.directory-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .feccor-header {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .icons-center {
+        flex-direction: row;
+        justify-content: center;
+        order: -1;
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8em;
+    }
+
+    .directory-btn {
+        padding: 15px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .directorio-feccor-container {
+        padding: 20px 0;
+    }
+
+    .feccor-header {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .directory-btn {
+        padding: 12px 20px;
+        font-size: 0.9em;
+    }
+
+    .contact-value {
+        font-size: 1em;
+    }
+}

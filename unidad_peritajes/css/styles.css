@@ -433,13 +433,13 @@
 }
 
 .feccor-header {
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 40px;
+    gap: 25px;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 25px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -482,19 +482,19 @@
 .icons-center {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
 }
 
 .icon-box {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border: 3px solid var(--gold-color);
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2em;
+    font-size: 1.8em;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     transition: var(--transition);
@@ -518,17 +518,18 @@
     background: linear-gradient(45deg, var(--accent-color), var(--gold-color));
     color: var(--primary-color);
     border: none;
-    padding: 20px 30px;
-    font-size: 1.2em;
+    padding: 15px 20px;
+    font-size: 1em;
     font-weight: 700;
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
     transition: var(--transition);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 8px 20px rgba(0, 204, 153, 0.3);
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.3);
     position: relative;
     overflow: hidden;
+    max-width: 280px;
 }
 
 .directory-btn::before {
@@ -559,37 +560,17 @@
 @media (max-width: 900px) {
     .feccor-header {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 20px;
         text-align: center;
-        padding: 25px;
+        padding: 20px;
+        max-width: 90%;
     }
 
     .icons-center {
         flex-direction: row;
         justify-content: center;
         order: -1;
-    }
-
-    .icon-box {
-        width: 60px;
-        height: 60px;
-        font-size: 1.8em;
-    }
-
-    .directory-btn {
-        padding: 15px 25px;
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 600px) {
-    .directorio-feccor-container {
-        padding: 20px 0;
-    }
-
-    .feccor-header {
-        padding: 20px;
-        gap: 20px;
+        gap: 15px;
     }
 
     .icon-box {
@@ -599,11 +580,40 @@
     }
 
     .directory-btn {
-        padding: 12px 20px;
+        padding: 12px 18px;
         font-size: 0.9em;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 600px) {
+    .directorio-feccor-container {
+        padding: 20px 0;
+    }
+
+    .feccor-header {
+        padding: 15px;
+        gap: 15px;
+        max-width: 95%;
+    }
+
+    .icon-box {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+    }
+
+    .directory-btn {
+        padding: 10px 15px;
+        font-size: 0.85em;
+        max-width: 220px;
     }
 
     .contact-value {
-        font-size: 1em;
+        font-size: 0.95em;
+    }
+
+    .contact-item {
+        padding: 10px;
     }
 }

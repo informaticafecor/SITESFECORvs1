@@ -185,6 +185,10 @@
             gap: 25px;
             opacity: 1;
             transition: opacity 0.3s ease;
+            justify-items: center; /* 👈 NUEVO: Centra las tarjetas */
+            max-width: 1200px; /* 👈 NUEVO: Limita el ancho total */
+            margin: 0 auto; /* 👈 NUEVO: Centra el grid */
+            
         }
 
         /* Estilo de cada tarjeta mejorado */
@@ -197,6 +201,9 @@
             transition: var(--transition);
             border: 1px solid rgba(0, 204, 153, 0.1);
             position: relative;
+            width: 100%; /* 👈 MODIFICADO */
+            max-width: 400px; /* 👈 NUEVO: Ancho máximo de cada tarjeta */
+
         }
 
         .news-card::before {

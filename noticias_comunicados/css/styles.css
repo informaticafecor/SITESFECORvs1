@@ -19,14 +19,25 @@
             line-height: 1.6;
         }
 
+
         /* Contenedor principal con flexbox para distribuir barra lateral y contenido */
+        /*
         .container {
             display: flex;
             flex-direction: row;
             min-height: 100vh;
-        }
+
+        }*/
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }        
 
         /* Estilos de la barra lateral */
+        /*
         .sidebar {
             width: 250px;
             padding: 20px;
@@ -37,7 +48,7 @@
             height: fit-content;
             max-height: 100vh;
             overflow-y: auto;
-        }
+        }*/
 
         /* Estilo para el bloque de filtros */
         .filters {
@@ -151,7 +162,6 @@
 
         /* Icono de búsqueda mejorado */
         .search-container::after {
-            content: '🔍';
             position: absolute;
             right: calc(20% + 15px);
             top: 50%;
@@ -203,8 +213,21 @@
             position: relative;
             width: 100%; /* 👈 MODIFICADO */
             max-width: 400px; /* 👈 NUEVO: Ancho máximo de cada tarjeta */
+            animation: fadeIn 0.5s ease-out; /* 👈 NUEVO: Ancho máximo de cada tarjeta */
 
         }
+
+        /* Al inicio, ocultar todo excepto las primeras 6 */
+        .news-card:nth-child(n+7) {
+            display: none;
+        }
+
+        /* Cuando hay filtros activos, mostrar todas */
+        .news-card.show {
+            display: block !important;
+        }
+
+
 
         .news-card::before {
             content: '';
@@ -320,7 +343,8 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Botón para limpiar filtros */
+
+        /* Botón para limpiar filtros 
         .clear-filters {
             width: 100%;
             padding: 10px;
@@ -337,7 +361,56 @@
         .clear-filters:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+        }*/
+
+
+        /* Botón limpiar filtros más compacto */
+
+        /* Botón limpiar filtros con el mismo estilo que los demás */
+        .clear-filters {
+            padding: 12px 20px;
+            border: 2px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
         }
+
+        .clear-filters:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-light);
+        }
+
+        /* Efecto especial cuando se hace hover (opcional) */
+        .clear-filters:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-light);
+        }
+
+        /* O si quieres que se active como los otros botones al hacer hover */
+        .clear-filters:active {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         /* Contador de resultados */
         .results-counter {
@@ -485,4 +558,196 @@
 }
 .nav-menu li a:hover {
   color: #00cc99;
+}
+
+
+
+
+
+
+/* Buscador en la parte superior */
+.search-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+/* Filtros en pestañas horizontales */
+.filters-tabs {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tabs-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Separador entre secciones de filtros */
+.filter-separator {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 204, 153, 0.3), transparent);
+    margin: 20px 0;
+}
+
+/* Contenedor para filtros de fecha */
+.date-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-filter-label {
+    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.date-filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Estilo de los botones de filtro tipo pestañas */
+.tab-btn, .date-btn {
+    padding: 12px 20px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tab-btn:hover, .date-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+}
+
+/* Estilo cuando el botón está activo */
+.tab-btn.active, .date-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
+}
+
+/* Botones de fecha más pequeños */
+.date-btn {
+    padding: 8px 16px;
+    font-size: 0.85em;
+}
+
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* Mostrar meses en una línea horizontal */
+#monthGroup {
+    flex-direction: column;
+    align-items: center;
+}
+
+#monthGroup .date-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+}
+
+/* Responsive para los meses */
+@media (max-width: 768px) {
+    #monthGroup .date-filter-buttons {
+        gap: 6px;
+    }
+    
+    .date-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* del boton ver mas*/
+/* Estilo especial para el botón "Ver más" */
+#viewMoreBtn {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+#viewMoreBtn:hover {
+    background: transparent;
+    color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .tabs-container {
+        gap: 8px;
+    }
+    
+    .tab-btn {
+        padding: 10px 16px;
+        font-size: 0.85em;
+    }
 }

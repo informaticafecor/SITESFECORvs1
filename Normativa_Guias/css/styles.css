@@ -210,7 +210,9 @@ h1 {
     font-size: 0.85em;
 }
 
+
 /* Botón para limpiar filtros */
+/*
 .clear-filters {
     padding: 12px 24px;
     background: rgba(255, 255, 255, 0.1);
@@ -229,7 +231,44 @@ h1 {
     border-color: var(--accent-color);
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 204, 153, 0.2);
+}*/
+
+
+/* Botón limpiar filtros con el mismo estilo que los demás */
+.clear-filters {
+    padding: 12px 20px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
 }
+
+.clear-filters:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+}
+
+/* Efecto especial cuando se hace hover (opcional) */
+.clear-filters:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+}
+
+/* O si quieres que se active como los otros botones al hacer hover */
+.clear-filters:active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
 
 /* Contador de resultados */
 .results-counter {

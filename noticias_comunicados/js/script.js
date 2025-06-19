@@ -21,11 +21,18 @@
         }
 
         // Filtrar por tipo de noticia o comunicado
+        /*
         function filterType(type) {
             selectedType = type;
 
             // Resaltar solo el botón seleccionado
-            document.querySelectorAll('#typeFilters button').forEach(btn => btn.classList.remove('active'));
+            // document.querySelectorAll('#typeFilters button').forEach(btn => btn.classList.remove('active'));
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.classList.contains('clear-filters')) return;
+                btn.classList.remove('active');
+            });           
+
             document.getElementById('btn-' + type).classList.add('active');
 
             // Reiniciar filtros de año y mes
@@ -39,9 +46,34 @@
 
             // Aplicar filtros
             applyFilters();
-        }
+        }*/
+
+        // Filtrar por tipo de noticia o comunicado
+        function filterType(type) {
+            selectedType = type;
+
+            // Resaltar solo el botón seleccionado
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (!btn.classList.contains('clear-filters')) {
+                    btn.classList.remove('active');
+                }
+            });
+            document.getElementById('btn-' + type).classList.add('active');
+
+            // Reiniciar filtros de año y mes
+            selectedYear = '';
+            currentMonth = '';
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Ocultar los meses hasta que se seleccione año
+            document.getElementById('monthGroup').style.display = 'none';
+
+            // Aplicar filtros
+            applyFilters();
+        }           
 
         // Seleccionar año y filtrar noticias
+        /*
         function selectYear(year) {
             selectedYear = year;
             currentMonth = '';
@@ -58,8 +90,30 @@
 
             // Aplicar filtros
             applyFilters();
+        }*/
+
+
+        // Seleccionar año y filtrar noticias
+        function selectYear(year) {
+            selectedYear = year;
+            currentMonth = '';
+
+            // Resaltar solo el botón seleccionado
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + year).classList.add('active');
+
+            // Mostrar sección de meses - CAMBIA ESTE ID
+            document.getElementById('monthGroup').style.display = 'flex';
+
+            // Desactivar botones de mes
+            document.querySelectorAll('#monthGroup .date-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Aplicar filtros
+            applyFilters();
         }
 
+
+        /*
         // Filtrar por mes
         function filterMonth(month) {
             currentMonth = month;
@@ -70,7 +124,20 @@
 
             // Aplicar filtros
             applyFilters();
+        }*/
+
+        // Filtrar por mes
+        function filterMonth(month) {
+            currentMonth = month;
+
+            // Resaltar solo el botón seleccionado en la sección de meses
+            document.querySelectorAll('#monthGroup .date-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + month).classList.add('active');
+
+            // Aplicar filtros
+            applyFilters();
         }
+
 
         // Función centralizada para aplicar todos los filtros
         function applyFilters() {
@@ -102,6 +169,8 @@
         }
 
         // Limpiar todos los filtros
+       
+       /*
         function clearAllFilters() {
             // Reiniciar variables
             selectedYear = '';
@@ -126,8 +195,33 @@
             });
 
             updateResultsCounter();
-        }
+        }*/
 
+
+        // Limpiar todos los filtros
+        // Limpiar todos los filtros
+        function clearAllFilters() {
+            // Reiniciar variables
+            selectedYear = '';
+            selectedType = '';
+            currentMonth = '';
+
+            // Eliminar clases activas de todos los botones
+            document.querySelectorAll('.tab-btn, .date-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Ocultar los filtros de meses
+            document.getElementById('monthGroup').style.display = 'none';
+
+            // Limpiar el buscador
+            document.getElementById('searchInput').value = '';
+
+            // Mostrar solo las primeras tarjetas
+            showInitialCards();
+
+            updateResultsCounter();
+        }
         // Mejorar la experiencia de búsqueda con debounce
         let searchTimeout;
         document.getElementById('searchInput').addEventListener('input', function() {
@@ -137,6 +231,9 @@
 
         // Inicialización mejorada
         window.addEventListener('DOMContentLoaded', function() {
+            
+            // Mostrar solo las primeras tarjetas al cargar
+            showInitialCards();
             // Limpiar todos los filtros al cargar
             clearAllFilters();
             
@@ -153,3 +250,59 @@
             }
         });
 
+
+        // Función para mostrar solo las primeras tarjetas al inicio
+        function showInitialCards() {
+            const allCards = document.querySelectorAll('.news-card');
+            allCards.forEach((card, index) => {
+                if (index < 6) { // Mostrar solo las primeras 6
+                    card.style.display = 'block';
+                    card.classList.add('show');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('show');
+                }
+            });
+        }     
+
+
+let showingAll = false;
+
+function toggleViewMore() {
+    const allCards = document.querySelectorAll('.news-card');
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+    const viewMoreContainer = document.getElementById('viewMoreContainer');
+    
+    if (!showingAll) {
+        // Mostrar todas las tarjetas
+        allCards.forEach(card => {
+            card.style.display = 'block';
+            card.classList.add('show');
+        });
+        viewMoreBtn.textContent = 'Ver menos';
+        showingAll = true;
+    } else {
+        // Mostrar solo las primeras 6
+        showInitialCards();
+        viewMoreBtn.textContent = 'Ver más';
+        showingAll = false;
+    }
+    
+    updateResultsCounter();
+}
+
+// Función para ocultar/mostrar el botón Ver más
+function toggleViewMoreButton() {
+    const allCards = document.querySelectorAll('.news-card');
+    const visibleCards = document.querySelectorAll('.news-card[style*="block"], .news-card:not([style*="none"])');
+    const viewMoreContainer = document.getElementById('viewMoreContainer');
+    
+    // Solo mostrar el botón si hay filtros activos o si no se están mostrando todas
+    if (selectedType === '' && selectedYear === '' && currentMonth === '' && !showingAll) {
+        viewMoreContainer.style.display = 'flex';
+    } else if (selectedType !== '' || selectedYear !== '' || currentMonth !== '') {
+        viewMoreContainer.style.display = 'none';
+    }
+}
+
+        

@@ -6,9 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias y Comunicados</title>
-        <link rel="stylesheet" href="css/styles.css">
-
-   
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -28,44 +26,69 @@
     <!-- Estructura principal con barra lateral y contenido -->
 
     <div class="container">
-        <!-- Barra lateral con filtros -->
-        <div class="sidebar">
-            <!-- Filtro por tipo -->
-            <div class="filters" id="typeFilters">
-                <h3>Tipo</h3>
-                <button onclick="filterType('noticia')" id="btn-noticia">Noticias</button>
-                <button onclick="filterType('comunicado')" id="btn-comunicado">Comunicados</button>
-            </div>
 
-            <!-- Filtro por año -->
-            <div class="filters" id="yearFilters">
-                <h3>Años</h3>
-                <button onclick="selectYear('2025')" id="btn-2025">2025</button>
-            </div>
-
-            <!-- Filtro por mes (oculto al inicio) -->
-            <div class="filters" id="monthFilters" style="display:none;">
-                <h3>Meses</h3>
-                <button onclick="filterMonth('enero')" id="btn-enero">Enero</button>
-                <button onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
-                <button onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
-                <button onclick="filterMonth('abril')" id="btn-abril">Abril</button>
-                <button onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
-                <button onclick="filterMonth('junio')" id="btn-junio">Junio</button>
-            </div>
-
-            <!-- Botón para limpiar filtros -->
-            <button class="clear-filters" onclick="clearAllFilters()">
-                Limpiar Filtros
-            </button>
-        </div>
-
-        <!-- Contenido principal -->
-        <div class="content">
-            <!-- Buscador de noticias -->
+         <h1>Noticias y Comunicados</h1>
+        <!-- Buscador en la parte superior -->
+        <div class="search-section">
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Buscar noticias y comunicados..." onkeyup="searchNews()" oninput="searchNews()">
             </div>
+        </div>
+
+        <!-- Filtros en pestañas horizontales -->
+        <div class="filters-tabs">
+            <div class="tabs-header">
+                <h3>Categorías</h3>
+            </div>
+            <div class="tabs-container">
+                <button class="tab-btn" onclick="filterType('noticia')" id="btn-noticia">Noticias</button>
+                <button class="tab-btn" onclick="filterType('comunicado')" id="btn-comunicado">Comunicados</button>
+                
+                <!-- Botón limpiar filtros -->
+                <button class="clear-filters" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+
+                <!--VER MAS BOTON -->
+                <button class="tab-btn" id="viewMoreBtn" onclick="toggleViewMore()">Ver más</button>
+
+            </div>
+
+            <!-- Separador visual -->
+            <div class="filter-separator"></div>
+
+            <!-- Filtros de fecha -->
+            <div class="date-filters">
+                <!-- Filtro por año -->
+                <div class="date-filter-group">
+                    <div class="date-filter-label">Año</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
+                    </div>
+                </div>
+
+                <!-- Filtro por mes -->
+                <div class="date-filter-group" id="monthGroup" style="display:none;">
+                    <div class="date-filter-label">Mes</div>
+                    <div class="date-filter-buttons">
+                        <button class="date-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                        <button class="date-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                        <button class="date-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                        <button class="date-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                        <button class="date-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                        <button class="date-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Contenido principal -->
+        <div class="content">
+            <!-- Buscador de noticias -->
+            <!--<div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar noticias y comunicados..." onkeyup="searchNews()" oninput="searchNews()">
+            </div>-->
 
             <!-- Contador de resultados -->
             <div class="results-counter" id="resultsCounter"></div>
@@ -87,23 +110,51 @@
                     </div>
                 </div>
 
+                <div class="news-card comunicado 2025 abril">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril 2025">
+                    <div class="news-content">
+                        <h2>Pedido de Materiales y Suministros a través de Pecosa Oficio Circular-R10372-2025-FSCN-FECCO</h2>
+                        <p>Se actualizan los procedimientos internos para lso requerimientos que se soliciten mediante el procedimiento de pecosas.</p>
+                        <a href="https://drive.google.com/file/d/1BHq_L9jWFAWjNvKuWEpTWX7AMGEC0J6H/view" target="_blank">Leer más</a>
+                    </div>
+                </div>
+                
 
                 <div class="news-card noticia 2025 enero">
                     <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen noticia enero 2025">
                     <div class="news-content">
                         <h2>Designan fiscal provincial en la segunda Fiscalía Supraprovincial Corporativa Especializada contra la Criminalidad Organizada.</h2>
-                        <p>RESOLUCIÓN DE LA FISCALÍA DE LA NACIÓN No 212-2025-MP-FN</p>
+                        <p>Resolución de la Fiscalia de la Nación No 212-2025-MP-FN</p>
                         <a href="https://drive.google.com/file/d/1gfv11g1_F1CoLYvyuuhD_pSscs_Jn3Y0/view" target="_blank">Leer más</a>
                     </div>
                 </div>
 
 
+                <div class="news-card comunicado 2025 abril">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril abril">
+                    <div class="news-content">
+                        <h2>Oficio Circular N°000117-2025-MP-FN-FSCN-FECCO</h2>
+                        <p>Se pone en conocimiento pautas voceria</p>
+                        <a href="https://drive.google.com/file/d/1hKJPFYpAQTxjVgWfVW0EcImoGrEHkdZl/view" target="_blank">Leer más</a>
+                    </div>
+                </div>               
+
                 <div class="news-card noticia 2025 enero">
                     <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen noticia enero 2025">
                     <div class="news-content">
                         <h2>Dan por concluida la designación de fiscal adjunta provincial de la Fiscalía Provincial Corporativa Especializada contra la Criminalidad Organizada de Piura.</h2>
-                        <p>RESOLUCIÓN DE LA FISCALÍA DE LA NACIÓN No 245-2025-MP-FN.</p>
+                        <p>Resolución de la Fiscalia de la Nación No 245-2025-MP-FN.</p>
                         <a href="https://drive.google.com/file/d/1Ng0GqC2TF56yh37eTp7m0QIKNqK1h3yW/view" target="_blank">Leer más</a>
+                    </div>
+                </div>
+
+
+                <div class="news-card comunicado 2025 mayo">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril mayo">
+                    <div class="news-content">
+                        <h2>Oficio  Multiple N° 000066-2025-MP-FN-OII</h2>
+                        <p>Disposiciones sobre neutralidad de funcionarios, directivos y servidores publicos durante el periodo electoral 2026.</p>
+                        <a href="https://drive.google.com/file/d/1rTbTq9dWPUS4AIyaIIT7OglEDdGFzOHR/view" target="_blank">Leer más</a>
                     </div>
                 </div>
 
@@ -112,38 +163,11 @@
                     <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen noticia enero 2025">
                     <div class="news-content">
                         <h2>Dan por concluida la designación de fiscal adjunto provincial de la Tercera Fiscalía Supraprovincial Corporativa Especializada Contra la Criminalidad Organizada.</h2>
-                        <p>RESOLUCIÓN DE LA FISCALÍA DE LA NACIÓN No 274-2025-MP-FN.</p>
+                        <p>Resolución de la Fiscalia de la Nación No 274-2025-MP-FN.</p>
                         <a href="https://drive.google.com/file/d/1lJ6wA2aHY51wMmPQ-lgQMQZpKEGUXrcp/view" target="_blank">Leer más</a>
                     </div>
                 </div>
 
-
-                <div class="news-card comunicado 2025 abril">
-                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril 2025">
-                    <div class="news-content">
-                        <h2>Pedido de Materiales y Suministros a través de Pecosa OFICIO CIRCULAR-R10372-2025-FSCN-FECCO</h2>
-                        <p>Se actualizan los procedimientos internos para lso requerimientos que se soliciten mediante el procedimiento de pecosas.</p>
-                        <a href="https://drive.google.com/file/d/1BHq_L9jWFAWjNvKuWEpTWX7AMGEC0J6H/view" target="_blank">Leer más</a>
-                    </div>
-                </div>
-
-                <div class="news-card comunicado 2025 abril">
-                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril abril">
-                    <div class="news-content">
-                        <h2>OFICIO CIRCULAR N°000117-2025-MP-FN-FSCN-FECCO</h2>
-                        <p>Se pone en conocimiento pautas voceria</p>
-                        <a href="https://drive.google.com/file/d/1hKJPFYpAQTxjVgWfVW0EcImoGrEHkdZl/view" target="_blank">Leer más</a>
-                    </div>
-                </div>
-
-                <div class="news-card comunicado 2025 mayo">
-                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril mayo">
-                    <div class="news-content">
-                        <h2>OFICIO MULTIPLE N° 000066-2025-MP-FN-OII</h2>
-                        <p>Disposiciones sobre neutralidad de funcionarios, directivos y servidores publicos durante el periodo electoral 2026.</p>
-                        <a href="https://drive.google.com/file/d/1rTbTq9dWPUS4AIyaIIT7OglEDdGFzOHR/view" target="_blank">Leer más</a>
-                    </div>
-                </div>
 
                 <div class="news-card comunicado 2025 mayo">
                     <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/noticias_comunicados/img/fotomp1.PNG" alt="Imagen comunicado abril mayo">

@@ -8,8 +8,8 @@ async function loadVehicularesFromGitHub() {
         const BRANCH = 'main';
         
         const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.html`;
-        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.css`;
-        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/vehiculos.js`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/css/styles.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/UnidadesVehiculares/js/script.js`;
       
 
         console.log('Cargando UNIDADES VEHICULARES desde:', htmlUrl);

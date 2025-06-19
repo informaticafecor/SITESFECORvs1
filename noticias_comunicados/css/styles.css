@@ -449,3 +449,33 @@
         .sidebar::-webkit-scrollbar-thumb:hover {
             background: rgba(0, 204, 153, 0.7);
         }
+
+
+        /* PARA EL MENU*/
+
+        .nav-menu {
+  background-color: #0F2C52;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+.nav-menu li a:hover {
+  color: #00cc99;
+}

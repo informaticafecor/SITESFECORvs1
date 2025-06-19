@@ -753,3 +753,35 @@ body {
     background: linear-gradient(90deg, var(--golden-color), var(--accent-color), var(--golden-color));
     animation: shimmer 2s ease-in-out infinite;
 }
+
+
+
+
+/* para el menu*/
+
+.nav-menu {
+  background-color: #0F2C52;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+.nav-menu li a:hover {
+  color: #00cc99;
+}

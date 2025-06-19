@@ -227,3 +227,9 @@ function createParticle() {
 // Crear partículas ocasionalmente
 setInterval(createParticle, 3000);
 
+
+  fetch('componentes/menu.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("menu").innerHTML = html;
+    });

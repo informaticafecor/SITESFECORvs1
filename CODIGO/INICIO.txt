@@ -1,5 +1,5 @@
-<!-- Código para cargar INICIO desde GitHub -->
-<div id="inicio-content">Cargando página de inicio...</div>
+<!-- Cï¿½digo para cargar INICIO desde GitHub -->
+<div id="inicio-content">Cargando pï¿½gina de inicio...</div>
 <script>
 async function loadInicioFromGitHub() {
     try {
@@ -9,8 +9,8 @@ async function loadInicioFromGitHub() {
         
         // Cargar HTML principal
         const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/inicio.html`;
-        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/inicio.css`;
-        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/inicio.js`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/css/inicio.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/js/inicio.js`;
         
         console.log('Cargando INICIO desde:', htmlUrl);
         

@@ -1,23 +1,5 @@
-// Estado de los carruseles - TODOS LOS CARRUSELES
+// Estado de los carruseles - SOLO LOS QUE TIENEN CARRUSEL
 const carousels = {
-    'historia-carousel': {
-        currentSlide: 0,
-        totalSlides: 1,
-        autoPlay: false,
-        interval: null
-    },
-    'organigrama-carousel': {
-        currentSlide: 0,
-        totalSlides: 1,
-        autoPlay: false,
-        interval: null
-    },
-    'competencia-carousel': {
-        currentSlide: 0,
-        totalSlides: 1,
-        autoPlay: false,
-        interval: null
-    },
     'superior-carousel': {
         currentSlide: 0,
         totalSlides: 4, // Coordinadora + 3 Fiscalías
@@ -32,13 +14,7 @@ const carousels = {
     },
     'peritaje-carousel': {
         currentSlide: 0,
-        totalSlides: 1,
-        autoPlay: false,
-        interval: null
-    },
-    'mapa-carousel': {
-        currentSlide: 0,
-        totalSlides: 1,
+        totalSlides: 1, // Solo 1 slide
         autoPlay: false,
         interval: null
     }
@@ -53,6 +29,9 @@ function changeSlide(carouselId, direction) {
         console.warn(`Carrusel ${carouselId} no encontrado o sin slides`);
         return;
     }
+    
+    // Solo funcionar si hay más de 1 slide
+    if (carousel.totalSlides <= 1) return;
     
     // Remover clase active del slide actual
     slides[carousel.currentSlide].classList.remove('active');
@@ -89,6 +68,9 @@ function goToSlide(carouselId, slideIndex) {
         return;
     }
     
+    // Solo funcionar si hay más de 1 slide
+    if (carousel.totalSlides <= 1) return;
+    
     // Remover clase active del slide actual
     slides[carousel.currentSlide].classList.remove('active');
     
@@ -113,7 +95,7 @@ function updateDots(carouselId) {
     const carousel = carousels[carouselId];
     const dotsContainer = document.getElementById(`${carouselId.replace('-carousel', '-dots')}`);
     
-    if (!dotsContainer) return;
+    if (!dotsContainer || !carousel) return;
     
     const dots = dotsContainer.querySelectorAll('.dot');
     
@@ -144,6 +126,20 @@ function createDots(carouselId) {
             if (i === 0) dot.classList.add('active');
             
             dot.addEventListener('click', () => goToSlide(carouselId, i));
+            
+            // Accesibilidad
+            dot.setAttribute('aria-label', `Ir al slide ${i + 1}`);
+            dot.setAttribute('role', 'button');
+            dot.setAttribute('tabindex', '0');
+            
+            // Permitir navegación con Enter y Espacio
+            dot.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    goToSlide(carouselId, i);
+                }
+            });
+            
             dotsContainer.appendChild(dot);
         }
     }
@@ -155,7 +151,7 @@ function startAutoPlay(carouselId) {
     if (carousel && carousel.autoPlay && carousel.totalSlides > 1) {
         carousel.interval = setInterval(() => {
             changeSlide(carouselId, 1);
-        }, 6000); // Cambiar cada 6 segundos
+        }, 7000); // Cambiar cada 7 segundos (más tiempo para leer)
     }
 }
 
@@ -193,15 +189,15 @@ function addTouchSupport(carouselId) {
     
     carouselElement.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
-    });
+    }, { passive: true });
     
     carouselElement.addEventListener('touchend', function(e) {
         endX = e.changedTouches[0].clientX;
         handleSwipe(carouselId);
-    });
+    }, { passive: true });
     
     function handleSwipe(carouselId) {
-        const threshold = 50; // Mínima distancia para considerar swipe
+        const threshold = 60; // Mínima distancia para considerar swipe
         const difference = startX - endX;
         
         if (Math.abs(difference) > threshold) {
@@ -239,26 +235,12 @@ function addAccessibilityFeatures() {
     
     prevBtns.forEach(btn => {
         btn.setAttribute('aria-label', 'Slide anterior');
+        btn.setAttribute('tabindex', '0');
     });
     
     nextBtns.forEach(btn => {
         btn.setAttribute('aria-label', 'Siguiente slide');
-    });
-    
-    // Agregar labels a los dots
-    const dots = document.querySelectorAll('.dot');
-    dots.forEach((dot, index) => {
-        dot.setAttribute('aria-label', `Ir al slide ${index + 1}`);
-        dot.setAttribute('role', 'button');
-        dot.setAttribute('tabindex', '0');
-        
-        // Permitir navegación con Enter y Espacio
-        dot.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                dot.click();
-            }
-        });
+        btn.setAttribute('tabindex', '0');
     });
 }
 
@@ -272,26 +254,59 @@ function optimizePerformance() {
     });
     
     // Lazy loading para imágenes
-    const images = document.querySelectorAll('img');
+    const images = document.querySelectorAll('img[data-src]');
     
-    if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && images.length > 0) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        observer.unobserve(img);
-                    }
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
                 }
             });
         });
         
         images.forEach(img => {
-            if (img.dataset.src) {
-                imageObserver.observe(img);
-            }
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// Función para igualar alturas de contenedores
+function equalizeHeights() {
+    // Solo en desktop
+    if (window.innerWidth > 768) {
+        const columns = document.querySelectorAll('.column-1, .column-2');
+        
+        columns.forEach(column => {
+            const sections = column.querySelectorAll('section');
+            let maxHeight = 0;
+            
+            // Resetear alturas
+            sections.forEach(section => {
+                section.style.height = 'auto';
+            });
+            
+            // Encontrar la altura máxima
+            sections.forEach(section => {
+                const height = section.offsetHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+            
+            // Aplicar altura máxima a todas las secciones de la columna
+            sections.forEach(section => {
+                section.style.height = maxHeight + 'px';
+            });
+        });
+    } else {
+        // En móvil, resetear alturas
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.style.height = 'auto';
         });
     }
 }
@@ -325,6 +340,9 @@ function initCarousels() {
         // Agregar soporte touch
         addTouchSupport(carouselId);
     });
+    
+    // Igualar alturas después de cargar
+    setTimeout(equalizeHeights, 100);
 }
 
 // Función para manejar el responsive
@@ -334,6 +352,9 @@ function handleResize() {
         stopAutoPlay(carouselId);
     });
     
+    // Igualar alturas
+    equalizeHeights();
+    
     // Reiniciar después de un breve delay
     setTimeout(() => {
         Object.keys(carousels).forEach(carouselId => {
@@ -341,13 +362,13 @@ function handleResize() {
                 startAutoPlay(carouselId);
             }
         });
-    }, 500);
+    }, 300);
 }
 
 // Función para debugging (solo en desarrollo)
 function debugCarousels() {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        console.log('🎠 Carruseles inicializados:', carousels);
+        console.log('🎠 Carruseles activos:', Object.keys(carousels));
         
         // Agregar información de debug
         Object.keys(carousels).forEach(carouselId => {
@@ -355,7 +376,8 @@ function debugCarousels() {
             console.log(`📊 ${carouselId}:`, {
                 currentSlide: carousel.currentSlide,
                 totalSlides: carousel.totalSlides,
-                autoPlay: carousel.autoPlay
+                autoPlay: carousel.autoPlay,
+                hasMultipleSlides: carousel.totalSlides > 1
             });
         });
     }
@@ -379,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let resizeTimeout;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(handleResize, 250);
+        resizeTimeout = setTimeout(handleResize, 300);
     });
     
     // Pausar autoplay cuando la pestaña no está visible
@@ -428,10 +450,17 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             sectionObserver.observe(section);
         });
     }
     
-    console.log('✅ Nosotros página cargada completamente con todos los carruseles');
+    // Igualar alturas después de que las imágenes se carguen
+    window.addEventListener('load', function() {
+        setTimeout(equalizeHeights, 200);
+    });
+    
+    console.log('✅ Nosotros página cargada - Layout 2 columnas con altura uniforme');
+    console.log('📏 Contenedores sin carrusel: Historia, Organigrama, Competencia, Mapa');
+    console.log('🎠 Contenedores con carrusel: Superior, Supraprovinciales, Peritaje');
 });

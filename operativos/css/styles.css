@@ -40,8 +40,8 @@
     position: sticky;
     top: 20px;
     height: fit-content;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
+    /*max-height: calc(100vh - 40px);
+    overflow-y: auto;*/
     margin: 20px 20px 50px 50px /* Margen para separarlo del borde y acercarlo al contenido */
 }
         /* Estilo para el bloque de filtros */
@@ -429,7 +429,8 @@
 
 /* Mejorar el scroll del sidebar */
 .sidebar::-webkit-scrollbar {
-    width: 8px;
+    /*width: 8px;*/
+    display: none; /* Oculta el scroll en Chrome, Safari, Edge */
 }
 
 .sidebar::-webkit-scrollbar-track {

@@ -11,55 +11,58 @@
 </head>
 
 <body>
-        <!-- Estructura principal con barra lateral y contenido -->
-        <div class="header">
-            <h1>Operativos</h1>
-            
-            <div class="horizontal-filters">
-                <!-- Filtro por año -->
-                <div class="filter-group">
-                    <h3>Años:</h3>
-                    <div class="filter-buttons">
-                        <button class="filter-btn" onclick="selectYear('2025')" id="btn-2025">2025</button>
-                    </div>
-                </div>
+    <!-- Estructura principal con barra lateral y contenido -->
+    <div class="main-header">
+        <h1>OPERATIVOS</h1>
+    </div>   
+    
+    <!-- Buscador de operativos -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar operativos..." onkeyup="searchNews()" oninput="searchNews()">
+    </div>
 
-                <!-- Filtro por mes -->
-                <div class="filter-group" id="monthFiltersGroup" style="display:none;">
-                    <h3>Meses:</h3>
-                    <div class="filter-buttons">
-                        <button class="filter-btn" onclick="filterMonth('enero')" id="btn-enero">Enero</button>
-                        <button class="filter-btn" onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
-                        <button class="filter-btn" onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
-                        <button class="filter-btn" onclick="filterMonth('abril')" id="btn-abril">Abril</button>
-                        <button class="filter-btn" onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
-                        <button class="filter-btn" onclick="filterMonth('junio')" id="btn-junio">Junio</button>
-                        <button class="filter-btn" onclick="filterMonth('julio')" id="btn-julio">Julio</button>
-                    </div>
-                </div>
+    <!-- Contador de resultados -->
+    <div class="results-counter" id="resultsCounter"></div>
 
-                <!-- Botón limpiar filtros -->
-                <button class="clear-filters-horizontal" onclick="clearAllFilters()">
-                    Limpiar Filtros
-                </button>
+    <!-- Mensaje cuando no hay resultados -->
+    <div class="no-results" id="noResults">
+        <p>No se encontraron operativos</p>
+        <small>Intenta con otros términos de búsqueda o ajusta los filtros</small>
+    </div>   
+
+    
+    <div class="container">
+        <!-- Barra lateral con filtros -->
+        <div class="sidebar">
+            <!-- Filtro por año -->
+            <div class="filters" id="yearFilters">
+                <h3>Años</h3>
+                <button onclick="selectYear('2025')" id="btn-2025">2025</button>
             </div>
+
+            <!-- Filtro por mes (oculto al inicio) -->
+            <div class="filters" id="monthFilters" style="display:none;">
+                <h3>Meses</h3>
+                <button onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                <button onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                <button onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                <button onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                <button onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                <button onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                <button onclick="filterMonth('julio')" id="btn-julio">Julio</button>
+            </div>
+
+            <!-- Botón para limpiar filtros -->
+            <button class="clear-filters" onclick="clearAllFilters()">
+                Limpiar Filtros
+            </button>
         </div>
 
         <!-- Contenido principal -->
         <div class="content">
-            <!-- Buscador de operativos -->
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar operativos..." onkeyup="searchNews()" oninput="searchNews()">
-            </div>
+  
 
-            <!-- Contador de resultados -->
-            <div class="results-counter" id="resultsCounter"></div>
 
-            <!-- Mensaje cuando no hay resultados -->
-            <div class="no-results" id="noResults">
-                <p>No se encontraron operativos</p>
-                <small>Intenta con otros términos de búsqueda o ajusta los filtros</small>
-            </div>
 
             <!-- Contenedor donde se mostrarán los operativos -->
             <div class="news-grid" id="newsGrid">

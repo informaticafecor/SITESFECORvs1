@@ -239,6 +239,8 @@ setInterval(createParticle, 3000);
 
  // FUNCIONALIDAD DEL MENÚ FECCOR
 
+// FUNCIONALIDAD DEL MENÚ FECCOR
+
 // Toggle menú móvil
 function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');
@@ -292,4 +294,17 @@ document.addEventListener('keydown', function(event) {
             dropdown.style.visibility = 'hidden';
         });
     }
-});   
+});
+
+// FUNCIÓN ADICIONAL: Restaurar dropdowns al hacer hover (mejora)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const dropdown = this.querySelector('.mega-dropdown');
+            if (dropdown) {
+                dropdown.style.opacity = '';
+                dropdown.style.visibility = '';
+            }
+        });
+    });
+});

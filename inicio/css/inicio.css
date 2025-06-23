@@ -52,7 +52,7 @@ body {
     margin: 0 0 20px 0;
     position: relative;
     z-index: 2;
-    text-shadow: 0 3px 20px rgba(15, 44, 82, 0.9), 0 0 40px rgba(255, 215, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
@@ -479,7 +479,7 @@ body {
     /* DORADO SÓLIDO CON EFECTOS */
     color: #F1C40F;
     margin-bottom: 20px;
-    text-shadow: 0 3px 20px rgba(15, 44, 82, 0.8), 0 0 30px rgba(255, 208, 64, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 2;
 }

@@ -835,7 +835,8 @@ body {
 /* ESTILOS DEL MENU*/
 /* ESTILOS DEL MENÚ FECCOR */
 
-/* MENÚ PRINCIPAL */
+
+/* ESTILOS DEL MENÚ FECCOR */
 .main-navbar {
     background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
     backdrop-filter: blur(20px);
@@ -880,6 +881,7 @@ body {
     margin: 0 5px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .nav-link::before {
@@ -927,7 +929,8 @@ body {
     transition: transform 0.3s ease;
 }
 
-.nav-item:hover .dropdown-arrow {
+.nav-item:hover .dropdown-arrow,
+.nav-item.mobile-open .dropdown-arrow {
     transform: rotate(180deg);
 }
 
@@ -1095,25 +1098,54 @@ body {
 
     .nav-link {
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
         margin: 0;
         padding: 15px 20px;
         border-radius: 10px;
     }
 
-    /* Dropdowns en móvil */
+    /* DROPDOWNS EN MÓVIL */
     .mega-dropdown {
         position: static;
         transform: none;
-        opacity: 1;
-        visibility: visible;
-        margin-top: 10px;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        margin-top: 0;
         min-width: auto;
         width: 100%;
+        transition: all 0.4s ease;
+        background: rgba(0, 117, 191, 0.95);
+        border: 1px solid rgba(241, 196, 15, 0.3);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
+    /* CUANDO EL DROPDOWN ESTÁ ABIERTO EN MÓVIL */
+    .nav-item.mobile-open .mega-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: 600px !important;
+        margin-top: 10px !important;
+    }
+
+    /* DESACTIVAR COMPLETAMENTE HOVER EN MÓVIL */
     .nav-item:hover .mega-dropdown {
-        transform: none;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        max-height: 0 !important;
+        margin-top: 0 !important;
+        transform: none !important;
+    }
+
+    /* SOLO PERMITIR DROPDOWN ABIERTO CUANDO TIENE LA CLASE */
+    .nav-item.mobile-open:hover .mega-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-height: 600px !important;
+        margin-top: 10px !important;
+        transform: none !important;
     }
 
     .dropdown-content {
@@ -1135,3 +1167,9 @@ body {
         transform: none;
     }
 }
+
+
+
+
+
+

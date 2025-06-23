@@ -16,8 +16,16 @@ const carousels = {
         currentSlide: 0,
         totalSlides: 1, // Solo 1 slide
         autoPlay: false,
+        interval: null,
+    },
+
+    'provincias-carousel': {
+        currentSlide: 0,
+        totalSlides: 5, // Intro + 4 equipos
+        autoPlay: true,
         interval: null
-    }
+    },
+    
 };
 
 // Función para cambiar slides
@@ -462,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('✅ Nosotros página cargada - Layout 2 columnas con altura uniforme');
     console.log('📏 Contenedores sin carrusel: Historia, Organigrama, Competencia, Mapa');
-    console.log('🎠 Contenedores con carrusel: Superior, Supraprovinciales, Peritaje');
+    console.log('🎠 Contenedores con carrusel: Superior, Supraprovinciales, Peritaje, provincias');
 });
 
 

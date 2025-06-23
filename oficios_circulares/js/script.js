@@ -374,3 +374,65 @@ window.onload = function() {
     
     console.log('✅ Sistema inicializado con', allOffices.length, 'oficios');
 };
+
+
+/* SCRIPT DEL MNENU*/
+
+
+
+// FUNCIONALIDAD DEL MENÚ FECCOR
+
+// Toggle menú móvil
+function toggleMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.toggle('active');
+}
+
+// Cerrar menú móvil al hacer clic en un enlace
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        });
+    });
+});
+
+// Resaltar página activa
+function setActiveLink() {
+    const currentPage = window.location.pathname.split('/').pop();
+    document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', setActiveLink);
+
+// Cerrar dropdowns al hacer clic fuera
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.nav-item')) {
+        document.querySelectorAll('.mega-dropdown').forEach(dropdown => {
+            dropdown.style.opacity = '0';
+            dropdown.style.visibility = 'hidden';
+        });
+    }
+});
+
+// Mejorar navegación con teclado
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        // Cerrar menú móvil con Escape
+        document.getElementById('navMenu').classList.remove('active');
+        
+        // Cerrar dropdowns con Escape
+        document.querySelectorAll('.mega-dropdown').forEach(dropdown => {
+            dropdown.style.opacity = '0';
+            dropdown.style.visibility = 'hidden';
+        });
+    }
+});

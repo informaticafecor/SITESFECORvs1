@@ -7,6 +7,179 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+    <!-- MENÚ PRINCIPAL FECCOR -->
+    <nav class="main-navbar">
+        <div class="nav-container">
+            <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                
+                <!-- 1. INICIO -->
+                <li class="nav-item">
+                    <a href="../inicio/inicio.html" class="nav-link active">
+                        <span class="nav-icon">🏠</span>
+                        INICIO
+                    </a>
+                </li>
+
+                <!-- 2. INSTITUCIONAL -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        INSTITUCIONAL
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-title">Información Institucional</div>
+                            <div class="dropdown-grid">
+                                <a href="../nosotros/nosotros.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">👥</span>
+                                    Nosotros
+                                </a>
+                                <a href="../directorio/directorio.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📞</span>
+                                    Directorio de Contacto
+                                </a>
+                                <a href="../coordinacion_inter/convenios_inter.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🤝</span>
+                                    Coordinaciones Interinstitucionales
+                                </a>
+
+                                <a href="competencias.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">⚖️</span>
+                                    Competencias
+                                </a>                               
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 3. INFORMACIÓN Y COMUNICACIONES -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">📰</span>
+                        COMUNICACIONES
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-title">Información y Comunicaciones</div>
+                            <div class="dropdown-grid">
+                                <a href="../noticias_comunicados/noticias_comu.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📢</span>
+                                    Noticias y Comunicados
+                                </a>
+                                <a href="../oficios_circulares/oficios_circulares.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📜</span>
+                                    Oficios Circulares
+                                </a>
+                                <a href="../revistas/revista_fecor.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📰</span>
+                                    Revista FECOR
+                                </a>
+
+                                <a href="../boletines/index.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📊</span>
+                                    Boletines Estadísticos
+                                </a>                               
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 4. OPERACIONES Y NORMATIVAS -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🚨</span>
+                        OPERACIONES
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-title">Operaciones y Normativas</div>
+                            <div class="dropdown-grid">
+                                <a href="../operativos/operativos.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🚨</span>
+                                    Operativos
+                                </a>
+                                <a href="../Normativa_Guias/normativa_guias.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📋</span>
+                                    Normativa y Guías
+                                </a>
+                                <a href="../unidad_peritajes/peritaje.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🔍</span>
+                                    Unidad de Peritajes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 5. RECURSOS HUMANOS Y CAPACITACIÓN -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">👥</span>
+                        RR.HH.
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-title">Recursos Humanos y Capacitación</div>
+                            <div class="dropdown-grid">
+                                <a href="../defensores_publicos/defensores.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">⚖️</span>
+                                    Defensores Públicos
+                                </a>
+                                <a href="../convocatorias/convocatorias.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">📝</span>
+                                    Convocatorias
+                                </a>
+                                <a href="../convenios_viajes_capa/convenios_viajes_capa.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🎓</span>
+                                    Capacitación, Convenios y Viajes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 6. SERVICIOS Y SOPORTE -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🔧</span>
+                        SERVICIOS
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-title">Servicios y Soporte</div>
+                            <div class="dropdown-grid">
+                                <a href="../recursos/recursos.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🚛</span>
+                                    Recursos Logísticos
+                                </a>
+                                <a href="../UnidadesVehiculares/vehiculos.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">🚗</span>
+                                    Unidades Vehiculares
+                                </a>
+                                <a href="../soporte/Informatica.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">💻</span>
+                                    Soporte Informático
+                                </a>
+                                <a href="../preguntas_frecuentes/preguntas.html" class="dropdown-item">
+                                    <span class="dropdown-item-icon">❓</span>
+                                    Preguntas Frecuentes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
     <div class="directorios-container">
         <!-- Header de la sección -->
         <div class="section-header">

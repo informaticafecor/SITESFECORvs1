@@ -20,33 +20,6 @@
             }
         }
 
-        // Filtrar por tipo de noticia o comunicado
-        /*
-        function filterType(type) {
-            selectedType = type;
-
-            // Resaltar solo el botón seleccionado
-            // document.querySelectorAll('#typeFilters button').forEach(btn => btn.classList.remove('active'));
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.classList.contains('clear-filters')) return;
-                btn.classList.remove('active');
-            });           
-
-            document.getElementById('btn-' + type).classList.add('active');
-
-            // Reiniciar filtros de año y mes
-            selectedYear = '';
-            currentMonth = '';
-            document.querySelectorAll('#yearFilters button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('#monthFilters button').forEach(btn => btn.classList.remove('active'));
-
-            // Ocultar los meses hasta que se seleccione año
-            document.getElementById('monthFilters').style.display = 'none';
-
-            // Aplicar filtros
-            applyFilters();
-        }*/
 
         // Filtrar por tipo de noticia o comunicado
         function filterType(type) {
@@ -72,26 +45,6 @@
             applyFilters();
         }           
 
-        // Seleccionar año y filtrar noticias
-        /*
-        function selectYear(year) {
-            selectedYear = year;
-            currentMonth = '';
-
-            // Resaltar solo el botón seleccionado
-            document.querySelectorAll('#yearFilters button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + year).classList.add('active');
-
-            // Mostrar sección de meses
-            document.getElementById('monthFilters').style.display = 'block';
-
-            // Desactivar botones de mes
-            document.querySelectorAll('#monthFilters button').forEach(btn => btn.classList.remove('active'));
-
-            // Aplicar filtros
-            applyFilters();
-        }*/
-
 
         // Seleccionar año y filtrar noticias
         function selectYear(year) {
@@ -113,18 +66,6 @@
         }
 
 
-        /*
-        // Filtrar por mes
-        function filterMonth(month) {
-            currentMonth = month;
-
-            // Resaltar solo el botón seleccionado
-            document.querySelectorAll('#monthFilters button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + month).classList.add('active');
-
-            // Aplicar filtros
-            applyFilters();
-        }*/
 
         // Filtrar por mes
         function filterMonth(month) {
@@ -169,33 +110,6 @@
         }
 
         // Limpiar todos los filtros
-       
-       /*
-        function clearAllFilters() {
-            // Reiniciar variables
-            selectedYear = '';
-            selectedType = '';
-            currentMonth = '';
-
-            // Eliminar clases activas de todos los botones
-            document.querySelectorAll('#typeFilters button, #yearFilters button, #monthFilters button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Ocultar los filtros de meses
-            document.getElementById('monthFilters').style.display = 'none';
-
-            // Limpiar el buscador
-            document.getElementById('searchInput').value = '';
-
-            // Mostrar todas las noticias
-            document.querySelectorAll('.news-card').forEach(card => {
-                card.style.display = 'block';
-                card.classList.add('show');
-            });
-
-            updateResultsCounter();
-        }*/
 
 
         // Limpiar todos los filtros
@@ -304,102 +218,3 @@ function toggleViewMoreButton() {
         viewMoreContainer.style.display = 'none';
     }
 }
-
-        
-
-/* SCRIPT DEL MNENU*/
-
-// FUNCIONALIDAD DEL MENÚ FECCOR
-
-// Toggle menú móvil
-function toggleMobileMenu() {
-    const navMenu = document.getElementById('navMenu');
-    navMenu.classList.toggle('active');
-    
-    // Cerrar todos los dropdowns cuando se cierra el menú
-    if (!navMenu.classList.contains('active')) {
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('mobile-open');
-        });
-    }
-}
-
-// Toggle dropdown en móvil
-function toggleDropdown(element, event) {
-    if (window.innerWidth <= 768) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        const navItem = element.closest('.nav-item');
-        const isCurrentlyOpen = navItem.classList.contains('mobile-open');
-        
-        // Cerrar todos los dropdowns primero
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('mobile-open');
-        });
-        
-        // Si no estaba abierto, abrirlo
-        if (!isCurrentlyOpen) {
-            navItem.classList.add('mobile-open');
-        }
-    }
-}
-
-// Cerrar menú móvil al hacer clic en un enlace
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.dropdown-item').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                document.getElementById('navMenu').classList.remove('active');
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('mobile-open');
-                });
-            }
-        });
-    });
-});
-
-// Resaltar página activa
-function setActiveLink() {
-    const currentPage = window.location.pathname.split('/').pop();
-    document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
-}
-
-// Ejecutar al cargar la página
-document.addEventListener('DOMContentLoaded', setActiveLink);
-
-// Cerrar menú al hacer clic fuera
-document.addEventListener('click', function(event) {
-    const navbar = document.querySelector('.main-navbar');
-    if (!navbar.contains(event.target)) {
-        document.getElementById('navMenu').classList.remove('active');
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('mobile-open');
-        });
-    }
-});
-
-// Navegación con teclado
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        document.getElementById('navMenu').classList.remove('active');
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('mobile-open');
-        });
-    }
-});
-
-// Manejar cambios de tamaño de ventana
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        document.getElementById('navMenu').classList.remove('active');
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('mobile-open');
-        });
-    }
-});

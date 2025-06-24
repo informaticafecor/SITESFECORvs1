@@ -1,0 +1,699 @@
+// menu.js - Sistema de Menú Modular FECCOR
+
+class FeccorMenu {
+    constructor(containerId = 'feccor-menu-container') {
+        this.containerId = containerId;
+        this.init();
+    }
+
+    // Estructura del menú
+    getMenuStructure() {
+        return `
+            <nav class="main-navbar">
+                <div class="nav-container">
+                    <button class="mobile-toggle" onclick="feccorMenu.toggleMobileMenu()">☰</button>
+                    <ul class="nav-menu" id="navMenu">
+                        
+                        <!-- 1. INICIO -->
+                        <li class="nav-item">
+                            <a href="../inicio/inicio.html" class="nav-link">
+                                <span class="nav-icon">🏠</span>
+                                INICIO
+                            </a>
+                        </li>
+
+                        <!-- 2. INSTITUCIONAL -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="feccorMenu.toggleDropdown(this, event)">
+                                <span>
+                                    <span class="nav-icon">🏛️</span>
+                                    INSTITUCIONAL
+                                </span>
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="mega-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-title">Información Institucional</div>
+                                    <div class="dropdown-grid">
+                                        <a href="../nosotros/nosotros.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">👥</span>
+                                            Nosotros
+                                        </a>
+                                        <a href="../directorio/directorio.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📞</span>
+                                            Directorio de Contacto
+                                        </a>
+                                        <a href="../coordinacion_inter/convenios_inter.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🤝</span>
+                                            Coordinaciones Interinstitucionales
+                                        </a>
+                                        <a href="../Competencias/competencias.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">⚖️</span>
+                                            Competencias
+                                        </a>                               
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 3. COMUNICACIONES -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="feccorMenu.toggleDropdown(this, event)">
+                                <span>
+                                    <span class="nav-icon">📰</span>
+                                    COMUNICACIONES
+                                </span>
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="mega-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-title">Información y Comunicaciones</div>
+                                    <div class="dropdown-grid">
+                                        <a href="../noticias_comunicados/noticias_comu.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📢</span>
+                                            Noticias y Comunicados
+                                        </a>
+                                        <a href="../oficios_circulares/oficios_circulares.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📜</span>
+                                            Oficios Circulares
+                                        </a>
+                                        <a href="../revistas/revista_fecor.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📰</span>
+                                            Revista FECOR
+                                        </a>
+                                        <a href="../boletines/index.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📊</span>
+                                            Boletines Estadísticos
+                                        </a>                               
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 4. OPERACIONES -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="feccorMenu.toggleDropdown(this, event)">
+                                <span>
+                                    <span class="nav-icon">🚨</span>
+                                    OPERACIONES
+                                </span>
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="mega-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-title">Operaciones y Normativas</div>
+                                    <div class="dropdown-grid">
+                                        <a href="../operativos/operativos.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🚨</span>
+                                            Operativos
+                                        </a>
+                                        <a href="../Normativa_Guias/normativa_guias.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📋</span>
+                                            Normativa y Guías
+                                        </a>
+                                        <a href="../unidad_peritajes/peritaje.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🔍</span>
+                                            Unidad de Peritajes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 5. RR.HH. -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="feccorMenu.toggleDropdown(this, event)">
+                                <span>
+                                    <span class="nav-icon">👥</span>
+                                    RR.HH.
+                                </span>
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="mega-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-title">Recursos Humanos y Capacitación</div>
+                                    <div class="dropdown-grid">
+                                        <a href="../defensores_publicos/defensores.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">⚖️</span>
+                                            Defensores Públicos
+                                        </a>
+                                        <a href="../convocatorias/convocatorias.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">📝</span>
+                                            Convocatorias
+                                        </a>
+                                        <a href="../convenios_viajes_capa/convenios_viajes_capa.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🎓</span>
+                                            Capacitación, Convenios y Viajes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 6. SERVICIOS -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="feccorMenu.toggleDropdown(this, event)">
+                                <span>
+                                    <span class="nav-icon">🔧</span>
+                                    SERVICIOS
+                                </span>
+                                <span class="dropdown-arrow">▼</span>
+                            </a>
+                            <div class="mega-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-title">Servicios y Soporte</div>
+                                    <div class="dropdown-grid">
+                                        <a href="../recursos/recursos.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🚛</span>
+                                            Recursos Logísticos
+                                        </a>
+                                        <a href="../UnidadesVehiculares/vehiculos.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">🚗</span>
+                                            Unidades Vehiculares
+                                        </a>
+                                        <a href="../soporte/Informatica.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">💻</span>
+                                            Soporte Informático
+                                        </a>
+                                        <a href="../preguntas_frecuentes/preguntas.html" class="dropdown-item">
+                                            <span class="dropdown-item-icon">❓</span>
+                                            Preguntas Frecuentes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        `;
+    }
+
+    // Inicializar el menú
+    init() {
+        // Inyectar estilos si no existen
+        this.injectStyles();
+        
+        // Esperar a que el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.render());
+        } else {
+            this.render();
+        }
+    }
+
+    // Renderizar el menú
+    render() {
+        const container = document.getElementById(this.containerId);
+        if (container) {
+            container.innerHTML = this.getMenuStructure();
+            this.bindEvents();
+            this.setActiveLink();
+        } else {
+            console.error(`Container con ID '${this.containerId}' no encontrado`);
+        }
+    }
+
+    // Inyectar estilos CSS
+    injectStyles() {
+        // Verificar si los estilos ya existen
+        if (document.getElementById('feccor-menu-styles')) return;
+
+        const styleElement = document.createElement('style');
+        styleElement.id = 'feccor-menu-styles';
+        styleElement.textContent = `
+            /* ESTILOS DEL MENÚ FECCOR */
+            body {
+                padding-top: 80px; /* Espacio para el menú fijo */
+            }
+            
+            .main-navbar {
+                background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
+                backdrop-filter: blur(20px);
+                border-bottom: 3px solid #F1C40F;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 20px;
+                position: relative;
+            }
+
+            .nav-menu {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style: none;
+                position: relative;
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-item {
+                position: relative;
+            }
+
+            .nav-link {
+                display: flex;
+                align-items: center;
+                padding: 20px 25px;
+                color: white;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                border-radius: 8px;
+                margin: 0 5px;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .nav-link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.3), transparent);
+                transition: left 0.6s;
+            }
+
+            .nav-link:hover::before {
+                left: 100%;
+            }
+
+            .nav-link:hover {
+                color: #F1C40F;
+                background: rgba(241, 196, 15, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+            }
+
+            .nav-link.active {
+                background: linear-gradient(135deg, #F1C40F, #f39c12);
+                color: #0F2C52;
+                font-weight: 700;
+                box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+            }
+
+            .nav-icon {
+                margin-right: 8px;
+                font-size: 18px;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-link:hover .nav-icon {
+                transform: scale(1.2) rotateY(360deg);
+            }
+
+            .dropdown-arrow {
+                margin-left: 8px;
+                font-size: 12px;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-item:hover .dropdown-arrow,
+            .nav-item.mobile-open .dropdown-arrow {
+                transform: rotate(180deg);
+            }
+
+            /* MEGA DROPDOWN */
+            .mega-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(145deg, rgba(15, 44, 82, 0.98), rgba(0, 117, 191, 0.95));
+                backdrop-filter: blur(25px);
+                border-radius: 20px;
+                border: 2px solid rgba(241, 196, 15, 0.3);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-50%) translateY(-20px);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                min-width: 350px;
+                z-index: 1001;
+            }
+
+            .nav-item:hover .mega-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown-content {
+                padding: 30px;
+            }
+
+            .dropdown-title {
+                color: #F1C40F;
+                font-size: 18px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                text-align: center;
+                text-shadow: 0 0 10px rgba(241, 196, 15, 0.3);
+            }
+
+            .dropdown-grid {
+                display: grid;
+                gap: 12px;
+            }
+
+            .dropdown-item {
+                display: flex;
+                align-items: center;
+                padding: 12px 15px;
+                color: white;
+                text-decoration: none;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                border: 1px solid transparent;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .dropdown-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.1), transparent);
+                transition: left 0.5s;
+            }
+
+            .dropdown-item:hover::before {
+                left: 100%;
+            }
+
+            .dropdown-item:hover {
+                background: rgba(241, 196, 15, 0.15);
+                border-color: #F1C40F;
+                transform: translateX(10px);
+                color: #F1C40F;
+            }
+
+            .dropdown-item.active {
+                background: rgba(241, 196, 15, 0.2);
+                border-color: #F1C40F;
+                color: #F1C40F;
+            }
+
+            .dropdown-item-icon {
+                margin-right: 12px;
+                font-size: 16px;
+                width: 20px;
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+            .dropdown-item:hover .dropdown-item-icon {
+                transform: scale(1.3);
+            }
+
+            /* BOTÓN MÓVIL */
+            .mobile-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 15px;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            /* RESPONSIVE PARA TABLETS */
+            @media (max-width: 1024px) {
+                .nav-menu {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                
+                .nav-link {
+                    padding: 15px 20px;
+                    font-size: 15px;
+                }
+
+                .mega-dropdown {
+                    min-width: 300px;
+                }
+            }
+
+            /* RESPONSIVE PARA MÓVILES */
+            @media (max-width: 768px) {
+                .nav-container {
+                    padding: 0 10px;
+                }
+
+                .mobile-toggle {
+                    display: block;
+                }
+
+                .nav-menu {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background: rgba(15, 44, 82, 0.98);
+                    border-radius: 15px;
+                    margin-top: 10px;
+                    padding: 20px;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                }
+
+                .nav-menu.active {
+                    display: flex;
+                }
+
+                .nav-item {
+                    width: 100%;
+                    margin: 5px 0;
+                }
+
+                .nav-link {
+                    width: 100%;
+                    justify-content: space-between;
+                    margin: 0;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                }
+
+                /* DROPDOWNS EN MÓVIL */
+                .mega-dropdown {
+                    position: static;
+                    transform: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    max-height: 0;
+                    overflow: hidden;
+                    margin-top: 0;
+                    min-width: auto;
+                    width: 100%;
+                    transition: all 0.4s ease;
+                    background: rgba(0, 117, 191, 0.95);
+                    border: 1px solid rgba(241, 196, 15, 0.3);
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                }
+
+                /* CUANDO EL DROPDOWN ESTÁ ABIERTO EN MÓVIL */
+                .nav-item.mobile-open .mega-dropdown {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    max-height: 600px !important;
+                    margin-top: 10px !important;
+                }
+
+                /* DESACTIVAR COMPLETAMENTE HOVER EN MÓVIL */
+                .nav-item:hover .mega-dropdown {
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                    max-height: 0 !important;
+                    margin-top: 0 !important;
+                    transform: none !important;
+                }
+
+                /* SOLO PERMITIR DROPDOWN ABIERTO CUANDO TIENE LA CLASE */
+                .nav-item.mobile-open:hover .mega-dropdown {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    max-height: 600px !important;
+                    margin-top: 10px !important;
+                    transform: none !important;
+                }
+
+                .dropdown-content {
+                    padding: 20px 15px;
+                }
+
+                .dropdown-title {
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+
+                .dropdown-item {
+                    padding: 10px 15px;
+                    margin: 5px 0;
+                    border-radius: 8px;
+                }
+
+                .dropdown-item:hover {
+                    transform: none;
+                }
+            }
+        `;
+        document.head.appendChild(styleElement);
+    }
+
+    // Vincular eventos
+    bindEvents() {
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.dropdown-item').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('navMenu').classList.remove('active');
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.remove('mobile-open');
+                    });
+                }
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', (event) => {
+            const navbar = document.querySelector('.main-navbar');
+            if (navbar && !navbar.contains(event.target)) {
+                document.getElementById('navMenu')?.classList.remove('active');
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('mobile-open');
+                });
+            }
+        });
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.getElementById('navMenu')?.classList.remove('active');
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('mobile-open');
+                });
+            }
+        });
+
+        // Manejar cambios de tamaño de ventana
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                document.getElementById('navMenu')?.classList.remove('active');
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('mobile-open');
+                });
+            }
+        });
+    }
+
+    // Toggle menú móvil
+    toggleMobileMenu() {
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu) {
+            navMenu.classList.toggle('active');
+            
+            // Cerrar todos los dropdowns cuando se cierra el menú
+            if (!navMenu.classList.contains('active')) {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('mobile-open');
+                });
+            }
+        }
+    }
+
+    // Toggle dropdown en móvil
+    toggleDropdown(element, event) {
+        if (window.innerWidth <= 768) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const navItem = element.closest('.nav-item');
+            const isCurrentlyOpen = navItem.classList.contains('mobile-open');
+            
+            // Cerrar todos los dropdowns primero
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('mobile-open');
+            });
+            
+            // Si no estaba abierto, abrirlo
+            if (!isCurrentlyOpen) {
+                navItem.classList.add('mobile-open');
+            }
+        }
+    }
+
+    // Resaltar página activa
+    setActiveLink() {
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Actualizar enlace activo
+    updateActiveLink() {
+        this.setActiveLink();
+    }
+
+    // Destruir el menú
+    destroy() {
+        const container = document.getElementById(this.containerId);
+        if (container) {
+            container.innerHTML = '';
+        }
+        
+        const styles = document.getElementById('feccor-menu-styles');
+        if (styles) {
+            styles.remove();
+        }
+    }
+}
+
+// Crear instancia global
+let feccorMenu;
+
+// Función de inicialización simple para compatibilidad
+function initFeccorMenu(containerId = 'feccor-menu-container') {
+    feccorMenu = new FeccorMenu(containerId);
+    return feccorMenu;
+}
+
+// Auto-inicializar si existe el contenedor por defecto
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('feccor-menu-container')) {
+        initFeccorMenu();
+    }
+});
+
+// Exportar para uso en módulos
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { FeccorMenu, initFeccorMenu };
+}

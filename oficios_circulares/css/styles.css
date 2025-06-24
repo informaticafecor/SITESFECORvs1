@@ -1,595 +1,578 @@
 /* Variables CSS para mejor mantenimiento */
-        :root {
-            --primary-color: #0F2C52;
-            --accent-color: #00cc99;
-            --text-color: white;
-            --shadow-light: rgba(0, 0, 0, 0.3);
-            --shadow-heavy: rgba(0, 0, 0, 0.5);
-            --border-radius: 15px;
-            --transition: all 0.3s ease;
-        }
-
-        /* Estilo general del cuerpo */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0F2C52;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Contenedor principal centrado */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        /* Título principal */
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Descripción del servicio */
-        .service-description {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            border: 1px solid rgba(0, 204, 153, 0.1);
-            text-align: center;
-        }
-
-        .service-description p {
-            font-size: 1.1em;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* Buscador en la parte superior */
-        .search-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            border: 1px solid rgba(0, 204, 153, 0.1);
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .search-container input {
-            padding: 15px 25px;
-            border: 2px solid transparent;
-            border-radius: 30px;
-            width: 80%;
-            max-width: 600px;
-            font-size: 1.1em;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            box-shadow: 0 4px 15px var(--shadow-light);
-        }
-
-        .search-container input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 204, 153, 0.2);
-        }
-
-        /* Filtros simplificados */
-        .filters-tabs {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            border: 1px solid rgba(0, 204, 153, 0.1);
-        }
-
-        .tabs-header {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .tabs-header h3 {
-            margin: 0;
-            color: var(--accent-color);
-            font-size: 1.2em;
-            text-align: center;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            display: inline-block;
-        }
-
-        .date-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .date-filter-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .date-filter-label {
-            font-size: 0.9em;
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .date-filter-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .date-btn {
-            padding: 8px 16px;
-            border: 2px solid var(--accent-color);
-            background: transparent;
-            color: var(--accent-color);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85em;
-            transition: var(--transition);
-        }
-
-        .date-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px var(--shadow-light);
-        }
-
-        .date-btn.active {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            border-color: var(--accent-color);
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
-        }
-
-        .clear-filters {
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: var(--text-color);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9em;
-            font-weight: 600;
-            margin-top: 15px;
-        }
-
-        .clear-filters:hover {
-            background: rgba(0, 204, 153, 0.2);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 204, 153, 0.2);
-        }
-
-        /* Contador de resultados */
-        .results-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 0 10px;
-        }
-
-        .results-counter {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1em;
-        }
-
-        .pagination-info {
-            color: var(--accent-color);
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        /* Sin resultados */
-        .no-results {
-            text-align: center;
-            padding: 50px 20px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2em;
-            display: none;
-        }
-
-        /* Grid de oficios */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        /* Tarjetas de oficios */
-        .news-card {
-            background: linear-gradient(145deg, #0F2C52, #1a3660);
-            color: var(--text-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 204, 153, 0.1);
-            position: relative;
-        }
-
-        .news-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px var(--shadow-heavy);
-        }
-
-        .news-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .news-content {
-            padding: 25px;
-        }
-
-        .office-code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            background: rgba(0, 204, 153, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .office-date {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9em;
-        }
-
-        .office-date::before {
-            content: '📅';
-            font-size: 1.1em;
-        }
-
-        .news-content h2 {
-            font-size: 1.3em;
-            margin: 0 0 15px 0;
-            color: var(--text-color);
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .news-content p {
-            font-size: 1em;
-            margin: 0 0 20px 0;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-        }
-
-        .office-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            padding: 12px 20px;
-            background: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition);
-            font-size: 0.95em;
-        }
-
-        .btn-primary:hover {
-            background: #00ffcc;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 204, 153, 0.3);
-        }
-
-        .btn-secondary {
-            padding: 12px 20px;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition);
-            font-size: 0.95em;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-            color: var(--text-color);
-            transform: translateY(-2px);
-        }
-
-        .btn-annexes {
-            padding: 12px 20px;
-            background: rgba(255, 193, 7, 0.1);
-            color: #ffc107;
-            border: 2px solid rgba(255, 193, 7, 0.3);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition);
-            font-size: 0.95em;
-        }
-
-        .btn-annexes:hover {
-            background: #ffc107;
-            color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
-        }
-
-        /* Indicadores */
-        .has-annexes::after {
-            content: 'CON ANEXOS';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 193, 7, 0.9);
-            color: #0F2C52;
-            padding: 6px 10px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: bold;
-        }
-
-        .news-card:not(.has-annexes)::after {
-            content: 'OFICIO CIRCULAR';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 204, 153, 0.9);
-            color: #0F2C52;
-            padding: 6px 10px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: bold;
-        }
-
-        /* Paginación */
-        /* ========================================
-   SISTEMA DE PAGINACIÓN - VERSIÓN MEJORADA
-   ======================================== */
-
-        /* Contenedor principal de la paginación */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-            gap: 15px;
-            flex-wrap: wrap; /* Permite que se ajuste en móviles */
-        }
-
-        /* Botones de navegación (Anterior/Siguiente) */
-        .pagination-btn {
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(0, 204, 153, 0.3);
-            border-radius: 25px;
-            color: var(--accent-color);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: var(--transition);
-            min-width: 120px; /* Ancho mínimo para botones de texto */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            backdrop-filter: blur(10px); /* Efecto cristal */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-        }
-
-        /* Efecto hover para botones habilitados */
-        .pagination-btn:hover:not(:disabled) {
-            background: rgba(0, 204, 153, 0.15);
-            border-color: var(--accent-color);
-            transform: translateY(-3px); /* Elevación más pronunciada */
-            box-shadow: 0 8px 25px rgba(0, 204, 153, 0.3);
-        }
-
-        /* Estilo para botones deshabilitados */
-        .pagination-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            background: rgba(255, 255, 255, 0.02);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.3);
-            transform: none; /* Sin efectos de elevación */
-        }
-
-        /* Contenedor de números de página */
-        .pagination-numbers {
-            display: flex;
-            gap: 12px; /* Espacio aumentado entre números */
-            align-items: center;
-        }
-
-        /* Botones individuales de número de página */
-        .page-number {
-            padding: 12px 16px; /* Padding aumentado para mejor click area */
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(0, 204, 153, 0.3);
-            border-radius: 50%; /* Forma circular perfecta */
-            color: var(--accent-color);
-            cursor: pointer;
-            font-weight: 700; /* Texto más bold */
-            font-size: 1em; /* Tamaño de fuente aumentado */
-            transition: var(--transition);
-            min-width: 45px; /* Ancho mínimo para forma circular */
-            min-height: 45px; /* Alto mínimo para forma circular */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px); /* Efecto cristal */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-        }
-
-        /* Efecto hover para números de página no activos */
-        .page-number:hover:not(.active) {
-            background: rgba(0, 204, 153, 0.15);
-            border-color: var(--accent-color);
-            transform: translateY(-3px) scale(1.05); /* Elevación + escala */
-            box-shadow: 0 6px 20px rgba(0, 204, 153, 0.25);
-        }
-
-        /* Estilo para el número de página activo */
-        .page-number.active {
-            background: var(--accent-color); /* Fondo verde completo */
-            color: var(--primary-color); /* Texto azul oscuro */
-            border-color: var(--accent-color);
-            transform: scale(1.15); /* Escala aumentada para destacar */
-            box-shadow: 0 8px 30px rgba(0, 204, 153, 0.5); /* Sombra más intensa */
-            font-weight: 800; /* Texto extra bold */
-        }
-
-        /* ========================================
-        RESPONSIVE DESIGN PARA PAGINACIÓN
-        ======================================== */
-
-        /* Tablets y pantallas medianas */
-        @media (max-width: 768px) {
-            .pagination-container {
-                gap: 10px;
-                margin-top: 30px;
-            }
-            
-            .pagination-btn {
-                padding: 10px 16px;
-                font-size: 0.85em;
-                min-width: 100px;
-            }
-            
-            .page-number {
-                min-width: 40px;
-                min-height: 40px;
-                padding: 10px 12px;
-                font-size: 0.9em;
-            }
-        }
-
-        /* Móviles */
-        @media (max-width: 480px) {
-            .pagination-container {
-                flex-direction: column; /* Apila verticalmente */
-                gap: 15px;
-            }
-            
-            .pagination-numbers {
-                order: 1; /* Números arriba */
-                gap: 8px;
-            }
-            
-            .pagination-btn {
-                width: 100%;
-                max-width: 200px; /* Ancho máximo en móviles */
-            }
-            
-            .page-number {
-                min-width: 35px;
-                min-height: 35px;
-                font-size: 0.85em;
-            }
-        }
-
-        /* ========================================
-        EFECTOS ADICIONALES Y ANIMACIONES
-        ======================================== */
-
-        /* Animación de entrada para los botones de página */
-        .page-number {
-            animation: fadeInScale 0.3s ease-out;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Efecto de pulso sutil para el botón activo */
-        .page-number.active {
-            animation: subtlePulse 2s infinite;
-        }
-
-        @keyframes subtlePulse {
-            0%, 100% {
-                box-shadow: 0 8px 30px rgba(0, 204, 153, 0.5);
-            }
-            50% {
-                box-shadow: 0 8px 30px rgba(0, 204, 153, 0.7);
-            }
-        }
-
-
-
- 
-
-/* ESTILOS DEL MENU*/
-/* ESTILOS DEL MENÚ FECCOR */
+:root {
+    --primary-color: #0F2C52;
+    --accent-color: #00cc99;
+    --text-color: white;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-heavy: rgba(0, 0, 0, 0.5);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Descripción del servicio */
+.service-description {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    text-align: center;
+}
+
+.service-description p {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Buscador en la parte superior */
+.search-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.search-container input {
+    padding: 15px 25px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    width: 80%;
+    max-width: 600px;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.2);
+}
+
+.search-container input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Filtros en pestañas horizontales */
+.filters-tabs {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+}
+
+.tabs-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tabs-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* ARREGLO: Contenedor de botones principales con mejor distribución */
+.tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Aumentado el gap */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0; /* Añadido padding */
+}
+
+/* Separador entre secciones de filtros */
+.filter-separator {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 204, 153, 0.3), transparent);
+    margin: 20px 0;
+}
+
+/* Contenedor para filtros de fecha */
+.date-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Aumentado el gap */
+    justify-content: center;
+    align-items: center;
+}
+
+.date-filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Aumentado el gap */
+}
+
+.date-filter-label {
+    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.date-filter-buttons {
+    display: flex;
+    gap: 10px; /* Aumentado el gap */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ARREGLO: Estilo de los botones de filtro mejorado */
+.tab-btn, .date-btn, .clear-filters {
+    padding: 12px 20px;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 120px; /* Añadido ancho mínimo */
+    text-align: center;
+}
+
+.tab-btn:hover, .date-btn:hover, .clear-filters:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-light);
+    background: rgba(0, 204, 153, 0.1);
+}
+
+/* Estilo cuando el botón está activo */
+.tab-btn.active, .date-btn.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
+}
+
+/* ARREGLO: Botón limpiar filtros con mejor estilo */
+.clear-filters {
+    background: rgba(255, 76, 76, 0.1);
+    border-color: #ff4c4c;
+    color: #ff4c4c;
+    font-weight: 700;
+}
+
+.clear-filters:hover {
+    background: rgba(255, 76, 76, 0.2);
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 76, 76, 0.3);
+}
+
+/* Botones de fecha más pequeños */
+.date-btn {
+    padding: 10px 16px;
+    font-size: 0.85em;
+    min-width: 80px;
+}
+
+/* ARREGLO: Estilo especial para el botón "Ver más" */
+#viewMoreBtn {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+    font-weight: 700;
+    min-width: 100px;
+}
+
+#viewMoreBtn:hover {
+    background: #00ffcc;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.4);
+}
+
+/* Mensaje cuando no hay resultados */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1em;
+    display: none;
+}
+
+.no-results::before {
+    content: '📄';
+    display: block;
+    font-size: 3em;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+/* Contador de resultados */
+.results-counter {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+}
+
+/* Diseño de las tarjetas en formato grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo de cada tarjeta de oficio */
+.news-card {
+    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 204, 153, 0.1);
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Al inicio, ocultar todo excepto las primeras 6 */
+.news-card:nth-child(n+7) {
+    display: none;
+}
+
+/* Cuando hay filtros activos, mostrar todas */
+.news-card.show {
+    display: block !important;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), #00ffcc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Efecto hover sobre las tarjetas */
+.news-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow-heavy);
+}
+
+.news-card:hover::before {
+    opacity: 1;
+}
+
+/* Imagen de la tarjeta */
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Contenido dentro de la tarjeta */
+.news-content {
+    padding: 25px;
+}
+
+/* Código del oficio */
+.office-code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: rgba(0, 204, 153, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Fecha del oficio */
+.office-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+}
+
+.news-content h2 {
+    font-size: 1.3em;
+    margin: 0 0 15px 0;
+    color: var(--text-color);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.news-content p {
+    font-size: 1em;
+    margin: 0 0 20px 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+/* Contenedor de acciones de oficios */
+.office-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Botón principal (Ver PDF) */
+.btn-primary {
+    padding: 12px 20px;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-size: 0.95em;
+}
+
+.btn-primary:hover {
+    background: #00ffcc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.3);
+}
+
+/* Botón secundario (Ver Online) */
+.btn-secondary {
+    padding: 12px 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-size: 0.95em;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+/* Botón de anexos */
+.btn-annexes {
+    padding: 12px 20px;
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 2px solid rgba(255, 193, 7, 0.3);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-size: 0.95em;
+}
+
+.btn-annexes:hover {
+    background: #ffc107;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+}
+
+/* Indicadores de tipo de oficio */
+.has-annexes::after {
+    content: 'CON ANEXOS';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 193, 7, 0.9);
+    color: #0F2C52;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.news-card:not(.has-annexes)::after {
+    content: 'OFICIO CIRCULAR';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 204, 153, 0.9);
+    color: #0F2C52;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mostrar meses en una línea horizontal */
+#monthGroup {
+    flex-direction: column;
+    align-items: center;
+}
+
+#monthGroup .date-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .search-container input {
+        width: 90%;
+    }
+
+    .tabs-container {
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tab-btn, .clear-filters {
+        padding: 10px 16px;
+        font-size: 0.85em;
+        min-width: auto;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .date-filters {
+        gap: 15px;
+    }
+
+    .date-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        min-width: 70px;
+    }
+
+    #monthGroup .date-filter-buttons {
+        gap: 6px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabs-container {
+        padding: 5px;
+    }
+    
+    .date-filter-buttons {
+        gap: 5px;
+    }
+    
+    .date-btn {
+        padding: 5px 10px;
+        font-size: 0.75em;
+        min-width: 60px;
+    }
+}
+
 /* ESTILOS DEL MENÚ FECCOR */
 .main-navbar {
     background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
@@ -799,23 +782,6 @@
     transform: translateY(-50%);
 }
 
-/* RESPONSIVE PARA TABLETS */
-@media (max-width: 1024px) {
-    .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav-link {
-        padding: 15px 20px;
-        font-size: 15px;
-    }
-
-    .mega-dropdown {
-        min-width: 300px;
-    }
-}
-
 /* RESPONSIVE PARA MÓVILES */
 @media (max-width: 768px) {
     .nav-container {
@@ -922,15 +888,13 @@
     }
 }
 
-
-
-/* PIE DE PÁGINA FECCOR COMPACTO */
 /* PIE DE PÁGINA FECCOR COMPACTO */
 .footer-feccor {
     background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
     color: white;
     border-top: 3px solid #F1C40F;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
 }
 
 .footer-container {
@@ -1042,7 +1006,7 @@
     border-top: 1px solid rgba(241, 196, 15, 0.2);
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE FOOTER */
 @media (max-width: 768px) {
     .footer-container {
         padding: 15px;

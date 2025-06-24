@@ -5,16 +5,13 @@
     <!-- Configuración básica de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oficios Circulares</title>
+    <title>Noticias y Comunicados</title>
     <link rel="stylesheet" href="css/styles.css">
-
-    
-   
 </head>
 
 <body>
 
-    <!-- MENÚ PRINCIPAL FECCOR -->
+     <!-- MENÚ PRINCIPAL FECCOR -->
     <nav class="main-navbar">
         <div class="nav-container">
             <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -195,6 +192,7 @@
     </nav>
 
     <div class="container">
+
         <h1>Oficios Circulares</h1>
 
         <!-- Descripción del servicio -->
@@ -202,20 +200,35 @@
             <p>Esta sección permite acceder a documentos oficiales que establecen normas de carácter general, instrucciones o lineamientos que la coordinación nacional comunica a todos los despachos fiscales.</p>
         </div>
 
-        <!-- Buscador -->
+        <!-- Buscador en la parte superior -->
         <div class="search-section">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar oficios circulares por código o contenido...">
+                <input type="text" id="searchInput" placeholder="Buscar oficios circulares por código o contenido..." onkeyup="searchOffices()" oninput="searchOffices()">
             </div>
         </div>
 
-        <!-- Filtros -->
+        <!-- Filtros en pestañas horizontales -->
         <div class="filters-tabs">
             <div class="tabs-header">
-                <h3>Filtrar por Fecha</h3>
+                <h3>Filtros de Búsqueda</h3>
+            </div>
+            
+            <div class="tabs-container">
+                <!-- Botón limpiar filtros -->
+                <button class="clear-filters" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+
+                <!-- Botón ver más -->
+                <button class="tab-btn" id="viewMoreBtn" onclick="toggleViewMore()">Ver más</button>
             </div>
 
+            <!-- Separador visual -->
+            <div class="filter-separator"></div>
+
+            <!-- Filtros de fecha -->
             <div class="date-filters">
+                <!-- Filtro por año -->
                 <div class="date-filter-group">
                     <div class="date-filter-label">Año</div>
                     <div class="date-filter-buttons">
@@ -224,6 +237,7 @@
                     </div>
                 </div>
 
+                <!-- Filtro por mes -->
                 <div class="date-filter-group" id="monthGroup" style="display:none;">
                     <div class="date-filter-label">Mes</div>
                     <div class="date-filter-buttons">
@@ -236,90 +250,185 @@
                     </div>
                 </div>
             </div>
-
-            <button class="clear-filters" onclick="clearAllFilters()">
-                Limpiar Filtros
-            </button>
         </div>
 
-        <!-- Contador de resultados -->
-        <div class="results-info">
+        <!-- Contenido principal -->
+        <div class="content">
+            <!-- Contador de resultados -->
             <div class="results-counter" id="resultsCounter"></div>
-            <div class="pagination-info" id="paginationInfo"></div>
-        </div>
 
-        <!-- Sin resultados -->
-        <div class="no-results" id="noResults">
-            <p>No se encontraron oficios circulares</p>
-            <small>Intenta con otros términos de búsqueda</small>
-        </div>
-
-        <!-- Grid de oficios -->
-        <div class="news-grid" id="newsGrid">
-            <!-- Se llenan dinámicamente -->
-        </div>
-
-        <!-- Paginación -->
-        <div class="pagination-container" id="paginationContainer">
-            <button class="pagination-btn" id="prevBtn" onclick="changePage('prev')">
-                ← Anterior
-            </button>
-            
-            <div class="pagination-numbers" id="paginationNumbers">
-                <!-- Se generan dinámicamente -->
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-results" id="noResults">
+                <p>No se encontraron oficios circulares</p>
+                <small>Intenta con otros términos de búsqueda o ajusta los filtros</small>
             </div>
-            
-            <button class="pagination-btn" id="nextBtn" onclick="changePage('next')">
-                Siguiente →
-            </button>
+
+            <!-- Contenedor donde se mostrarán los oficios -->
+            <div class="news-grid" id="newsGrid">
+                
+                <!-- Oficios de Mayo 2025 -->
+                <div class="news-card oficio 2025 mayo has-annexes">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="OFICIO CIRCULAR-R13706-2025-FSCN-FECCO">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR-R13706-2025-FSCN-FECCO</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>OFICIO CIRCULAR-R13706-2025-FSCN-FECCO</h2>
+                        <p>Se pone en conocimiento Oficiales de enlace de la UIF - PERU.</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/1KPhdxrKruGd1bVlNMoM2ry-egO4iVS5Z/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/1KPhdxrKruGd1bVlNMoM2ry-egO4iVS5Z/view" class="btn-annexes" target="_blank">📎 Ver Anexos (3)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2025 mayo">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="OFICIO CIRCULAR 145-2025">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR 145-2025</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>OFICIO CIRCULAR 145-2025</h2>
+                        <p>Lineamientos para la obtención de información del sistema APIS-PNR, alert y otros administrados por la Dirección de Registro y Control Migratorio.</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/1RtioBOZD4uxm-LiDazK9ELJSG4Nls68S/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/1RtioBOZD4uxm-LiDazK9ELJSG4Nls68S/view" class="btn-secondary" target="_blank">🔗 Ver Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2025 mayo has-annexes">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="OFICIO CIRCULAR 002-2025-MP-FN">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR 002-2025-MP-FN</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>Directrices para el fortalecimiento del sistema fiscal</h2>
+                        <p>Establece directrices y procedimientos administrativos actualizados en el ámbito del Ministerio Público para mejorar la eficiencia institucional.</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/1HzAw63Xii2_Pi6Odjpzt5kjpoB8rYXe-/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/1HzAw63Xii2_Pi6Odjpzt5kjpoB8rYXe-/view" class="btn-annexes" target="_blank">📎 Ver Anexos (2)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2025 mayo">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>OFICIO CIRCULAR N°000152-2025-MP-FN-FSCN-FECCO</h2>
+                        <p>Se pone en conocimiento la directiva denominada Atencion de denuncias y otorgamientos de medidas de proteccion al denunciante o al testigo por presuntos actos de corrupcion y/o faltas a la etica publica -2025</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/112NesUJL_rYoIhlH2MkM5FHUyayj46om/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/112NesUJL_rYoIhlH2MkM5FHUyayj46om/view" class="btn-secondary" target="_blank">🔗 Ver Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2025 mayo">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN">
+                    <div class="news-content">
+                        <div class="office-code">Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>Resolución de la Fiscalía de la Nación N° 1528-2025-MP-FN</h2>
+                        <p>Se actualizan los procedimientos internos para mejorar la eficiencia operativa y garantizar los mejores resultados en la administración de justicia.</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/1SViq0ZP3mFT5oh59b5-AXWSBuHHrmFlX/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/1SViq0ZP3mFT5oh59b5-AXWSBuHHrmFlX/view" class="btn-secondary" target="_blank">🔗 Ver Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2025 mayo has-annexes">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="Resolución de la Fiscalía de la Nación N°- DIRECTIVA">
+                    <div class="news-content">
+                        <div class="office-code">Resolución de la Fiscalía de la Nación N°- DIRECTIVA</div>
+                        <div class="office-date">📅 Mayo, 2025</div>
+                        <h2>Resolución de la Fiscalía de la Nación N°- DIRECTIVA</h2>
+                        <p>Lineamientos para la optimización de procesos administrativos y modernización de los sistemas de gestión institucional del Ministerio Público.</p>
+                        <div class="office-actions">
+                            <a href="https://drive.google.com/file/d/1PoMPoVVFtdW4oBCVXrYgoSF7BKT54vh5/view" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="https://drive.google.com/file/d/1PoMPoVVFtdW4oBCVXrYgoSF7BKT54vh5/view" class="btn-annexes" target="_blank">📎 Ver Anexos (1)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de oficios adicionales para demostrar el sistema "Ver más" -->
+                <div class="news-card oficio 2025 enero">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="Oficio Ejemplo Enero">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR 001-2025-MP-FN</div>
+                        <div class="office-date">📅 Enero, 2025</div>
+                        <h2>Oficio Circular de Inicio de Año</h2>
+                        <p>Lineamientos generales para el inicio del período fiscal 2025 y directrices operativas.</p>
+                        <div class="office-actions">
+                            <a href="#" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="#" class="btn-secondary" target="_blank">🔗 Ver Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card oficio 2024 diciembre has-annexes">
+                    <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/oficios_circulares/foto/fotomp1.PNG" alt="Oficio Ejemplo Diciembre">
+                    <div class="news-content">
+                        <div class="office-code">OFICIO CIRCULAR 250-2024-MP-FN</div>
+                        <div class="office-date">📅 Diciembre, 2024</div>
+                        <h2>Cierre del Período Fiscal 2024</h2>
+                        <p>Instrucciones para el cierre del período fiscal 2024 y preparativos para el año siguiente.</p>
+                        <div class="office-actions">
+                            <a href="#" class="btn-primary" target="_blank">📄 Ver PDF</a>
+                            <a href="#" class="btn-annexes" target="_blank">📎 Ver Anexos (5)</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-        <!-- PIE DE PÁGINA FECCOR COMPACTO -->
-        <footer class="footer-feccor">
-            <div class="footer-container">
-                <div class="footer-main">
-                    
-                    <!-- CONTACTO COMPACTO -->
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <a href="tel:01-6255555" class="contact-link">01-6255555</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">✉️</span>
-                            <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <span>Jr. Carabaya # 442, Cercado de Lima</span>
-                        </div>
+    <!-- PIE DE PÁGINA FECCOR COMPACTO -->
+    <footer class="footer-feccor">
+        <div class="footer-container">
+            <div class="footer-main">
+                
+                <!-- CONTACTO COMPACTO -->
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <a href="tel:01-6255555" class="contact-link">01-6255555</a>
                     </div>
-
-                    <!-- REDES SOCIALES COMPACTAS -->
-                    <div class="footer-social">
-                        <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
-                            📱 WhatsApp
-                        </a>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/FiscaliaPeru?rdid=JyVLMzYY3xfKIdlM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F162pKi9us9%2F#" target="_blank" class="social-icon social-facebook">f</a>
-                            <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
-                            <a href="https://www.tiktok.com/@ministeriopublico_?_t=ZM-8u4yFH9h54Y&_r=1" target="_blank" class="social-icon social-tiktok">♪ </a>
-                        </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Jr. Carabaya # 442, Cercado de Lima</span>
                     </div>
                 </div>
 
-                <!-- COPYRIGHT MÍNIMO -->
-                <div class="footer-bottom">
-                    © 2025 FECOR - Fiscalías Especializadas contra la Criminalidad Organizada
+                <!-- REDES SOCIALES COMPACTAS -->
+                <div class="footer-social">
+                    <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
+                        📱 WhatsApp
+                    </a>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FiscaliaPeru?rdid=JyVLMzYY3xfKIdlM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F162pKi9us9%2F#" target="_blank" class="social-icon social-facebook">f</a>
+                        <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
+                        <a href="https://www.tiktok.com/@ministeriopublico_?_t=ZM-8u4yFH9h54Y&_r=1" target="_blank" class="social-icon social-tiktok">♪ </a>
+                    </div>
                 </div>
             </div>
-        </footer>
 
+            <!-- COPYRIGHT MÍNIMO -->
+            <div class="footer-bottom">
+                © 2025 FECOR - Fiscalías Especializadas contra la Criminalidad Organizada
+            </div>
+        </div>
+    </footer>
 
 
     <script src="js/script.js"></script>
 
-</body>
+
+ </body>
 
 </html>

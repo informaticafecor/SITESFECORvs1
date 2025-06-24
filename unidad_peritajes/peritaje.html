@@ -12,193 +12,185 @@
 </head>
 
 <body>
-<!-- MENÚ PRINCIPAL FECCOR -->
-<nav class="main-navbar">
-    <div class="nav-container">
-        <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
-        <ul class="nav-menu" id="navMenu">
-            
-            <!-- 1. INICIO -->
-            <li class="nav-item">
-                <a href="../inicio/inicio.html" class="nav-link">
-                    <span class="nav-icon">🏠</span>
-                    INICIO
-                </a>
-            </li>
+        <!-- MENÚ PRINCIPAL FECCOR -->
+        <nav class="main-navbar">
+            <div class="nav-container">
+                <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+                <ul class="nav-menu" id="navMenu">
+                    
+                    <!-- 1. INICIO -->
+                    <li class="nav-item">
+                        <a href="../inicio/inicio.html" class="nav-link">
+                            <span class="nav-icon">🏠</span>
+                            INICIO
+                        </a>
+                    </li>
 
-            <!-- 2. INSTITUCIONAL -->
-            <li class="nav-item">
-                <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
-                    <span>
-                        <span class="nav-icon">🏛️</span>
-                        INSTITUCIONAL
-                    </span>
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-content">
-                        <div class="dropdown-title">Información Institucional</div>
-                        <div class="dropdown-grid">
-                            <a href="../nosotros/nosotros.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">👥</span>
-                                Nosotros
-                            </a>
-                            <a href="../directorio/directorio.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📞</span>
-                                Directorio de Contacto
-                            </a>
-                            <a href="../coordinacion_inter/convenios_inter.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🤝</span>
-                                Coordinaciones Interinstitucionales
-                            </a>
-                            <a href="../Competencias/competencias.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">⚖️</span>
-                                Competencias
-                            </a>                               
+                    <!-- 2. INSTITUCIONAL -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                            <span>
+                                <span class="nav-icon">🏛️</span>
+                                INSTITUCIONAL
+                            </span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Información Institucional</div>
+                                <div class="dropdown-grid">
+                                    <a href="../nosotros/nosotros.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">👥</span>
+                                        Nosotros
+                                    </a>
+                                    <a href="../directorio/directorio.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📞</span>
+                                        Directorio de Contacto
+                                    </a>
+                                    <a href="../coordinacion_inter/convenios_inter.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🤝</span>
+                                        Coordinaciones Interinstitucionales
+                                    </a>
+                                    <a href="../Competencias/competencias.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">⚖️</span>
+                                        Competencias
+                                    </a>                               
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </li>
+                    </li>
 
-            <!-- 3. COMUNICACIONES -->
-            <li class="nav-item">
-                <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
-                    <span>
-                        <span class="nav-icon">📰</span>
-                        COMUNICACIONES
-                    </span>
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-content">
-                        <div class="dropdown-title">Información y Comunicaciones</div>
-                        <div class="dropdown-grid">
-                            <a href="../noticias_comunicados/noticias_comu.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📢</span>
-                                Noticias y Comunicados
-                            </a>
-                            <a href="../oficios_circulares/oficios_circulares.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📜</span>
-                                Oficios Circulares
-                            </a>
-                            <a href="../revistas/revista_fecor.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📰</span>
-                                Revista FECOR
-                            </a>
-                            <a href="../boletines/index.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📊</span>
-                                Boletines Estadísticos
-                            </a>                               
+                    <!-- 3. COMUNICACIONES -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                            <span>
+                                <span class="nav-icon">📰</span>
+                                COMUNICACIONES
+                            </span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Información y Comunicaciones</div>
+                                <div class="dropdown-grid">
+                                    <a href="../noticias_comunicados/noticias_comu.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📢</span>
+                                        Noticias y Comunicados
+                                    </a>
+                                    <a href="../oficios_circulares/oficios_circulares.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📜</span>
+                                        Oficios Circulares
+                                    </a>
+                                    <a href="../revistas/revista_fecor.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📰</span>
+                                        Revista FECOR
+                                    </a>
+                                    <a href="../boletines/index.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📊</span>
+                                        Boletines Estadísticos
+                                    </a>                               
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </li>
+                    </li>
 
-            <!-- 4. OPERACIONES -->
-            <li class="nav-item">
-                <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
-                    <span>
-                        <span class="nav-icon">🚨</span>
-                        OPERACIONES
-                    </span>
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-content">
-                        <div class="dropdown-title">Operaciones y Normativas</div>
-                        <div class="dropdown-grid">
-                            <a href="../operativos/operativos.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🚨</span>
-                                Operativos
-                            </a>
-                            <a href="../Normativa_Guias/normativa_guias.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📋</span>
-                                Normativa y Guías
-                            </a>
-                            <a href="../unidad_peritajes/peritaje.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🔍</span>
-                                Unidad de Peritajes
-                            </a>
+                    <!-- 4. OPERACIONES -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                            <span>
+                                <span class="nav-icon">🚨</span>
+                                OPERACIONES
+                            </span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Operaciones y Normativas</div>
+                                <div class="dropdown-grid">
+                                    <a href="../operativos/operativos.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🚨</span>
+                                        Operativos
+                                    </a>
+                                    <a href="../Normativa_Guias/normativa_guias.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📋</span>
+                                        Normativa y Guías
+                                    </a>
+                                    <a href="../unidad_peritajes/peritaje.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🔍</span>
+                                        Unidad de Peritajes
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </li>
+                    </li>
 
-            <!-- 5. RR.HH. -->
-            <li class="nav-item">
-                <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
-                    <span>
-                        <span class="nav-icon">👥</span>
-                        RR.HH.
-                    </span>
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-content">
-                        <div class="dropdown-title">Recursos Humanos y Capacitación</div>
-                        <div class="dropdown-grid">
-                            <a href="../defensores_publicos/defensores.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">⚖️</span>
-                                Defensores Públicos
-                            </a>
-                            <a href="../convocatorias/convocatorias.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">📝</span>
-                                Convocatorias
-                            </a>
-                            <a href="../convenios_viajes_capa/convenios_viajes_capa.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🎓</span>
-                                Capacitación, Convenios y Viajes
-                            </a>
+                    <!-- 5. RR.HH. -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                            <span>
+                                <span class="nav-icon">👥</span>
+                                RR.HH.
+                            </span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Recursos Humanos y Capacitación</div>
+                                <div class="dropdown-grid">
+                                    <a href="../defensores_publicos/defensores.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">⚖️</span>
+                                        Defensores Públicos
+                                    </a>
+                                    <a href="../convocatorias/convocatorias.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">📝</span>
+                                        Convocatorias
+                                    </a>
+                                    <a href="../convenios_viajes_capa/convenios_viajes_capa.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🎓</span>
+                                        Capacitación, Convenios y Viajes
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </li>
+                    </li>
 
-            <!-- 6. SERVICIOS -->
-            <li class="nav-item">
-                <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
-                    <span>
-                        <span class="nav-icon">🔧</span>
-                        SERVICIOS
-                    </span>
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-content">
-                        <div class="dropdown-title">Servicios y Soporte</div>
-                        <div class="dropdown-grid">
-                            <a href="../recursos/recursos.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🚛</span>
-                                Recursos Logísticos
-                            </a>
-                            <a href="../UnidadesVehiculares/vehiculos.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">🚗</span>
-                                Unidades Vehiculares
-                            </a>
-                            <a href="../soporte/Informatica.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">💻</span>
-                                Soporte Informático
-                            </a>
-                            <a href="../preguntas_frecuentes/preguntas.html" class="dropdown-item">
-                                <span class="dropdown-item-icon">❓</span>
-                                Preguntas Frecuentes
-                            </a>
+                    <!-- 6. SERVICIOS -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                            <span>
+                                <span class="nav-icon">🔧</span>
+                                SERVICIOS
+                            </span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="mega-dropdown">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Servicios y Soporte</div>
+                                <div class="dropdown-grid">
+                                    <a href="../recursos/recursos.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🚛</span>
+                                        Recursos Logísticos
+                                    </a>
+                                    <a href="../UnidadesVehiculares/vehiculos.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">🚗</span>
+                                        Unidades Vehiculares
+                                    </a>
+                                    <a href="../soporte/Informatica.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">💻</span>
+                                        Soporte Informático
+                                    </a>
+                                    <a href="../preguntas_frecuentes/preguntas.html" class="dropdown-item">
+                                        <span class="dropdown-item-icon">❓</span>
+                                        Preguntas Frecuentes
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </li>
+                    </li>
 
-        </ul>
-    </div>
-</nav>
-
-
-
-
-
-
-
-
+                </ul>
+            </div>
+        </nav>
 
     <div class="container">
         <!-- Sidebar izquierdo con navegación -->
@@ -507,7 +499,47 @@
         </div>
     </div>
     
+        <!-- PIE DE PÁGINA FECCOR COMPACTO -->
+        <footer class="footer-feccor">
+            <div class="footer-container">
+                <div class="footer-main">
+                    
+                    <!-- CONTACTO COMPACTO -->
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:01-6255555" class="contact-link">01-6255555</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Jr. Carabaya # 442, Cercado de Lima</span>
+                        </div>
+                    </div>
 
+                    <!-- REDES SOCIALES COMPACTAS -->
+                    <div class="footer-social">
+                        <a href="https://wa.me/51987654321" class="whatsapp-btn" target="_blank">
+                            📱 WhatsApp
+                        </a>
+                        <div class="social-icons">
+                            <a href="https://facebook.com/feccor" target="_blank" class="social-icon social-facebook">f</a>
+                            <a href="https://youtube.com/feccor" target="_blank" class="social-icon social-youtube">▶</a>
+                            <a href="https://twitter.com/feccor" target="_blank" class="social-icon social-twitter">🐦</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COPYRIGHT MÍNIMO -->
+                <div class="footer-bottom">
+                    © 2025 FECCOR - Fiscalía Especializada en Delitos de Corrupción de Funcionarios
+                </div>
+            </div>
+        </footer>
+    
     <script src="js/script.js"></script>
 
 </body>

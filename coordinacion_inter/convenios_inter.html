@@ -10,6 +10,7 @@
 </head>
 <body>
 
+ 
     <!-- MENÚ PRINCIPAL FECCOR -->
     <nav class="main-navbar">
         <div class="nav-container">
@@ -18,7 +19,7 @@
                 
                 <!-- 1. INICIO -->
                 <li class="nav-item">
-                    <a href="../inicio/inicio.html" class="nav-link active">
+                    <a href="../inicio/inicio.html" class="nav-link">
                         <span class="nav-icon">🏠</span>
                         INICIO
                     </a>
@@ -26,9 +27,11 @@
 
                 <!-- 2. INSTITUCIONAL -->
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link"> -->
-                        <span class="nav-icon">🏛️</span>
-                        INSTITUCIONAL
+                    <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                        <span>
+                            <span class="nav-icon">🏛️</span>
+                            INSTITUCIONAL
+                        </span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="mega-dropdown">
@@ -47,7 +50,6 @@
                                     <span class="dropdown-item-icon">🤝</span>
                                     Coordinaciones Interinstitucionales
                                 </a>
-
                                 <a href="../Competencias/competencias.html" class="dropdown-item">
                                     <span class="dropdown-item-icon">⚖️</span>
                                     Competencias
@@ -57,11 +59,13 @@
                     </div>
                 </li>
 
-                <!-- 3. INFORMACIÓN Y COMUNICACIONES -->
+                <!-- 3. COMUNICACIONES -->
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link"> -->
-                        <span class="nav-icon">📰</span>
-                        COMUNICACIONES
+                    <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                        <span>
+                            <span class="nav-icon">📰</span>
+                            COMUNICACIONES
+                        </span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="mega-dropdown">
@@ -80,7 +84,6 @@
                                     <span class="dropdown-item-icon">📰</span>
                                     Revista FECOR
                                 </a>
-
                                 <a href="../boletines/index.html" class="dropdown-item">
                                     <span class="dropdown-item-icon">📊</span>
                                     Boletines Estadísticos
@@ -90,11 +93,13 @@
                     </div>
                 </li>
 
-                <!-- 4. OPERACIONES Y NORMATIVAS -->
+                <!-- 4. OPERACIONES -->
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link"> -->
-                        <span class="nav-icon">🚨</span>
-                        OPERACIONES
+                    <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                        <span>
+                            <span class="nav-icon">🚨</span>
+                            OPERACIONES
+                        </span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="mega-dropdown">
@@ -118,11 +123,13 @@
                     </div>
                 </li>
 
-                <!-- 5. RECURSOS HUMANOS Y CAPACITACIÓN -->
+                <!-- 5. RR.HH. -->
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link"> -->
-                        <span class="nav-icon">👥</span>
-                        RR.HH.
+                    <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                        <span>
+                            <span class="nav-icon">👥</span>
+                            RR.HH.
+                        </span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="mega-dropdown">
@@ -146,11 +153,13 @@
                     </div>
                 </li>
 
-                <!-- 6. SERVICIOS Y SOPORTE -->
+                <!-- 6. SERVICIOS -->
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link"> -->
-                        <span class="nav-icon">🔧</span>
-                        SERVICIOS
+                    <a href="#" class="nav-link" onclick="toggleDropdown(this, event)">
+                        <span>
+                            <span class="nav-icon">🔧</span>
+                            SERVICIOS
+                        </span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="mega-dropdown">
@@ -181,6 +190,8 @@
             </ul>
         </div>
     </nav>
+
+
 
     <div class="container">
         <!-- Título principal -->
@@ -235,6 +246,48 @@
             </div>
         </div>
     </div>
+
+        <!-- PIE DE PÁGINA FECCOR COMPACTO -->
+        <footer class="footer-feccor">
+            <div class="footer-container">
+                <div class="footer-main">
+                    
+                    <!-- CONTACTO COMPACTO -->
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:01-6255555" class="contact-link">01-6255555</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Jr. Carabaya # 442, Cercado de Lima</span>
+                        </div>
+                    </div>
+
+                    <!-- REDES SOCIALES COMPACTAS -->
+                    <div class="footer-social">
+                        <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
+                            📱 WhatsApp
+                        </a>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/FiscaliaPeru?rdid=JyVLMzYY3xfKIdlM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F162pKi9us9%2F#" target="_blank" class="social-icon social-facebook">f</a>
+                            <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
+                            <a href="https://www.tiktok.com/@ministeriopublico_?_t=ZM-8u4yFH9h54Y&_r=1" target="_blank" class="social-icon social-tiktok">♪ </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COPYRIGHT MÍNIMO -->
+                <div class="footer-bottom">
+                    © 2025 FECCOR - Fiscalía Especializada en Delitos de Corrupción de Funcionarios
+                </div>
+            </div>
+        </footer>
+
     
     <script src="js/script.js"></script>
 

@@ -20,7 +20,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gradient-primary);
+    background: #0F2C52;
     color: var(--text-color);
     margin: 0;
     padding: 0;

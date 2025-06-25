@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FECCOR - Inicio Rediseñado</title>
+    <link rel="stylesheet" href="css/inicio.css">
+    
+</head>
+<body>
+
+    <!-- LAYOUT PRINCIPAL INTERACTIVO -->
+    <div class="main-interactive-layout">
+
+
+        <!-- CENTRO - CARRUSEL DE VIDEOS -->
+        <div class="video-center animate-up">
+            <h2 class="video-section-title">Videos Destacados</h2>
+            
+            <div class="video-carousel-container">
+                <!-- Video Slide 1 - YouTube Embed -->
+                <div class="video-slide active">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/2X3qPNuv4KM?rel=0&modestbranding=1&enablejsapi=1"  
+                            title="Operativo Amanecer Seguro"
+                            allowfullscreen
+                            id="youtube-player-1">
+                    </iframe>
+                </div>
+
+                <!-- Video Slide 2 - YouTube Embed -->
+                <div class="video-slide">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/AR8_NtofTy0?rel=0&modestbranding=1&enablejsapi=1"
+                            title="Captura en Lima"
+                            allowfullscreen
+                            id="youtube-player-2">
+                    </iframe>
+                </div>
+
+                <!-- Video Slide 3 - YouTube Embed -->
+                <div class="video-slide">
+                    <iframe class="youtube-embed" 
+                            src="https://www.youtube.com/embed/DLz_Hg5ZJsA?rel=0&modestbranding=1&enablejsapi=1"  
+                            title="Coordinación Internacional"
+                            allowfullscreen
+                            id="youtube-player-3">
+                    </iframe>
+                </div>
+
+                <!-- Controles de navegación -->
+                <button class="carousel-nav carousel-prev" onclick="changeVideoSlide(-1)">‹</button>
+                <button class="carousel-nav carousel-next" onclick="changeVideoSlide(1)">›</button>
+
+                <!-- Indicadores -->
+                <div class="video-carousel-controls">
+                    <span class="video-indicator active" onclick="currentVideoSlide(1)"></span>
+                    <span class="video-indicator" onclick="currentVideoSlide(2)"></span>
+                    <span class="video-indicator" onclick="currentVideoSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+ 
+    <script src="menu.js"></script>
+    <script src="js/inicio.js"></script>
+</body>
+</html>

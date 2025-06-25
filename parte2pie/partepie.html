@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie de Página FECCOR</title>
+    <style>
+        /* Variables CSS necesarias para el footer */
+        :root {
+            --primary-color: #0F2C52;     /* PANTONE 295 C - Azul oscuro principal */
+            --secondary-color: #0075bf;   /* PANTONE 3005 C - Azul medio */
+            --accent-color: #FFD040;      /* PANTONE 122 C - Amarillo dorado oficial */
+            --golden-color: #FFD040;      /* PANTONE 122 C - Dorado vibrante */
+        }
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0F2C52;
+            margin: 0;
+            padding: 0;
+            height: auto;
+            overflow-x: hidden;
+        }
+
+        /* PIE DE PÁGINA FECCOR COMPACTO */
+        .footer-feccor {
+            background: #0F2C52;
+            color: white;
+            border-top: 3px solid #F1C40F;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .contact-icon {
+            font-size: 14px;
+            width: 20px;
+            text-align: center;
+            color: #F1C40F;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #F1C40F;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-1px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 22px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-facebook {
+            background: #1877F2;
+        }
+
+        .social-youtube {
+            background: #FF0000;
+        }
+
+        .social-tiktok {
+            background: #000000;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(241, 196, 15, 0.2);
+        }
+
+        /* RESPONSIVE para el footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                padding: 15px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-contact {
+                align-items: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-social {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .social-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .whatsapp-btn {
+                padding: 5px 10px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PIE DE PÁGINA FECCOR COMPACTO -->
+    <footer class="footer-feccor">
+        <div class="footer-container">
+            <div class="footer-main">
+                
+                <!-- CONTACTO COMPACTO -->
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <a href="tel:01-6255555" class="contact-link">01-6255555</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Jr. Carabaya # 442, Cercado de Lima</span>
+                    </div>
+                </div>
+
+                <!-- REDES SOCIALES COMPACTAS -->
+                <div class="footer-social">
+                    <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
+                        📱 WhatsApp
+                    </a>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FiscaliaPeru?rdid=JyVLMzYY3xfKIdlM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F162pKi9us9%2F#" target="_blank" class="social-icon social-facebook">f</a>
+                        <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
+                        <a href="https://www.tiktok.com/@ministeriopublico_?_t=ZM-8u4yFH9h54Y&_r=1" target="_blank" class="social-icon social-tiktok">♪ </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT MÍNIMO -->
+            <div class="footer-bottom">
+                  © 2025 FECOR - Fiscalías Especializadas contra la Criminalidad Organizada
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JAVASCRIPT PARA PIE DE PÁGINA FECCOR (OPCIONAL)
+        // Nota: El footer funciona perfectamente solo con HTML/CSS, este JS añade funcionalidades extra
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Funcionalidad opcional: Tracking de clics en redes sociales
+            const socialIcons = document.querySelectorAll('.social-icon, .whatsapp-btn');
+            
+            socialIcons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    const platform = this.classList.contains('social-facebook') ? 'Facebook' :
+                                   this.classList.contains('social-youtube') ? 'YouTube' :
+                                   this.classList.contains('social-tiktok') ? 'TikTok' :
+                                   this.classList.contains('whatsapp-btn') ? 'WhatsApp' : 'Unknown';
+                    
+                    // Opcional: Registrar el clic para analytics
+                    console.log(`Click en ${platform}`);
+                    
+                    // El enlace se abre normalmente (no se previene el comportamiento por defecto)
+                });
+            });
+
+            // Funcionalidad opcional: Mostrar mensaje al hacer clic en email
+            const emailLink = document.querySelector('a[href^="mailto:"]');
+            if (emailLink) {
+                emailLink.addEventListener('click', function(e) {
+                    const email = this.href.replace('mailto:', '');
+                    console.log(`Abriendo cliente de email para: ${email}`);
+                });
+            }
+
+            // Funcionalidad opcional: Mostrar mensaje al hacer clic en teléfono
+            const phoneLink = document.querySelector('a[href^="tel:"]');
+            if (phoneLink) {
+                phoneLink.addEventListener('click', function(e) {
+                    const phone = this.textContent;
+                    console.log(`Iniciando llamada a: ${phone}`);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

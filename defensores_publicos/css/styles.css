@@ -10,7 +10,7 @@
 /* Estilo general del cuerpo */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0F2C52 0%, #1a3660 50%, #0075bf 100%);
+    background: #0F2C52;
     color: var(--text-color);
     margin: 0;
     padding: 0;

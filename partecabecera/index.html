@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes FECCOR</title>
+    <style>
+        /* Variables CSS necesarias para el carrusel */
+        :root {
+            --primary-color: #0F2C52;     /* PANTONE 295 C - Azul oscuro principal */
+            --secondary-color: #0075bf;   /* PANTONE 3005 C - Azul medio */
+            --accent-color: #FFD040;      /* PANTONE 122 C - Amarillo dorado oficial */
+            --text-color: white;
+            --shadow-heavy: rgba(0, 0, 0, 0.5);
+            --gradient-card: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(0, 117, 191, 0.7));
+            --gradient-overlay: linear-gradient(135deg, rgba(15, 44, 82, 0.7), rgba(0, 117, 191, 0.5));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0F2C52;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* CARRUSEL DE IMÁGENES SUPERIOR */
+        .image-carousel-section {
+            padding: 40px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .image-carousel-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px var(--shadow-heavy);
+            background: var(--gradient-card);
+            border: 2px solid var(--accent-color);
+        }
+
+        .image-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-slide.active {
+            opacity: 1;
+        }
+
+        .image-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-overlay);
+        }
+
+        .image-slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 600px;
+            padding: 30px;
+        }
+
+        .image-slide h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .image-slide p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.5;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+
+        .image-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .image-indicator.active {
+            background: var(--accent-color);
+            border-color: var(--primary-color);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(255, 208, 64, 0.6);
+        }
+
+        /* RESPONSIVE para el carrusel */
+        @media (max-width: 768px) {
+            .image-carousel-section {
+                padding: 20px 15px;
+            }
+            
+            .image-carousel-container {
+                height: 250px;
+            }
+            
+            .image-slide h3 {
+                font-size: 2rem;
+            }
+            
+            .image-slide p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-carousel-container {
+                height: 200px;
+            }
+            
+            .image-slide h3 {
+                font-size: 1.5rem;
+            }
+            
+            .image-slide p {
+                font-size: 0.9rem;
+            }
+            
+            .image-slide-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CARRUSEL DE IMÁGENES SUPERIOR -->
+    <div class="image-carousel-section">
+        <div class="image-carousel-container">
+            <!-- Imagen Slide 1 -->
+            <div class="image-slide active" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230F2C52%22 width=%221200%22 height=%22300%22/><rect fill=%22%23ffffff%22 x=%22100%22 y=%2250%22 width=%221000%22 height=%22200%22 opacity=%220.1%22/><circle cx=%22600%22 cy=%22150%22 r=%22100%22 fill=%22%2300cc99%22 opacity=%220.3%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Bienvenidos a FECCOR</h3>
+                    <p>Portal integral de información especializada contra la criminalidad organizada</p>
+                </div>
+            </div>
+
+            <!-- Imagen Slide 2 -->
+            <div class="image-slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230075bf%22 width=%221200%22 height=%22300%22/><rect fill=%22%23FFD040%22 x=%22150%22 y=%2270%22 width=%22900%22 height=%22160%22 opacity=%220.2%22/><polygon points=%22600,50 700,150 500,150%22 fill=%22%2300cc99%22 opacity=%220.4%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Operativos en Acción</h3>
+                    <p>Resultados efectivos en investigaciones y operativos contra el crimen organizado a nivel nacional</p>
+                </div>
+            </div>
+
+            <!-- Imagen Slide 3 -->
+            <div class="image-slide" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 300%22><rect fill=%22%230F2C52%22 width=%221200%22 height=%22300%22/><rect fill=%22%23ffffff%22 x=%22200%22 y=%2280%22 width=%22800%22 height=%22140%22 opacity=%220.15%22/><rect fill=%22%2300cc99%22 x=%22300%22 y=%22100%22 width=%22600%22 height=%22100%22 opacity=%220.25%22/></svg>')">
+                <div class="image-slide-content">
+                    <h3>Coordinación Interinstitucional</h3>
+                    <p>Trabajando unidos con instituciones nacionales e internacionales por la justicia y seguridad ciudadana</p>
+                </div>
+            </div>
+
+            <!-- Indicadores del carrusel de imágenes -->
+            <div class="image-carousel-indicators">
+                <span class="image-indicator active" onclick="currentImageSlide(1)"></span>
+                <span class="image-indicator" onclick="currentImageSlide(2)"></span>
+                <span class="image-indicator" onclick="currentImageSlide(3)"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CARRUSEL DE IMÁGENES SUPERIOR - JavaScript específico
+        let currentImageIndex = 0;
+        const imageSlides = document.querySelectorAll('.image-slide');
+        const imageIndicators = document.querySelectorAll('.image-indicator');
+
+        // Función para mostrar un slide específico
+        function showImageSlide(index) {
+            imageSlides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            imageIndicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        // Función para avanzar al siguiente slide
+        function nextImageSlide() {
+            currentImageIndex = (currentImageIndex + 1) % imageSlides.length;
+            showImageSlide(currentImageIndex);
+        }
+
+        // Función para ir a un slide específico (llamada desde los indicadores)
+        function currentImageSlide(index) {
+            currentImageIndex = index - 1;
+            showImageSlide(currentImageIndex);
+        }
+
+        // Auto-play del carrusel - cambio automático cada 4 segundos
+        setInterval(nextImageSlide, 4000);
+
+        // Inicialización - asegurar que el primer slide esté activo
+        document.addEventListener('DOMContentLoaded', function() {
+            if (imageSlides.length > 0) {
+                showImageSlide(0);
+            }
+        });
+    </script>
+</body>
+</html>

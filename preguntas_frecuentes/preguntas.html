@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas Frecuentes - FECCO</title>
-    <link rel="stylesheet" href="css/styles.css">
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+            <link rel="stylesheet" href="css/styles.css">
 
-</head>
-<body>
-
-
-    <div id="feccor-menu-container"></div> 
     <div class="container">
         <!-- Título principal -->
         <h1>Preguntas Frecuentes</h1>
@@ -45,24 +43,211 @@
         <!-- Categorías -->
         <div class="categories-section">
             <div class="categories-title">Filtrar por Categoría</div>
-            <div class="categories-filter" id="categoriesFilter">
-                <!-- Se generan automáticamente desde JavaScript -->
+            <div class="categories-filter">
+                <button class="category-btn active" onclick="filterByCategory('todas', this)">
+                    📋 Todas
+                </button>
+                <button class="category-btn" onclick="filterByCategory('procedimientos', this)">
+                    ⚖️ Procedimientos
+                </button>
+                <button class="category-btn" onclick="filterByCategory('documentos', this)">
+                    📄 Documentos
+                </button>
+                <button class="category-btn" onclick="filterByCategory('contacto', this)">
+                    📞 Contacto
+                </button>
+                <button class="category-btn" onclick="filterByCategory('tecnologia', this)">
+                    💻 Tecnología
+                </button>
             </div>
         </div>
 
-        <!-- Lista de Preguntas Frecuentes -->
-        <div class="faq-container" id="faqContainer">
-            <!-- Se generan automáticamente desde JavaScript -->
+        <!-- Lista de Preguntas Frecuentes - AHORA DIRECTAMENTE EN HTML -->
+        <div class="faq-container">
+            
+            <!-- PROCEDIMIENTOS -->
+            <div class="faq-item" data-category="procedimientos">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">⚖️</div>
+                    <div class="faq-question-text">¿Cuál es el procedimiento para presentar una denuncia sobre crimen organizado?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Procedimiento de Denuncia:</h4>
+                        <p>Para presentar una denuncia sobre crimen organizado, debe seguir estos pasos:</p>
+                        <ul>
+                            <li>Acudir personalmente a las oficinas de FECCO o a cualquier fiscalía</li>
+                            <li>Presentar su documento de identidad vigente</li>
+                            <li>Proporcionar información detallada sobre los hechos</li>
+                            <li>Aportar evidencias disponibles (documentos, fotografías, etc.)</li>
+                            <li>Recibir el número de expediente para seguimiento</li>
+                        </ul>
+                        <p><strong>Importante:</strong> Todas las denuncias son tratadas con confidencialidad y seriedad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="procedimientos">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">🕐</div>
+                    <div class="faq-question-text">¿Cuánto tiempo toma el procesamiento de una investigación?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Tiempos de Investigación:</h4>
+                        <p>Los tiempos varían según la complejidad del caso:</p>
+                        <ul>
+                            <li><strong>Investigación Preliminar:</strong> Hasta 60 días (prorrogable)</li>
+                            <li><strong>Investigación Preparatoria:</strong> Hasta 8 meses (casos complejos hasta 36 meses)</li>
+                            <li><strong>Casos de Crimen Organizado:</strong> Plazos especiales según complejidad</li>
+                        </ul>
+                        <p><strong>Factores que influyen:</strong> Complejidad del caso, número de investigados, evidencias disponibles, cooperación de testigos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOCUMENTOS -->
+            <div class="faq-item" data-category="documentos">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">📋</div>
+                    <div class="faq-question-text">¿Qué documentos necesito para solicitar información sobre un caso?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Documentos Requeridos:</h4>
+                        <ul>
+                            <li>Documento Nacional de Identidad (DNI) vigente</li>
+                            <li>Solicitud formal dirigida al Fiscal a cargo</li>
+                            <li>Acreditación del interés legítimo en el caso</li>
+                            <li>Poder notarial (si actúa en representación de terceros)</li>
+                        </ul>
+                        <p><strong>Nota:</strong> La información se proporcionará según las normas de confidencialidad y las etapas procesales del caso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="documentos">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">📜</div>
+                    <div class="faq-question-text">¿Cómo obtengo una copia certificada de un documento del expediente?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Procedimiento para Copias Certificadas:</h4>
+                        <ul>
+                            <li>Presentar solicitud escrita con firma legalizada</li>
+                            <li>Adjuntar DNI vigente y tasa judicial correspondiente</li>
+                            <li>Especificar claramente los documentos solicitados</li>
+                            <li>Tiempo de entrega: 3 a 5 días hábiles</li>
+                        </ul>
+                        <p><strong>Costo:</strong> Según tabulador de tasas judiciales vigente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACTO -->
+            <div class="faq-item" data-category="contacto">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">🕒</div>
+                    <div class="faq-question-text">¿Cuáles son los horarios de atención y medios de contacto?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Información de Contacto:</h4>
+                        <p><strong>Horarios de Atención:</strong></p>
+                        <ul>
+                            <li>Lunes a Viernes: 8:00 AM - 5:00 PM</li>
+                            <li>Atención de emergencias: 24 horas</li>
+                        </ul>
+                        <p><strong>Medios de Contacto:</strong></p>
+                        <ul>
+                            <li>Teléfono Central: (01) 625-5555</li>
+                            <li>Línea gratuita: 0800-00-205</li>
+                            <li>Correo: consultas@mpfn.gob.pe</li>
+                            <li>Mesa de partes virtual disponible 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="contacto">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">📅</div>
+                    <div class="faq-question-text">¿Puedo agendar una cita para consulta presencial?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Sistema de Citas:</h4>
+                        <p><strong>Modalidades disponibles:</strong></p>
+                        <ul>
+                            <li>Citas presenciales: Lunes a Viernes 9:00 AM - 4:00 PM</li>
+                            <li>Consultas virtuales: Disponibles previa coordinación</li>
+                            <li>Atención de urgencia: Sin cita previa</li>
+                        </ul>
+                        <p><strong>Para agendar:</strong> Llamar al (01) 625-5555 o través del portal web institucional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECNOLOGÍA -->
+            <div class="faq-item" data-category="tecnologia">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">🌐</div>
+                    <div class="faq-question-text">¿Cómo puedo acceder a los servicios digitales de FECCO?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Servicios Digitales Disponibles:</h4>
+                        <ul>
+                            <li>Portal web institucional: www.mpfn.gob.pe</li>
+                            <li>Mesa de partes virtual para presentación de documentos</li>
+                            <li>Consulta de estado de expedientes en línea</li>
+                            <li>Descarga de formularios y documentos oficiales</li>
+                            <li>Citas virtuales para consultas especializadas</li>
+                        </ul>
+                        <p><strong>Requisitos:</strong> Registro previo con DNI y correo electrónico válido.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="tecnologia">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-icon">🔧</div>
+                    <div class="faq-question-text">¿Qué hacer si tengo problemas técnicos con la plataforma digital?</div>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <h4>Soporte Técnico:</h4>
+                        <p><strong>Canales de soporte:</strong></p>
+                        <ul>
+                            <li>Mesa de ayuda: soporte@mpfn.gob.pe</li>
+                            <li>Chat en línea: Disponible en horario de oficina</li>
+                            <li>Teléfono directo: Anexo 1133B</li>
+                            <li>Guías y tutoriales disponibles en el portal</li>
+                        </ul>
+                        <p><strong>Tiempo de respuesta:</strong> Máximo 24 horas en días hábiles.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Estadísticas -->
         <div class="faq-stats">
             <div class="stat-item">
-                <span class="stat-number" id="totalQuestions">0</span>
+                <span class="stat-number">8</span>
                 <span class="stat-label">Preguntas Frecuentes</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="totalCategories">0</span>
+                <span class="stat-number">4</span>
                 <span class="stat-label">Categorías</span>
             </div>
             <div class="stat-item">
@@ -72,54 +257,47 @@
         </div>
     </div>
 
-        <!-- PIE DE PÁGINA FECCOR COMPACTO -->
-        <footer class="footer-feccor">
-            <div class="footer-container">
-                <div class="footer-main">
-                    
-                    <!-- CONTACTO COMPACTO -->
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <a href="tel:01-6255555" class="contact-link">01-6255555</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">✉️</span>
-                            <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <span>Jr. Carabaya # 442, Cercado de Lima</span>
-                        </div>
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer-feccor">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <a href="tel:01-6255555" class="contact-link">01-6255555</a>
                     </div>
-
-                    <!-- REDES SOCIALES COMPACTAS -->
-                    <div class="footer-social">
-                        <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
-                            📱 WhatsApp
-                        </a>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/FiscaliaPeru?rdid=JyVLMzYY3xfKIdlM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F162pKi9us9%2F#" target="_blank" class="social-icon social-facebook">f</a>
-                            <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
-                            <a href="https://www.tiktok.com/@ministeriopublico_?_t=ZM-8u4yFH9h54Y&_r=1" target="_blank" class="social-icon social-tiktok">♪ </a>
-                        </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe" class="contact-link">fiscaliasuperiorcoordinadora_fecor@mpfn.gob.pe</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Jr. Carabaya # 442, Cercado de Lima</span>
                     </div>
                 </div>
 
-                <!-- COPYRIGHT MÍNIMO -->
-                <div class="footer-bottom">
-                    © 2025 FECOR - Fiscalías Especializadas contra la Criminalidad Organizada
+                <div class="footer-social">
+                    <a href="https://wa.me/+51944920352" class="whatsapp-btn" target="_blank">
+                        📱 WhatsApp
+                    </a>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FiscaliaPeru" target="_blank" class="social-icon social-facebook">f</a>
+                        <a href="https://www.youtube.com/watch?v=eSJnV1y-DdU" target="_blank" class="social-icon social-youtube">▶</a>
+                        <a href="https://www.tiktok.com/@ministeriopublico_" target="_blank" class="social-icon social-tiktok">♪</a>
+                    </div>
                 </div>
             </div>
-        </footer>
 
+            <div class="footer-bottom">
+                © 2025 FECOR - Fiscalías Especializadas contra la Criminalidad Organizada
+            </div>
+        </div>
 
-    <script src="../inicio/menu.js"></script>
-    <script src="js/script.js"></script>
-
-
-
-
-   
-</body>
-</html>
+    </footer>
+            <script src="js/script.js"></script>
+        
+    </body>
+    </html>
+    
+    
+    

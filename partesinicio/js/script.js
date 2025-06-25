@@ -1,31 +1,5 @@
-// CARRUSEL DE IMÁGENES SUPERIOR
-let currentImageIndex = 0;
-const imageSlides = document.querySelectorAll('.image-slide');
-const imageIndicators = document.querySelectorAll('.image-indicator');
+// CARRUSEL DE VIDEOS CON CONTROL INTELIGENTE - JavaScript específico
 
-function showImageSlide(index) {
-    imageSlides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
-    imageIndicators.forEach((indicator, i) => {
-        indicator.classList.toggle('active', i === index);
-    });
-}
-
-function nextImageSlide() {
-    currentImageIndex = (currentImageIndex + 1) % imageSlides.length;
-    showImageSlide(currentImageIndex);
-}
-
-function currentImageSlide(index) {
-    currentImageIndex = index - 1;
-    showImageSlide(currentImageIndex);
-}
-
-// Auto-play del carrusel de imágenes cada 4 segundos
-setInterval(nextImageSlide, 4000);
-
-// CARRUSEL DE VIDEOS CON CONTROL INTELIGENTE MEJORADO
 let currentVideoIndex = 0;
 const videoSlides = document.querySelectorAll('.video-slide');
 const videoIndicators = document.querySelectorAll('.video-indicator');
@@ -33,6 +7,7 @@ let autoPlayInterval;
 let isVideoPlaying = false;
 let allIframes = [];
 
+// Función para pausar todos los videos
 function pauseAllVideos() {
     // Pausar todos los videos de YouTube
     allIframes.forEach(iframe => {
@@ -43,6 +18,7 @@ function pauseAllVideos() {
     isVideoPlaying = false;
 }
 
+// Función para mostrar un video slide específico
 function showVideoSlide(index) {
     // Pausar todos los videos antes de cambiar
     pauseAllVideos();
@@ -61,6 +37,7 @@ function showVideoSlide(index) {
     });
 }
 
+// Función para cambiar video slide (usada por botones de navegación)
 function changeVideoSlide(direction) {
     currentVideoIndex += direction;
     if (currentVideoIndex >= videoSlides.length) {
@@ -71,11 +48,13 @@ function changeVideoSlide(direction) {
     showVideoSlide(currentVideoIndex);
 }
 
+// Función para ir a un video específico (usada por indicadores)
 function currentVideoSlide(index) {
     currentVideoIndex = index - 1;
     showVideoSlide(currentVideoIndex);
 }
 
+// Función para iniciar auto-play
 function startAutoPlay() {
     stopAutoPlay(); // Limpiar interval anterior
     autoPlayInterval = setInterval(() => {
@@ -85,6 +64,7 @@ function startAutoPlay() {
     }, 6000);
 }
 
+// Función para detener auto-play
 function stopAutoPlay() {
     if (autoPlayInterval) {
         clearInterval(autoPlayInterval);
@@ -92,7 +72,7 @@ function stopAutoPlay() {
     }
 }
 
-// Mejorar detección de videos
+// Configurar listeners para los videos
 function setupVideoListeners() {
     allIframes = Array.from(document.querySelectorAll('.youtube-embed'));
     
@@ -159,68 +139,35 @@ document.addEventListener('visibilitychange', function() {
     }
 });
 
-// Inicialización
-setTimeout(() => {
-    setupVideoListeners();
-    startAutoPlay();
-}, 1000);
-
-// ANIMACIONES AL SCROLL
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observar elementos para animaciones
-document.querySelectorAll('.module-card, .additional-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.6s ease';
-    observer.observe(el);
+// Pausar videos cuando se sale de la ventana
+window.addEventListener('blur', function() {
+    pauseAllVideos();
+    stopAutoPlay();
 });
 
-// EFECTOS INTERACTIVOS MEJORADOS
-document.querySelectorAll('.module-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.05)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
+// Reanudar auto-play cuando se vuelve a la ventana
+window.addEventListener('focus', function() {
+    if (!isVideoPlaying) {
+        setTimeout(() => {
+            startAutoPlay();
+        }, 1000);
+    }
 });
 
-// Partículas de fondo (efecto sutil)
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.style.position = 'fixed';
-    particle.style.width = Math.random() * 4 + 'px';
-    particle.style.height = particle.style.width;
-    particle.style.background = 'rgba(0, 204, 153, 0.1)';
-    particle.style.borderRadius = '50%';
-    particle.style.left = Math.random() * 100 + 'vw';
-    particle.style.top = '100vh';
-    particle.style.pointerEvents = 'none';
-    particle.style.zIndex = '1';
+// Inicialización del carrusel
+document.addEventListener('DOMContentLoaded', function() {
+    // Mostrar el primer video
+    if (videoSlides.length > 0) {
+        showVideoSlide(0);
+    }
     
-    document.body.appendChild(particle);
-    
-    particle.animate([
-        { transform: 'translateY(0) rotate(0deg)', opacity: 0 },
-        { transform: 'translateY(-100vh) rotate(360deg)', opacity: 1 },
-        { transform: 'translateY(-100vh) rotate(360deg)', opacity: 0 }
-    ], {
-        duration: Math.random() * 10000 + 10000,
-        easing: 'linear'
-    }).onfinish = () => particle.remove();
-}
+    // Configurar listeners después de un pequeño delay
+    setTimeout(() => {
+        setupVideoListeners();
+        startAutoPlay();
+    }, 1000);
+});
 
+// Funciones globales para los controles HTML (onclick)
+window.changeVideoSlide = changeVideoSlide;
+window.currentVideoSlide = currentVideoSlide;

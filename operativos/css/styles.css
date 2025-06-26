@@ -60,7 +60,7 @@ body {
     background-image: 
         linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
         url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
-    background-size: contain;
+    background-size: cover; /* Cambia de 'contain' a 'cover' */
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -68,8 +68,8 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    overflow-x: hidden; /* Solo oculta scroll horizontal */
-}        
+    overflow-x: hidden;
+}    
 
         /* Contenedor principal con flexbox para distribuir barra lateral y contenido */
         .container {

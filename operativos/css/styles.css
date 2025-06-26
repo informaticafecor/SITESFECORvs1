@@ -1,3 +1,19 @@
+/* Ocultar barras de scroll pero mantener funcionalidad */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+
+
 /* Variables CSS para mejor mantenimiento */
         :root {
             --primary-color: #0F2C52;
@@ -21,6 +37,7 @@
         }*/
 
         /* Estilo general del cuerpo */
+        /*
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-image: 
@@ -34,17 +51,35 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-        }       
+        }    */
+            
+        
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: 
+        linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+        url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Solo oculta scroll horizontal */
+}        
 
         /* Contenedor principal con flexbox para distribuir barra lateral y contenido */
         .container {
             display: flex;
             flex-direction: row;
             min-height: 100vh;
-    max-width: 1500px; /* Limitar ancho máximo */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 0 20px; /* Padding lateral */            
-        }
+            max-width: 1500px; /* Limitar ancho máximo */
+            margin: 0 auto; /* Centrar el contenedor */
+            padding: 0 20px; /* Padding lateral */            
+                }
 
         /* Estilos de la barra lateral */
 .sidebar {

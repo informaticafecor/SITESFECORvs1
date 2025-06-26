@@ -112,57 +112,27 @@
         });
 
         // Inicialización mejorada
-        window.addEventListener('DOMContentLoaded', function() {
-            // Limpiar todos los filtros al cargar
-            clearAllFilters();
-            
-            // Animar las tarjetas al cargar
-            document.querySelectorAll('.news-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-                initSidebarToggle();
-        });
-
-        // Añadir soporte para navegación con teclado
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                clearAllFilters();
-            }
-        });
-
-
-        // AGREGAR ESTA FUNCIÓN DESPUÉS DE TUS FUNCIONES EXISTENTES
-        function initSidebarToggle() {
-            const sidebar = document.querySelector('.sidebar');
-            
-            function addToggleListener() {
-                if (window.innerWidth <= 768) {
-                    sidebar.style.cursor = 'pointer';
-                    
-                    sidebar.addEventListener('click', function(e) {
-                        const rect = this.getBoundingClientRect();
-                        const clickY = e.clientY - rect.top;
-                        
-                        // Solo hacer toggle si se hace clic en los primeros 60px (área del botón)
-                        if (clickY <= 60) {
-                            this.classList.toggle('expanded');
-                            e.stopPropagation();
-                        }
-                    });
-                } else {
-                    sidebar.style.cursor = 'default';
-                    sidebar.classList.remove('expanded');
+ // Funcionalidad para el sidebar responsive
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    
+    // Solo agregar funcionalidad en móvil
+    function handleSidebarToggle() {
+        if (window.innerWidth <= 768) {
+            sidebar.addEventListener('click', function(e) {
+                // Solo toggle si se hace clic en el área del botón (::before)
+                const rect = this.getBoundingClientRect();
+                const clickY = e.clientY - rect.top;
+                
+                // Si el clic está en los primeros 60px (área del botón)
+                if (clickY <= 60) {
+                    this.classList.toggle('expanded');
                 }
-            }
-
-            // Ejecutar al cargar
-            addToggleListener();
-            
-            // Re-ejecutar al cambiar tamaño de ventana
-            window.addEventListener('resize', function() {
-                // Clonar sidebar para limpiar event listeners
-                const newSidebar = sidebar.cloneNode(true);
-                sidebar.parentNode.replaceChild(newSidebar, sidebar);
-                addToggleListener();
             });
         }
+    }
+
+    // Ejecutar al cargar y al redimensionar
+    handleSidebarToggle();
+    window.addEventListener('resize', handleSidebarToggle);
+});

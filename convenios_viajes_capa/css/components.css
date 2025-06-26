@@ -275,7 +275,7 @@
 /* del boton mostrar mas */
 .show-all-btn {
     padding: 12px 20px;
-    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    background: #ebc357;
     border: none;
     color: var(--primary-color);
     border-radius: 25px;

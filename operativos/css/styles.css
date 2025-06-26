@@ -768,156 +768,51 @@ body {
 
 /* RESPONSIVE PARA MÓVILES */
 /* Estilos responsivos para pantallas pequeñas - MEJORADO */
+/* ESTILOS PARA GOOGLE SITES */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        padding: 0 10px;
-    }
-
-    /* SIDEBAR COMO BOTÓN DESPLEGABLE */
     .sidebar {
-        width: 100%;
-        margin: 10px 0 20px 0;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        position: relative;
+        width: 100% !important;
+        margin: 10px 0 20px 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
     }
 
-    /* Botón toggle para mostrar/ocultar filtros */
-    .sidebar::before {
-        content: '📅 Filtros ▼';
-        display: block;
-        width: 100%;
-        padding: 15px;
-        background: linear-gradient(145deg, #0F2C52, #1a3660);
-        border: 2px solid var(--accent-color);
-        border-radius: 10px;
-        color: var(--accent-color);
-        font-weight: bold;
-        text-align: center;
-        cursor: pointer;
-        margin-bottom: 10px;
-        transition: var(--transition);
-        box-shadow: 0 4px 15px var(--shadow-light);
-    }
-
-    .sidebar.expanded::before {
-        content: '📅 Filtros ▲';
-        background: var(--accent-color);
-        color: #0F2C52;
-    }
-
-    /* Contenido de filtros oculto por defecto */
-    .sidebar .filters,
-    .sidebar .clear-filters {
-        display: none;
-    }
-
-    .sidebar.expanded .filters,
-    .sidebar.expanded .clear-filters {
-        display: block;
-    }
-
-    /* Contenedor de filtros expandido */
-    .sidebar.expanded {
-        background: linear-gradient(145deg, #0F2C52, #1a3660);
-        border-radius: 10px;
-        padding: 0 15px 15px 15px;
-        border: 1px solid rgba(0, 204, 153, 0.2);
-        box-shadow: 0 8px 25px var(--shadow-light);
-    }
-
-    /* Layout horizontal para año y meses */
-    .sidebar.expanded .filters {
-        margin-bottom: 15px;
-    }
-
-    .sidebar.expanded .filters:first-of-type {
-        margin-top: 10px;
-    }
-
-    /* Diseño horizontal cuando ambos filtros están visibles */
-    .sidebar.expanded #monthFilters[style*="block"],
-    .sidebar.expanded #monthFilters:not([style*="none"]) {
+    .filter-toggle-btn {
+        width: 100% !important;
+        padding: 15px !important;
+        background: linear-gradient(145deg, #0F2C52, #1a3660) !important;
+        border: 2px solid #00cc99 !important;
+        border-radius: 10px !important;
+        color: #00cc99 !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
         display: block !important;
     }
 
-    /* Hacer botones más pequeños */
-    .filters h3 {
-        font-size: 1em;
-        margin-bottom: 8px;
-        text-align: center;
+    .filters-container {
+        background: linear-gradient(145deg, #0F2C52, #1a3660) !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        border: 1px solid rgba(0, 204, 153, 0.2) !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
     }
 
-    .filters button {
-        padding: 8px 12px;
-        margin-bottom: 6px;
-        font-size: 0.85em;
-        border-radius: 20px;
-        width: 100%;
-    }
-
-    .clear-filters {
-        padding: 10px;
-        font-size: 0.9em;
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    /* Ajustar el contenido principal */
-    .content {
-        padding: 10px;
-    }
-
-    /* Grid de una sola columna en móvil */
-    .news-grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px;
-        max-width: 100%;
-    }
-
-    /* Ajustar búsqueda */
-    .search-container input {
-        width: 90%;
-        padding: 10px 15px;
-    }
-
-    /* Título más pequeño */
-    .main-header h1 {
-        font-size: 2em;
+    /* Ocultar en desktop */
+    .filter-toggle-btn {
+        display: none !important;
     }
 }
 
-/* Para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .sidebar.expanded {
-        padding: 0 10px 10px 10px;
-    }
-
-    .filters button {
-        padding: 6px 8px;
-        font-size: 0.8em;
-        margin-bottom: 4px;
-    }
-
-    .filters h3 {
-        font-size: 0.9em;
-        margin-bottom: 6px;
-    }
-
-    .main-header h1 {
-        font-size: 1.5em;
-        letter-spacing: 1px;
-    }
-
-    .main-header {
-        padding: 20px 10px;
+@media (max-width: 768px) {
+    .filter-toggle-btn {
+        display: block !important;
     }
 }
-
-
 /* PIE DE PÁGINA FECCOR COMPACTO */
 /* PIE DE PÁGINA FECCOR COMPACTO */
 .footer-feccor {

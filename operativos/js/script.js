@@ -111,32 +111,22 @@
             searchTimeout = setTimeout(searchNews, 300);
         });
 
-  // Funcionalidad sidebar responsive - VERSIÓN SIMPLIFICADA
-document.addEventListener('DOMContentLoaded', function() {
-    // Tu código existente...
-    clearAllFilters();
-    
-    document.querySelectorAll('.news-card').forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
+        // Inicialización mejorada
+        window.addEventListener('DOMContentLoaded', function() {
+            // Limpiar todos los filtros al cargar
+            clearAllFilters();
+            
+            // Animar las tarjetas al cargar
+            document.querySelectorAll('.news-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
 
-    // SIDEBAR TOGGLE SIMPLIFICADO
-    const sidebar = document.querySelector('.sidebar');
-    
-    if (sidebar) {
-        sidebar.addEventListener('click', function(e) {
-            // Solo en móvil
-            if (window.innerWidth <= 768) {
-                console.log('Click en sidebar detectado'); // Para debug
-                this.classList.toggle('expanded');
+        // Añadir soporte para navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                clearAllFilters();
             }
         });
-    }
 
-    // Manejar resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            sidebar.classList.remove('expanded');
-        }
-    });
-});
+

@@ -35,29 +35,38 @@
     
     <div class="container">
         <!-- Barra lateral con filtros -->
+        <!-- Barra lateral con filtros -->
         <div class="sidebar">
-            <!-- Filtro por año -->
-            <div class="filters" id="yearFilters">
-                <h3>Años</h3>
-                <button onclick="selectYear('2025')" id="btn-2025">2025</button>
-            </div>
-
-            <!-- Filtro por mes (oculto al inicio) -->
-            <div class="filters" id="monthFilters" style="display:none;">
-                <h3>Meses</h3>
-                <button onclick="filterMonth('enero')" id="btn-enero">Enero</button>
-                <button onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
-                <button onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
-                <button onclick="filterMonth('abril')" id="btn-abril">Abril</button>
-                <button onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
-                <button onclick="filterMonth('junio')" id="btn-junio">Junio</button>
-                <button onclick="filterMonth('julio')" id="btn-julio">Julio</button>
-            </div>
-
-            <!-- Botón para limpiar filtros -->
-            <button class="clear-filters" onclick="clearAllFilters()">
-                Limpiar Filtros
+            <!-- Botón toggle con evento inline -->
+            <button class="filter-toggle-btn" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'; this.querySelector('span').textContent = this.nextElementSibling.style.display === 'block' ? '▲' : '▼';">
+                📅 Filtros <span>▼</span>
             </button>
+            
+            <!-- Contenedor de filtros -->
+            <div class="filters-container" style="display: none;">
+                <!-- Filtro por año -->
+                <div class="filters" id="yearFilters">
+                    <h3>Años</h3>
+                    <button onclick="selectYear('2025')" id="btn-2025">2025</button>
+                </div>
+
+                <!-- Filtro por mes (oculto al inicio) -->
+                <div class="filters" id="monthFilters" style="display:none;">
+                    <h3>Meses</h3>
+                    <button onclick="filterMonth('enero')" id="btn-enero">Enero</button>
+                    <button onclick="filterMonth('febrero')" id="btn-febrero">Febrero</button>
+                    <button onclick="filterMonth('marzo')" id="btn-marzo">Marzo</button>
+                    <button onclick="filterMonth('abril')" id="btn-abril">Abril</button>
+                    <button onclick="filterMonth('mayo')" id="btn-mayo">Mayo</button>
+                    <button onclick="filterMonth('junio')" id="btn-junio">Junio</button>
+                    <button onclick="filterMonth('julio')" id="btn-julio">Julio</button>
+                </div>
+
+                <!-- Botón para limpiar filtros -->
+                <button class="clear-filters" onclick="clearAllFilters()">
+                    Limpiar Filtros
+                </button>
+            </div>
         </div>
 
         <!-- Contenido principal -->

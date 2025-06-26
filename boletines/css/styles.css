@@ -562,3 +562,177 @@ body {
         font-size: 10px;
     }
 }
+
+/* SOLUCIONES PARA GOOGLE SITES - AGREGAR AL FINAL DEL CSS */
+
+/* OCULTAR SCROLLBARS EN TODOS LOS NAVEGADORES */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Safari y Chrome */
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* CORRECCIONES PARA GOOGLE SITES */
+body {
+    /* REDUCIR PADDING PARA EVITAR ESPACIOS VACÍOS */
+    padding: 20px 15px !important;
+    min-height: auto !important; /* Quitar altura mínima forzada */
+    height: auto !important;
+}
+
+/* CONTENEDOR PRINCIPAL AJUSTADO */
+.boletines-container {
+    /* REDUCIR PADDING VERTICAL */
+    padding: 30px 40px !important;
+    margin: 0 auto !important;
+    min-height: auto !important;
+    height: fit-content !important;
+}
+
+/* ESPECÍFICO PARA MÓVILES */
+@media (max-width: 768px) {
+    body {
+        padding: 10px 10px !important; /* MUY REDUCIDO EN MÓVIL */
+        min-height: auto !important;
+    }
+
+    .boletines-container {
+        padding: 20px 15px !important; /* REDUCIDO EN MÓVIL */
+        margin: 0 !important;
+        border-radius: 20px !important; /* REDUCIR BORDER RADIUS */
+    }
+
+    /* AJUSTAR HEADER EN MÓVIL */
+    .section-header {
+        margin-bottom: 30px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .section-title {
+        font-size: 2.2rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .section-description {
+        font-size: 1.1rem !important;
+        margin-bottom: 10px !important;
+    }
+
+    .section-subdescription {
+        font-size: 0.95rem !important;
+    }
+
+    /* AJUSTAR DOCUMENTO DESTACADO EN MÓVIL */
+    .featured-document {
+        padding: 20px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .document-title {
+        font-size: 1.3rem !important;
+    }
+
+    /* AJUSTAR FOOTER EN MÓVIL */
+    .footer-container {
+        padding: 15px 10px !important;
+    }
+}
+
+/* EXTRA PEQUEÑO (MENOS DE 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 5px !important;
+    }
+
+    .boletines-container {
+        padding: 15px 10px !important;
+        border-radius: 15px !important;
+    }
+
+    .section-title {
+        font-size: 1.8rem !important;
+    }
+
+    .featured-document {
+        padding: 15px !important;
+    }
+}
+
+/* CORRECCIONES ESPECÍFICAS PARA IFRAME DE GOOGLE SITES */
+@media (max-width: 768px) {
+    /* SI ESTÁ EN UN IFRAME, AJUSTAR ALTURA */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* PREVENIR DESBORDAMIENTO HORIZONTAL */
+    .boletines-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    /* BOTONES RESPONSIVOS */
+    .document-actions {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100% !important;
+        max-width: 250px !important;
+        justify-content: center !important;
+        padding: 12px 16px !important;
+    }
+}
+
+/* MEJORAR ÍCONOS EN MÓVIL */
+@media (max-width: 768px) {
+    .icon-graphic {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .stats-icon {
+        padding: 20px !important;
+    }
+
+    .document-icon {
+        font-size: 2rem !important;
+    }
+}
+
+/* ASEGURAR QUE NO HAY SCROLL HORIZONTAL */
+* {
+    box-sizing: border-box !important;
+}
+
+body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}

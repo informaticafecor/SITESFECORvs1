@@ -1,10 +1,10 @@
 /* Variables CSS para mantener los colores FECCOR */
 :root {
     --primary-color: #0F2C52;
-    --accent-color: #00cc99;
+    --accent-color: #ebc357;
     --text-color: white;
     --golden-color: #FFD040;
-    --link-hover: #00ffcc;
+    --link-hover: #ebc357;
 }
 
 /* Estilo general del cuerpo */
@@ -30,7 +30,7 @@ h1 {
     text-align: center;
     font-size: 2.5em;
     margin-bottom: 30px;
-    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -81,7 +81,7 @@ h1 {
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 30px;
-    border: 1px solid rgba(0, 204, 153, 0.2);
+    /*border: 1px solid rgba(0, 204, 153, 0.2);*/
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 

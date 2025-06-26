@@ -24,6 +24,10 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     padding: 20px 20px;;
+    background-image: /*FONDO DE IMAGEN*/
+        linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+        url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+    
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -144,12 +148,12 @@ body {
 .section-title {
     font-size: 3.5rem;
     font-weight: 800;
-    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 20px;
-    text-shadow: 0 0 30px rgba(0, 204, 153, 0.3);
+    /*text-shadow: 0 0 30px rgba(0, 204, 153, 0.3);*/
 }
 
 .section-description {

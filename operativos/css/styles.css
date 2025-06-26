@@ -60,7 +60,7 @@ body {
     background-image: 
         linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
         url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
-    background-size: cover; /* Cambia de 'contain' a 'cover' */
+    background-size:  100% 100%; /* Cambia de 'contain' a 'cover' */
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

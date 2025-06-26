@@ -1,7 +1,7 @@
 /* Variables CSS */
         :root {
             --primary-color: #0F2C52;
-            --accent-color: #00cc99;
+            --accent-color: #ebc357;
             --text-color: white;
             --shadow-light: rgba(0, 0, 0, 0.3);
             --border-radius: 15px;
@@ -31,7 +31,7 @@
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+            background: white;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -107,7 +107,7 @@
 
         .header-text p {
             font-size: 1em;
-            color: var(--accent-color);
+            color: #ebc357;
             margin: 0;
             font-weight: 600;
             text-transform: uppercase;

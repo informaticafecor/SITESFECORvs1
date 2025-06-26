@@ -18,7 +18,7 @@ body::-webkit-scrollbar {
         :root {
             --primary-color: #0F2C52;
             --accent-color: #ebc357;
-            --text-color: ebc357;
+            --text-color: white;
             --shadow-light: rgba(0, 0, 0, 0.3);
             --shadow-heavy: rgba(0, 0, 0, 0.5);
             --border-radius: 15px;

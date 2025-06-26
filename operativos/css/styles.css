@@ -858,6 +858,36 @@ body {
     }
 }
 
+/* Sidebar como menú desplegable en móvil */
+@media (max-width: 768px) {
+    .sidebar {
+        /* Agregar estas propiedades adicionales */
+        max-height: 60px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        cursor: pointer;
+    }
+
+    .sidebar.expanded {
+        max-height: 500px;
+    }
+
+    .sidebar::before {
+        content: '▼ Filtros';
+        display: block;
+        text-align: center;
+        color: var(--accent-color);
+        font-weight: bold;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0, 204, 153, 0.2);
+        margin-bottom: 10px;
+    }
+
+    .sidebar.expanded::before {
+        content: '▲ Filtros';
+    }
+}
+
 
 
 /* PIE DE PÁGINA FECCOR COMPACTO */

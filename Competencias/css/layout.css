@@ -23,7 +23,7 @@
     background: linear-gradient(135deg, rgba(15, 44, 82, 0.95) 0%, rgba(26, 54, 96, 0.9) 100%);
     backdrop-filter: blur(15px);
     padding: 30px;
-    border-bottom: 3px solid rgba(0, 204, 153, 0.3);
+    /*border-bottom: 3px solid rgba(0, 204, 153, 0.3);*/
     box-shadow: 0 4px 15px var(--shadow-heavy);
 }
 
@@ -50,10 +50,10 @@
 /* Panel de filtros izquierdo */
 .filters-panel {
     grid-area: filters;
-    background: linear-gradient(180deg, rgba(15, 44, 82, 0.95) 0%, rgba(26, 54, 96, 0.9) 100%);
+   /*  background: linear-gradient(180deg, rgba(15, 44, 82, 0.95) 0%, rgba(26, 54, 96, 0.9) 100%);*/
     backdrop-filter: blur(15px);
     padding: 30px;
-    border-right: 3px solid rgba(0, 204, 153, 0.3);
+    /* border-right: 3px solid rgba(0, 204, 153, 0.3);*/
     box-shadow: 2px 0 15px var(--shadow-heavy);
     overflow-y: auto;
 }

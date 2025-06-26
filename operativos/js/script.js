@@ -120,6 +120,7 @@
             document.querySelectorAll('.news-card').forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });
+                initSidebarToggle();
         });
 
         // Añadir soporte para navegación con teclado
@@ -130,3 +131,38 @@
         });
 
 
+        // AGREGAR ESTA FUNCIÓN DESPUÉS DE TUS FUNCIONES EXISTENTES
+        function initSidebarToggle() {
+            const sidebar = document.querySelector('.sidebar');
+            
+            function addToggleListener() {
+                if (window.innerWidth <= 768) {
+                    sidebar.style.cursor = 'pointer';
+                    
+                    sidebar.addEventListener('click', function(e) {
+                        const rect = this.getBoundingClientRect();
+                        const clickY = e.clientY - rect.top;
+                        
+                        // Solo hacer toggle si se hace clic en los primeros 60px (área del botón)
+                        if (clickY <= 60) {
+                            this.classList.toggle('expanded');
+                            e.stopPropagation();
+                        }
+                    });
+                } else {
+                    sidebar.style.cursor = 'default';
+                    sidebar.classList.remove('expanded');
+                }
+            }
+
+            // Ejecutar al cargar
+            addToggleListener();
+            
+            // Re-ejecutar al cambiar tamaño de ventana
+            window.addEventListener('resize', function() {
+                // Clonar sidebar para limpiar event listeners
+                const newSidebar = sidebar.cloneNode(true);
+                sidebar.parentNode.replaceChild(newSidebar, sidebar);
+                addToggleListener();
+            });
+        }

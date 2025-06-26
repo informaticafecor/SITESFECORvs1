@@ -813,6 +813,73 @@ body {
         display: block !important;
     }
 }
+
+/* CORREGIR PARA DESKTOP - AGREGAR AL FINAL */
+@media (min-width: 769px) {
+    .filter-toggle-btn {
+        display: none !important;
+    }
+    
+    .filters-container {
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    
+    .sidebar {
+        background: linear-gradient(145deg, #0F2C52, #1a3660) !important;
+        padding: 20px !important;
+        border-radius: 15px !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(0, 204, 153, 0.2) !important;
+        width: 280px !important;
+        position: sticky !important;
+        top: 20px !important;
+        height: fit-content !important;
+    }
+}
+
+/* SOLO MÓVIL */
+@media (max-width: 768px) {
+    .filter-toggle-btn {
+        display: block !important;
+    }
+    
+    .filters-container {
+        display: none;
+    }
+    
+    .sidebar {
+        width: 100% !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    
+    .container {
+        flex-direction: column !important;
+    }
+    
+    .content {
+        width: 100% !important;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+}
+
+
+
+
+
+
+
+
 /* PIE DE PÁGINA FECCOR COMPACTO */
 /* PIE DE PÁGINA FECCOR COMPACTO */
 .footer-feccor {

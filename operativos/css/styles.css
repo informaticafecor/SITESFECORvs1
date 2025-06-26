@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
             --transition: all 0.3s ease;
         }
 
-        /* Estilo general del cuerpo 
+        /* Estilo general del cuerpo */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0F2C52;
@@ -33,8 +33,9 @@ body::-webkit-scrollbar {
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            
-        }*/
+        }
+
+
 
         /* Estilo general del cuerpo */
         /*
@@ -54,13 +55,13 @@ body::-webkit-scrollbar {
         }    */
             
         
-/* Estilo general del cuerpo */
+/* Estilo general del cuerpo
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: 
         linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
         url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
-    background-size:  95% auto; /* Cambia de 'contain' a 'cover' */
+    background-size:  95% auto; 
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -69,7 +70,7 @@ body {
     padding: 0;
     line-height: 1.6;
     overflow-x: hidden;
-}    
+}     */
 
         /* Contenedor principal con flexbox para distribuir barra lateral y contenido */
         .container {
@@ -78,7 +79,11 @@ body {
             min-height: 100vh;
             max-width: 1500px; /* Limitar ancho máximo */
             margin: 0 auto; /* Centrar el contenedor */
-            padding: 0 20px; /* Padding lateral */            
+            padding: 0 20px; /* Padding lateral */      
+            background-image: 
+                linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+                url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+
                 }
 
         /* Estilos de la barra lateral */

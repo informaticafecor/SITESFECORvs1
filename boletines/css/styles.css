@@ -1,3 +1,21 @@
+/* Ocultar barras de scroll pero mantener funcionalidad */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+
+
+
+
 /* Variables CSS consistentes con FECCOR */
 :root {
     --primary-color: #0F2C52;

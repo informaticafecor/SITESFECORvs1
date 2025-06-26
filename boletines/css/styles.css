@@ -19,11 +19,14 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0F2C52 0%, #1a3660 50%, #0075bf 100%);
+    background: #0F2C52;
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
     padding: 60px 20px;
+    background-image: /*FONDO DE IMAGEN*/
+        linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+        url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -131,12 +134,12 @@ body {
 .section-title {
     font-size: 3.5rem;
     font-weight: 800;
-    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 20px;
-    text-shadow: 0 0 30px rgba(0, 204, 153, 0.3);
+    /*text-shadow: 0 0 30px rgba(0, 204, 153, 0.3);*/
 }
 
 .section-description {
@@ -157,9 +160,9 @@ body {
 /* DOCUMENTO DESTACADO */
 .featured-document {
     margin-bottom: 40px;
-    background: linear-gradient(145deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.8));
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 20px 50px rgba(0, 204, 153, 0.4);
+    /*background: linear-gradient(145deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.8));*/
+    border: 2px solid var(--accent-color);
+    /*box-shadow: 0 20px 50px rgba(0, 204, 153, 0.4);*/
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 30px;

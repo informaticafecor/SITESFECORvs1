@@ -1,7 +1,7 @@
 /* Variables CSS para mejor mantenimiento */
 :root {
-    --primary-color: #0F2C52;
-    --accent-color: #00cc99;
+    --primary-color: hsl(214, 69%, 19%);
+    --accent-color: #ebc357;
     --text-color: white;
     --shadow-light: rgba(0, 0, 0, 0.3);
     --shadow-heavy: rgba(0, 0, 0, 0.5);
@@ -17,6 +17,10 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background-image: /*FONDO DE IMAGEN*/
+        linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+        url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+
 }
 
 /* Contenedor principal */
@@ -31,7 +35,7 @@ h1 {
     text-align: center;
     font-size: 2.5em;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -205,23 +209,23 @@ h1 {
     color: var(--primary-color);
     border-color: var(--accent-color);
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 204, 153, 0.4);
+    box-shadow: 0 6px 20px #ebc357;
 }
 
 /* ARREGLO: Botón limpiar filtros con mejor estilo */
 .clear-filters {
-    background: rgba(255, 76, 76, 0.1);
-    border-color: #ff4c4c;
-    color: #ff4c4c;
+   /* background: rgba(255, 76, 76, 0.1);*/
+    border-color: #ebc357;
+    color: #ebc357;
     font-weight: 700;
 }
 
 .clear-filters:hover {
     background: rgba(255, 76, 76, 0.2);
-    border-color: #ff6b6b;
-    color: #ff6b6b;
+    border-color: #ebc357;
+    color: #ebc357;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(255, 76, 76, 0.3);
+    box-shadow: 0 6px 15px #ebc357;
 }
 
 /* Botones de fecha más pequeños */
@@ -241,10 +245,10 @@ h1 {
 }
 
 #viewMoreBtn:hover {
-    background: #00ffcc;
+    background: #ebc357;
     color: var(--primary-color);
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 204, 153, 0.4);
+    box-shadow: 0 6px 15px #ebc357;
 }
 
 /* Mensaje cuando no hay resultados */

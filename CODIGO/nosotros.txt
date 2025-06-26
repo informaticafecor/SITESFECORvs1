@@ -8,9 +8,9 @@ async function loadInicioFromGitHub() {
         const BRANCH = 'main';
         
         // Cargar HTML principal
-        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/inicio.html`;
-        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/css/inicio.css`;
-        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/js/inicio.js`;
+        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/nosotros.html`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/css/styles.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/js/script.js`;
         
         console.log('Cargando INICIO desde:', htmlUrl);
         

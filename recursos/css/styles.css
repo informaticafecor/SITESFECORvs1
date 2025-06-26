@@ -1,7 +1,7 @@
 /* Variables CSS para mejor mantenimiento */
         :root {
             --primary-color: #0F2C52;
-            --accent-color: #00cc99;
+            --accent-color: #ebc357;
             --text-color: white;
             --shadow-light: rgba(0, 0, 0, 0.3);
             --shadow-heavy: rgba(0, 0, 0, 0.5);
@@ -18,6 +18,11 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+
+            background-image: /*FONDO DE IMAGEN*/
+                linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+                url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');            
+            
         }
 
         /* Contenedor principal */
@@ -33,7 +38,7 @@
             text-align: center;
             font-size: 2.8em;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+            background: white;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -107,7 +112,7 @@
 
         /* Estilo de cada sección */
         .resource-section {
-            background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(26, 54, 96, 0.8));
+            /*background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(26, 54, 96, 0.8));*/
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
@@ -371,6 +376,46 @@
         .resource-section:nth-child(1) { animation-delay: 0.1s; }
         .resource-section:nth-child(2) { animation-delay: 0.2s; }
         .resource-section:nth-child(3) { animation-delay: 0.3s; }
+
+
+
+/* Ocultar barras de scroll pero mantener funcionalidad */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Solo en dispositivos móviles */
+@media (max-width: 768px) {
+    html {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    html::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+/* Controlar altura máxima en PC */
+@media (min-width: 769px) {
+    .tu-contenedor {
+        max-height: 100vh;
+        overflow-y: auto; /* Permite scroll si es necesario */
+    }
+}
+
+
+
 
 
 /* PIE DE PÁGINA FECCOR COMPACTO */

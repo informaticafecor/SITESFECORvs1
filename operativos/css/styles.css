@@ -169,16 +169,16 @@ body {
             padding: 20px;
         }
 
-        /* Título principal */
+        /* Título principal 
         h1 {
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+            background: white;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
+        }*/
 
         /* Contenedor de búsqueda mejorado */
         .search-container {
@@ -520,7 +520,7 @@ body {
 .main-header h1 {
     font-size: 3em;
     margin: 0;
-    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -767,108 +767,94 @@ body {
 }
 
 /* RESPONSIVE PARA MÓVILES */
+/* Estilos responsivos para pantallas pequeñas - MEJORADO */
 @media (max-width: 768px) {
-    .nav-container {
+    .container {
+        flex-direction: column;
         padding: 0 10px;
     }
 
-    .mobile-toggle {
-        display: block;
-    }
-
-    .nav-menu {
-        display: none;
-        flex-direction: column;
+    .sidebar {
         width: 100%;
-        background: rgba(15, 44, 82, 0.98);
-        border-radius: 15px;
-        margin-top: 10px;
-        padding: 20px;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .nav-item {
-        width: 100%;
-        margin: 5px 0;
-    }
-
-    .nav-link {
-        width: 100%;
-        justify-content: space-between;
-        margin: 0;
-        padding: 15px 20px;
-        border-radius: 10px;
-    }
-
-    /* DROPDOWNS EN MÓVIL */
-    .mega-dropdown {
+        margin: 10px 0 20px 0; /* Reducir márgenes */
+        padding: 15px;
         position: static;
-        transform: none;
-        opacity: 0;
-        visibility: hidden;
-        max-height: 0;
-        overflow: hidden;
-        margin-top: 0;
-        min-width: auto;
-        width: 100%;
-        transition: all 0.4s ease;
-        background: rgba(0, 117, 191, 0.95);
-        border: 1px solid rgba(241, 196, 15, 0.3);
+        max-height: none;
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* CUANDO EL DROPDOWN ESTÁ ABIERTO EN MÓVIL */
-    .nav-item.mobile-open .mega-dropdown {
-        opacity: 1 !important;
-        visibility: visible !important;
-        max-height: 600px !important;
-        margin-top: 10px !important;
+    /* Hacer los filtros más compactos */
+    .filters {
+        margin-bottom: 10px;
     }
 
-    /* DESACTIVAR COMPLETAMENTE HOVER EN MÓVIL */
-    .nav-item:hover .mega-dropdown {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        max-height: 0 !important;
-        margin-top: 0 !important;
-        transform: none !important;
+    .filters h3 {
+        font-size: 1em;
+        margin-bottom: 8px;
     }
 
-    /* SOLO PERMITIR DROPDOWN ABIERTO CUANDO TIENE LA CLASE */
-    .nav-item.mobile-open:hover .mega-dropdown {
-        opacity: 1 !important;
-        visibility: visible !important;
-        max-height: 600px !important;
-        margin-top: 10px !important;
-        transform: none !important;
+    .filters button {
+        padding: 8px 12px; /* Botones más pequeños */
+        margin-bottom: 6px;
+        font-size: 0.85em;
+        border-radius: 20px;
     }
 
-    .dropdown-content {
-        padding: 20px 15px;
+    .clear-filters {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        margin-top: 10px;
     }
 
-    .dropdown-title {
-        font-size: 16px;
-        margin-bottom: 15px;
+    /* Ajustar el contenido principal */
+    .content {
+        padding: 10px;
     }
 
-    .dropdown-item {
+    /* Hacer el grid de una sola columna en móvil */
+    .news-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+        max-width: 100%;
+    }
+
+    /* Ajustar búsqueda */
+    .search-container input {
+        width: 90%;
         padding: 10px 15px;
-        margin: 5px 0;
-        border-radius: 8px;
     }
 
-    .dropdown-item:hover {
-        transform: none;
+    /* Hacer título más pequeño */
+    .main-header h1 {
+        font-size: 2em;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 10px;
+        margin: 5px 0 15px 0;
+    }
+
+    .filters button {
+        padding: 6px 10px;
+        font-size: 0.8em;
+        margin-bottom: 5px;
+    }
+
+    .filters h3 {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+
+    .main-header h1 {
+        font-size: 1.5em;
+        letter-spacing: 1px;
+    }
+
+    .main-header {
+        padding: 20px 10px;
     }
 }
 

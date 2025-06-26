@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro - Carrusel de Imágenes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        /*
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start; 
+            justify-content: center;
+            background-color: #0F2C52;
+            padding-top: 50px;     
+        }*/
+
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #0F2C52;
+            /* Imagen de fondo con transparencia */
+            background-image: 
+                linear-gradient(rgba(15, 44, 82, 0.8), rgba(15, 44, 82, 0.8)),
+                url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-top: 50px;
+        }        
+
+
+
+        .carousel-wrapper {
+            position: relative;
+            width: 91.666667%;
+            max-width: 1200px;
+            height: 75%;
+            background-color: #FFD040;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .carousel-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 24px;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button.prev {
+            left: 16px;
+        }
+
+        .nav-button.next {
+            right: 16px;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dot.active {
+            background-color: #FFD040;
+            transform: scale(1.25);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 4px solid #D97706;
+        }
+
+        .corner-decoration.top-left {
+            top: 8px;
+            left: 8px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 12px;
+        }
+
+        .corner-decoration.top-right {
+            top: 8px;
+            right: 8px;
+            border-left: none;
+            border-bottom: none;
+            border-top-right-radius: 12px;
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 8px;
+            left: 8px;
+            border-right: none;
+            border-top: none;
+            border-bottom-left-radius: 12px;
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 8px;
+            right: 8px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 12px;
+        }
+
+
+
+
+        
+        /* Media queries para diferentes dispositivos */
+
+        /* Tablets y pantallas medianas */
+        @media (max-width: 1024px) {
+            .carousel-wrapper {
+                width: 92%;
+                height: 70%;
+            }
+            
+            .carousel-container {
+                padding-top: 40px;
+            }
+        }
+
+        /* Móviles grandes */
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding-top: 20px;
+            }
+            
+            .carousel-wrapper {
+                width: 95%;
+                height: 65%;
+            }
+            
+            .nav-button {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .nav-button.prev {
+                left: 8px;
+            }
+            
+            .nav-button.next {
+                right: 8px;
+            }
+            
+            .dots-container {
+                bottom: 16px;
+                gap: 8px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .corner-decoration {
+                width: 20px;
+                height: 20px;
+                border-width: 3px;
+            }
+        }
+
+        /* Móviles pequeños */
+        @media (max-width: 480px) {
+            .carousel-container {
+                padding-top: 15px;
+            }
+            
+            .carousel-wrapper {
+                width: 98%;
+                height: 60%;
+                border-radius: 12px;
+            }
+            
+            .carousel-content {
+                padding: 3px;
+            }
+            
+            .image-container {
+                border-radius: 8px;
+            }
+            
+            .nav-button {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            
+            .nav-button.prev {
+                left: 6px;
+            }
+            
+            .nav-button.next {
+                right: 6px;
+            }
+            
+            .dots-container {
+                bottom: 12px;
+                gap: 6px;
+            }
+            
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .corner-decoration {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .corner-decoration.top-left,
+            .corner-decoration.top-right {
+                top: 6px;
+            }
+            
+            .corner-decoration.bottom-left,
+            .corner-decoration.bottom-right {
+                bottom: 6px;
+            }
+            
+            .corner-decoration.top-left,
+            .corner-decoration.bottom-left {
+                left: 6px;
+            }
+            
+            .corner-decoration.top-right,
+            .corner-decoration.bottom-right {
+                right: 6px;
+            }
+        }
+
+        /* Móviles muy pequeños */
+        @media (max-width: 320px) {
+            .carousel-wrapper {
+                height: 55%;
+            }
+            
+            .nav-button {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            
+            .dot {
+                width: 7px;
+                height: 7px;
+            }
+        }
+
+        /* Orientación horizontal en móviles */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .carousel-container {
+                padding-top: 10px;
+            }
+            
+            .carousel-wrapper {
+                height: 85%;
+            }
+            
+            .dots-container {
+                bottom: 8px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-content">
+                <div class="image-container">
+                    <div class="slides-wrapper" id="slidesWrapper">
+                        <!-- Slide 1 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 1">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/iniciosite/main/fo1.jpeg" alt="Slide 2">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 3">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 4">
+                            <div class="slide-overlay"></div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de navegación -->
+                    <button class="nav-button prev" onclick="prevSlide()">&#8249;</button>
+                    <button class="nav-button next" onclick="nextSlide()">&#8250;</button>
+
+                    <!-- Indicadores -->
+                    <div class="dots-container" id="dotsContainer">
+                        <button class="dot active" onclick="goToSlide(0)"></button>
+                        <button class="dot" onclick="goToSlide(1)"></button>
+                        <button class="dot" onclick="goToSlide(2)"></button>
+                        <button class="dot" onclick="goToSlide(3)"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decoraciones de esquinas -->
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoPlayInterval;
+
+        function updateCarousel() {
+            const slidesWrapper = document.getElementById('slidesWrapper');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Mover slides
+            slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Actualizar dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // Inicializar autoplay
+        startAutoPlay();
+
+        // Pausar autoplay cuando el mouse está sobre el carrusel
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
+        carouselWrapper.addEventListener('mouseleave', startAutoPlay);
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Soporte para touch en móviles
+        let startX = 0;
+        let endX = 0;
+
+        carouselWrapper.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        carouselWrapper.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

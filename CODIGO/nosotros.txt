@@ -1,0 +1,62 @@
+<!-- C�digo para cargar INICIO desde GitHub -->
+<div id="inicio-content">Cargando p�gina de inicio...</div>
+<script>
+async function loadInicioFromGitHub() {
+    try {
+        const GITHUB_USER = 'informaticafecor';
+        const REPO_NAME = 'SITESFECCORVS1';
+        const BRANCH = 'main';
+        
+        // Cargar HTML principal
+        const htmlUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/inicio.html`;
+        const cssUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/css/inicio.css`;
+        const jsUrl = `https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/inicio/js/inicio.js`;
+        
+        console.log('Cargando INICIO desde:', htmlUrl);
+        
+        // Fetch del HTML
+        const htmlResponse = await fetch(htmlUrl);
+        if (!htmlResponse.ok) throw new Error(`Error HTML: ${htmlResponse.status}`);
+        const htmlContent = await htmlResponse.text();
+        
+        // Fetch del CSS
+        const cssResponse = await fetch(cssUrl);
+        if (!cssResponse.ok) throw new Error(`Error CSS: ${cssResponse.status}`);
+        const cssContent = await cssResponse.text();
+        
+        // Fetch del JS
+        const jsResponse = await fetch(jsUrl);
+        if (!jsResponse.ok) throw new Error(`Error JS: ${jsResponse.status}`);
+        const jsContent = await jsResponse.text();
+        
+        // Inyectar CSS
+        const styleElement = document.createElement('style');
+        styleElement.textContent = cssContent;
+        document.head.appendChild(styleElement);
+        
+        // Inyectar HTML (solo el body)
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const bodyContent = tempDiv.querySelector('body')?.innerHTML || htmlContent;
+        document.getElementById('inicio-content').innerHTML = bodyContent;
+        
+        // Inyectar y ejecutar JS
+        const scriptElement = document.createElement('script');
+        scriptElement.textContent = jsContent;
+        document.body.appendChild(scriptElement);
+        
+        console.log('? INICIO cargado exitosamente desde GitHub');
+        
+    } catch (error) {
+        console.error('? Error cargando INICIO:', error);
+        document.getElementById('inicio-content').innerHTML = `
+            <div style="padding: 20px; border: 2px solid #ff6b6b; background: rgba(255, 107, 107, 0.1); border-radius: 10px; color: white;">
+                <h3>? Error al cargar INICIO</h3>
+                <p><strong>Error:</strong> ${error.message}</p>
+                <p>Verifica que los archivos existan en: inicio/</p>
+            </div>
+        `;
+    }
+}
+document.addEventListener('DOMContentLoaded', loadInicioFromGitHub);
+</script>

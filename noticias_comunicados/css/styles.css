@@ -1,7 +1,7 @@
  /* Variables CSS para mejor mantenimiento */
         :root {
             --primary-color: #0F2C52;
-            --accent-color: #00cc99;
+            --accent-color: #ebc357;
             --text-color: white;
             --shadow-light: rgba(0, 0, 0, 0.3);
             --shadow-heavy: rgba(0, 0, 0, 0.5);
@@ -17,6 +17,11 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+
+            background-image: /*FONDO DE IMAGEN*/
+                linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+                url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+            
         }
 
 
@@ -90,7 +95,7 @@
             padding: 20px;
         }
 
-        /* Título principal */
+        /* Título principal 
         h1 {
             text-align: center;
             font-size: 2.5em;
@@ -99,7 +104,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
+        }*/
 
         /* Contenedor de búsqueda mejorado */
         .search-container {
@@ -634,7 +639,7 @@ h1 {
     text-align: center;
     font-size: 2.5em;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, var(--accent-color), #00ffcc);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

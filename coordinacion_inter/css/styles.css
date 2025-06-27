@@ -26,9 +26,10 @@
 
 
         .container {
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+            min-height: 100vh;
         }
 
         /* Título principal */
@@ -482,9 +483,3 @@ body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge */
 }
 
-
-
-/* Controlar altura máxima en PC */
-@media (min-width: 769px) {
-
-}

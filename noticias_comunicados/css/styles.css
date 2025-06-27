@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            /*padding-bottom: 120px; *//* Ajusta según la altura de tu footer */
+
             background-image: /*FONDO DE IMAGEN*/
                 linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
                 url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
@@ -371,17 +371,6 @@
             font-size: 0.9em;
         }
 
-        /*PARA QUE EL PIE DE PAGINA SALGA ABAJO UILTIMO */
-        /* Contenedor principal */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-           
-        }
-
-
-
         /* Animación de carga */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -426,7 +415,6 @@
         @media (max-width: 500px) {
             .container {
                 flex-direction: column;
-                padding: 10px; /* 👈 NUEVO */
             }
 
             .sidebar {
@@ -467,7 +455,6 @@
             .news-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
-                 padding: 0 10px; /* 👈 NUEVO */
             }
 
             .content {
@@ -719,11 +706,6 @@ h1 {
     color: white;
     border-top: 3px solid #F1C40F;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-    /*position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;*/
 }
 
 .footer-container {
@@ -881,6 +863,42 @@ h1 {
 }
 
 
+
+
+
+
+/* FOOTER ESTÁTICO - AGREGAR AL FINAL DEL CSS */
+/* FOOTER FIJO SOLO EN PC - AGREGAR AL FINAL DEL CSS */
+@media (min-width: 769px) {
+    /* Solo en PC: Footer fijo */
+    .footer-feccor {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+    
+    /* Solo en PC: Espacio abajo para que no se tape el contenido */
+    body {
+        padding-bottom: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* En móvil: Footer normal (no fijo) */
+    .footer-feccor {
+        position: relative; /* 👈 NORMAL, no fixed */
+        bottom: auto;
+    }
+    
+    /* En móvil: Sin padding extra */
+    body {
+        padding-bottom: 0;
+    }
+}
+
+
 /* Ocultar barras de scroll pero mantener funcionalidad */
 html {
     scrollbar-width: none; /* Firefox */
@@ -896,7 +914,6 @@ body::-webkit-scrollbar {
 }
 
 /* Solo en dispositivos móviles */
-/* FOOTER RESPONSIVE - REEMPLAZA TODO DESDE AQUÍ */
 @media (max-width: 768px) {
     html {
         scrollbar-width: none;
@@ -906,36 +923,13 @@ body::-webkit-scrollbar {
     html::-webkit-scrollbar {
         display: none;
     }
-    
-    /* En móvil: Footer normal y sin padding */
-    .footer-feccor {
-        position: relative !important;
-        bottom: auto;
-    }
-    
-    body {
-        padding-bottom: 0 !important;
-    }
 }
 
+
+/* Controlar altura máxima en PC */
 @media (min-width: 769px) {
-    /* En PC: Footer fijo y contenido flexible */
-    .footer-feccor {
-        /*position: fixed !important;*/
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-    }
-    
-    body {
-        padding-bottom: 120px !important;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    
-    .container {
-        flex: 1; /* 👈 ESTO ELIMINA EL ESPACIO VACÍO */
+    .tu-contenedor {
+        max-height: 100vh;
+        overflow-y: auto; /* Permite scroll si es necesario */
     }
 }

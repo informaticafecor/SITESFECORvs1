@@ -672,7 +672,7 @@ body::-webkit-scrollbar {
     background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9)) !important;
     
     /* RESETEAR herencia del body */
-    background-image: none !important;
+    /*background-image: none !important;*/
     backdrop-filter: none !important;
     
     color: white !important;

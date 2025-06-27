@@ -720,6 +720,7 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    text-align: left;
 }
 
 .contact-item {
@@ -727,6 +728,7 @@ body::-webkit-scrollbar {
     align-items: center;
     gap: 8px;
     font-size: 13px;
+    justify-content: flex-start;
     
     /* Resetear estilos heredados */
     background: none !important;

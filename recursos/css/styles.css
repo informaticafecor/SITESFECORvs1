@@ -65,8 +65,8 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 40px;
+            padding: 45px; /* ESTIRAR UN POCO*/ 
+            margin-bottom: 70px;/* SEPARAR CONTENDOR DEL BUSCARDOR HACIA ABJAO*/
             box-shadow: 0 8px 25px var(--shadow-light);
             border: 1px solid rgba(0, 204, 153, 0.1);
         }

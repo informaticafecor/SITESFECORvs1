@@ -606,7 +606,7 @@ body {
     /* REDUCIR PADDING VERTICAL */
     padding: 30px 40px !important;
     margin: 0 auto !important;
-    min-height: 100vh !important;
+    min-height: auto !important;
     height: fit-content !important;
 }
 

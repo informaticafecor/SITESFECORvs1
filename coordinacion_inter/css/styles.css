@@ -16,7 +16,7 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 2.5;
             min-height: 100vh;
             background-image: /*FONDO DE IMAGEN*/
                 linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
@@ -28,8 +28,8 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
-            /*min-height: 50vh;*/
+            padding: 30px;
+            min-height: 50vh;
         }
 
         /* Título principal */
@@ -49,8 +49,8 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
+            padding: 55px; /* PARA AGRANDAR EL PRINER CONTENDOR*/
+            margin-bottom: 75px; /* PARA EL SEPARADO DE ESPACIO DE LOS DOS CONTONEDORES*/
             box-shadow: 0 8px 25px var(--shadow-light);
             border: 1px solid rgba(0, 204, 153, 0.1);
             text-align: center;
@@ -134,7 +134,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 15px 20px;
+            padding: 35px 25px;
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(0, 204, 153, 0.2);
             border-radius: 12px;

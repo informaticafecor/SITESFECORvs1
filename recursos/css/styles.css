@@ -48,11 +48,11 @@
         /* Descripción principal */
         .main-description {
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: rgba(255, 255, 255, 0.9);
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto 80px auto;
+            padding: 70px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 15px;
@@ -115,7 +115,7 @@
             /*background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(26, 54, 96, 0.8));*/
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 70px;
             box-shadow: 0 10px 30px var(--shadow-light);
             border: 1px solid rgba(0, 204, 153, 0.1);
             transition: var(--transition);

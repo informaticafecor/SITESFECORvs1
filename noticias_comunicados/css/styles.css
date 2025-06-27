@@ -926,7 +926,7 @@ body::-webkit-scrollbar {
 /* Controlar altura máxima en PC */
 @media (min-width: 769px) {
     .tu-contenedor {
-        max-height: 50vh;
+        /*max-height: 50vh;*/
         overflow-y: auto; /* Permite scroll si es necesario */
         
     }

@@ -1,7 +1,7 @@
 // Variables para los filtros activos
 let selectedYear = '';
 let currentMonth = '';
-let showingAll = false;
+//let showingAll = false;
 
 // Función para actualizar el contador de resultados
 function updateResultsCounter() {
@@ -103,13 +103,13 @@ function clearAllFilters() {
     document.getElementById('searchInput').value = '';
 
     // Mostrar solo las primeras tarjetas
-    showInitialCards();
+    // showInitialCards();
 
     updateResultsCounter();
 }
 
 // Función para mostrar solo las primeras tarjetas al inicio
-function showInitialCards() {
+/*function showInitialCards() {
     const allCards = document.querySelectorAll('.news-card');
     allCards.forEach((card, index) => {
         if (index < 6) { // Mostrar solo las primeras 6
@@ -120,10 +120,11 @@ function showInitialCards() {
             card.classList.remove('show');
         }
     });
-}
+}*/
 
 // Función para alternar Ver más/Ver menos
-function toggleViewMore() {
+
+/*function toggleViewMore() {
     const allCards = document.querySelectorAll('.news-card');
     const viewMoreBtn = document.getElementById('viewMoreBtn');
     
@@ -143,7 +144,7 @@ function toggleViewMore() {
     }
     
     updateResultsCounter();
-}
+}*/
 
 // Búsqueda con debounce mejorada
 let searchTimeout;
@@ -160,7 +161,7 @@ window.addEventListener('DOMContentLoaded', function() {
     initializeSearch();
     
     // Mostrar solo las primeras tarjetas al cargar
-    showInitialCards();
+    //showInitialCards();
     
     // Animar las tarjetas al cargar
     document.querySelectorAll('.news-card').forEach((card, index) => {

@@ -264,7 +264,7 @@ h1 {
     min-width: 80px;
 }
 
-/* ARREGLO: Estilo especial para el botón "Ver más" */
+/* ARREGLO: Estilo especial para el botón "Ver más" 
 #viewMoreBtn {
     background: var(--accent-color);
     color: var(--primary-color);
@@ -278,7 +278,7 @@ h1 {
     color: var(--primary-color);
     transform: translateY(-3px);
     box-shadow: 0 6px 15px #ebc357;
-}
+}*/
 
 /* Mensaje cuando no hay resultados */
 .no-results {
@@ -317,7 +317,7 @@ h1 {
 
 /* Estilo de cada tarjeta de oficio */
 .news-card {
-    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    /*background: linear-gradient(145deg, #0F2C52, #1a3660);*/
     color: var(--text-color);
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -330,15 +330,15 @@ h1 {
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Al inicio, ocultar todo excepto las primeras 6 */
+/* Al inicio, ocultar todo excepto las primeras 6 
 .news-card:nth-child(n+7) {
     display: none;
-}
+}*/
 
-/* Cuando hay filtros activos, mostrar todas */
+/* Cuando hay filtros activos, mostrar todas 
 .news-card.show {
     display: block !important;
-}
+}*/
 
 .news-card::before {
     content: '';
@@ -443,7 +443,7 @@ h1 {
 }
 
 .btn-primary:hover {
-    background: #00ffcc;
+    background: #ebc357;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 204, 153, 0.3);
 }

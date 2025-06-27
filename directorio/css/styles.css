@@ -629,6 +629,20 @@ body {
     border-top: 1px solid rgba(241, 196, 15, 0.2);
 }
 
+ /*PARA QUE EL PIE DE PAGINA SALGA ABAJO UILTIMO */
+        /* Contenedor principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+
+
+
+
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .footer-container {

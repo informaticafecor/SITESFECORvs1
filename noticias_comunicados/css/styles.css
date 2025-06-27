@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            padding-bottom: 120px; /* Ajusta según la altura de tu footer */
+            /*padding-bottom: 120px; *//* Ajusta según la altura de tu footer */
             background-image: /*FONDO DE IMAGEN*/
                 linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
                 url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
@@ -719,11 +719,11 @@ h1 {
     color: white;
     border-top: 3px solid #F1C40F;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-    position: fixed;
+    /*position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1000;*/
 }
 
 .footer-container {
@@ -921,7 +921,7 @@ body::-webkit-scrollbar {
 @media (min-width: 769px) {
     /* En PC: Footer fijo y contenido flexible */
     .footer-feccor {
-        position: fixed !important;
+        /*position: fixed !important;*/
         bottom: 0;
         left: 0;
         right: 0;

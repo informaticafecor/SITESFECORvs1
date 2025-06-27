@@ -179,7 +179,7 @@ body {
 .featured-document {
     margin-bottom: 40px;
     /*background: linear-gradient(145deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.8));*/
-    border: 2px solid var(--accent-color);
+    border: 2px solid #FFD040;
     /*box-shadow: 0 20px 50px rgba(0, 204, 153, 0.4);*/
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -223,7 +223,7 @@ body {
 }
 
 .document-badge {
-    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    background: #FFD040;
     color: var(--primary-color);
     padding: 8px 16px;
     border-radius: 20px;
@@ -266,7 +266,7 @@ body {
 
 /* BOTONES */
 .btn-primary {
-    background: linear-gradient(45deg, var(--accent-color), var(--golden-color));
+    background: #FFD040;
     color: var(--primary-color);
     border: none;
     padding: 12px 24px;
@@ -289,7 +289,7 @@ body {
 .btn-secondary {
     background: transparent;
     color: var(--text-color);
-    border: 2px solid var(--accent-color);
+    border: 2px solid #FFD040;
     padding: 12px 24px;
     border-radius: 25px;
     font-weight: 700;
@@ -302,7 +302,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background: var(--accent-color);
+    background: #FFD040;
     color: var(--primary-color);
     transform: translateY(-3px);
 }
@@ -606,7 +606,7 @@ body {
     /* REDUCIR PADDING VERTICAL */
     padding: 30px 40px !important;
     margin: 0 auto !important;
-    min-height: auto !important;
+    min-height: 100vh !important;
     height: fit-content !important;
 }
 

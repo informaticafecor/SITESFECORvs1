@@ -49,7 +49,7 @@ body {
     gap: 40px;
     align-items: center;
     margin-bottom: 35px;
-    padding-bottom: 30px;
+    padding-bottom: 70px;
     border-bottom: 2px solid rgba(0, 204, 153, 0.3);
 }
 
@@ -172,7 +172,7 @@ body {
     background: linear-gradient(145deg, rgba(15, 44, 82, 0.9), rgba(0, 117, 191, 0.7));
     backdrop-filter: blur(15px);
     border-radius: 20px;
-    padding: 30px;
+    padding: 55px;
     border: 1px solid #FFD040;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);

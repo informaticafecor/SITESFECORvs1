@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-
+            padding-bottom: 120px; /* Ajusta según la altura de tu footer */
             background-image: /*FONDO DE IMAGEN*/
                 linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
                 url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
@@ -170,8 +170,8 @@
         /* Diseño de las tarjetas de noticias en formato grid */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             opacity: 1;
             transition: opacity 0.3s ease;
             justify-items: center; /* 👈 NUEVO: Centra las tarjetas */
@@ -371,7 +371,7 @@
             font-size: 0.9em;
         }
 
- /*PARA QUE EL PIE DE PAGINA SALGA ABAJO UILTIMO */
+        /*PARA QUE EL PIE DE PAGINA SALGA ABAJO UILTIMO */
         /* Contenedor principal */
         .container {
             max-width: 1400px;
@@ -426,6 +426,7 @@
         @media (max-width: 500px) {
             .container {
                 flex-direction: column;
+                padding: 10px; /* 👈 NUEVO */
             }
 
             .sidebar {
@@ -466,6 +467,7 @@
             .news-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
+                 padding: 0 10px; /* 👈 NUEVO */
             }
 
             .content {
@@ -717,6 +719,11 @@ h1 {
     color: white;
     border-top: 3px solid #F1C40F;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .footer-container {
@@ -897,6 +904,9 @@ body::-webkit-scrollbar {
     
     html::-webkit-scrollbar {
         display: none;
+    }
+    body {
+        padding-bottom: 100px;
     }
 }
 

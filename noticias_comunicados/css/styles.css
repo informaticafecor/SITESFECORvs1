@@ -896,6 +896,7 @@ body::-webkit-scrollbar {
 }
 
 /* Solo en dispositivos móviles */
+/* FOOTER RESPONSIVE - REEMPLAZA TODO DESDE AQUÍ */
 @media (max-width: 768px) {
     html {
         scrollbar-width: none;
@@ -905,41 +906,36 @@ body::-webkit-scrollbar {
     html::-webkit-scrollbar {
         display: none;
     }
-    body {
-        padding-bottom: 100px;
-    }
-    /* En móvil: Footer normal (no fijo) */
+    
+    /* En móvil: Footer normal y sin padding */
     .footer-feccor {
-        position: relative; /* 👈 NORMAL, no fixed */
+        position: relative !important;
         bottom: auto;
     }
     
-    /* En móvil: Sin padding extra */
     body {
-        padding-bottom: 0;
+        padding-bottom: 0 !important;
     }
-
-
 }
 
-
-/* Controlar altura máxima en PC */
 @media (min-width: 769px) {
-    .tu-contenedor {
-        /*max-height: 50vh;*/
-        overflow-y: auto; /* Permite scroll si es necesario */
-        
-    }
+    /* En PC: Footer fijo y contenido flexible */
     .footer-feccor {
-        position: fixed;
+        position: fixed !important;
         bottom: 0;
         left: 0;
         right: 0;
         z-index: 1000;
-    }    
-        /* Solo en PC: Espacio abajo para que no se tape el contenido */
+    }
+    
     body {
-        padding-bottom: 120px;
+        padding-bottom: 120px !important;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .container {
+        flex: 1; /* 👈 ESTO ELIMINA EL ESPACIO VACÍO */
     }
 }
-

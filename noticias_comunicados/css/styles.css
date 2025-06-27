@@ -170,8 +170,8 @@
         /* Diseño de las tarjetas de noticias en formato grid */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             opacity: 1;
             transition: opacity 0.3s ease;
             justify-items: center; /* 👈 NUEVO: Centra las tarjetas */
@@ -908,6 +908,18 @@ body::-webkit-scrollbar {
     body {
         padding-bottom: 100px;
     }
+    /* En móvil: Footer normal (no fijo) */
+    .footer-feccor {
+        position: relative; /* 👈 NORMAL, no fixed */
+        bottom: auto;
+    }
+    
+    /* En móvil: Sin padding extra */
+    body {
+        padding-bottom: 0;
+    }
+
+
 }
 
 
@@ -916,6 +928,18 @@ body::-webkit-scrollbar {
     .tu-contenedor {
         max-height: 50vh;
         overflow-y: auto; /* Permite scroll si es necesario */
+        
+    }
+    .footer-feccor {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }    
+        /* Solo en PC: Espacio abajo para que no se tape el contenido */
+    body {
+        padding-bottom: 120px;
     }
 }
 

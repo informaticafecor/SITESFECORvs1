@@ -434,3 +434,24 @@
         font-size: 10px;
     }
 }
+
+/* Copia este código en cualquier proyecto */
+@media (min-width: 769px) {
+    .tu-footer {
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+    }
+    body {
+        padding-bottom: [altura-footer];
+    }
+}
+
+@media (max-width: 768px) {
+    .tu-footer {
+        position: relative;
+    }
+    body {
+        padding-bottom: 0;
+    }
+}

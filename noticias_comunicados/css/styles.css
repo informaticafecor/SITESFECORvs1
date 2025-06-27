@@ -197,9 +197,9 @@
         }
 
         /* Al inicio, ocultar todo excepto las primeras 6 */
-        .news-card:nth-child(n+7) {
+      /*  .news-card:nth-child(n+7) {
             display: none;
-        }
+        }*/
 
         /* Cuando hay filtros activos, mostrar todas */
         .news-card.show {
@@ -811,7 +811,7 @@ h1 {
 
 .footer-bottom {
     text-align: center;
-    padding: 10px 0;
+    /*padding: 10px 0;*/
     font-size: 11px;
     color: rgba(255, 255, 255, 0.7);
     border-top: 1px solid rgba(241, 196, 15, 0.2);

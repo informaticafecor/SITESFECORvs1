@@ -165,26 +165,14 @@
         });
 
 
-        // Función para mostrar solo las primeras tarjetas al inicio
-        function showInitialCards() {
-            const allCards = document.querySelectorAll('.news-card');
-            allCards.forEach((card, index) => {
-                if (index < 6) { // Mostrar solo las primeras 6
-                    card.style.display = 'block';
-                    card.classList.add('show');
-                } else {
-                    card.style.display = 'none';
-                    card.classList.remove('show');
-                }
-            });
-        }     
+
 
 
 let showingAll = false;
 
 function toggleViewMore() {
     const allCards = document.querySelectorAll('.news-card');
-    const viewMoreBtn = document.getElementById('viewMoreBtn');
+   /* const viewMoreBtn = document.getElementById('viewMoreBtn');*/
     const viewMoreContainer = document.getElementById('viewMoreContainer');
     
     if (!showingAll) {
@@ -208,8 +196,8 @@ function toggleViewMore() {
 // Función para ocultar/mostrar el botón Ver más
 function toggleViewMoreButton() {
     const allCards = document.querySelectorAll('.news-card');
-    const visibleCards = document.querySelectorAll('.news-card[style*="block"], .news-card:not([style*="none"])');
-    const viewMoreContainer = document.getElementById('viewMoreContainer');
+    const visibleCards = document.querySelectorAll('.news-card[style*="block"], .news-card:not([style*="none"])');  /*const viewMoreContainer = document.getElementById('viewMoreContainer');*/ 
+  
     
     // Solo mostrar el botón si hay filtros activos o si no se están mostrando todas
     if (selectedType === '' && selectedYear === '' && currentMonth === '' && !showingAll) {

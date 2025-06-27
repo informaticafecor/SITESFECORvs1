@@ -868,36 +868,34 @@ h1 {
 
 
 /* FOOTER ESTÁTICO - AGREGAR AL FINAL DEL CSS */
-/* FOOTER FIJO SOLO EN PC - AGREGAR AL FINAL DEL CSS */
-@media (min-width: 769px) {
-    /* Solo en PC: Footer fijo */
+/* SOLO PARA ESCRITORIO: Footer fijo */
+@media screen and (min-width: 1024px) {
+    body {
+        padding-bottom: 100px; /* Ajusta según tu altura de footer */
+    }
+    
     .footer-feccor {
-        position: fixed;
+        position: fixed !important;
         bottom: 0;
         left: 0;
         right: 0;
         z-index: 1000;
-    }
-    
-    /* Solo en PC: Espacio abajo para que no se tape el contenido */
-    body {
-        padding-bottom: 120px;
+        height: 100px; /* Ajusta según tu contenido */
     }
 }
 
-@media (max-width: 768px) {
-    /* En móvil: Footer normal (no fijo) */
+/* TABLET Y MÓVIL: Footer normal */
+@media screen and (max-width: 1023px) {
+    body {
+        padding-bottom: 0 !important;
+    }
+    
     .footer-feccor {
-        position: relative; /* 👈 NORMAL, no fixed */
+        position: relative !important;
         bottom: auto;
-    }
-    
-    /* En móvil: Sin padding extra */
-    body {
-        padding-bottom: 0;
+        height: auto;
     }
 }
-
 
 /* Ocultar barras de scroll pero mantener funcionalidad */
 html {

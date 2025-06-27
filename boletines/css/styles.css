@@ -679,6 +679,8 @@ body {
     }
 }
 
+
+
 /* CORRECCIONES ESPECÍFICAS PARA IFRAME DE GOOGLE SITES */
 @media (max-width: 768px) {
     /* SI ESTÁ EN UN IFRAME, AJUSTAR ALTURA */

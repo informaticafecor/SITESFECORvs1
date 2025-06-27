@@ -445,6 +445,10 @@
     body {
         padding-bottom: [altura-footer];
     }
+    .tu-contenedor {
+        max-height: 100vh;
+        overflow-y: auto; /* Permite scroll si es necesario */
+    }    
 }
 
 @media (max-width: 768px) {
@@ -454,4 +458,33 @@
     body {
         padding-bottom: 0;
     }
+    html {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    html::-webkit-scrollbar {
+        display: none;
+    }    
+}
+
+/* Ocultar barras de scroll pero mantener funcionalidad */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+
+
+/* Controlar altura máxima en PC */
+@media (min-width: 769px) {
+
 }

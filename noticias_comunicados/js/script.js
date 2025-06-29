@@ -165,7 +165,19 @@
         });
 
 
-
+        // Función para mostrar solo las primeras tarjetas al inicio
+       /* function showInitialCards() {
+            const allCards = document.querySelectorAll('.news-card');
+            allCards.forEach((card, index) => {
+                if (index < 6) { // Mostrar solo las primeras 6
+                    card.style.display = 'block';
+                    card.classList.add('show');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('show');
+                }
+            });
+        }     */
 
 
 let showingAll = false;

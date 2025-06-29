@@ -53,12 +53,16 @@ function filterMonth(month) {
 
 // Función centralizada para aplicar todos los filtros
 function applyFilters() {
+    console.log('Aplicando filtros:', { selectedYear, currentMonth }); // Debug
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     
     document.querySelectorAll('.news-card').forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
         const description = card.querySelector('p').textContent.toLowerCase();
-        const code = card.querySelector('.office-code').textContent.toLowerCase();
+        
+        // ARREGLO: Verificar si existe el elemento antes de acceder a textContent
+        const codeElement = card.querySelector('.office-code');
+        const code = codeElement ? codeElement.textContent.toLowerCase() : '';
         
         const matchesSearch = searchInput === '' || 
             title.includes(searchInput) || 
@@ -67,6 +71,8 @@ function applyFilters() {
         
         const matchesYear = selectedYear === '' || card.classList.contains(selectedYear);
         const matchesMonth = currentMonth === '' || card.classList.contains(currentMonth);
+
+        console.log('Tarjeta:', card.classList.toString(), 'Año match:', matchesYear, 'Mes match:', matchesMonth); // Debug
 
         if (matchesSearch && matchesYear && matchesMonth) {
             card.style.display = 'block';
@@ -87,6 +93,8 @@ function searchOffices() {
 
 // Limpiar todos los filtros
 function clearAllFilters() {
+    console.log('Limpiando filtros'); // Debug
+    
     // Reiniciar variables
     selectedYear = '';
     currentMonth = '';
@@ -102,8 +110,11 @@ function clearAllFilters() {
     // Limpiar el buscador
     document.getElementById('searchInput').value = '';
 
-    // Mostrar solo las primeras tarjetas
-    // showInitialCards();
+    // Mostrar todas las tarjetas
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.style.display = 'block';
+        card.classList.add('show');
+    });
 
     updateResultsCounter();
 }
@@ -155,13 +166,17 @@ function initializeSearch() {
     });
 }
 
+
 // Inicialización al cargar la página
 window.addEventListener('DOMContentLoaded', function() {
     // Inicializar búsqueda con debounce
     initializeSearch();
     
-    // Mostrar solo las primeras tarjetas al cargar
-    //showInitialCards();
+    // Mostrar todas las tarjetas inicialmente
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.style.display = 'block';
+        card.classList.add('show');
+    });
     
     // Animar las tarjetas al cargar
     document.querySelectorAll('.news-card').forEach((card, index) => {

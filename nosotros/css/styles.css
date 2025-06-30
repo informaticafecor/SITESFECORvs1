@@ -1307,6 +1307,7 @@ body::-webkit-scrollbar {
 /*PROBANDO --------------------------------------------------*/
 
 /* MODAL PARA VISTA DE IMAGEN - MEJORADO */
+/* MODAL PARA VISTA DE IMAGEN - CENTRADO CORREGIDO */
 .image-modal {
     position: fixed;
     top: 0;
@@ -1327,55 +1328,48 @@ body::-webkit-scrollbar {
     display: flex;
 }
 
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: scale(0.8);
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1);
-    }
-}
-
 .modal-content {
     position: relative;
-    max-width: 95%;
-    max-height: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 90vh;
 }
 
 .modal-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 70vh; /* Asegurar que no sea demasiado alta */
+    width: auto;
     height: auto;
-    max-height: 85vh;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     border: 2px solid #F1C40F;
-    transition: transform 0.3s ease;
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    user-select: none;
 }
 
 .modal-title {
     color: #F1C40F;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    max-width: 90%;
 }
 
 .modal-controls {
     position: absolute;
-    top: -50px;
-    right: 0;
-    display: flex;
-    gap: 10px;
+    top: -60px;
+    right: -10px;
+    z-index: 1001;
 }
 
-.close-modal, .download-btn {
+.close-modal {
     background: #F1C40F;
     color: #0F2C52;
     border: none;
@@ -1391,23 +1385,24 @@ body::-webkit-scrollbar {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.close-modal:hover, .download-btn:hover {
+.close-modal:hover {
     background: #00ffcc;
     transform: scale(1.1);
 }
 
-/* ZOOM CONTROLS */
+/* ZOOM CONTROLS - POSICIONAMIENTO MEJORADO */
 .zoom-controls {
     position: absolute;
-    bottom: -60px;
+    bottom: -70px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
     background: rgba(15, 44, 82, 0.9);
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 25px;
     border: 2px solid #F1C40F;
+    z-index: 1001;
 }
 
 .zoom-btn {
@@ -1415,12 +1410,15 @@ body::-webkit-scrollbar {
     color: #0F2C52;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.1em;
+    width: 35px;
+    height: 35px;
+    font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .zoom-btn:hover {
@@ -1435,57 +1433,119 @@ body::-webkit-scrollbar {
     align-items: center;
     padding: 0 10px;
     font-weight: bold;
+    min-width: 50px;
+    justify-content: center;
 }
 
-/* TOOLTIP PARA IMÁGENES CLICKEABLES */
-.clickable-image {
-    cursor: pointer;
-    position: relative;
-}
-
-.clickable-image::after {
-    content: "🔍 Click para ampliar";
+/* INSTRUCCIONES DE USO - POSICIONAMIENTO MEJORADO */
+.usage-instructions {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(15, 44, 82, 0.9);
     color: #F1C40F;
-    padding: 5px 10px;
+    padding: 8px 15px;
     border-radius: 15px;
-    font-size: 0.8em;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
     border: 1px solid #F1C40F;
+    font-size: 0.75em;
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 1001;
 }
 
-.clickable-image:hover::after {
+.usage-instructions:hover {
     opacity: 1;
+}
+
+/* ESTADOS DE LA IMAGEN */
+.modal-image:active {
+    cursor: grabbing;
+}
+
+.modal-image.zoomed {
+    cursor: grab;
+}
+
+.modal-image.zoomed:active {
+    cursor: grabbing;
 }
 
 /* Responsive para el modal */
 @media (max-width: 768px) {
-    .modal-controls {
-        position: static;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-
-    .zoom-controls {
-        position: static;
-        transform: none;
-        margin-top: 20px;
-        justify-content: center;
-    }
-
     .modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
         padding: 10px;
     }
 
     .modal-image {
-        max-height: 70vh;
+        max-height: 60vh;
+    }
+
+    .modal-controls {
+        top: -50px;
+        right: 0;
+    }
+
+    .close-modal {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+
+    .zoom-controls {
+        bottom: -60px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .zoom-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+
+    .zoom-info {
+        font-size: 0.8em;
+        padding: 0 8px;
+        min-width: 40px;
+    }
+
+    .usage-instructions {
+        bottom: -100px;
+        font-size: 0.7em;
+        padding: 6px 12px;
+    }
+
+    .modal-title {
+        font-size: 1em;
+        margin-bottom: 15px;
     }
 }
+
+@media (max-width: 480px) {
+    .modal-image {
+        max-height: 50vh;
+    }
+
+    .modal-title {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+
+    .usage-instructions {
+        font-size: 0.65em;
+    }
+}
+
+
+
+
+
+
 
 
 /* IMAGEN CON FUNCIONALIDAD DE ARRASTRAR */

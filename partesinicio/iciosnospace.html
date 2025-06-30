@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Imágenes Completas FECCOR</title>
+    <style>
+        :root {
+            --primary-color: #0F2C52;
+            --secondary-color: #0075bf;
+            --accent-color: #FFD040;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F2C52, #0075bf);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .image-title {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .image-description {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, var(--accent-color), #FFE066);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 208, 64, 0.4);
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .control-group {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        .control-group label {
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .control-group select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--accent-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .download-all-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: 2px solid var(--accent-color);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .download-all-btn:hover {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            transform: translateY(-2px);
+        }
+
+        .note {
+            background: rgba(255, 208, 64, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Imágenes Completas del Carrusel FECCOR</h1>
+        
+        <div class="note">
+            <strong>🎯 Contenedor limpio y perfecto</strong><br>
+            Solo el contenedor amarillo con su contenido, sin fondo azul exterior ni puntos de navegación
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Formato:</label>
+                <select id="formatSelect">
+                    <option value="png">PNG (recomendado)</option>
+                    <option value="jpg">JPG</option>
+                    <option value="svg">SVG</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Resolución:</label>
+                <select id="sizeSelect">
+                    <option value="1400,400">Standard (1400×400)</option>
+                    <option value="1800,500">Alta (1800×500)</option>
+                    <option value="2400,650">Ultra Alta (2400×650)</option>
+                    <option value="1000,300">Compacta (1000×300)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="images-grid">
+            <!-- Imagen 1 COMPLETA -->
+            <div class="image-card">
+                <svg class="image-preview" id="image1" viewBox="0 0 1400 400">
+                    <defs>
+                        <!-- Gradientes -->
+                        <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0F2C52;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0F2C52;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="containerGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.9);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.7);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="overlayGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.7);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.5);stop-opacity:1" />
+                        </linearGradient>
+                        <!-- Filtros de sombra -->
+                        <filter id="containerShadow1" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="rgba(0,0,0,0.5)"/>
+                        </filter>
+                        <filter id="textShadow1" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="3" stdDeviation="10" flood-color="rgba(0,0,0,0.8)"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Sin fondo azul exterior - solo transparente -->
+                    
+                    <!-- Contenedor centrado sin padding exterior -->
+                    <g transform="translate(40, 40)">
+                        <!-- Contenedor principal con sombra -->
+                        <rect width="1320" height="320" rx="20" ry="20" fill="url(#containerGrad1)" 
+                              stroke="#FFD040" stroke-width="2" filter="url(#containerShadow1)"/>
+                        
+                        <!-- Imagen de fondo SVG original -->
+                        <g clip-path="url(#containerClip1)">
+                            <clipPath id="containerClip1">
+                                <rect width="1320" height="320" rx="20" ry="20"/>
+                            </clipPath>
+                            
+                            <!-- Fondo azul -->
+                            <rect width="1320" height="320" fill="#0F2C52"/>
+                            <!-- Rectángulo blanco semitransparente -->
+                            <rect fill="#ffffff" x="110" y="60" width="1100" height="200" opacity="0.1"/>
+                            <!-- Círculo verde -->
+                            <circle cx="660" cy="160" r="110" fill="#00cc99" opacity="0.3"/>
+                            
+                            <!-- Overlay de gradiente -->
+                            <rect width="1320" height="320" fill="url(#overlayGrad1)"/>
+                        </g>
+                        
+                        <!-- Contenido de texto centrado -->
+                        <g transform="translate(660, 160)">
+                            <!-- Título -->
+                            <text text-anchor="middle" y="-20" fill="#FFD040" font-size="60" font-weight="700" 
+                                  filter="url(#textShadow1)" font-family="Segoe UI, sans-serif">Bienvenidos a FECCOR</text>
+                            
+                            <!-- Descripción línea 1 -->
+                            <text text-anchor="middle" y="20" fill="rgba(255,255,255,0.95)" font-size="28" 
+                                  filter="url(#textShadow1)" font-family="Segoe UI, sans-serif">Portal integral de información especializada</text>
+                            
+                            <!-- Descripción línea 2 -->
+                            <text text-anchor="middle" y="55" fill="rgba(255,255,255,0.95)" font-size="28" 
+                                  filter="url(#textShadow1)" font-family="Segoe UI, sans-serif">contra la criminalidad organizada</text>
+                        </g>
+                    </g>
+                </svg>
+                <div class="image-title">Slide 1 - Bienvenidos a FECCOR</div>
+                <div class="image-description">Contenedor amarillo limpio con sombras y efectos, sin fondo exterior</div>
+                <button class="download-btn" onclick="downloadImage('image1', 'feccor-completa-bienvenidos')">💾 Descargar Imagen Limpia</button>
+            </div>
+
+            <!-- Imagen 2 COMPLETA -->
+            <div class="image-card">
+                <svg class="image-preview" id="image2" viewBox="0 0 1400 400">
+                    <defs>
+                        <!-- Gradientes -->
+                        <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0F2C52;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0F2C52;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="containerGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.9);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.7);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="overlayGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.7);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.5);stop-opacity:1" />
+                        </linearGradient>
+                        <!-- Filtros -->
+                        <filter id="containerShadow2" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="rgba(0,0,0,0.5)"/>
+                        </filter>
+                        <filter id="textShadow2" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="3" stdDeviation="10" flood-color="rgba(0,0,0,0.8)"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Sin fondo azul exterior - solo transparente -->
+                    
+                    <!-- Contenedor centrado sin padding exterior -->
+                    <g transform="translate(40, 40)">
+                        <!-- Contenedor principal con sombra -->
+                        <rect width="1320" height="320" rx="20" ry="20" fill="url(#containerGrad2)" 
+                              stroke="#FFD040" stroke-width="2" filter="url(#containerShadow2)"/>
+                        
+                        <!-- Imagen de fondo SVG original -->
+                        <g clip-path="url(#containerClip2)">
+                            <clipPath id="containerClip2">
+                                <rect width="1320" height="320" rx="20" ry="20"/>
+                            </clipPath>
+                            
+                            <!-- Fondo azul medio -->
+                            <rect width="1320" height="320" fill="#0075bf"/>
+                            <!-- Rectángulo amarillo semitransparente -->
+                            <rect fill="#FFD040" x="165" y="75" width="990" height="170" opacity="0.2"/>
+                            <!-- Triángulo verde -->
+                            <polygon points="660,55 770,165 550,165" fill="#00cc99" opacity="0.4"/>
+                            
+                            <!-- Overlay de gradiente -->
+                            <rect width="1320" height="320" fill="url(#overlayGrad2)"/>
+                        </g>
+                        
+                        <!-- Contenido de texto centrado -->
+                        <g transform="translate(660, 160)">
+                            <!-- Título -->
+                            <text text-anchor="middle" y="-20" fill="#FFD040" font-size="60" font-weight="700" 
+                                  filter="url(#textShadow2)" font-family="Segoe UI, sans-serif">Operativos en Acción</text>
+                            
+                            <!-- Descripción línea 1 -->
+                            <text text-anchor="middle" y="15" fill="rgba(255,255,255,0.95)" font-size="26" 
+                                  filter="url(#textShadow2)" font-family="Segoe UI, sans-serif">Resultados efectivos en investigaciones y operativos</text>
+                            
+                            <!-- Descripción línea 2 -->
+                            <text text-anchor="middle" y="45" fill="rgba(255,255,255,0.95)" font-size="26" 
+                                  filter="url(#textShadow2)" font-family="Segoe UI, sans-serif">contra el crimen organizado a nivel nacional</text>
+                        </g>
+                    </g>
+                </svg>
+                <div class="image-title">Slide 2 - Operativos en Acción</div>
+                <div class="image-description">Imagen completa con contenedor amarillo, sombras y todos los efectos</div>
+                <button class="download-btn" onclick="downloadImage('image2', 'feccor-completa-operativos')">💾 Descargar Imagen Limpia</button>
+            </div>
+
+            <!-- Imagen 3 COMPLETA -->
+            <div class="image-card">
+                <svg class="image-preview" id="image3" viewBox="0 0 1400 400">
+                    <defs>
+                        <!-- Gradientes -->
+                        <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0F2C52;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0F2C52;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="containerGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.9);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.7);stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="overlayGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(15, 44, 82, 0.7);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(0, 117, 191, 0.5);stop-opacity:1" />
+                        </linearGradient>
+                        <!-- Filtros -->
+                        <filter id="containerShadow3" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="rgba(0,0,0,0.5)"/>
+                        </filter>
+                        <filter id="textShadow3" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="3" stdDeviation="10" flood-color="rgba(0,0,0,0.8)"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Sin fondo azul exterior - solo transparente -->
+                    
+                    <!-- Contenedor centrado sin padding exterior -->
+                    <g transform="translate(40, 40)">
+                        <!-- Contenedor principal con sombra -->
+                        <rect width="1320" height="320" rx="20" ry="20" fill="url(#containerGrad3)" 
+                              stroke="#FFD040" stroke-width="2" filter="url(#containerShadow3)"/>
+                        
+                        <!-- Imagen de fondo SVG original -->
+                        <g clip-path="url(#containerClip3)">
+                            <clipPath id="containerClip3">
+                                <rect width="1320" height="320" rx="20" ry="20"/>
+                            </clipPath>
+                            
+                            <!-- Fondo azul oscuro -->
+                            <rect width="1320" height="320" fill="#0F2C52"/>
+                            <!-- Rectángulo blanco semitransparente -->
+                            <rect fill="#ffffff" x="220" y="85" width="880" height="150" opacity="0.15"/>
+                            <!-- Rectángulo verde semitransparente -->
+                            <rect fill="#00cc99" x="330" y="110" width="660" height="100" opacity="0.25"/>
+                            
+                            <!-- Overlay de gradiente -->
+                            <rect width="1320" height="320" fill="url(#overlayGrad3)"/>
+                        </g>
+                        
+                        <!-- Contenido de texto centrado -->
+                        <g transform="translate(660, 160)">
+                            <!-- Título -->
+                            <text text-anchor="middle" y="-20" fill="#FFD040" font-size="56" font-weight="700" 
+                                  filter="url(#textShadow3)" font-family="Segoe UI, sans-serif">Coordinación Interinstitucional</text>
+                            
+                            <!-- Descripción línea 1 -->
+                            <text text-anchor="middle" y="15" fill="rgba(255,255,255,0.95)" font-size="26" 
+                                  filter="url(#textShadow3)" font-family="Segoe UI, sans-serif">Trabajando unidos con instituciones nacionales</text>
+                            
+                            <!-- Descripción línea 2 -->
+                            <text text-anchor="middle" y="45" fill="rgba(255,255,255,0.95)" font-size="26" 
+                                  filter="url(#textShadow3)" font-family="Segoe UI, sans-serif">e internacionales por la justicia y seguridad ciudadana</text>
+                        </g>
+                    </g>
+                </svg>
+                <div class="image-title">Slide 3 - Coordinación Interinstitucional</div>
+                <div class="image-description">Imagen completa con contenedor amarillo, sombras y todos los efectos</div>
+                <button class="download-btn" onclick="downloadImage('image3', 'feccor-completa-coordinacion')">💾 Descargar Imagen Limpia</button>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="download-all-btn" onclick="downloadAllImages()">📦 Descargar las 3 Imágenes Limpias</button>
+        </div>
+
+        <div class="note">
+            <strong>✅ Imágenes limpias y listas</strong><br>
+            Solo el contenedor amarillo con bordes redondeados, sombras, gradientes y textos.<br>
+            Sin fondo azul exterior ni puntos de navegación - perfectas para usar como imágenes estáticas.
+        </div>
+    </div>
+
+    <script>
+        function downloadImage(imageId, filename) {
+            const format = document.getElementById('formatSelect').value;
+            const sizeValue = document.getElementById('sizeSelect').value;
+            const [width, height] = sizeValue.split(',').map(Number);
+            
+            const svgElement = document.getElementById(imageId);
+            
+            // Clonar el SVG y ajustar el tamaño
+            const svgClone = svgElement.cloneNode(true);
+            svgClone.setAttribute('width', width);
+            svgClone.setAttribute('height', height);
+            svgClone.setAttribute('viewBox', `0 0 1400 400`);
+            
+            const svgData = new XMLSerializer().serializeToString(svgClone);
+            
+            if (format === 'svg') {
+                // Descargar como SVG
+                const blob = new Blob([svgData], {type: 'image/svg+xml'});
+                downloadBlob(blob, `${filename}.svg`);
+            } else {
+                // Convertir a canvas y descargar como imagen
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                canvas.width = width;
+                canvas.height = height;
+                
+                img.onload = function() {
+                    // Fondo transparente para PNG, blanco para JPG
+                    if (format === 'jpg') {
+                        ctx.fillStyle = '#0F2C52';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
+                    canvas.toBlob(function(blob) {
+                        downloadBlob(blob, `${filename}.${format}`);
+                    }, mimeType, 0.95);
+                };
+                
+                img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+            }
+        }
+        
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function downloadAllImages() {
+            const images = ['image1', 'image2', 'image3'];
+            const filenames = [
+                'feccor-completa-bienvenidos', 
+                'feccor-completa-operativos', 
+                'feccor-completa-coordinacion'
+            ];
+            
+            images.forEach((imageId, index) => {
+                setTimeout(() => {
+                    downloadImage(imageId, filenames[index]);
+                }, index * 800);
+            });
+        }
+    </script>
+</body>
+</html>

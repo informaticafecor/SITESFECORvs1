@@ -36,12 +36,15 @@
         </section>
 
         <!-- Organigrama - SIN CARRUSEL -->
+        <!-- Organigrama - SIN CARRUSEL -->
         <section class="organigrama-section">
             <div class="slide-content">
                 <h2>ORGANIGRAMA DE LAS FISCALÍAS ESPECIALIZADAS CONTRA LA CRIMINALIDAD ORGANIZADA A NIVEL NACIONAL</h2>
                 <div class="organigrama-content">
-                    <div class="organigrama-image">
-                        <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/Organigrama.jpg" alt="Organigrama FECOR">
+                    <div class="organigrama-image clickable-image">
+                        <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/Organigrama.jpg" 
+                            alt="Organigrama FECOR" 
+                            onclick="openImageModal(this, 'Organigrama FECOR Nacional')">
                     </div>
                     <div class="organigrama-text">
                         <p>Posteriormente, a través de las Resoluciones de la Fiscalía de la Nación N°4030-2014, 4109-2014-MP-FN y 4870-2014-MP-FN, se resuelve convertir diversas Fiscalías Penales en fiscalías provinciales Especializadas contra la Criminalidad Organizada. Actualmente, ante cuenta con tres (3) Fiscalías Superiores Nacionales Especializadas contra la Criminalidad Organizada, cuatro (4) Fiscalías Supraprovinciales Corporativas Especializadas contra la Criminalidad Organizada, con competencia nacional y seis (6) equipos de Lima (Ventanilla) fiscalías provinciales Especializadas contra la Criminalidad Organizada, que se encuentran descentralizadas a nivel nacional.</p>
@@ -55,8 +58,10 @@
             <div class="slide-content">
                 <h2>COMPETENCIA TERRITORIAL</h2>
                 <div class="competencia-content">
-                    <div class="mapa-container">
-                        <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/mapperu.png" alt="Mapa del Perú - Competencia Territorial">
+                    <div class="mapa-container clickable-image">
+                        <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/mapperu.png" 
+                            alt="Mapa del Perú - Competencia Territorial"
+                            onclick="openImageModal(this, 'Mapa de Competencia Territorial del Perú')">
                     </div>
                 </div>
             </div>
@@ -552,6 +557,27 @@
         </section>
 
     </main>
+
+        <!-- Modal para vista de imagen -->
+        <!-- Modal para vista de imagen -->
+        <div class="image-modal" id="imageModal" onclick="closeImageModal(event)">
+            <div class="modal-content">
+                <div class="modal-controls">
+                    <button class="close-modal" onclick="closeImageModal()" title="Cerrar">✕</button>
+                </div>
+                <div class="modal-title" id="modalTitle"></div>
+                <img class="modal-image" id="modalImage" alt="">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomImage(-0.2)" title="Alejar">−</button>
+                    <div class="zoom-info" id="zoomInfo">100%</div>
+                    <button class="zoom-btn" onclick="zoomImage(0.2)" title="Acercar">+</button>
+                    <button class="zoom-btn" onclick="resetZoom()" title="Zoom original">⌂</button>
+                </div>
+                <div class="usage-instructions">
+                    🖱️ Rueda del mouse: Zoom | 🖐️ Arrastra para mover | ⌨️ ESC: Cerrar
+                </div>
+            </div>
+        </div>
 
         <!-- PIE DE PÁGINA FECCOR COMPACTO -->
         <footer class="footer-feccor">

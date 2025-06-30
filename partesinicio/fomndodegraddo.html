@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Dorado para tus Imágenes - Sin Fondo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #B8860B;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .upload-section {
+            background: linear-gradient(135deg, #FFE5B4, #FFECB3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px dashed #FFD700;
+            transition: all 0.3s ease;
+        }
+        .upload-section.dragover {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-color: #B8860B;
+            transform: scale(1.02);
+        }
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        #fileInput {
+            display: none;
+        }
+        .upload-btn {
+            background: linear-gradient(45deg, #E6A500, #D4A017);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(230, 165, 0, 0.3);
+        }
+        .upload-btn:hover {
+            background: linear-gradient(45deg, #D4A017, #B8860B);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 165, 0, 0.4);
+        }
+        .preview-section {
+            display: none;
+            margin: 30px 0;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .image-box {
+            text-align: center;
+        }
+        .image-box h3 {
+            color: #B8860B;
+            margin-bottom: 15px;
+        }
+        #originalImage, #processedImage, #frameCanvas {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            object-fit: contain;
+        }
+        #processedImage, #frameCanvas {
+            background: 
+                repeating-conic-gradient(#f0f0f0 0% 25%, white 0% 50%) 
+                50% / 20px 20px;
+        }
+        .controls {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #FFD700;
+        }
+        .control-group {
+            margin: 15px 0;
+        }
+        .control-group label {
+            display: inline-block;
+            width: 150px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+        }
+        .control-group input[type="range"] {
+            width: 200px;
+            margin: 0 10px;
+        }
+        .control-group input[type="color"] {
+            width: 50px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .style-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .style-btn {
+            background: linear-gradient(45deg, #6f42c1, #e83e8c);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .style-btn.active {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+        }
+        .processing-options {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #2196f3;
+        }
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(40,167,69,0.3);
+        }
+        .download-btn:hover {
+            background: linear-gradient(45deg, #218838, #1a9b7a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(40,167,69,0.4);
+        }
+        .jpg-btn {
+            background: linear-gradient(45deg, #dc3545, #e83e8c);
+            box-shadow: 0 4px 10px rgba(220,53,69,0.3);
+        }
+        .jpg-btn:hover {
+            background: linear-gradient(45deg, #c82333, #d91a72);
+            box-shadow: 0 6px 15px rgba(220,53,69,0.4);
+        }
+        .process-btn {
+            background: linear-gradient(45deg, #2196f3, #21cbf3);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(33,150,243,0.3);
+            margin: 10px;
+        }
+        .process-btn:hover {
+            background: linear-gradient(45deg, #1976d2, #00bcd4);
+            transform: translateY(-2px);
+        }
+        .success-msg {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+            font-weight: bold;
+            border: 2px solid #28a745;
+        }
+        .instructions {
+            background: linear-gradient(135deg, #FFE5B4, #FFECB3);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 6px solid #FFD700;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.2);
+        }
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+            display: none;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Marco Dorado Perfecto 512px</h1>
+        
+        <div class="upload-section" id="uploadSection">
+            <h2>📁 Sube tu Imagen</h2>
+            <p>Arrastra y suelta tu imagen aquí o haz clic para seleccionar</p>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" accept="image/*">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📷 Seleccionar Imagen
+                </button>
+            </div>
+            <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                Formatos soportados: JPG, PNG, GIF, WebP
+            </p>
+        </div>
+
+        <div class="preview-section" id="previewSection">
+            <div class="processing-options">
+                <h3>🎯 Procesamiento de Fondo</h3>
+                <div class="control-group">
+                    <label>Sensibilidad:</label>
+                    <input type="range" id="sensitivity" min="5" max="50" value="20" oninput="updateSensitivity()">
+                    <span id="sensitivityValue">20</span>
+                </div>
+                <div class="control-group">
+                    <label>Suavizado:</label>
+                    <input type="range" id="smoothing" min="0" max="10" value="2" oninput="updateSmoothing()">
+                    <span id="smoothingValue">2</span>
+                </div>
+                <button class="process-btn" onclick="removeBackground()">🪄 Quitar Fondo Automático</button>
+                <button class="process-btn" onclick="removeBackgroundManual()">✂️ Quitar Fondo Manual</button>
+                <div class="progress" id="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <div class="image-box">
+                    <h3>🖼️ Original</h3>
+                    <img id="originalImage" alt="Imagen original">
+                </div>
+                <div class="image-box">
+                    <h3>✂️ Sin Fondo</h3>
+                    <canvas id="processedImage"></canvas>
+                </div>
+                <div class="image-box">
+                    <h3>✨ Con Marco</h3>
+                    <canvas id="frameCanvas"></canvas>
+                </div>
+            </div>
+
+            <div class="style-options">
+                <button class="style-btn active" onclick="setStyle('gold')">🏆 Dorado Clásico</button>
+                <button class="style-btn" onclick="setStyle('luxury')">💎 Plata Lujo</button>
+                <button class="style-btn" onclick="setStyle('royal')">👑 Azul Real</button>
+                <button class="style-btn" onclick="setStyle('custom')">🎨 Personalizado</button>
+            </div>
+
+            <div class="controls">
+                <h3>⚙️ Personalizar Marco</h3>
+                <div class="control-group">
+                    <label>Grosor:</label>
+                    <input type="range" id="frameThickness" min="15" max="50" value="25" oninput="updateFrame()">
+                    <span id="thicknessValue">25px</span>
+                </div>
+                <div class="control-group">
+                    <label>Redondez:</label>
+                    <input type="range" id="cornerRadius" min="0" max="25" value="8" oninput="updateFrame()">
+                    <span id="radiusValue">8%</span>
+                </div>
+                <div class="control-group" id="customColorGroup" style="display: none;">
+                    <label>Color Marco:</label>
+                    <input type="color" id="frameColor" value="#B8860B" oninput="updateFrame()">
+                </div>
+                <div class="control-group">
+                    <label>Tamaño Final:</label>
+                    <select id="outputSize" onchange="updateFrame()">
+                        <option value="512" selected>512x512px</option>
+                        <option value="1024">1024x1024px</option>
+                        <option value="2048">2048x2048px</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="controls">
+                <h3>🎨 Fondo Degradado</h3>
+                <div class="control-group">
+                    <label>Activar Fondo:</label>
+                    <input type="checkbox" id="enableBackground" onchange="updateFrame()" style="width: auto; margin: 0 10px;">
+                    <span>Agregar fondo degradado</span>
+                </div>
+                <div id="backgroundControls" style="display: none;">
+                    <div class="control-group">
+                        <label>Tipo Degradado:</label>
+                        <select id="gradientType" onchange="updateFrame()">
+                            <option value="linear">Lineal</option>
+                            <option value="radial">Radial</option>
+                            <option value="diagonal">Diagonal</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Color 1:</label>
+                        <input type="color" id="bgColor1" value="#FFD700" oninput="updateFrame()">
+                        <button class="style-btn" onclick="setGradientPreset('gold')" style="margin: 0 5px; padding: 5px 10px; font-size: 12px;">🏆 Dorado</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Color 2:</label>
+                        <input type="color" id="bgColor2" value="#B8860B" oninput="updateFrame()">
+                        <button class="style-btn" onclick="setGradientPreset('blue')" style="margin: 0 5px; padding: 5px 10px; font-size: 12px;">💙 Azul</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Color 3:</label>
+                        <input type="color" id="bgColor3" value="#DAA520" oninput="updateFrame()">
+                        <button class="style-btn" onclick="setGradientPreset('green')" style="margin: 0 5px; padding: 5px 10px; font-size: 12px;">💚 Verde</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Opacidad:</label>
+                        <input type="range" id="bgOpacity" min="0.1" max="1" step="0.1" value="0.9" oninput="updateFrame()">
+                        <span id="opacityValue">90%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadImage('png')">⬇️ Descargar PNG</button>
+                <button class="download-btn jpg-btn" onclick="downloadImage('jpg')">⬇️ Descargar JPG</button>
+            </div>
+
+            <div id="success" class="success-msg">
+                ✅ ¡Imagen con marco dorado descargada exitosamente!
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h4>✨ Marco con Fondo Degradado Profesional:</h4>
+            <p>• <strong>Fondo Degradado:</strong> Activa fondos hermosos como en tu imagen de referencia</p>
+            <p>• <strong>3 Tipos de Degradado:</strong> Lineal, Radial y Diagonal</p>
+            <p>• <strong>3 Colores Personalizables:</strong> Crea degradados únicos con tus colores</p>
+            <p>• <strong>Presets Rápidos:</strong> Dorado, Azul y Verde listos para usar</p>
+            <p>• <strong>Control de Opacidad:</strong> Ajusta la intensidad del fondo</p>
+            <p>• <strong>Marco Proporcional:</strong> Sin deformación en ningún tamaño</p>
+            <p>• <strong>Eliminación de Fondo:</strong> Automática y manual por color</p>
+            <p>• <strong>PNG:</strong> Conserva transparencia si no hay fondo degradado</p>
+            <p>• <strong>JPG:</strong> Mantiene el fondo degradado o aplica blanco</p>
+            <p>• <strong>🎯 Tip:</strong> Activa el fondo degradado para resultados como tu imagen de referencia</p>
+        </div>
+    </div>
+
+    <script>
+        let currentImage = null;
+        let processedImage = null;
+        let currentStyle = 'gold';
+        let backgroundRemoved = false;
+
+        const styles = {
+            gold: {
+                gradient: ['#E6A500', '#D4A017', '#B8860B'],
+                border: '#B8860B',
+                shadow: 'rgba(230, 165, 0, 0.6)'
+            },
+            luxury: {
+                gradient: ['#C0C0C0', '#E5E5E5', '#D3D3D3'],
+                border: '#696969',
+                shadow: 'rgba(192, 192, 192, 0.6)'
+            },
+            royal: {
+                gradient: ['#4169E1', '#1E90FF', '#0066CC'],
+                border: '#191970',
+                shadow: 'rgba(65, 105, 225, 0.6)'
+            },
+            custom: {
+                gradient: null,
+                border: '#B8860B',
+                shadow: 'rgba(184, 134, 11, 0.6)'
+            }
+        };
+
+        // Configurar drag and drop
+        const uploadSection = document.getElementById('uploadSection');
+        
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.classList.add('dragover');
+        });
+
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.classList.remove('dragover');
+        });
+
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // Configurar input de archivo
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+
+        function handleFileSelect(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Por favor selecciona un archivo de imagen válido.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    currentImage = img;
+                    processedImage = null;
+                    backgroundRemoved = false;
+                    document.getElementById('originalImage').src = e.target.result;
+                    document.getElementById('previewSection').style.display = 'block';
+                    
+                    // Mostrar imagen original en canvas procesado inicialmente
+                    showProcessedImage(img);
+                    updateFrame();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showProcessedImage(img) {
+            const canvas = document.getElementById('processedImage');
+            const ctx = canvas.getContext('2d');
+            
+            // Tamaño fijo para vista previa consistente
+            const previewSize = 250;
+            canvas.width = previewSize;
+            canvas.height = previewSize;
+            
+            ctx.clearRect(0, 0, previewSize, previewSize);
+            
+            // Centrar imagen manteniendo proporción
+            let drawWidth, drawHeight, offsetX, offsetY;
+            
+            if (img.width > img.height) {
+                drawWidth = previewSize;
+                drawHeight = (img.height * previewSize) / img.width;
+                offsetX = 0;
+                offsetY = (previewSize - drawHeight) / 2;
+            } else {
+                drawHeight = previewSize;
+                drawWidth = (img.width * previewSize) / img.height;
+                offsetX = (previewSize - drawWidth) / 2;
+                offsetY = 0;
+            }
+            
+            ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        }
+
+        function updateSensitivity() {
+            const value = document.getElementById('sensitivity').value;
+            document.getElementById('sensitivityValue').textContent = value;
+        }
+
+        function updateSmoothing() {
+            const value = document.getElementById('smoothing').value;
+            document.getElementById('smoothingValue').textContent = value;
+        }
+
+        function setGradientPreset(preset) {
+            const presets = {
+                gold: {
+                    color1: '#FFD700',
+                    color2: '#B8860B', 
+                    color3: '#DAA520'
+                },
+                blue: {
+                    color1: '#4169E1',
+                    color2: '#1E90FF',
+                    color3: '#0066CC'
+                },
+                green: {
+                    color1: '#32CD32',
+                    color2: '#228B22',
+                    color3: '#006400'
+                }
+            };
+            
+            if (presets[preset]) {
+                document.getElementById('bgColor1').value = presets[preset].color1;
+                document.getElementById('bgColor2').value = presets[preset].color2;
+                document.getElementById('bgColor3').value = presets[preset].color3;
+                updateFrame();
+            }
+        }
+
+        // Manejar checkbox de fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const enableBg = document.getElementById('enableBackground');
+            const bgControls = document.getElementById('backgroundControls');
+            
+            enableBg.addEventListener('change', function() {
+                bgControls.style.display = this.checked ? 'block' : 'none';
+            });
+            
+            // Actualizar valor de opacidad
+            const opacitySlider = document.getElementById('bgOpacity');
+            opacitySlider.addEventListener('input', function() {
+                document.getElementById('opacityValue').textContent = Math.round(this.value * 100) + '%';
+            });
+        });
+
+        function showProgress() {
+            document.getElementById('progress').style.display = 'block';
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '0%';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('progress').style.display = 'none';
+                    }, 500);
+                }
+                progressBar.style.width = progress + '%';
+            }, 100);
+        }
+
+        function removeBackground() {
+            if (!currentImage) return;
+            
+            showProgress();
+            
+            setTimeout(() => {
+                const sensitivity = parseInt(document.getElementById('sensitivity').value);
+                const smoothing = parseInt(document.getElementById('smoothing').value);
+                
+                processedImage = processImageRemoveBackground(currentImage, sensitivity, smoothing);
+                showProcessedImage(processedImage);
+                backgroundRemoved = true;
+                updateFrame();
+            }, 200);
+        }
+
+        function removeBackgroundManual() {
+            if (!currentImage) return;
+            
+            alert('Haz clic en el color del fondo que quieres eliminar en la imagen original.');
+            
+            const originalImg = document.getElementById('originalImage');
+            originalImg.style.cursor = 'crosshair';
+            
+            originalImg.onclick = (e) => {
+                const rect = originalImg.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                
+                showProgress();
+                
+                setTimeout(() => {
+                    const sensitivity = parseInt(document.getElementById('sensitivity').value);
+                    const smoothing = parseInt(document.getElementById('smoothing').value);
+                    
+                    processedImage = processImageRemoveBackgroundByColor(currentImage, x, y, sensitivity, smoothing);
+                    showProcessedImage(processedImage);
+                    backgroundRemoved = true;
+                    updateFrame();
+                    
+                    originalImg.style.cursor = 'default';
+                    originalImg.onclick = null;
+                }, 200);
+            };
+        }
+
+        function processImageRemoveBackground(img, sensitivity, smoothing) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // Detectar color de fondo (esquinas)
+            const corners = [
+                [0, 0],
+                [canvas.width - 1, 0],
+                [0, canvas.height - 1],
+                [canvas.width - 1, canvas.height - 1]
+            ];
+            
+            let bgColor = getMostCommonCornerColor(data, corners, canvas.width);
+            
+            // Remover fondo
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                
+                const distance = Math.sqrt(
+                    Math.pow(r - bgColor.r, 2) +
+                    Math.pow(g - bgColor.g, 2) +
+                    Math.pow(b - bgColor.b, 2)
+                );
+                
+                if (distance < sensitivity) {
+                    data[i + 3] = 0; // Hacer transparente
+                }
+            }
+            
+            // Aplicar suavizado
+            if (smoothing > 0) {
+                applySmoothing(data, canvas.width, canvas.height, smoothing);
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+            
+            // Convertir canvas a imagen
+            const newImg = new Image();
+            newImg.src = canvas.toDataURL();
+            return newImg;
+        }
+
+        function processImageRemoveBackgroundByColor(img, clickX, clickY, sensitivity, smoothing) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // Obtener color del píxel clickeado
+            const pixelX = Math.floor(clickX * canvas.width);
+            const pixelY = Math.floor(clickY * canvas.height);
+            const pixelIndex = (pixelY * canvas.width + pixelX) * 4;
+            
+            const bgColor = {
+                r: data[pixelIndex],
+                g: data[pixelIndex + 1],
+                b: data[pixelIndex + 2]
+            };
+            
+            // Remover color seleccionado
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                
+                const distance = Math.sqrt(
+                    Math.pow(r - bgColor.r, 2) +
+                    Math.pow(g - bgColor.g, 2) +
+                    Math.pow(b - bgColor.b, 2)
+                );
+                
+                if (distance < sensitivity) {
+                    data[i + 3] = 0; // Hacer transparente
+                }
+            }
+            
+            // Aplicar suavizado
+            if (smoothing > 0) {
+                applySmoothing(data, canvas.width, canvas.height, smoothing);
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+            
+            // Convertir canvas a imagen
+            const newImg = new Image();
+            newImg.src = canvas.toDataURL();
+            return newImg;
+        }
+
+        function getMostCommonCornerColor(data, corners, width) {
+            const colors = corners.map(([x, y]) => {
+                const index = (y * width + x) * 4;
+                return {
+                    r: data[index],
+                    g: data[index + 1],
+                    b: data[index + 2]
+                };
+            });
+            
+            // Promedio de colores de esquinas
+            const avgColor = {
+                r: Math.round(colors.reduce((sum, c) => sum + c.r, 0) / colors.length),
+                g: Math.round(colors.reduce((sum, c) => sum + c.g, 0) / colors.length),
+                b: Math.round(colors.reduce((sum, c) => sum + c.b, 0) / colors.length)
+            };
+            
+            return avgColor;
+        }
+
+        function applySmoothing(data, width, height, smoothing) {
+            const newData = new Uint8ClampedArray(data);
+            
+            for (let y = smoothing; y < height - smoothing; y++) {
+                for (let x = smoothing; x < width - smoothing; x++) {
+                    const index = (y * width + x) * 4;
+                    
+                    if (data[index + 3] === 0) continue; // Skip transparent pixels
+                    
+                    let transparentNeighbors = 0;
+                    let totalNeighbors = 0;
+                    
+                    for (let dy = -smoothing; dy <= smoothing; dy++) {
+                        for (let dx = -smoothing; dx <= smoothing; dx++) {
+                            const nIndex = ((y + dy) * width + (x + dx)) * 4;
+                            totalNeighbors++;
+                            if (data[nIndex + 3] === 0) transparentNeighbors++;
+                        }
+                    }
+                    
+                    const transparentRatio = transparentNeighbors / totalNeighbors;
+                    if (transparentRatio > 0.3) {
+                        newData[index + 3] = Math.round(data[index + 3] * (1 - transparentRatio));
+                    }
+                }
+            }
+            
+            data.set(newData);
+        }
+
+        function setStyle(styleName) {
+            currentStyle = styleName;
+            
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const customColorGroup = document.getElementById('customColorGroup');
+            customColorGroup.style.display = styleName === 'custom' ? 'block' : 'none';
+            
+            updateFrame();
+        }
+
+        function updateFrame() {
+            const imageToUse = backgroundRemoved && processedImage ? processedImage : currentImage;
+            if (!imageToUse) return;
+
+            // Wait for processed image to load if it's new
+            if (imageToUse.src && !imageToUse.complete) {
+                imageToUse.onload = updateFrame;
+                return;
+            }
+
+            const canvas = document.getElementById('frameCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            const size = parseInt(document.getElementById('outputSize').value);
+            
+            // Sistema PROPORCIONAL como en tu código original - TODO en porcentajes del tamaño
+            const frameThicknessPercent = parseInt(document.getElementById('frameThickness').value);
+            const cornerRadiusPercent = parseInt(document.getElementById('cornerRadius').value);
+            
+            // Calcular todo proporcionalmente al tamaño total (como en tu código)
+            const padding = size * 0.08; // 8% del tamaño total
+            const rectWidth = size - (padding * 2);
+            const rectHeight = size - (padding * 2);
+            const cornerRadius = size * (cornerRadiusPercent / 100 * 0.5); // Ajustado para que se vea como tu diseño
+            const frameThickness = size * (frameThicknessPercent / 1000); // Marco proporcional
+            
+            const x = padding;
+            const y = padding;
+            
+            // Mostrar valores actuales
+            document.getElementById('thicknessValue').textContent = Math.round(frameThickness) + 'px';
+            document.getElementById('radiusValue').textContent = cornerRadiusPercent + '%';
+            
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Limpiar canvas completamente (fondo transparente)
+            ctx.clearRect(0, 0, size, size);
+            
+            // *** FONDO DEGRADADO SOLO DENTRO DEL MARCO ***
+            const enableBackground = document.getElementById('enableBackground').checked;
+            if (enableBackground) {
+                const gradientType = document.getElementById('gradientType').value;
+                const color1 = document.getElementById('bgColor1').value;
+                const color2 = document.getElementById('bgColor2').value;
+                const color3 = document.getElementById('bgColor3').value;
+                const opacity = parseFloat(document.getElementById('bgOpacity').value);
+                
+                // Coordenadas del área interior del marco (donde va la imagen)
+                const innerX = x;
+                const innerY = y;
+                const innerWidth = rectWidth;
+                const innerHeight = rectHeight;
+                const centerX = innerX + innerWidth / 2;
+                const centerY = innerY + innerHeight / 2;
+                
+                // Crear degradado SOLO dentro del marco
+                let gradient;
+                if (gradientType === 'linear') {
+                    // De arriba hacia el centro
+                    gradient = ctx.createLinearGradient(centerX, innerY, centerX, centerY);
+                } else if (gradientType === 'radial') {
+                    // Desde los bordes hacia el centro (más pronunciado)
+                    const radius = Math.min(innerWidth, innerHeight) / 2;
+                    gradient = ctx.createRadialGradient(centerX, centerY, radius * 0.3, centerX, centerY, radius);
+                } else if (gradientType === 'diagonal') {
+                    // Diagonal desde esquina hacia centro
+                    gradient = ctx.createLinearGradient(innerX, innerY, centerX, centerY);
+                }
+                
+                // Degradado más pronunciado: fuerte en bordes, suave en centro
+                gradient.addColorStop(0, color1); // Borde - más fuerte
+                gradient.addColorStop(0.4, color2); // Intermedio
+                gradient.addColorStop(1, color3); // Centro - más suave
+                
+                // Guardar contexto y crear máscara del área del marco
+                ctx.save();
+                
+                // Crear máscara rectangular con esquinas redondeadas (igual que el marco)
+                ctx.beginPath();
+                ctx.moveTo(x + cornerRadius, y);
+                ctx.lineTo(x + rectWidth - cornerRadius, y);
+                ctx.quadraticCurveTo(x + rectWidth, y, x + rectWidth, y + cornerRadius);
+                ctx.lineTo(x + rectWidth, y + rectHeight - cornerRadius);
+                ctx.quadraticCurveTo(x + rectWidth, y + rectHeight, x + rectWidth - cornerRadius, y + rectHeight);
+                ctx.lineTo(x + cornerRadius, y + rectHeight);
+                ctx.quadraticCurveTo(x, y + rectHeight, x, y + rectHeight - cornerRadius);
+                ctx.lineTo(x, y + cornerRadius);
+                ctx.quadraticCurveTo(x, y, x + cornerRadius, y);
+                ctx.closePath();
+                ctx.clip(); // Aplicar máscara
+                
+                // Aplicar degradado SOLO en el área recortada
+                ctx.globalAlpha = opacity;
+                ctx.fillStyle = gradient;
+                ctx.fillRect(innerX, innerY, innerWidth, innerHeight);
+                ctx.globalAlpha = 1;
+                
+                // Restaurar contexto
+                ctx.restore();
+            }
+            
+            // Dibujar imagen llenando el área interior del marco
+            const imgX = padding;
+            const imgY = padding;
+            const imgSize = rectWidth;
+            
+            ctx.drawImage(imageToUse, imgX, imgY, imgSize, imgSize);
+            
+            // Configurar estilo del marco (copiado exactamente de tu código)
+            const style = styles[currentStyle];
+            
+            // Sombra del contenedor (proporcional como en tu código)
+            ctx.shadowColor = style.shadow;
+            ctx.shadowBlur = size * 0.04;
+            ctx.shadowOffsetX = size * 0.02;
+            ctx.shadowOffsetY = size * 0.02;
+            
+            // Marco proporcional (igual que tu código)
+            if (currentStyle === 'custom') {
+                const customColor = document.getElementById('frameColor').value;
+                ctx.strokeStyle = customColor;
+            } else {
+                ctx.strokeStyle = style.border;
+            }
+            
+            ctx.lineWidth = frameThickness;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Crear rectángulo con esquinas redondeadas (EXACTAMENTE como tu código)
+            ctx.beginPath();
+            ctx.moveTo(x + cornerRadius, y);
+            ctx.lineTo(x + rectWidth - cornerRadius, y);
+            ctx.quadraticCurveTo(x + rectWidth, y, x + rectWidth, y + cornerRadius);
+            ctx.lineTo(x + rectWidth, y + rectHeight - cornerRadius);
+            ctx.quadraticCurveTo(x + rectWidth, y + rectHeight, x + rectWidth - cornerRadius, y + rectHeight);
+            ctx.lineTo(x + cornerRadius, y + rectHeight);
+            ctx.quadraticCurveTo(x, y + rectHeight, x, y + rectHeight - cornerRadius);
+            ctx.lineTo(x, y + cornerRadius);
+            ctx.quadraticCurveTo(x, y, x + cornerRadius, y);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Resetear efectos
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+        }
+
+        function downloadImage(format) {
+            const canvas = document.getElementById('frameCanvas');
+            
+            if (format === 'jpg') {
+                const downloadCanvas = document.createElement('canvas');
+                downloadCanvas.width = canvas.width;
+                downloadCanvas.height = canvas.height;
+                const ctx = downloadCanvas.getContext('2d');
+                
+                // Solo agregar fondo blanco si NO hay fondo degradado habilitado
+                const enableBackground = document.getElementById('enableBackground').checked;
+                if (!enableBackground) {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                
+                ctx.drawImage(canvas, 0, 0);
+                downloadFromCanvas(downloadCanvas, format);
+            } else {
+                downloadFromCanvas(canvas, format);
+            }
+        }
+
+        function downloadFromCanvas(canvas, format) {
+            const link = document.createElement('a');
+            const filename = `imagen-marco-dorado-sin-fondo-${Date.now()}.${format}`;
+            
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                link.href = url;
+                link.download = filename;
+                link.click();
+                URL.revokeObjectURL(url);
+                
+                const successMsg = document.getElementById('success');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+            }, format === 'png' ? 'image/png' : 'image/jpeg', 0.95);
+        }
+    </script>
+</body>
+</html>

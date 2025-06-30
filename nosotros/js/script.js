@@ -477,3 +477,252 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* SCRIPT DEL MNENU*/
+
+// ===== FUNCIONES PARA EL MODAL DE IMAGEN =====
+let currentZoom = 1;
+let currentImageSrc = '';
+let currentImageTitle = '';
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let imageOffsetX = 0;
+let imageOffsetY = 0;
+
+// MOVIMIENTO SUAVIZADO (MENOS SENSIBLE)
+const DRAG_SENSITIVITY = 0.7; // Reducir sensibilidad del movimiento
+const MAX_OFFSET_FACTOR = 200; // Factor para limitar el desplazamiento
+
+function openImageModal(imgElement, title) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    console.log('Opening modal for:', title);
+    
+    // Mostrar modal
+    modal.classList.add('show');
+    
+    // Configurar título
+    modalTitle.textContent = title;
+    currentImageTitle = title;
+    currentImageSrc = imgElement.src;
+    
+    // Resetear zoom y posición
+    currentZoom = 1;
+    imageOffsetX = 0;
+    imageOffsetY = 0;
+    
+    // Cargar imagen directamente
+    modalImage.onload = function() {
+        console.log('Image loaded successfully');
+        modalImage.style.display = 'block';
+        updateImageTransform();
+        updateZoomInfo();
+        updateCursor();
+        
+        // Inicializar eventos después de que la imagen se carga
+        setTimeout(initializeModalEvents, 100);
+    };
+    
+    modalImage.onerror = function() {
+        console.error('Error loading image');
+        modalTitle.textContent = 'Error al cargar la imagen';
+        modalImage.style.display = 'none';
+    };
+    
+    // Establecer src para cargar la imagen
+    modalImage.src = imgElement.src;
+    
+    // Si la imagen ya está en cache, onload podría no dispararse
+    if (modalImage.complete) {
+        console.log('Image already cached');
+        modalImage.style.display = 'block';
+        updateImageTransform();
+        updateZoomInfo();
+        updateCursor();
+        setTimeout(initializeModalEvents, 100);
+    }
+    
+    // Prevenir scroll del body
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal(event) {
+    // Solo cerrar si se hace clic en el fondo o en el botón de cerrar
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal')) {
+        return;
+    }
+    
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('show');
+    
+    // Restaurar scroll del body
+    document.body.style.overflow = 'auto';
+    
+    // Reset zoom y posición después de cerrar
+    setTimeout(() => {
+        resetZoom();
+    }, 300);
+}
+
+function zoomImage(delta) {
+    currentZoom = Math.max(0.2, Math.min(3, currentZoom + delta));
+    updateImageTransform();
+    updateZoomInfo();
+    updateCursor();
+}
+
+function resetZoom() {
+    currentZoom = 1;
+    imageOffsetX = 0;
+    imageOffsetY = 0;
+    updateImageTransform();
+    updateZoomInfo();
+    updateCursor();
+}
+
+function updateImageTransform() {
+    const modalImage = document.getElementById('modalImage');
+    modalImage.style.transform = `scale(${currentZoom}) translate(${imageOffsetX}px, ${imageOffsetY}px)`;
+}
+
+function updateZoomInfo() {
+    const zoomInfo = document.getElementById('zoomInfo');
+    zoomInfo.textContent = Math.round(currentZoom * 100) + '%';
+}
+
+function updateCursor() {
+    const modalImage = document.getElementById('modalImage');
+    if (currentZoom > 1) {
+        modalImage.classList.add('zoomed');
+    } else {
+        modalImage.classList.remove('zoomed');
+    }
+}
+
+// FUNCIONALIDAD DE ARRASTRAR (PAN) - MEJORADA Y MENOS SENSIBLE
+function startDrag(e) {
+    console.log('startDrag called, currentZoom:', currentZoom);
+    if (currentZoom <= 1) return; // Solo permitir arrastrar si hay zoom
+    
+    isDragging = true;
+    const modalImage = document.getElementById('modalImage');
+    modalImage.style.cursor = 'grabbing';
+    
+    // Obtener posición inicial (mouse o touch)
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    
+    dragStartX = clientX - imageOffsetX;
+    dragStartY = clientY - imageOffsetY;
+    
+    console.log('Drag started at:', clientX, clientY);
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function drag(e) {
+    if (!isDragging || currentZoom <= 1) return;
+    
+    // Obtener posición actual (mouse o touch)
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    
+    // APLICAR SENSIBILIDAD REDUCIDA
+    const deltaX = (clientX - dragStartX) * DRAG_SENSITIVITY;
+    const deltaY = (clientY - dragStartY) * DRAG_SENSITIVITY;
+    
+    imageOffsetX = deltaX;
+    imageOffsetY = deltaY;
+    
+    // Limitar el desplazamiento para no perder la imagen
+    const maxOffset = MAX_OFFSET_FACTOR * currentZoom;
+    imageOffsetX = Math.max(-maxOffset, Math.min(maxOffset, imageOffsetX));
+    imageOffsetY = Math.max(-maxOffset, Math.min(maxOffset, imageOffsetY));
+    
+    updateImageTransform();
+    console.log('Dragging to:', imageOffsetX, imageOffsetY);
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function endDrag(e) {
+    if (!isDragging) return;
+    
+    console.log('Drag ended');
+    isDragging = false;
+    const modalImage = document.getElementById('modalImage');
+    modalImage.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// INICIALIZACIÓN DE EVENT LISTENERS - CORREGIDA
+function initializeModalEvents() {
+    const modalImage = document.getElementById('modalImage');
+    
+    if (!modalImage) {
+        console.log('modalImage not found, retrying...');
+        setTimeout(initializeModalEvents, 100);
+        return;
+    }
+    
+    console.log('Initializing modal events...');
+    
+    // Limpiar event listeners existentes
+    modalImage.removeEventListener('mousedown', startDrag);
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('mouseup', endDrag);
+    modalImage.removeEventListener('touchstart', startDrag);
+    document.removeEventListener('touchmove', drag);
+    document.removeEventListener('touchend', endDrag);
+    
+    // Event listeners para arrastrar con mouse
+    modalImage.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+    
+    // Event listeners para arrastrar con touch (móviles)
+    modalImage.addEventListener('touchstart', startDrag, { passive: false });
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchend', endDrag, { passive: false });
+    
+    // Zoom con scroll del mouse
+    modalImage.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        zoomImage(delta);
+    }, { passive: false });
+
+    // Prevenir cierre accidental
+    modalImage.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    console.log('✅ Modal events initialized successfully');
+}
+
+// Inicializar eventos globales (teclado)
+document.addEventListener('DOMContentLoaded', function() {
+    // Cerrar modal con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+        // Zoom con teclado
+        if (document.getElementById('imageModal').classList.contains('show')) {
+            if (e.key === '+' || e.key === '=') {
+                e.preventDefault();
+                zoomImage(0.2);
+            } else if (e.key === '-') {
+                e.preventDefault();
+                zoomImage(-0.2);
+            } else if (e.key === '0') {
+                e.preventDefault();
+                resetZoom();
+            }
+        }
+    });
+    
+    console.log('✅ Modal de imagen inicializado');
+});

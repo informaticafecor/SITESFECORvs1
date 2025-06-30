@@ -1,0 +1,1610 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #0F2C52;
+    color: white;
+    min-height: 100vh;
+    background-image: /*FONDO DE IMAGEN*/
+        linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+        url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+    
+}
+
+/* TÍTULO PRINCIPAL "NOSOTROS" CENTRADO */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 30px 0;
+    padding: 20px 0;
+    border-bottom: 3px solid rgba(241, 196, 15, 0.5);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1px;
+}
+
+/* Responsive para el título */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.7rem;
+        margin: 15px 0;
+        padding: 10px 0;
+    }
+}
+
+
+/* Header */
+.header {
+    background: linear-gradient(145deg, #0F2C52, #1a3660);
+    border-bottom: 3px solid #F1C40F;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {                                           
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+.main-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+/* LAYOUT DE 1 COLUMNA CENTRADA */
+.main-content {
+    max-width: 900px; /* Ancho máximo centrado */
+    margin: 0 auto; /* Centrado horizontal */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* SECCIONES - COLOR DORADO UNIFICADO Y PROPORCIÓN CONTROLADA */
+section {
+    background: rgba(241, 196, 15, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(241, 196, 15, 0.4);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(241, 196, 15, 0.6);
+}
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    min-height: 400px;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-content {
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.slide-content h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #F1C40F;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.4;
+    border-bottom: 2px solid rgba(241, 196, 15, 0.5);
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.slide-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #F1C40F;
+    font-weight: bold;
+}
+
+.slide-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 10px;
+    color: #ffffff;
+    flex: 1;
+}
+
+/* SECCIONES SIN CARRUSEL */
+.historia-section .slide-content,
+.organigrama-section .slide-content,
+.competencia-section .slide-content {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+/* HISTORIA SECTION */
+.slide-image {
+    width: 100%;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.slide-image img {
+    width: 100%;
+    max-width: 550px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid rgba(241, 196, 15, 0.6);
+    display: block;
+    margin: 0 auto;
+}
+
+.slide-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.slide-text h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #F1C40F;
+}
+
+.slide-text p {
+    text-align: justify;
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ORGANIGRAMA SECTION */
+.organigrama-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    align-items: center;
+}
+
+.organigrama-image {
+    width: 100%;
+    max-width: 800px; /* Aumentado de 550px a 800px */
+    flex-shrink: 0;
+}
+
+.organigrama-image img {
+    width: 100%;
+    height: 500px; /* Aumentado de 350px a 500px */
+    object-fit: contain;
+    border-radius: 10px;
+    border: 3px solid rgba(241, 196, 15, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.organigrama-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.organigrama-text p {
+    text-align: justify;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* COMPETENCIA SECTION */
+.competencia-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mapa-container {
+    width: 100%;
+    max-width:500px; /* Cambiado de 100px a un valor más apropiadoPARA AGRANDARLO Y ESTE CRECE DE PUNTA HACIA ABJAO*/
+    margin: 20px auto; /* Agregado 'auto' para centrado horizontal */
+    display: flex; /* Agregado para mejor control del centrado */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+}
+
+.mapa-container img {
+    width: 100%; /* Cambiado de 400% a 100% */
+    max-width: 100%; /* Agregado para responsividad */
+    height: auto; /* Cambiado de 650px fijo a auto para mantener proporción */
+    object-fit: contain;
+    border-radius: 10px;
+    border: 3px solid rgba(241, 196, 15, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* SUPERIOR SECTION */
+.superior-subtitle {
+    font-size: 1rem;
+    color: #F1C40F;
+    font-style: italic;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* SUPRAPROVINCIALES SECTION */
+.intro-text {
+    margin-bottom: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.intro-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: justify;
+}
+
+/* PERITAJE SECTION */
+.peritaje-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.peritaje-description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.peritaje-description h3 {
+    font-size: 1rem;
+    color: #F1C40F;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.peritaje-description p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: justify;
+    flex: 1;
+}
+
+/* MAPA SECTION - DESTACADO */
+/*.mapa-section {
+    background: rgba(241, 196, 15, 0.12);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(241, 196, 15, 0.6);
+}*/
+
+/* MAPA MÁS ANCHO */
+.mapa-section {
+    background: rgba(241, 196, 15, 0.12);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(241, 196, 15, 0.6);
+    max-width: 95vw; /* Usar 95% del viewport width */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mapa-section h2 {
+    font-size: 2rem;
+    color: #F1C40F;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Mapa Interactivo */
+.mapa-interactivo {
+    margin: 30px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 4px solid #F1C40F;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    width: 100%; /* Ocupar todo el ancho disponible */
+    max-width: none; /* Quitar restricción de ancho máximo */
+}
+
+.mapa-interactivo iframe {
+    width: 100%;
+    height: 500px; /* Aumentar altura también */
+    border: none;
+}
+
+/* Información de contacto */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.contact-item {
+    background: rgba(241, 196, 15, 0.15);
+    padding: 5px;
+    border-radius: 12px;
+    border: 1px solid rgba(241, 196, 15, 0.4);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(241, 196, 15, 0.2);
+    border-color: rgba(241, 196, 15, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item h3 {
+    color: #F1C40F;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item p {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Team Photos - PROPORCIÓN CONTROLADA */
+.team-photo {
+    margin: 15px 0;
+    width: 100%;
+    max-width: 800px; /* ANCHO DE LA FOTO*/
+    height: 350px; /* CAMBIAR ALTUIRA DEL CONTENDOR "*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-photo img {
+    width: 100%;
+    height: 400px; /* PARA CAMBIAR ALTURA DE LA FOTO EN SI*/
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    border: 3px solid rgba(241, 196, 15, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.team-photo img:hover {
+    transform: scale(1.02);
+    border-color: #F1C40F;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Placeholder para imágenes */
+.placeholder-image {
+    width: 100%;
+    max-width: 600px;
+    height: 250px;
+    background: rgba(241, 196, 15, 0.1);
+    border: 3px dashed rgba(241, 196, 15, 0.6);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(241, 196, 15, 0.8);
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.team-description {
+    margin-top: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.team-description p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: justify;
+}
+
+/* Navigation Buttons */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    pointer-events: none;
+}
+
+.nav-btn {
+    background: rgba(241, 196, 15, 0.9);
+    color: #1a3660;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background: #F1C40F;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+.nav-btn:focus {
+    outline: 2px solid #F1C40F;
+    outline-offset: 2px;
+}
+
+/* Dots Navigation */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(241, 196, 15, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dot.active {
+    background: #F1C40F;
+    transform: scale(1.4);
+    box-shadow: 0 4px 10px rgba(241, 196, 15, 0.5);
+}
+
+.dot:hover {
+    background: rgba(241, 196, 15, 0.8);
+    transform: scale(1.2);
+}
+
+.dot:focus {
+    outline: 2px solid #F1C40F;
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-content {
+        max-width: 95%;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    section {
+        padding: 20px;
+    }
+    
+    .carousel-container,
+    .carousel {
+        min-height: 350px;
+    }
+    
+    .historia-section .slide-content,
+    .organigrama-section .slide-content,
+    .competencia-section .slide-content {
+        min-height: 350px;
+    }
+    
+    .team-photo {
+        height: 200px;
+    }
+    
+    .team-photo img,
+    .placeholder-image {
+        height: 200px;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .mapa-section h2 {
+        font-size: 1.7rem;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        max-width: 100%;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .main-title {
+        font-size: 1.6rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 15px;
+    }
+    
+    .logo img {
+        height: 45px;
+    }
+    
+    section {
+        padding: 15px;
+    }
+    
+    .carousel-container,
+    .carousel {
+        min-height: 300px;
+    }
+    
+    .historia-section .slide-content,
+    .organigrama-section .slide-content,
+    .competencia-section .slide-content {
+        min-height: 300px;
+        padding: 15px;
+    }
+    
+    .team-photo {
+        height: 180px;
+    }
+    
+    .team-photo img,
+    .placeholder-image {
+        height: 180px;
+    }
+    
+    .slide-content h2 {
+        font-size: 1rem;
+    }
+    
+    .slide-content p,
+    .team-description p,
+    .intro-text p,
+    .peritaje-description p,
+    .slide-text p,
+    .organigrama-text p {
+        font-size: 0.8rem;
+    }
+    
+    .nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .mapa-section {
+        padding: 25px;
+    }
+    
+    .mapa-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .mapa-interactivo iframe {
+        height: 350px;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .contact-item {
+        padding: 20px;
+    }
+    
+    .slide-image img {
+        height: 100px;
+        max-width: 150px;
+    }
+    
+    .organigrama-image img {
+        height: 150px;
+    }
+    
+    .mapa-container img {
+        height: 150px;
+    }
+    
+    .superior-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .peritaje-description h3 {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+        gap: 12px;
+    }
+    
+    .main-title {
+        font-size: 1.3rem;
+    }
+    
+    section {
+        padding: 12px;
+    }
+    
+    .carousel-container,
+    .carousel {
+        min-height: 250px;
+    }
+    
+    .historia-section .slide-content,
+    .organigrama-section .slide-content,
+    .competencia-section .slide-content {
+        min-height: 250px;
+        padding: 12px;
+    }
+    
+    .slide-content h2 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .team-photo {
+        height: 150px;
+    }
+    
+    .team-photo img,
+    .placeholder-image {
+        height: 150px;
+    }
+    
+    .mapa-section {
+        padding: 15px;
+    }
+    
+    .mapa-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .mapa-interactivo iframe {
+        height: 300px;
+    }
+    
+    .contact-item {
+        padding: 15px;
+    }
+    
+    .contact-item h3 {
+        font-size: 1rem;
+    }
+    
+    .contact-item p {
+        font-size: 0.9rem;
+    }
+    
+    .slide-image img {
+        height: 80px;
+        max-width: 120px;
+    }
+    
+    .organigrama-image img {
+        height: 120px;
+    }
+    
+    .mapa-container img {
+        height: 120px;
+    }
+    
+    .superior-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .peritaje-description h3 {
+        font-size: 0.85rem;
+    }
+    
+    .slide-content p,
+    .team-description p,
+    .intro-text p,
+    .peritaje-description p,
+    .slide-text p,
+    .organigrama-text p {
+        font-size: 0.75rem;
+    }
+    
+    .nav-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Animaciones */
+section {
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradientes sutiles para mejorar la profundidad */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.6), transparent);
+    opacity: 0.8;
+}
+
+/* Mejoras visuales adicionales */
+.carousel-slide {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimizaciones de rendimiento */
+.carousel-slide,
+.team-photo img,
+.mapa-interactivo iframe {
+    will-change: transform;
+}
+
+/* Indicador de carga para el mapa */
+.mapa-interactivo::before {
+    content: 'Cargando mapa...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(241, 196, 15, 0.7);
+    font-size: 1.1rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+/* Estilos para estados de carga */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .carousel-slide {
+        animation: none;
+    }
+    
+    section {
+        animation: none;
+    }
+    
+    .team-photo img:hover,
+    section:hover {
+        transform: none;
+    }
+}
+
+/* Mejora del contraste para mejor legibilidad */
+@media (prefers-contrast: high) {
+    section {
+        border: 3px solid #F1C40F;
+        background: rgba(241, 196, 15, 0.15);
+    }
+    
+    .slide-content h2 {
+        background: rgba(241, 196, 15, 0.2);
+        padding: 10px;
+        border-radius: 8px;
+    }
+}
+
+/* Estilos para listas si las hubiera */
+ul, ol {
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Mejora en la tipografía general */
+.slide-text h2,
+.organigrama-text,
+.peritaje-description {
+    font-weight: 600;
+}
+
+/* Estilo adicional para destacar elementos importantes */
+.superior-subtitle,
+.peritaje-description h3,
+.contact-item h3 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto de focus para accesibilidad */
+button:focus,
+.dot:focus {
+    outline: 3px solid #F1C40F;
+    outline-offset: 3px;
+}
+
+/* Mejoras en la interactividad */
+.team-photo,
+.slide-image,
+.organigrama-image,
+.mapa-container {
+    transition: all 0.3s ease;
+}
+
+.team-photo:hover,
+.slide-image:hover,
+.organigrama-image:hover,
+.mapa-container:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo especial para el contenido destacado */
+.mapa-section .slide-content {
+   padding: 20px;
+    max-width: none;
+    width: 100%;
+    
+}
+
+/* Asegurar contraste en todos los textos */
+p, h2, h3 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Separación visual entre secciones */
+section + section {
+    margin-top: 5px;
+}
+
+/* Estilo para elementos interactivos */
+.nav-btn,
+.dot,
+.contact-item {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* CORRECCIONES PARA EL PIE DE PÁGINA FECCOR */
+.footer-feccor {
+    background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
+    color: white;
+    border-top: 3px solid #F1C40F;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px 0; /* Reducir padding */
+}
+
+.footer-container {
+    max-width: 1200px; /* Aumentar ancho máximo */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-main {
+    display: flex; /* Cambiar a flex normal */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px; /* Reducir margen */
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reducir gap */
+    flex: 1;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px; /* Reducir tamaño de fuente */
+    margin: 0; /* Quitar margin */
+    padding: 0; /* Quitar padding */
+    background: none; /* Quitar background */
+    border: none; /* Quitar border */
+    border-radius: 0; /* Quitar border-radius */
+    transition: none; /* Quitar transition */
+}
+
+.contact-item:hover {
+    transform: none; /* Quitar transform */
+    box-shadow: none; /* Quitar box-shadow */
+    background: none; /* Quitar background hover */
+    border-color: transparent; /* Quitar border hover */
+}
+
+.contact-icon {
+    font-size: 12px;
+    width: 18px;
+    text-align: center;
+    color: #F1C40F;
+    flex-shrink: 0;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 12px;
+}
+
+.contact-link:hover {
+    color: #F1C40F;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px; /* Reducir padding */
+    border-radius: 15px;
+    font-size: 11px; /* Reducir tamaño */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-1px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 35px; /* Reducir tamaño */
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px; /* Reducir tamaño */
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-facebook {
+    background: #1877F2;
+}
+
+.social-youtube {
+    background: #FF0000;
+}
+
+.social-tiktok {
+    background: #000000;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0; /* Reducir padding */
+    font-size: 10px; /* Reducir tamaño */
+    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(241, 196, 15, 0.2);
+    margin-top: 10px; /* Reducir margen */
+}
+
+
+
+/* RESPONSIVE PARA FOOTER */
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 0 15px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-contact {
+        align-items: center;
+        order: 1;
+    }
+
+    .footer-social {
+        justify-content: center;
+        order: 2;
+    }
+
+    .contact-item {
+        justify-content: center;
+        font-size: 11px;
+    }
+
+    .contact-icon {
+        font-size: 11px;
+        width: 16px;
+    }
+
+    .contact-link {
+        font-size: 11px;
+    }
+
+    .whatsapp-btn {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .footer-bottom {
+        font-size: 9px;
+        padding: 6px 0;
+    }
+
+    /* Mapa responsive */
+    .mapa-section {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    .mapa-interactivo iframe {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-main {
+        gap: 10px;
+    }
+
+    .footer-social {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .social-icons {
+        gap: 8px;
+    }
+
+    .contact-item {
+        font-size: 10px;
+    }
+
+    .contact-link {
+        font-size: 10px;
+    }
+
+    .contact-icon {
+        font-size: 10px;
+        width: 14px;
+    }
+
+    .whatsapp-btn {
+        padding: 5px 10px;
+        font-size: 9px;
+    }
+
+    .social-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .footer-bottom {
+        font-size: 8px;
+    }
+
+    /* Mapa más compacto en móvil */
+    .mapa-section {
+        padding: 15px;
+        margin: 0 5px;
+    }
+    
+    .mapa-interactivo iframe {
+        height: 350px;
+    }
+}
+
+/* Ocultar barras de scroll pero mantener funcionalidad */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Solo en dispositivos móviles */
+@media (max-width: 768px) {
+    html {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    html::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+/* Controlar altura máxima en PC */
+@media (min-width: 769px) {
+    .tu-contenedor {
+        max-height: 100vh;
+        overflow-y: auto; /* Permite scroll si es necesario */
+    }
+}
+
+
+/*PROBANDO --------------------------------------------------*/
+
+/* MODAL PARA VISTA DE IMAGEN - MEJORADO */
+/* MODAL PARA VISTA DE IMAGEN - CENTRADO CORREGIDO */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.image-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 70vh; /* Asegurar que no sea demasiado alta */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid #F1C40F;
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    user-select: none;
+}
+
+.modal-title {
+    color: #F1C40F;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    max-width: 90%;
+}
+
+.modal-controls {
+    position: absolute;
+    top: -60px;
+    right: -10px;
+    z-index: 1001;
+}
+
+.close-modal {
+    background: #F1C40F;
+    color: #0F2C52;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal:hover {
+    background: #00ffcc;
+    transform: scale(1.1);
+}
+
+/* ZOOM CONTROLS - POSICIONAMIENTO MEJORADO */
+.zoom-controls {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    background: rgba(15, 44, 82, 0.9);
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 2px solid #F1C40F;
+    z-index: 1001;
+}
+
+.zoom-btn {
+    background: #F1C40F;
+    color: #0F2C52;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-btn:hover {
+    background: #00ffcc;
+    transform: scale(1.1);
+}
+
+.zoom-info {
+    color: #F1C40F;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-weight: bold;
+    min-width: 50px;
+    justify-content: center;
+}
+
+/* INSTRUCCIONES DE USO - POSICIONAMIENTO MEJORADO */
+.usage-instructions {
+    position: absolute;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 44, 82, 0.9);
+    color: #F1C40F;
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 1px solid #F1C40F;
+    font-size: 0.75em;
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 1001;
+}
+
+.usage-instructions:hover {
+    opacity: 1;
+}
+
+/* ESTADOS DE LA IMAGEN */
+.modal-image:active {
+    cursor: grabbing;
+}
+
+.modal-image.zoomed {
+    cursor: grab;
+}
+
+.modal-image.zoomed:active {
+    cursor: grabbing;
+}
+
+/* Responsive para el modal */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
+        padding: 10px;
+    }
+
+    .modal-image {
+        max-height: 60vh;
+    }
+
+    .modal-controls {
+        top: -50px;
+        right: 0;
+    }
+
+    .close-modal {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+
+    .zoom-controls {
+        bottom: -60px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .zoom-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+
+    .zoom-info {
+        font-size: 0.8em;
+        padding: 0 8px;
+        min-width: 40px;
+    }
+
+    .usage-instructions {
+        bottom: -100px;
+        font-size: 0.7em;
+        padding: 6px 12px;
+    }
+
+    .modal-title {
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-image {
+        max-height: 50vh;
+    }
+
+    .modal-title {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+
+    .usage-instructions {
+        font-size: 0.65em;
+    }
+}
+
+
+
+
+
+
+
+
+/* IMAGEN CON FUNCIONALIDAD DE ARRASTRAR */
+.modal-image {
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.1s ease-out;
+}
+
+.modal-image:active {
+    cursor: grabbing;
+}
+
+.modal-image.zoomed {
+    cursor: grab;
+}
+
+.modal-image.zoomed:active {
+    cursor: grabbing;
+}
+
+/* INSTRUCCIONES DE USO */
+.usage-instructions {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 44, 82, 0.9);
+    color: #F1C40F;
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 1px solid #F1C40F;
+    font-size: 0.8em;
+    text-align: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.usage-instructions:hover {
+    opacity: 1;
+}
+
+.close-modal {
+    background: #F1C40F;
+    color: #0F2C52;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal:hover {
+    background: #00ffcc;
+    transform: scale(1.1);
+}

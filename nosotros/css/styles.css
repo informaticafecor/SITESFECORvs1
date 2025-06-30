@@ -10,10 +10,26 @@ body {
     background: #0F2C52;
     color: white;
     min-height: 100vh;
-    background-image: /*FONDO DE IMAGEN*/
+    background-image: 
         linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
         url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
-    
+    /* Ocultar scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
 }
 
 /* TÍTULO PRINCIPAL "NOSOTROS" CENTRADO */
@@ -32,24 +48,6 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Responsive para el título */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-        margin: 20px 0;
-        padding: 15px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.7rem;
-        margin: 15px 0;
-        padding: 10px 0;
-    }
-}
-
-
 /* Header */
 .header {
     background: linear-gradient(145deg, #0F2C52, #1a3660);
@@ -60,7 +58,7 @@ h1 {
     z-index: 1000;
 }
 
-.header-content {                                           
+.header-content {
     max-width: 100%;
     margin: 0 auto;
     display: flex;
@@ -84,15 +82,15 @@ h1 {
 
 /* LAYOUT DE 1 COLUMNA CENTRADA */
 .main-content {
-    max-width: 900px; /* Ancho máximo centrado */
-    margin: 0 auto; /* Centrado horizontal */
+    max-width: 900px;
+    margin: 0 auto;
     padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-/* SECCIONES - COLOR DORADO UNIFICADO Y PROPORCIÓN CONTROLADA */
+/* SECCIONES */
 section {
     background: rgba(241, 196, 15, 0.08);
     border-radius: 15px;
@@ -104,12 +102,24 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    animation: slideUp 1s ease-out;
 }
 
 section:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     border-color: rgba(241, 196, 15, 0.6);
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.6), transparent);
+    opacity: 0.8;
 }
 
 /* Carousel Container */
@@ -133,15 +143,11 @@ section:hover {
     width: 100%;
     height: 100%;
     animation: fadeIn 0.6s ease-in-out;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-slide.active {
     display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
 }
 
 .slide-content {
@@ -178,6 +184,7 @@ section:hover {
     margin-bottom: 10px;
     color: #ffffff;
     flex: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* SECCIONES SIN CARRUSEL */
@@ -196,6 +203,11 @@ section:hover {
     width: 100%;
     margin-bottom: 20px;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.slide-image:hover {
+    transform: scale(1.02);
 }
 
 .slide-image img {
@@ -215,6 +227,7 @@ section:hover {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    font-weight: 600;
 }
 
 .slide-text h2 {
@@ -241,13 +254,18 @@ section:hover {
 
 .organigrama-image {
     width: 100%;
-    max-width: 800px; /* Aumentado de 550px a 800px */
+    max-width: 800px;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.organigrama-image:hover {
+    transform: scale(1.02);
 }
 
 .organigrama-image img {
     width: 100%;
-    height: 500px; /* Aumentado de 350px a 500px */
+    height: 500px;
     object-fit: contain;
     border-radius: 10px;
     border: 3px solid rgba(241, 196, 15, 0.6);
@@ -259,6 +277,7 @@ section:hover {
     display: flex;
     align-items: center;
     text-align: center;
+    font-weight: 600;
 }
 
 .organigrama-text p {
@@ -278,21 +297,52 @@ section:hover {
 
 .mapa-container {
     width: 100%;
-    max-width:500px; /* Cambiado de 100px a un valor más apropiadoPARA AGRANDARLO Y ESTE CRECE DE PUNTA HACIA ABJAO*/
-    margin: 20px auto; /* Agregado 'auto' para centrado horizontal */
-    display: flex; /* Agregado para mejor control del centrado */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.mapa-container:hover {
+    transform: scale(1.02);
 }
 
 .mapa-container img {
-    width: 100%; /* Cambiado de 400% a 100% */
-    max-width: 100%; /* Agregado para responsividad */
-    height: auto; /* Cambiado de 650px fijo a auto para mantener proporción */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
     border-radius: 10px;
     border: 3px solid rgba(241, 196, 15, 0.6);
     background: rgba(255, 255, 255, 0.1);
+}
+
+/* CLICKABLE IMAGES */
+.clickable-image {
+    cursor: pointer;
+    position: relative;
+}
+
+.clickable-image::after {
+    content: "🔍 Click para ampliar";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(15, 44, 82, 0.9);
+    color: #F1C40F;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border: 1px solid #F1C40F;
+}
+
+.clickable-image:hover::after {
+    opacity: 1;
 }
 
 /* SUPERIOR SECTION */
@@ -303,7 +353,7 @@ section:hover {
     margin-bottom: 15px;
     text-align: center;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* SUPRAPROVINCIALES SECTION */
@@ -334,6 +384,7 @@ section:hover {
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-weight: 600;
 }
 
 .peritaje-description h3 {
@@ -342,7 +393,7 @@ section:hover {
     margin-bottom: 15px;
     text-align: center;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .peritaje-description p {
@@ -352,17 +403,7 @@ section:hover {
     flex: 1;
 }
 
-/* MAPA SECTION - DESTACADO */
-/*.mapa-section {
-    background: rgba(241, 196, 15, 0.12);
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
-    border: 3px solid rgba(241, 196, 15, 0.6);
-}*/
-
-/* MAPA MÁS ANCHO */
+/* MAPA SECTION */
 .mapa-section {
     background: rgba(241, 196, 15, 0.12);
     border-radius: 20px;
@@ -370,7 +411,7 @@ section:hover {
     text-align: center;
     box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
     border: 3px solid rgba(241, 196, 15, 0.6);
-    max-width: 95vw; /* Usar 95% del viewport width */
+    max-width: 95vw;
     width: 100%;
     margin: 0 auto;
 }
@@ -382,24 +423,42 @@ section:hover {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Mapa Interactivo */
+.mapa-section .slide-content {
+    padding: 20px;
+    max-width: none;
+    width: 100%;
+}
+
 .mapa-interactivo {
     margin: 30px 0;
     border-radius: 15px;
     overflow: hidden;
     border: 4px solid #F1C40F;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-    width: 100%; /* Ocupar todo el ancho disponible */
-    max-width: none; /* Quitar restricción de ancho máximo */
+    width: 100%;
+    max-width: none;
 }
 
 .mapa-interactivo iframe {
     width: 100%;
-    height: 500px; /* Aumentar altura también */
+    height: 500px;
     border: none;
+    will-change: transform;
 }
 
-/* Información de contacto */
+.mapa-interactivo::before {
+    content: 'Cargando mapa...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(241, 196, 15, 0.7);
+    font-size: 1.1rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+/* CONTACT INFO */
 .contact-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -409,11 +468,13 @@ section:hover {
 
 .contact-item {
     background: rgba(241, 196, 15, 0.15);
-    padding: 5px;
+    padding: 25px;
     border-radius: 12px;
     border: 1px solid rgba(241, 196, 15, 0.4);
     text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
 }
 
 .contact-item:hover {
@@ -428,7 +489,7 @@ section:hover {
     font-size: 1.1rem;
     margin-bottom: 10px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .contact-item p {
@@ -437,29 +498,35 @@ section:hover {
     font-weight: 500;
 }
 
-/* Team Photos - PROPORCIÓN CONTROLADA */
+/* TEAM PHOTOS */
 .team-photo {
     margin: 15px 0;
     width: 100%;
-    max-width: 800px; /* ANCHO DE LA FOTO*/
-    height: 350px; /* CAMBIAR ALTUIRA DEL CONTENDOR "*/
+    max-width: 800px;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
     margin-left: auto;
     margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.team-photo:hover {
+    transform: scale(1.02);
 }
 
 .team-photo img {
     width: 100%;
-    height: 400px; /* PARA CAMBIAR ALTURA DE LA FOTO EN SI*/
+    height: 350px;
     object-fit: cover;
     object-position: center;
     border-radius: 12px;
     border: 3px solid rgba(241, 196, 15, 0.6);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    will-change: transform;
 }
 
 .team-photo img:hover {
@@ -468,7 +535,21 @@ section:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Placeholder para imágenes */
+.team-description {
+    margin-top: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.team-description p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: justify;
+}
+
+/* PLACEHOLDER IMAGES */
 .placeholder-image {
     width: 100%;
     max-width: 600px;
@@ -488,21 +569,7 @@ section:hover {
     margin: 0 auto;
 }
 
-.team-description {
-    margin-top: 15px;
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.team-description p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #ffffff;
-    text-align: justify;
-}
-
-/* Navigation Buttons */
+/* NAVIGATION BUTTONS */
 .carousel-nav {
     position: absolute;
     top: 50%;
@@ -527,6 +594,7 @@ section:hover {
     pointer-events: all;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     font-weight: bold;
+    user-select: none;
 }
 
 .nav-btn:hover {
@@ -540,11 +608,11 @@ section:hover {
 }
 
 .nav-btn:focus {
-    outline: 2px solid #F1C40F;
-    outline-offset: 2px;
+    outline: 3px solid #F1C40F;
+    outline-offset: 3px;
 }
 
-/* Dots Navigation */
+/* DOTS NAVIGATION */
 .carousel-dots {
     display: flex;
     justify-content: center;
@@ -564,6 +632,7 @@ section:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    user-select: none;
 }
 
 .dot.active {
@@ -578,736 +647,11 @@ section:hover {
 }
 
 .dot:focus {
-    outline: 2px solid #F1C40F;
-    outline-offset: 2px;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .main-content {
-        max-width: 95%;
-        padding: 20px;
-        gap: 20px;
-    }
-    
-    section {
-        padding: 20px;
-    }
-    
-    .carousel-container,
-    .carousel {
-        min-height: 350px;
-    }
-    
-    .historia-section .slide-content,
-    .organigrama-section .slide-content,
-    .competencia-section .slide-content {
-        min-height: 350px;
-    }
-    
-    .team-photo {
-        height: 200px;
-    }
-    
-    .team-photo img,
-    .placeholder-image {
-        height: 200px;
-    }
-    
-    .slide-content h2 {
-        font-size: 1.2rem;
-    }
-    
-    .mapa-section h2 {
-        font-size: 1.7rem;
-    }
-    
-    .nav-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-content {
-        max-width: 100%;
-        padding: 15px;
-        gap: 15px;
-    }
-    
-    .main-title {
-        font-size: 1.6rem;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 10px;
-        padding: 0 15px;
-    }
-    
-    .logo img {
-        height: 45px;
-    }
-    
-    section {
-        padding: 15px;
-    }
-    
-    .carousel-container,
-    .carousel {
-        min-height: 300px;
-    }
-    
-    .historia-section .slide-content,
-    .organigrama-section .slide-content,
-    .competencia-section .slide-content {
-        min-height: 300px;
-        padding: 15px;
-    }
-    
-    .team-photo {
-        height: 180px;
-    }
-    
-    .team-photo img,
-    .placeholder-image {
-        height: 180px;
-    }
-    
-    .slide-content h2 {
-        font-size: 1rem;
-    }
-    
-    .slide-content p,
-    .team-description p,
-    .intro-text p,
-    .peritaje-description p,
-    .slide-text p,
-    .organigrama-text p {
-        font-size: 0.8rem;
-    }
-    
-    .nav-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-    }
-    
-    .mapa-section {
-        padding: 25px;
-    }
-    
-    .mapa-section h2 {
-        font-size: 1.4rem;
-    }
-    
-    .mapa-interactivo iframe {
-        height: 350px;
-    }
-    
-    .contact-info {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .contact-item {
-        padding: 20px;
-    }
-    
-    .slide-image img {
-        height: 100px;
-        max-width: 150px;
-    }
-    
-    .organigrama-image img {
-        height: 150px;
-    }
-    
-    .mapa-container img {
-        height: 150px;
-    }
-    
-    .superior-subtitle {
-        font-size: 0.9rem;
-    }
-    
-    .peritaje-description h3 {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-content {
-        padding: 10px;
-        gap: 12px;
-    }
-    
-    .main-title {
-        font-size: 1.3rem;
-    }
-    
-    section {
-        padding: 12px;
-    }
-    
-    .carousel-container,
-    .carousel {
-        min-height: 250px;
-    }
-    
-    .historia-section .slide-content,
-    .organigrama-section .slide-content,
-    .competencia-section .slide-content {
-        min-height: 250px;
-        padding: 12px;
-    }
-    
-    .slide-content h2 {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-    
-    .team-photo {
-        height: 150px;
-    }
-    
-    .team-photo img,
-    .placeholder-image {
-        height: 150px;
-    }
-    
-    .mapa-section {
-        padding: 15px;
-    }
-    
-    .mapa-section h2 {
-        font-size: 1.2rem;
-    }
-    
-    .mapa-interactivo iframe {
-        height: 300px;
-    }
-    
-    .contact-item {
-        padding: 15px;
-    }
-    
-    .contact-item h3 {
-        font-size: 1rem;
-    }
-    
-    .contact-item p {
-        font-size: 0.9rem;
-    }
-    
-    .slide-image img {
-        height: 80px;
-        max-width: 120px;
-    }
-    
-    .organigrama-image img {
-        height: 120px;
-    }
-    
-    .mapa-container img {
-        height: 120px;
-    }
-    
-    .superior-subtitle {
-        font-size: 0.8rem;
-    }
-    
-    .peritaje-description h3 {
-        font-size: 0.85rem;
-    }
-    
-    .slide-content p,
-    .team-description p,
-    .intro-text p,
-    .peritaje-description p,
-    .slide-text p,
-    .organigrama-text p {
-        font-size: 0.75rem;
-    }
-    
-    .nav-btn {
-        width: 25px;
-        height: 25px;
-        font-size: 0.8rem;
-    }
-    
-    .dot {
-        width: 8px;
-        height: 8px;
-    }
-}
-
-/* Animaciones */
-section {
-    animation: slideUp 1s ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Gradientes sutiles para mejorar la profundidad */
-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.6), transparent);
-    opacity: 0.8;
-}
-
-/* Mejoras visuales adicionales */
-.carousel-slide {
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Optimizaciones de rendimiento */
-.carousel-slide,
-.team-photo img,
-.mapa-interactivo iframe {
-    will-change: transform;
-}
-
-/* Indicador de carga para el mapa */
-.mapa-interactivo::before {
-    content: 'Cargando mapa...';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(241, 196, 15, 0.7);
-    font-size: 1.1rem;
-    font-weight: bold;
-    z-index: 1;
-}
-
-/* Estilos para estados de carga */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .carousel-slide {
-        animation: none;
-    }
-    
-    section {
-        animation: none;
-    }
-    
-    .team-photo img:hover,
-    section:hover {
-        transform: none;
-    }
-}
-
-/* Mejora del contraste para mejor legibilidad */
-@media (prefers-contrast: high) {
-    section {
-        border: 3px solid #F1C40F;
-        background: rgba(241, 196, 15, 0.15);
-    }
-    
-    .slide-content h2 {
-        background: rgba(241, 196, 15, 0.2);
-        padding: 10px;
-        border-radius: 8px;
-    }
-}
-
-/* Estilos para listas si las hubiera */
-ul, ol {
-    padding-left: 25px;
-    margin-bottom: 15px;
-}
-
-li {
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-/* Mejora en la tipografía general */
-.slide-text h2,
-.organigrama-text,
-.peritaje-description {
-    font-weight: 600;
-}
-
-/* Estilo adicional para destacar elementos importantes */
-.superior-subtitle,
-.peritaje-description h3,
-.contact-item h3 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Efecto de focus para accesibilidad */
-button:focus,
-.dot:focus {
     outline: 3px solid #F1C40F;
     outline-offset: 3px;
 }
 
-/* Mejoras en la interactividad */
-.team-photo,
-.slide-image,
-.organigrama-image,
-.mapa-container {
-    transition: all 0.3s ease;
-}
-
-.team-photo:hover,
-.slide-image:hover,
-.organigrama-image:hover,
-.mapa-container:hover {
-    transform: scale(1.02);
-}
-
-/* Estilo especial para el contenido destacado */
-.mapa-section .slide-content {
-   padding: 20px;
-    max-width: none;
-    width: 100%;
-    
-}
-
-/* Asegurar contraste en todos los textos */
-p, h2, h3 {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Separación visual entre secciones */
-section + section {
-    margin-top: 5px;
-}
-
-/* Estilo para elementos interactivos */
-.nav-btn,
-.dot,
-.contact-item {
-    cursor: pointer;
-    user-select: none;
-}
-
-/* Scroll suave */
-html {
-    scroll-behavior: smooth;
-}
-
-
-
-
-/* CORRECCIONES PARA EL PIE DE PÁGINA FECCOR */
-.footer-feccor {
-    background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
-    color: white;
-    border-top: 3px solid #F1C40F;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
-    padding: 15px 0; /* Reducir padding */
-}
-
-.footer-container {
-    max-width: 1200px; /* Aumentar ancho máximo */
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-main {
-    display: flex; /* Cambiar a flex normal */
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 10px; /* Reducir margen */
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 5px; /* Reducir gap */
-    flex: 1;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px; /* Reducir tamaño de fuente */
-    margin: 0; /* Quitar margin */
-    padding: 0; /* Quitar padding */
-    background: none; /* Quitar background */
-    border: none; /* Quitar border */
-    border-radius: 0; /* Quitar border-radius */
-    transition: none; /* Quitar transition */
-}
-
-.contact-item:hover {
-    transform: none; /* Quitar transform */
-    box-shadow: none; /* Quitar box-shadow */
-    background: none; /* Quitar background hover */
-    border-color: transparent; /* Quitar border hover */
-}
-
-.contact-icon {
-    font-size: 12px;
-    width: 18px;
-    text-align: center;
-    color: #F1C40F;
-    flex-shrink: 0;
-}
-
-.contact-link {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-size: 12px;
-}
-
-.contact-link:hover {
-    color: #F1C40F;
-}
-
-.footer-social {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-shrink: 0;
-}
-
-.whatsapp-btn {
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px; /* Reducir padding */
-    border-radius: 15px;
-    font-size: 11px; /* Reducir tamaño */
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    transform: translateY(-1px);
-}
-
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-icon {
-    width: 35px; /* Reducir tamaño */
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 16px; /* Reducir tamaño */
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.social-facebook {
-    background: #1877F2;
-}
-
-.social-youtube {
-    background: #FF0000;
-}
-
-.social-tiktok {
-    background: #000000;
-}
-
-.social-icon:hover {
-    transform: translateY(-2px) scale(1.05);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 8px 0; /* Reducir padding */
-    font-size: 10px; /* Reducir tamaño */
-    color: rgba(255, 255, 255, 0.7);
-    border-top: 1px solid rgba(241, 196, 15, 0.2);
-    margin-top: 10px; /* Reducir margen */
-}
-
-
-
-/* RESPONSIVE PARA FOOTER */
-@media (max-width: 768px) {
-    .footer-container {
-        padding: 0 15px;
-    }
-
-    .footer-main {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .footer-contact {
-        align-items: center;
-        order: 1;
-    }
-
-    .footer-social {
-        justify-content: center;
-        order: 2;
-    }
-
-    .contact-item {
-        justify-content: center;
-        font-size: 11px;
-    }
-
-    .contact-icon {
-        font-size: 11px;
-        width: 16px;
-    }
-
-    .contact-link {
-        font-size: 11px;
-    }
-
-    .whatsapp-btn {
-        padding: 6px 12px;
-        font-size: 10px;
-    }
-
-    .social-icon {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-    }
-
-    .footer-bottom {
-        font-size: 9px;
-        padding: 6px 0;
-    }
-
-    /* Mapa responsive */
-    .mapa-section {
-        padding: 20px;
-        margin: 0 10px;
-    }
-    
-    .mapa-interactivo iframe {
-        height: 400px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-main {
-        gap: 10px;
-    }
-
-    .footer-social {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .social-icons {
-        gap: 8px;
-    }
-
-    .contact-item {
-        font-size: 10px;
-    }
-
-    .contact-link {
-        font-size: 10px;
-    }
-
-    .contact-icon {
-        font-size: 10px;
-        width: 14px;
-    }
-
-    .whatsapp-btn {
-        padding: 5px 10px;
-        font-size: 9px;
-    }
-
-    .social-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
-    }
-
-    .footer-bottom {
-        font-size: 8px;
-    }
-
-    /* Mapa más compacto en móvil */
-    .mapa-section {
-        padding: 15px;
-        margin: 0 5px;
-    }
-    
-    .mapa-interactivo iframe {
-        height: 350px;
-    }
-}
-
-/* Ocultar barras de scroll pero mantener funcionalidad */
-html {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-}
-
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-}
-
-/* Solo en dispositivos móviles */
-@media (max-width: 768px) {
-    html {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    
-    html::-webkit-scrollbar {
-        display: none;
-    }
-}
-
-
-/* Controlar altura máxima en PC */
-@media (min-width: 769px) {
-    .tu-contenedor {
-        max-height: 100vh;
-        overflow-y: auto; /* Permite scroll si es necesario */
-    }
-}
-
-
-/*PROBANDO --------------------------------------------------*/
-
-/* MODAL PARA VISTA DE IMAGEN - MEJORADO */
-/* MODAL PARA VISTA DE IMAGEN - CENTRADO CORREGIDO */
+/* MODAL PARA VISTA DE IMAGEN */
 .image-modal {
     position: fixed;
     top: 0;
@@ -1340,7 +684,7 @@ body::-webkit-scrollbar {
 
 .modal-image {
     max-width: 100%;
-    max-height: 70vh; /* Asegurar que no sea demasiado alta */
+    max-height: 70vh;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -1350,6 +694,18 @@ body::-webkit-scrollbar {
     transition: transform 0.1s ease-out;
     cursor: grab;
     user-select: none;
+}
+
+.modal-image:active {
+    cursor: grabbing;
+}
+
+.modal-image.zoomed {
+    cursor: grab;
+}
+
+.modal-image.zoomed:active {
+    cursor: grabbing;
 }
 
 .modal-title {
@@ -1390,7 +746,6 @@ body::-webkit-scrollbar {
     transform: scale(1.1);
 }
 
-/* ZOOM CONTROLS - POSICIONAMIENTO MEJORADO */
 .zoom-controls {
     position: absolute;
     bottom: -70px;
@@ -1437,7 +792,6 @@ body::-webkit-scrollbar {
     justify-content: center;
 }
 
-/* INSTRUCCIONES DE USO - POSICIONAMIENTO MEJORADO */
 .usage-instructions {
     position: absolute;
     bottom: -120px;
@@ -1460,151 +814,661 @@ body::-webkit-scrollbar {
     opacity: 1;
 }
 
-/* ESTADOS DE LA IMAGEN */
-.modal-image:active {
-    cursor: grabbing;
+/* FOOTER */
+.footer-feccor {
+    background: linear-gradient(135deg, rgba(15, 44, 82, 0.95), rgba(0, 117, 191, 0.9));
+    color: white;
+    border-top: 3px solid #F1C40F;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
 }
 
-.modal-image.zoomed {
-    cursor: grab;
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.modal-image.zoomed:active {
-    cursor: grabbing;
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
-/* Responsive para el modal */
-@media (max-width: 768px) {
-    .modal-content {
-        max-width: 95vw;
-        max-height: 95vh;
-        padding: 10px;
-    }
-
-    .modal-image {
-        max-height: 60vh;
-    }
-
-    .modal-controls {
-        top: -50px;
-        right: 0;
-    }
-
-    .close-modal {
-        width: 40px;
-        height: 40px;
-        font-size: 1em;
-    }
-
-    .zoom-controls {
-        bottom: -60px;
-        padding: 8px 12px;
-        gap: 8px;
-    }
-
-    .zoom-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9em;
-    }
-
-    .zoom-info {
-        font-size: 0.8em;
-        padding: 0 8px;
-        min-width: 40px;
-    }
-
-    .usage-instructions {
-        bottom: -100px;
-        font-size: 0.7em;
-        padding: 6px 12px;
-    }
-
-    .modal-title {
-        font-size: 1em;
-        margin-bottom: 15px;
-    }
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
 }
 
-@media (max-width: 480px) {
-    .modal-image {
-        max-height: 50vh;
-    }
-
-    .modal-title {
-        font-size: 0.9em;
-        margin-bottom: 10px;
-    }
-
-    .usage-instructions {
-        font-size: 0.65em;
-    }
+.footer-contact .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    transition: none;
 }
 
-
-
-
-
-
-
-
-/* IMAGEN CON FUNCIONALIDAD DE ARRASTRAR */
-.modal-image {
-    cursor: grab;
-    user-select: none;
-    transition: transform 0.1s ease-out;
+.footer-contact .contact-item:hover {
+    transform: none;
+    box-shadow: none;
+    background: none;
+    border-color: transparent;
 }
 
-.modal-image:active {
-    cursor: grabbing;
-}
-
-.modal-image.zoomed {
-    cursor: grab;
-}
-
-.modal-image.zoomed:active {
-    cursor: grabbing;
-}
-
-/* INSTRUCCIONES DE USO */
-.usage-instructions {
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 44, 82, 0.9);
+.contact-icon {
+    font-size: 12px;
+    width: 18px;
+    text-align: center;
     color: #F1C40F;
+    flex-shrink: 0;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 12px;
+}
+
+.contact-link:hover {
+    color: #F1C40F;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    text-decoration: none;
     padding: 8px 15px;
     border-radius: 15px;
-    border: 1px solid #F1C40F;
-    font-size: 0.8em;
-    text-align: center;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-}
-
-.usage-instructions:hover {
-    opacity: 1;
-}
-
-.close-modal {
-    background: #F1C40F;
-    color: #0F2C52;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 1.2em;
-    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
     transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-1px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s ease;
 }
 
-.close-modal:hover {
-    background: #00ffcc;
-    transform: scale(1.1);
+.social-facebook {
+    background: #1877F2;
+}
+
+.social-youtube {
+    background: #FF0000;
+}
+
+.social-tiktok {
+    background: #000000;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(241, 196, 15, 0.2);
+    margin-top: 10px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+
+    .main-content {
+        max-width: 100%;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .logo img {
+        height: 45px;
+}
+
+.section {
+    padding: 15px;
+}
+
+.carousel-container,
+.carousel {
+    min-height: 300px;
+}
+
+.historia-section .slide-content,
+.organigrama-section .slide-content,
+.competencia-section .slide-content {
+    min-height: 300px;
+    padding: 15px;
+}
+
+.team-photo {
+    height: 180px;
+}
+
+.team-photo img,
+.placeholder-image {
+    height: 180px;
+}
+
+.slide-content h2 {
+    font-size: 1rem;
+}
+
+.slide-content p,
+.team-description p,
+.intro-text p,
+.peritaje-description p,
+.slide-text p,
+.organigrama-text p {
+    font-size: 0.8rem;
+}
+
+.nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+}
+
+.mapa-section {
+    padding: 25px;
+}
+
+.mapa-section h2 {
+    font-size: 1.4rem;
+}
+
+.mapa-interactivo iframe {
+    height: 350px;
+}
+
+.contact-info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.contact-item {
+    padding: 20px;
+}
+
+.slide-image img {
+    height: 300px;
+    max-width: 150px;
+}
+
+.organigrama-image img {
+    height: 150px;
+}
+
+.mapa-container img {
+    height: 150px;
+}
+
+.superior-subtitle {
+    font-size: 0.9rem;
+}
+
+.peritaje-description h3 {
+    font-size: 0.95rem;
+}
+
+/* Modal responsive */
+.modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+    padding: 10px;
+}
+
+.modal-image {
+    max-height: 60vh;
+}
+
+.modal-controls {
+    top: -50px;
+    right: 0;
+}
+
+.close-modal {
+    width: 40px;
+    height: 40px;
+    font-size: 1em;
+}
+
+.zoom-controls {
+    bottom: -60px;
+    padding: 8px 12px;
+    gap: 8px;
+}
+
+.zoom-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9em;
+}
+
+.zoom-info {
+    font-size: 0.8em;
+    padding: 0 8px;
+    min-width: 40px;
+}
+
+.usage-instructions {
+    bottom: -100px;
+    font-size: 0.7em;
+    padding: 6px 12px;
+}
+
+.modal-title {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+/* Footer responsive */
+.footer-container {
+    padding: 0 15px;
+}
+
+.footer-main {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.footer-contact {
+    align-items: center;
+    order: 1;
+}
+
+.footer-social {
+    justify-content: center;
+    order: 2;
+}
+
+.footer-contact .contact-item {
+    justify-content: center;
+    font-size: 11px;
+}
+
+.contact-icon {
+    font-size: 11px;
+    width: 16px;
+}
+
+.contact-link {
+    font-size: 11px;
+}
+
+.whatsapp-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    font-size: 9px;
+    padding: 6px 0;
+}
+
+.mapa-section {
+    padding: 20px;
+    margin: 0 10px;
+}
+
+.mapa-interactivo iframe {
+    height: 400px;
+}
+}
+
+@media (max-width: 480px) {
+h1 {
+    font-size: 1.7rem;
+    margin: 15px 0;
+    padding: 10px 0;
+}
+
+.main-content {
+    padding: 10px;
+    gap: 12px;
+}
+
+.main-title {
+    font-size: 1.3rem;
+}
+
+section {
+    padding: 12px;
+}
+
+.carousel-container,
+.carousel {
+    min-height: 250px;
+}
+
+.historia-section .slide-content,
+.organigrama-section .slide-content,
+.competencia-section .slide-content {
+    min-height: 250px;
+    padding: 12px;
+}
+
+.slide-content h2 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.team-photo {
+    height: 150px;
+}
+
+.team-photo img,
+.placeholder-image {
+    height: 150px;
+}
+
+.mapa-section {
+    padding: 15px;
+}
+
+.mapa-section h2 {
+    font-size: 1.2rem;
+}
+
+.mapa-interactivo iframe {
+    height: 300px;
+}
+
+.contact-item {
+    padding: 15px;
+}
+
+.contact-item h3 {
+    font-size: 1rem;
+}
+
+.contact-item p {
+    font-size: 0.9rem;
+}
+
+.slide-image img {
+    height: 250px;
+    max-width: 120px;
+}
+
+.organigrama-image img {
+    height: 120px;
+}
+
+.mapa-container img {
+    height: 120px;
+}
+
+.superior-subtitle {
+    font-size: 0.8rem;
+}
+
+.peritaje-description h3 {
+    font-size: 0.85rem;
+}
+
+.slide-content p,
+.team-description p,
+.intro-text p,
+.peritaje-description p,
+.slide-text p,
+.organigrama-text p {
+    font-size: 0.75rem;
+}
+
+.nav-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+}
+
+/* Modal móvil */
+.modal-image {
+    max-height: 50vh;
+}
+
+.modal-title {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.usage-instructions {
+    font-size: 0.65em;
+}
+
+/* Footer móvil */
+.footer-main {
+    gap: 10px;
+}
+
+.footer-social {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.social-icons {
+    gap: 8px;
+}
+
+.footer-contact .contact-item {
+    font-size: 10px;
+}
+
+.contact-link {
+    font-size: 10px;
+}
+
+.contact-icon {
+    font-size: 10px;
+    width: 14px;
+}
+
+.whatsapp-btn {
+    padding: 5px 10px;
+    font-size: 9px;
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+}
+
+.footer-bottom {
+    font-size: 8px;
+}
+
+.mapa-section {
+    padding: 15px;
+    margin: 0 5px;
+}
+
+.mapa-interactivo iframe {
+    height: 350px;
+}
+}
+
+@media (max-width: 1024px) {
+.main-content {
+    max-width: 95%;
+    padding: 20px;
+    gap: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+.carousel-container,
+.carousel {
+    min-height: 350px;
+}
+
+.historia-section .slide-content,
+.organigrama-section .slide-content,
+.competencia-section .slide-content {
+    min-height: 350px;
+}
+
+.team-photo {
+    height: 200px;
+}
+
+.team-photo img,
+.placeholder-image {
+    height: 200px;
+}
+
+.slide-content h2 {
+    font-size: 1.2rem;
+}
+
+.mapa-section h2 {
+    font-size: 1.7rem;
+}
+
+.nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+}
+}
+
+/* Estados especiales */
+@media (prefers-reduced-motion: reduce) {
+* {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+.carousel-slide {
+    animation: none;
+}
+
+section {
+    animation: none;
+}
+
+.team-photo img:hover,
+section:hover {
+    transform: none;
+}
+}
+
+@media (prefers-contrast: high) {
+section {
+    border: 3px solid #F1C40F;
+    background: rgba(241, 196, 15, 0.15);
+}
+
+.slide-content h2 {
+    background: rgba(241, 196, 15, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+}
+}
+
+/* Elementos adicionales */
+ul, ol {
+padding-left: 25px;
+margin-bottom: 15px;
+}
+
+li {
+margin-bottom: 8px;
+font-size: 0.9rem;
+line-height: 1.6;
+}
+
+button:focus,
+.dot:focus {
+outline: 3px solid #F1C40F;
+outline-offset: 3px;
+}
+
+section + section {
+margin-top: 5px;
 }

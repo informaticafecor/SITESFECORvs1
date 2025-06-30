@@ -453,7 +453,7 @@ section:hover {
 
 .team-photo img {
     width: 100%;
-    height: 350px; /* PARA CAMBIAR ALTURA DE LA FOTO EN SI*/
+    height: 400px; /* PARA CAMBIAR ALTURA DE LA FOTO EN SI*/
     object-fit: cover;
     object-position: center;
     border-radius: 12px;

@@ -432,7 +432,7 @@ h1 {
 }
 
 .news-card.lineamientos::after {
-    content: 'LINEAMIENTO';
+    content: 'LINEAMIENTO Y CRITERIOS';
     position: absolute;
     top: 15px;
     right: 15px;

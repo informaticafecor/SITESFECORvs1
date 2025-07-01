@@ -306,6 +306,16 @@ h1 {
 }
 
 /* Diseño de las tarjetas en formato grid */
+
+/*.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}*/
+
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -313,9 +323,11 @@ h1 {
     justify-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: stretch; /* AGREGADO: Hace que todas las tarjetas tengan la misma altura */
 }
 
 /* Estilo de cada tarjeta de oficio */
+
 .news-card {
     /*background: linear-gradient(145deg, #0F2C52, #1a3660);*/
     color: var(--text-color);

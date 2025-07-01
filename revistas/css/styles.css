@@ -46,7 +46,7 @@
         /* Título principal */
         h1 {
             text-align: center;
-            font-size: 2.5em;
+            font-size: 3.4em;
             margin-bottom: 20px;
             background: white;
             -webkit-background-clip: text;
@@ -71,7 +71,7 @@
         }
 
         .welcome-section p {
-            font-size: 1.1em;
+            font-size: 1.5em;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.7;
             margin: 0;

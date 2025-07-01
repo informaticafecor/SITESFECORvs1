@@ -65,7 +65,7 @@
         /* TÍTULO PRINCIPAL */
         h1 {
             text-align: center;
-            font-size: 3em;
+            font-size: 3.4em;
             margin-bottom: 30px;
             background: white;
             -webkit-background-clip: text;
@@ -147,14 +147,14 @@
         }
 
         .intro-title {
-            font-size: 1.4em;
+            font-size: 1.5em;
             font-weight: 700;
             color: var(--text-color);
             margin-bottom: 15px;
         }
 
         .intro-description {
-            font-size: 1.05em;
+            font-size: 1.2em;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.7;
             margin: 0;

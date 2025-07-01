@@ -63,7 +63,7 @@ function selectMonth(month) {
     loadDocumentsForMonth(month);
     
     // Mostrar notificación
-    showNotification(`Mostrando documentos de ${month.charAt(0).toUpperCase() + month.slice(1)}`, 'info');
+    //showNotification(`Mostrando documentos de ${month.charAt(0).toUpperCase() + month.slice(1)}`, 'info');
 }
 
 // Función para cargar documentos de un mes específico
@@ -391,9 +391,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadDocumentsForMonth(currentSelectedMonth);
     
     // Mostrar mensaje de bienvenida
-    setTimeout(() => {
+    /*setTimeout(() => {
         showNotification('Bienvenido a la sección de Defensores Públicos', 'info');
-    }, 1000);
+    }, 1000);*/
 });
 
 // Función para mostrar notificaciones
@@ -653,9 +653,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadDocumentsForMonth(currentSelectedMonth);
     
     // Mostrar mensaje de bienvenida
-    setTimeout(() => {
+   /* setTimeout(() => {
         showNotification('Bienvenido a la sección de Defensores Públicos', 'info');
-    }, 1000);
+    }, 1000);*/
 });
 
 // Función para mostrar notificaciones
@@ -852,9 +852,9 @@ document.addEventListener('DOMContentLoaded', function() {
     enhanceHoverEffects();
     
     // Mostrar mensaje de bienvenida
-    setTimeout(() => {
+    /*setTimeout(() => {
         showNotification('Bienvenido a la sección de Defensores Públicos', 'info');
-    }, 1000);
+    }, 1000);*/
 });
 
 // Función adicional para búsqueda (por si se necesita en el futuro)

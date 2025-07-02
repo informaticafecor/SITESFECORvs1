@@ -1,32 +1,31 @@
-
-
-// ===== CARRUSELES - CONFIGURACIÓN CORREGIDA =====
+// ===== CARRUSELES - CONFIGURACIÓN AUTOMÁTICA =====
 const carousels = {
     'superior-carousel': {
         currentSlide: 0,
-        totalSlides: 4, // Coordinadora + 3 Fiscalías
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'supraprovinciales-carousel': {
         currentSlide: 0,
-        totalSlides: 18, // CORREGIDO: 18 equipos
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'peritaje-carousel': {
         currentSlide: 0,
-        totalSlides: 5, // CORREGIDO: 5 oficinas
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'provincias-carousel': {
         currentSlide: 0,
-        totalSlides: 18, // CORREGIDO: Contar slides reales
-        autoPlay: true, // ACTIVADO
+        totalSlides: 0, // ← AUTODETECCIÓN
+        autoPlay: true,
         interval: null
     }
 };
+
 
 // Función para cambiar slides
 function changeSlide(carouselId, direction) {
@@ -204,47 +203,48 @@ function pauseOnHover(carouselId) {
 }
 
 // Función para detectar el número real de slides - MEJORADA
+// Función para detectar el número REAL de slides
 function detectSlides(carouselId) {
     const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
     if (carousels[carouselId]) {
         carousels[carouselId].totalSlides = slides.length;
-        console.log(`🎠 ${carouselId}: ${slides.length} slides detectados`);
+        console.log(`🎠 ${carouselId}: ${slides.length} slides detectados AUTOMÁTICAMENTE`);
         
-        // DEBUGGING: Mostrar cuáles slides están visibles
+        // Mostrar los títulos de los slides para verificar
         slides.forEach((slide, index) => {
+            const title = slide.querySelector('h2')?.textContent || `Slide ${index + 1}`;
             const isActive = slide.classList.contains('active');
-            console.log(`   Slide ${index + 1}: ${isActive ? 'ACTIVO' : 'inactivo'}`);
+            console.log(`   ${index + 1}. ${title.substring(0, 50)}... ${isActive ? '✅' : '⭕'}`);
         });
     }
+    return slides.length;
 }
 
-// Función de inicialización - MEJORADA CON DEBUG
+// Función de inicialización con DETECCIÓN AUTOMÁTICA
 function initCarousels() {
-    console.log('🎠 Inicializando carruseles...');
+    console.log('🎠 Inicializando carruseles con AUTODETECCIÓN...');
     
     Object.keys(carousels).forEach(carouselId => {
         console.log(`\n📋 Configurando: ${carouselId}`);
         
-        // Verificar que el carrusel existe en el HTML
+        // Verificar que el carrusel existe
         const carouselElement = document.getElementById(carouselId);
         if (!carouselElement) {
-            console.error(`❌ No se encontró el elemento: ${carouselId}`);
+            console.error(`❌ No se encontró: ${carouselId}`);
             return;
         }
         
-        // Detectar número real de slides
-        detectSlides(carouselId);
+        // DETECTAR AUTOMÁTICAMENTE el número de slides
+        const realSlideCount = detectSlides(carouselId);
         
-        // Verificar que todos los slides tengan la clase correcta
+        if (realSlideCount === 0) {
+            console.warn(`⚠️ ${carouselId} no tiene slides`);
+            return;
+        }
+        
+        // Asegurar que solo el primer slide esté activo
         const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
-        let activeCount = 0;
-        
         slides.forEach((slide, index) => {
-            if (slide.classList.contains('active')) {
-                activeCount++;
-            }
-            
-            // Asegurar que solo el primer slide esté activo
             if (index === 0) {
                 slide.classList.add('active');
             } else {
@@ -252,23 +252,23 @@ function initCarousels() {
             }
         });
         
-        console.log(`   Total slides: ${slides.length}`);
-        console.log(`   Slides activos encontrados: ${activeCount}`);
-        
         // Crear dots
         createDots(carouselId);
         
-        // Iniciar autoplay
+        // Iniciar autoplay si hay más de 1 slide
         if (carousels[carouselId].totalSlides > 1) {
             setTimeout(() => {
                 startAutoPlay(carouselId);
                 pauseOnHover(carouselId);
-            }, 1000); // Esperar 1 segundo antes de iniciar autoplay
+            }, 1000);
+        } else {
+            console.log(`⚠️ ${carouselId} tiene solo 1 slide, no necesita autoplay`);
         }
     });
     
-    console.log('✅ Inicialización de carruseles completada');
+    console.log('✅ Inicialización completada con AUTODETECCIÓN');
 }
+
 
 // ===== FUNCIONES PARA EL MODAL DE IMAGEN =====
 let currentZoom = 1;
@@ -489,14 +489,26 @@ function initializeModalEvents() {
     });
 }
 
-// ===== INICIALIZACIÓN =====
+// ===== INICIALIZACIÓN COMPLETA ===== 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Inicializando página...');
+    console.log('🚀 DOM cargado, iniciando en 2 segundos...');
     
-    // Inicializar carruseles PRIMERO
-    setTimeout(initCarousels, 100);
+    // Esperar 2 segundos para asegurar que todo esté cargado
+    setTimeout(() => {
+        initCarousels();
+        
+        // Debug adicional después de 5 segundos
+        setTimeout(() => {
+            console.log('\n🔍 Estado de autoplay después de 5 segundos:');
+            Object.keys(carousels).forEach(carouselId => {
+                const carousel = carousels[carouselId];
+                console.log(`${carouselId}: ${carousel.interval ? 'FUNCIONANDO' : 'DETENIDO'}`);
+            });
+        }, 5000);
+        
+    }, 2000);
     
-    // Eventos de teclado para modal
+    // Eventos de teclado para modal (MANTENER IGUAL)
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeImageModal();
@@ -516,5 +528,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    console.log('✅ Página inicializada completamente');
+    console.log('✅ Modal de imagen inicializado');
 });

@@ -22,8 +22,8 @@ const carousels = {
     },
     'provincias-carousel': {
         currentSlide: 0,
-        totalSlides: 18, // CORREGIDO: 18 provincias
-        autoPlay: true,
+        totalSlides: 18, // CORREGIDO: Contar slides reales
+        autoPlay: true, // ACTIVADO
         interval: null
     }
 };
@@ -154,14 +154,30 @@ function createDots(carouselId) {
 }
 
 // Función para iniciar autoplay
+// Función para iniciar autoplay - MEJORADA
 function startAutoPlay(carouselId) {
     const carousel = carousels[carouselId];
     if (carousel && carousel.autoPlay && carousel.totalSlides > 1) {
+        // Limpiar interval anterior si existe
+        if (carousel.interval) {
+            clearInterval(carousel.interval);
+        }
+        
         carousel.interval = setInterval(() => {
+            console.log(`🔄 Autoplay: ${carouselId} - Slide ${carousel.currentSlide + 1}/${carousel.totalSlides}`);
             changeSlide(carouselId, 1);
-        }, 4000); // REDUCIDO a 4 segundos para ver el movimiento
+        }, 3000); // 3 segundos para ver el movimiento más claramente
+        
+        console.log(`✅ Autoplay iniciado para ${carouselId}`);
+    } else {
+        console.log(`❌ Autoplay NO iniciado para ${carouselId}:`, {
+            existe: !!carousel,
+            autoPlay: carousel?.autoPlay,
+            totalSlides: carousel?.totalSlides
+        });
     }
 }
+
 
 // Función para detener autoplay
 function stopAutoPlay(carouselId) {
@@ -187,32 +203,48 @@ function pauseOnHover(carouselId) {
     });
 }
 
-// Función para detectar el número real de slides
+// Función para detectar el número real de slides - MEJORADA
 function detectSlides(carouselId) {
     const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
     if (carousels[carouselId]) {
         carousels[carouselId].totalSlides = slides.length;
         console.log(`🎠 ${carouselId}: ${slides.length} slides detectados`);
+        
+        // DEBUGGING: Mostrar cuáles slides están visibles
+        slides.forEach((slide, index) => {
+            const isActive = slide.classList.contains('active');
+            console.log(`   Slide ${index + 1}: ${isActive ? 'ACTIVO' : 'inactivo'}`);
+        });
     }
 }
 
-// Función de inicialización
+// Función de inicialización - MEJORADA CON DEBUG
 function initCarousels() {
     console.log('🎠 Inicializando carruseles...');
     
-    // Detectar slides reales y configurar cada carrusel
     Object.keys(carousels).forEach(carouselId => {
-        console.log(`Configurando carrusel: ${carouselId}`);
+        console.log(`\n📋 Configurando: ${carouselId}`);
+        
+        // Verificar que el carrusel existe en el HTML
+        const carouselElement = document.getElementById(carouselId);
+        if (!carouselElement) {
+            console.error(`❌ No se encontró el elemento: ${carouselId}`);
+            return;
+        }
         
         // Detectar número real de slides
         detectSlides(carouselId);
         
-        // Crear dots
-        createDots(carouselId);
-        
-        // Asegurar que el primer slide esté activo
+        // Verificar que todos los slides tengan la clase correcta
         const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
+        let activeCount = 0;
+        
         slides.forEach((slide, index) => {
+            if (slide.classList.contains('active')) {
+                activeCount++;
+            }
+            
+            // Asegurar que solo el primer slide esté activo
             if (index === 0) {
                 slide.classList.add('active');
             } else {
@@ -220,14 +252,22 @@ function initCarousels() {
             }
         });
         
-        // Configurar autoplay solo si hay más de 1 slide
+        console.log(`   Total slides: ${slides.length}`);
+        console.log(`   Slides activos encontrados: ${activeCount}`);
+        
+        // Crear dots
+        createDots(carouselId);
+        
+        // Iniciar autoplay
         if (carousels[carouselId].totalSlides > 1) {
-            startAutoPlay(carouselId);
-            pauseOnHover(carouselId);
+            setTimeout(() => {
+                startAutoPlay(carouselId);
+                pauseOnHover(carouselId);
+            }, 1000); // Esperar 1 segundo antes de iniciar autoplay
         }
     });
     
-    console.log('✅ Carruseles inicializados');
+    console.log('✅ Inicialización de carruseles completada');
 }
 
 // ===== FUNCIONES PARA EL MODAL DE IMAGEN =====

@@ -1,45 +1,45 @@
-
-
 // ===== CARRUSELES - CONFIGURACIÓN CORREGIDA =====
 const carousels = {
     'superior-carousel': {
         currentSlide: 0,
-        totalSlides: 4, // Coordinadora + 3 Fiscalías
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'supraprovinciales-carousel': {
         currentSlide: 0,
-        totalSlides: 18, // CORREGIDO: 18 equipos
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'peritaje-carousel': {
         currentSlide: 0,
-        totalSlides: 5, // CORREGIDO: 5 oficinas
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     },
     'provincias-carousel': {
         currentSlide: 0,
-        totalSlides: 18, // CORREGIDO: 18 provincias
+        totalSlides: 0, // Se detectará automáticamente
         autoPlay: true,
         interval: null
     }
 };
-
 // Función para cambiar slides
 function changeSlide(carouselId, direction) {
     const carousel = carousels[carouselId];
     const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
     
     if (!carousel || slides.length === 0) {
-        console.warn(`Carrusel ${carouselId} no encontrado o sin slides`);
+        console.warn(`⚠️ Carrusel ${carouselId} no encontrado o sin slides`);
         return;
     }
     
     // Solo funcionar si hay más de 1 slide
-    if (carousel.totalSlides <= 1) return;
+    if (carousel.totalSlides <= 1) {
+        console.log(`📌 ${carouselId}: Solo ${carousel.totalSlides} slide(s), no se puede cambiar`);
+        return;
+    }
     
     // Remover clase active del slide actual
     slides[carousel.currentSlide].classList.remove('active');
@@ -57,6 +57,8 @@ function changeSlide(carouselId, direction) {
     // Activar nuevo slide
     slides[carousel.currentSlide].classList.add('active');
     
+    console.log(`🔄 ${carouselId}: Slide ${carousel.currentSlide + 1}/${carousel.totalSlides}`);
+    
     // Actualizar dots
     updateDots(carouselId);
     
@@ -66,6 +68,8 @@ function changeSlide(carouselId, direction) {
         startAutoPlay(carouselId);
     }
 }
+
+
 
 // Función para ir a un slide específico
 function goToSlide(carouselId, slideIndex) {
@@ -121,13 +125,18 @@ function createDots(carouselId) {
     const carousel = carousels[carouselId];
     const dotsContainer = document.getElementById(`${carouselId.replace('-carousel', '-dots')}`);
     
-    if (!dotsContainer || !carousel) return;
+    if (!dotsContainer || !carousel) {
+        console.warn(`⚠️ No se encontró contenedor de dots para ${carouselId}`);
+        return;
+    }
     
     // Limpiar dots existentes
     dotsContainer.innerHTML = '';
     
     // Solo crear dots si hay más de 1 slide
     if (carousel.totalSlides > 1) {
+        console.log(`🔘 Creando ${carousel.totalSlides} dots para ${carouselId}`);
+        
         for (let i = 0; i < carousel.totalSlides; i++) {
             const dot = document.createElement('span');
             dot.className = 'dot';
@@ -150,16 +159,24 @@ function createDots(carouselId) {
             
             dotsContainer.appendChild(dot);
         }
+    } else {
+        console.log(`📌 ${carouselId}: Solo ${carousel.totalSlides} slide(s), no se crean dots`);
     }
 }
+
+
+
 
 // Función para iniciar autoplay
 function startAutoPlay(carouselId) {
     const carousel = carousels[carouselId];
     if (carousel && carousel.autoPlay && carousel.totalSlides > 1) {
+        console.log(`▶️ Iniciando autoplay para ${carouselId} (${carousel.totalSlides} slides)`);
         carousel.interval = setInterval(() => {
             changeSlide(carouselId, 1);
-        }, 4000); // REDUCIDO a 4 segundos para ver el movimiento
+        }, 5000); // 5 segundos entre cambios
+    } else {
+        console.log(`⏸️ No se inicia autoplay para ${carouselId}: ${carousel ? (carousel.autoPlay ? `Solo ${carousel.totalSlides} slide(s)` : 'Autoplay desactivado') : 'Carrusel no encontrado'}`);
     }
 }
 
@@ -167,6 +184,7 @@ function startAutoPlay(carouselId) {
 function stopAutoPlay(carouselId) {
     const carousel = carousels[carouselId];
     if (carousel && carousel.interval) {
+        console.log(`⏹️ Deteniendo autoplay para ${carouselId}`);
         clearInterval(carousel.interval);
         carousel.interval = null;
     }
@@ -176,59 +194,123 @@ function stopAutoPlay(carouselId) {
 function pauseOnHover(carouselId) {
     const carouselElement = document.getElementById(carouselId);
     
-    if (!carouselElement) return;
+    if (!carouselElement) {
+        console.warn(`⚠️ Elemento de carrusel ${carouselId} no encontrado para hover`);
+        return;
+    }
     
     carouselElement.addEventListener('mouseenter', () => {
+        console.log(`🖱️ Mouse enter en ${carouselId} - pausando autoplay`);
         stopAutoPlay(carouselId);
     });
     
     carouselElement.addEventListener('mouseleave', () => {
+        console.log(`🖱️ Mouse leave en ${carouselId} - reiniciando autoplay`);
         startAutoPlay(carouselId);
     });
 }
 
-// Función para detectar el número real de slides
+
+// Función para detectar el número real de slides - MEJORADA
 function detectSlides(carouselId) {
     const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
+    const carousel = carousels[carouselId];
+    
+    if (!carousel) {
+        console.error(`❌ Carrusel ${carouselId} no encontrado en configuración`);
+        return;
+    }
+    
+    carousel.totalSlides = slides.length;
+    console.log(`🔍 ${carouselId}: ${slides.length} slides detectados`);
+    
+    // Debug: mostrar información de cada slide
+    slides.forEach((slide, index) => {
+        const title = slide.querySelector('h2');
+        const titleText = title ? title.textContent.substring(0, 50) + '...' : 'Sin título';
+        console.log(`  📄 Slide ${index + 1}: ${titleText}`);
+    });
+    
+    return slides.length;
+}
+
+// Función para asegurar que solo el primer slide esté activo
+function resetActiveSlides(carouselId) {
+    const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
+    
+    slides.forEach((slide, index) => {
+        if (index === 0) {
+            slide.classList.add('active');
+            console.log(`✅ Slide 0 activado para ${carouselId}`);
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+    
+    // Resetear currentSlide
     if (carousels[carouselId]) {
-        carousels[carouselId].totalSlides = slides.length;
-        console.log(`🎠 ${carouselId}: ${slides.length} slides detectados`);
+        carousels[carouselId].currentSlide = 0;
     }
 }
 
-// Función de inicialización
+
+
+// Función de inicialización - MEJORADA
 function initCarousels() {
-    console.log('🎠 Inicializando carruseles...');
+    console.log('🚀 Iniciando inicialización de carruseles...');
     
-    // Detectar slides reales y configurar cada carrusel
+    // Esperar a que el DOM esté completamente cargado
+    if (document.readyState !== 'complete') {
+        console.log('⏳ Esperando a que el DOM se complete...');
+        setTimeout(initCarousels, 100);
+        return;
+    }
+    
+    console.log('🎠 DOM completo, configurando carruseles...');
+    
+    // Configurar cada carrusel
     Object.keys(carousels).forEach(carouselId => {
-        console.log(`Configurando carrusel: ${carouselId}`);
+        console.log(`\n🔧 Configurando carrusel: ${carouselId}`);
+        
+        // Verificar que el carrusel existe en el DOM
+        const carouselElement = document.getElementById(carouselId);
+        if (!carouselElement) {
+            console.warn(`⚠️ Elemento ${carouselId} no encontrado en el DOM`);
+            return;
+        }
         
         // Detectar número real de slides
-        detectSlides(carouselId);
+        const slideCount = detectSlides(carouselId);
+        
+        if (slideCount === 0) {
+            console.warn(`⚠️ ${carouselId}: No se encontraron slides`);
+            return;
+        }
+        
+        // Asegurar que solo el primer slide esté activo
+        resetActiveSlides(carouselId);
         
         // Crear dots
         createDots(carouselId);
         
-        // Asegurar que el primer slide esté activo
-        const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
-        slides.forEach((slide, index) => {
-            if (index === 0) {
-                slide.classList.add('active');
-            } else {
-                slide.classList.remove('active');
-            }
-        });
+        // Configurar hover para pausar autoplay
+        pauseOnHover(carouselId);
         
-        // Configurar autoplay solo si hay más de 1 slide
-        if (carousels[carouselId].totalSlides > 1) {
-            startAutoPlay(carouselId);
-            pauseOnHover(carouselId);
+        // Iniciar autoplay solo si hay más de 1 slide
+        if (slideCount > 1) {
+            // Pequeño delay para asegurar que todo esté configurado
+            setTimeout(() => {
+                startAutoPlay(carouselId);
+            }, 500);
         }
+        
+        console.log(`✅ ${carouselId} configurado exitosamente`);
     });
     
-    console.log('✅ Carruseles inicializados');
+    console.log('\n🎉 Inicialización de carruseles completada');
 }
+
+
 
 // ===== FUNCIONES PARA EL MODAL DE IMAGEN =====
 let currentZoom = 1;
@@ -249,7 +331,7 @@ function openImageModal(imgElement, title) {
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     
-    console.log('Opening modal for:', title);
+    console.log('🖼️ Abriendo modal para:', title);
     
     // Mostrar modal
     modal.classList.add('show');
@@ -266,7 +348,7 @@ function openImageModal(imgElement, title) {
     
     // Cargar imagen directamente
     modalImage.onload = function() {
-        console.log('Image loaded successfully');
+        console.log('✅ Imagen cargada exitosamente');
         modalImage.style.display = 'block';
         updateImageTransform();
         updateZoomInfo();
@@ -277,7 +359,7 @@ function openImageModal(imgElement, title) {
     };
     
     modalImage.onerror = function() {
-        console.error('Error loading image');
+        console.error('❌ Error al cargar la imagen');
         modalTitle.textContent = 'Error al cargar la imagen';
         modalImage.style.display = 'none';
     };
@@ -287,7 +369,7 @@ function openImageModal(imgElement, title) {
     
     // Si la imagen ya está en cache
     if (modalImage.complete) {
-        console.log('Image already cached');
+        console.log('💾 Imagen ya está en caché');
         modalImage.style.display = 'block';
         updateImageTransform();
         updateZoomInfo();
@@ -451,10 +533,12 @@ function initializeModalEvents() {
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Inicializando página...');
+    console.log('🚀 DOM cargado, iniciando página...');
     
-    // Inicializar carruseles PRIMERO
-    setTimeout(initCarousels, 100);
+    // Inicializar carruseles después de un pequeño delay
+    setTimeout(() => {
+        initCarousels();
+    }, 500);
     
     // Eventos de teclado para modal
     document.addEventListener('keydown', function(e) {
@@ -478,3 +562,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('✅ Página inicializada completamente');
 });
+
+// Función adicional para debugging - puedes llamarla desde la consola
+function debugCarousels() {
+    console.log('\n🔍 ESTADO ACTUAL DE LOS CARRUSELES:');
+    Object.keys(carousels).forEach(carouselId => {
+        const carousel = carousels[carouselId];
+        const slides = document.querySelectorAll(`#${carouselId} .carousel-slide`);
+        const activeSlides = document.querySelectorAll(`#${carouselId} .carousel-slide.active`);
+        
+        console.log(`\n📊 ${carouselId}:`);
+        console.log(`  - Configurado: ${carousel.totalSlides} slides`);
+        console.log(`  - En DOM: ${slides.length} slides`);
+        console.log(`  - Activos: ${activeSlides.length} slides`);
+        console.log(`  - Slide actual: ${carousel.currentSlide}`);
+        console.log(`  - Autoplay: ${carousel.autoPlay ? 'ON' : 'OFF'}`);
+        console.log(`  - Intervalo: ${carousel.interval ? 'ACTIVO' : 'INACTIVO'}`);
+    });
+}

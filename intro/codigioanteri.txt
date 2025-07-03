@@ -15,13 +15,23 @@
             font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
+        /*
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start; 
+            justify-content: center;
+            background-color: #0F2C52;
+            padding-top: 50px;     
+        }*/
 
         /*para el fondo*/
         .carousel-container {
             width: 100vw;
             height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             background-color: #0F2C52;
             /* Imagen de fondo con transparencia */
@@ -32,16 +42,16 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            padding: 20px;
+            padding-top: 50px;
         }        
+
+
 
         .carousel-wrapper {
             position: relative;
-            /* Cambiado para orientación vertical */
-            width: 60%;
-            max-width: 500px;
-            height: 85vh;
-            max-height: 800px;
+            width: 91.666667%;
+            max-width: 1200px;
+            height: 75%;
             background-color: #FFD040;
             border-radius: 16px;
             overflow: hidden;
@@ -63,6 +73,7 @@
             overflow: hidden;
             background-color: white;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
         }
 
         .slides-wrapper {
@@ -83,7 +94,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
 
         .slide-overlay {
@@ -109,7 +119,6 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.2s;
             font-size: 24px;
-            z-index: 10;
         }
 
         .nav-button:hover {
@@ -132,7 +141,6 @@
             transform: translateX(-50%);
             display: flex;
             gap: 12px;
-            z-index: 10;
         }
 
         .dot {
@@ -160,7 +168,6 @@
             width: 24px;
             height: 24px;
             border: 4px solid #D97706;
-            z-index: 5;
         }
 
         .corner-decoration.top-left {
@@ -195,31 +202,33 @@
             border-bottom-right-radius: 12px;
         }
 
+
+
+
+        
         /* Media queries para diferentes dispositivos */
 
         /* Tablets y pantallas medianas */
         @media (max-width: 1024px) {
             .carousel-wrapper {
-                width: 70%;
-                max-width: 450px;
-                height: 80vh;
+                width: 92%;
+                height: 70%;
             }
             
             .carousel-container {
-                padding: 15px;
+                padding-top: 40px;
             }
         }
 
         /* Móviles grandes */
         @media (max-width: 768px) {
             .carousel-container {
-                padding: 10px;
+                padding-top: 20px;
             }
             
             .carousel-wrapper {
-                width: 85%;
-                max-width: 400px;
-                height: 75vh;
+                width: 95%;
+                height: 65%;
             }
             
             .nav-button {
@@ -256,13 +265,12 @@
         /* Móviles pequeños */
         @media (max-width: 480px) {
             .carousel-container {
-                padding: 8px;
+                padding-top: 15px;
             }
             
             .carousel-wrapper {
-                width: 90%;
-                max-width: 350px;
-                height: 70vh;
+                width: 98%;
+                height: 60%;
                 border-radius: 12px;
             }
             
@@ -328,8 +336,7 @@
         /* Móviles muy pequeños */
         @media (max-width: 320px) {
             .carousel-wrapper {
-                width: 95%;
-                height: 65vh;
+                height: 55%;
             }
             
             .nav-button {
@@ -347,13 +354,11 @@
         /* Orientación horizontal en móviles */
         @media (max-height: 500px) and (orientation: landscape) {
             .carousel-container {
-                padding: 5px;
+                padding-top: 10px;
             }
             
             .carousel-wrapper {
-                width: 40%;
-                max-width: 300px;
-                height: 90vh;
+                height: 85%;
             }
             
             .dots-container {
@@ -361,15 +366,7 @@
             }
         }
 
-        /* Pantallas muy anchas - mantener proporción vertical */
-        @media (min-width: 1400px) {
-            .carousel-wrapper {
-                width: 45%;
-                max-width: 550px;
-                height: 85vh;
-                max-height: 900px;
-            }
-        }
+
 
         /* Ocultar barras de scroll pero mantener funcionalidad */
         html {
@@ -396,6 +393,17 @@
                 display: none;
             }
         }
+
+
+        /* Controlar altura máxima en PC */
+        @media (min-width: 769px) {
+            .tu-contenedor {
+                max-height: 100vh;
+                overflow-y: auto; /* Permite scroll si es necesario */
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -404,21 +412,42 @@
             <div class="carousel-content">
                 <div class="image-container">
                     <div class="slides-wrapper" id="slidesWrapper">
-                        <!-- Solo Slide 1 -->
+                        <!-- Slide 1 -->
                         <div class="slide">
-                            <img src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fotos/foto123.png" alt="Slide 1">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 1">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/iniciosite/main/fo1.jpeg" alt="Slide 2">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 3">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/informaticafecor/imagenes_noticias/main/WhatsApp%20Image%202025-06-10%20at%205.25.45%20PM.jpeg" alt="Slide 4">
                             <div class="slide-overlay"></div>
                         </div>
                     </div>
 
-                    <!-- Botones de navegación - OCULTOS -->
-                    <!-- <button class="nav-button prev" onclick="prevSlide()">&#8249;</button>
-                    <button class="nav-button next" onclick="nextSlide()">&#8250;</button> -->
+                    <!-- Botones de navegación -->
+                    <button class="nav-button prev" onclick="prevSlide()">&#8249;</button>
+                    <button class="nav-button next" onclick="nextSlide()">&#8250;</button>
 
-                    <!-- Indicadores - OCULTOS -->
-                    <!-- <div class="dots-container" id="dotsContainer">
+                    <!-- Indicadores -->
+                    <div class="dots-container" id="dotsContainer">
                         <button class="dot active" onclick="goToSlide(0)"></button>
-                    </div> -->
+                        <button class="dot" onclick="goToSlide(1)"></button>
+                        <button class="dot" onclick="goToSlide(2)"></button>
+                        <button class="dot" onclick="goToSlide(3)"></button>
+                    </div>
                 </div>
             </div>
 
@@ -431,13 +460,92 @@
     </div>
 
     <script>
-        // JavaScript simplificado para una sola imagen
-        // No se necesitan funciones de navegación
-        
-        // Opcional: Si quieres añadir alguna funcionalidad específica para la imagen única
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Imagen cargada correctamente');
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoPlayInterval;
+
+        function updateCarousel() {
+            const slidesWrapper = document.getElementById('slidesWrapper');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Mover slides
+            slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Actualizar dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // Inicializar autoplay
+        startAutoPlay();
+
+        // Pausar autoplay cuando el mouse está sobre el carrusel
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
+        carouselWrapper.addEventListener('mouseleave', startAutoPlay);
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
         });
+
+        // Soporte para touch en móviles
+        let startX = 0;
+        let endX = 0;
+
+        carouselWrapper.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        carouselWrapper.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
     </script>
 </body>
 </html>

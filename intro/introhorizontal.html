@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro - Imagen Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Fondo */
+        .image-container-main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #0F2C52;
+            /* Imagen de fondo con transparencia */
+            background-image: 
+                linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+                url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-top: 50px;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 91.666667%;
+            max-width: 1200px;
+            height: 75%;
+            background-color: #FFD040;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+        }
+
+        .image-display {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: pan-x pan-y pinch-zoom; /* ✅ PERMITIR arrastre y zoom */
+        }
+
+        .main-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.1s ease-out;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .main-image.normal {
+            cursor: zoom-in;
+        }
+
+        .main-image.zoomed {
+            cursor: grab;
+        }
+
+        .main-image.zoomed:active,
+        .main-image.dragging {
+            cursor: grabbing !important;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+        }
+
+        /* Controles de zoom */
+        .zoom-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .zoom-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .zoom-button:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        /* Controles de movimiento */
+        .move-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 16px; /* COMPLETAMENTE A LA IZQUIERDA */
+            transform: none; /* SIN CENTRADO */
+            display: none;
+            z-index: 10;
+        }
+
+        .move-controls.show {
+            display: block;
+        }
+
+        .move-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .move-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .move-button:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        .move-button:active {
+            transform: scale(0.95);
+            background-color: #f3f4f6;
+        }
+
+        .move-center {
+            background-color: rgba(255, 208, 64, 0.9);
+            color: #d97706;
+        }
+
+        .move-center:hover {
+            background-color: #FFD040;
+        }
+
+        .zoom-info {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .zoom-info.show {
+            opacity: 1;
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 4px solid #D97706;
+        }
+
+        .corner-decoration.top-left {
+            top: 8px;
+            left: 8px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 12px;
+        }
+
+        .corner-decoration.top-right {
+            top: 8px;
+            right: 8px;
+            border-left: none;
+            border-bottom: none;
+            border-top-right-radius: 12px;
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 8px;
+            left: 8px;
+            border-right: none;
+            border-top: none;
+            border-bottom-left-radius: 12px;
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 8px;
+            right: 8px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 12px;
+        }
+
+        #zoomButtons {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #zoomButtons.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+
+
+
+
+
+        /* Media queries para diferentes dispositivos */
+
+        /* Tablets y pantallas medianas */
+        @media (max-width: 1024px) {
+            .image-wrapper {
+                width: 92%;
+                height: 70%;
+            }
+            
+            .image-container-main {
+                padding-top: 40px;
+            }
+        }
+
+        /* Móviles grandes */
+        @media (max-width: 768px) {
+            .image-container-main {
+                padding-top: 20px;
+            }
+            
+            .image-wrapper {
+                width: 95%;
+                height: 65%;
+            }
+            
+            .corner-decoration {
+                width: 20px;
+                height: 20px;
+                border-width: 3px;
+            }
+            
+            .main-image.zoomed {
+                cursor: grab;
+            }
+            
+            .move-controls {
+                bottom: 30px; /* MÁS ABAJO también en móviles */
+                left: 12px; /* A LA IZQUIERDA en móviles */
+            }
+            
+            .move-grid {
+                width: 100px;
+                height: 100px;
+                gap: 3px;
+            }
+            
+            .move-button {
+                font-size: 14px;
+                border-radius: 6px;
+            }
+        }
+
+        /* Móviles pequeños */
+        @media (max-width: 480px) {
+            .image-container-main {
+                padding-top: 15px;
+            }
+            
+            .image-wrapper {
+                width: 98%;
+                height: 60%;
+                border-radius: 12px;
+            }
+            
+            .image-content {
+                padding: 3px;
+            }
+            
+            .image-display {
+                border-radius: 8px;
+            }
+            
+            .move-controls {
+                bottom: 20px; /* MÁS ABAJO en móviles pequeños */
+                left: 10px; /* A LA IZQUIERDA en móviles pequeños */
+            }
+            
+            .move-grid {
+                width: 90px;
+                height: 90px;
+                gap: 2px;
+            }
+            
+            .move-button {
+                font-size: 12px;
+                border-radius: 4px;
+            }
+            
+            .corner-decoration {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+            
+            .corner-decoration.top-left,
+            .corner-decoration.top-right {
+                top: 6px;
+            }
+            
+            .corner-decoration.bottom-left,
+            .corner-decoration.bottom-right {
+                bottom: 6px;
+            }
+            
+            .corner-decoration.top-left,
+            .corner-decoration.bottom-left {
+                left: 6px;
+            }
+            
+            .corner-decoration.top-right,
+            .corner-decoration.bottom-right {
+                right: 6px;
+            }
+        }
+
+        /* Móviles muy pequeños */
+        @media (max-width: 320px) {
+            .image-wrapper {
+                height: 55%;
+            }
+            
+            .move-controls {
+                bottom: 15px; /* MÁS ABAJO en móviles muy pequeños */
+                left: 8px; /* A LA IZQUIERDA en móviles muy pequeños */
+            }
+            
+            .move-grid {
+                width: 80px;
+                height: 80px;
+                gap: 1px;
+            }
+            
+            .move-button {
+                font-size: 10px;
+            }
+        }
+
+        /* Orientación horizontal en móviles */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .image-container-main {
+                padding-top: 10px;
+            }
+            
+            .image-wrapper {
+                height: 85%;
+            }
+            
+            .move-controls {
+                bottom: 10px; /* MÁS ABAJO en landscape */
+                left: 10px; /* A LA IZQUIERDA en landscape */
+            }
+            
+            .move-grid {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Ocultar barras de scroll pero mantener funcionalidad */
+        html {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        /* Mejoras para dispositivos táctiles */
+        @media (max-width: 768px) {
+            .main-image.zoomed {
+                cursor: grab;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            .image-display {
+                touch-action: none; /* Mejora la respuesta táctil */
+            }
+            
+            /* Ocultar barras de scroll en móviles */
+            html {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            html::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        /* Ocultar barras de scroll pero mantener funcionalidad */
+        html {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        /* Controlar altura máxima en PC */
+        @media (min-width: 769px) {
+            .contenedor {
+                max-height: 100vh;
+                overflow-y: auto; /* Permite scroll si es necesario */
+            }
+        }
+
+        /* Controlar altura máxima en PC */
+        @media (min-width: 769px) {
+            .contenedor {
+                max-height: 100vh;
+                overflow-y: auto; /* Permite scroll si es necesario */
+            }
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="image-container-main">
+        <div class="image-wrapper">
+            <div class="image-content">
+                <div class="image-display">
+                    <!-- Una sola imagen -->
+                    <img class="main-image" src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/Organigrama.jpg" alt="Imagen principal" id="mainImage">
+                    <div class="image-overlay"></div>
+                    
+                    <!-- Controles de zoom -->
+                    <div class="zoom-controls" id="zoomButtons">
+                        <button class="zoom-button" onclick="zoomIn()" title="Aumentar zoom">+</button>
+                        <button class="zoom-button" onclick="zoomOut()" title="Reducir zoom">−</button>
+                        <button class="zoom-button" onclick="resetZoom()" title="Restablecer zoom">⌂</button>
+                    </div>
+                    
+                    <!-- Controles de movimiento -->
+                    <div class="move-controls" id="moveControls">
+                        <div class="move-grid">
+                            <!-- FILA 1: BOTONES SUPERIORES -->
+                            <button class="move-button" onclick="moveImage(-1, 1)" title="Mover imagen: abajo-derecha">↖</button>
+                            <button class="move-button" onclick="moveImage(0, 1)" title="Mover imagen: abajo">↑</button>
+                            <button class="move-button" onclick="moveImage(1, 1)" title="Mover imagen: abajo-izquierda">↗</button>
+                            
+                            <!-- FILA 2: CENTRO -->
+                            <button class="move-button" onclick="moveImage(-1, 0)" title="Mover imagen: derecha">←</button>
+                            <button class="move-button move-center" onclick="centerImage()" title="Centrar imagen">🎯</button>
+                            <button class="move-button" onclick="moveImage(1, 0)" title="Mover imagen: izquierda">→</button>
+                            
+                            <!-- FILA 3: BOTONES INFERIORES -->
+                            <button class="move-button" onclick="moveImage(-1, -1)" title="Mover imagen: arriba-derecha">↙</button>
+                            <button class="move-button" onclick="moveImage(0, -1)" title="Mover imagen: arriba">↓</button>
+                            <button class="move-button" onclick="moveImage(1, -1)" title="Mover imagen: arriba-izquierda">↘</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Información de zoom -->
+                    <div class="zoom-info" id="zoomInfo">
+                        Zoom: <span id="zoomLevel">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decoraciones de esquinas -->
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+        </div>
+    </div>
+
+    <script>
+        // Variables principales
+        let currentZoom = 1;
+        let minZoom = 0.2;
+        let maxZoom = 3;
+        let imageOffsetX = 0;
+        let imageOffsetY = 0;
+        const moveStep = 30; // Píxeles por movimiento
+
+        // Variables para movimiento continuo
+        let isMoving = false;
+        let moveInterval = null;
+        let currentDirection = { x: 0, y: 0 };
+
+        const image = document.getElementById('mainImage');
+        const zoomInfo = document.getElementById('zoomInfo');
+        const zoomLevel = document.getElementById('zoomLevel');
+        const imageDisplay = document.querySelector('.image-display');
+        const moveControls = document.getElementById('moveControls');
+
+        function updateImage() {
+            // Aplicar transformación
+            image.style.transform = `scale(${currentZoom}) translate(${imageOffsetX}px, ${imageOffsetY}px)`;
+            zoomLevel.textContent = Math.round(currentZoom * 100) + '%';
+
+            // Mostrar info de zoom temporalmente
+            zoomInfo.classList.add('show');
+            setTimeout(() => {
+                zoomInfo.classList.remove('show');
+            }, 2000);
+
+            // Mostrar/ocultar controles de movimiento y zoom según zoom
+            if (currentZoom > 1) {
+                moveControls.classList.add('show');
+                document.getElementById('zoomButtons').classList.add('show');
+                image.classList.add('zoomed');
+                image.classList.remove('normal');
+                console.log('🎮 Controles de movimiento activados');
+            } else {
+                moveControls.classList.remove('show');
+                document.getElementById('zoomButtons').classList.remove('show');
+                image.classList.add('normal');
+                image.classList.remove('zoomed');
+                imageOffsetX = 0;
+                imageOffsetY = 0;
+                console.log('🎮 Controles de movimiento desactivados');
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < maxZoom) {
+                currentZoom = Math.min(currentZoom + 0.2, maxZoom);
+                updateImage();
+                console.log('🔍 Zoom In:', Math.round(currentZoom * 100) + '%');
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > minZoom) {
+                currentZoom = Math.max(currentZoom - 0.2, minZoom);
+                if (currentZoom <= 1) {
+                    imageOffsetX = 0;
+                    imageOffsetY = 0;
+                }
+                updateImage();
+                console.log('🔍 Zoom Out:', Math.round(currentZoom * 100) + '%');
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            imageOffsetX = 0;
+            imageOffsetY = 0;
+            updateImage();
+            console.log('🔄 Reset Zoom');
+        }
+
+        // === MOVIMIENTO SIMPLE (UN PASO) ===
+        function moveImageOnce(dirX, dirY) {
+            if (currentZoom > 1) {
+                // DIRECCIONES INVERTIDAS (como cámara)
+                imageOffsetX -= dirX * moveStep;
+                imageOffsetY += dirY * moveStep;
+                
+                // Límites
+                const maxTranslateX = 200 * currentZoom;
+                const maxTranslateY = 200 * currentZoom;
+                
+                imageOffsetX = Math.max(-maxTranslateX, Math.min(maxTranslateX, imageOffsetX));
+                imageOffsetY = Math.max(-maxTranslateY, Math.min(maxTranslateY, imageOffsetY));
+                
+                updateImage();
+            }
+        }
+
+        // === MOVIMIENTO CONTINUO ===
+        function startContinuousMove(dirX, dirY) {
+            if (currentZoom <= 1) return;
+            
+            currentDirection = { x: dirX, y: dirY };
+            isMoving = true;
+            
+            // Primer movimiento inmediato
+            moveImageOnce(dirX, dirY);
+            
+            // Movimiento continuo cada 150ms
+            moveInterval = setInterval(() => {
+                if (isMoving) {
+                    moveImageOnce(currentDirection.x, currentDirection.y);
+                }
+            }, 150);
+            
+            console.log('🚀 Movimiento continuo iniciado');
+        }
+
+        function stopContinuousMove() {
+            isMoving = false;
+            if (moveInterval) {
+                clearInterval(moveInterval);
+                moveInterval = null;
+            }
+            console.log('⏹️ Movimiento continuo detenido');
+        }
+
+        // Función para botones (mantener compatibilidad)
+        function moveImage(dirX, dirY) {
+            moveImageOnce(dirX, dirY);
+        }
+
+        function centerImage() {
+            if (currentZoom > 1) {
+                imageOffsetX = 0;
+                imageOffsetY = 0;
+                updateImage();
+                console.log('🎯 Imagen centrada');
+            }
+        }
+
+        // === CONFIGURAR BOTONES PARA MOVIMIENTO CONTINUO ===
+        function setupContinuousMovement() {
+            const moveButtons = document.querySelectorAll('.move-button:not(.move-center)');
+            
+            moveButtons.forEach(button => {
+                const onclick = button.getAttribute('onclick');
+                if (onclick && onclick.includes('moveImage')) {
+                    // Extraer dirX y dirY del onclick
+                    const match = onclick.match(/moveImage\((-?\d+),\s*(-?\d+)\)/);
+                    if (match) {
+                        const dirX = parseInt(match[1]);
+                        const dirY = parseInt(match[2]);
+                        
+                        // EVENTOS PARA DESKTOP
+                        button.addEventListener('mousedown', (e) => {
+                            e.preventDefault();
+                            startContinuousMove(dirX, dirY);
+                            button.style.backgroundColor = '#d97706'; // Cambiar color mientras se presiona
+                        });
+                        
+                        button.addEventListener('mouseup', () => {
+                            stopContinuousMove();
+                            button.style.backgroundColor = ''; // Restaurar color
+                        });
+                        
+                        button.addEventListener('mouseleave', () => {
+                            stopContinuousMove();
+                            button.style.backgroundColor = ''; // Restaurar color
+                        });
+                        
+                        // EVENTOS PARA MÓVILES
+                        button.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            startContinuousMove(dirX, dirY);
+                            button.style.backgroundColor = '#d97706';
+                        });
+                        
+                        button.addEventListener('touchend', (e) => {
+                            e.preventDefault();
+                            stopContinuousMove();
+                            button.style.backgroundColor = '';
+                        });
+                        
+                        button.addEventListener('touchcancel', (e) => {
+                            e.preventDefault();
+                            stopContinuousMove();
+                            button.style.backgroundColor = '';
+                        });
+                    }
+                }
+            });
+        }
+
+        // Zoom con rueda del mouse
+        imageDisplay.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        });
+
+        // Doble click para zoom
+        image.addEventListener('dblclick', function(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                resetZoom();
+            }
+            updateImage();
+            e.preventDefault();
+        });
+
+        // === SOPORTE MÓVIL PARA PINCH ZOOM ===
+        let initialDistance = 0;
+        let initialZoom = 1;
+
+        imageDisplay.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 2) {
+                initialDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                initialZoom = currentZoom;
+                e.preventDefault();
+            }
+        });
+
+        imageDisplay.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            
+            if (e.touches.length === 2) {
+                const currentDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                
+                const zoomFactor = currentDistance / initialDistance;
+                currentZoom = Math.max(minZoom, Math.min(maxZoom, initialZoom * zoomFactor));
+                updateImage();
+            }
+        });
+
+        imageDisplay.addEventListener('touchend', function(e) {
+            if (e.touches.length === 0) {
+                initialDistance = 0;
+            }
+        });
+
+        // Doble tap móvil
+        let lastTapTime = 0;
+        imageDisplay.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTapTime;
+            
+            if (tapLength < 500 && tapLength > 0 && e.touches.length === 0) {
+                if (currentZoom === 1) {
+                    currentZoom = 2;
+                } else {
+                    resetZoom();
+                }
+                updateImage();
+                e.preventDefault();
+            }
+            
+            lastTapTime = currentTime;
+        });
+
+        // Navegación con teclado (INVERTIDA + CONTINUA)
+        let keyInterval = null;
+        let currentKey = null;
+
+        document.addEventListener('keydown', function(e) {
+            // Evitar repetición si ya se está procesando la misma tecla
+            if (currentKey === e.key) return;
+            
+            currentKey = e.key;
+            
+            switch(e.key) {
+                case '+':
+                case '=':
+                    zoomIn();
+                    break;
+                case '-':
+                    zoomOut();
+                    break;
+                case '0':
+                    resetZoom();
+                    break;
+                case 'ArrowUp':
+                    startContinuousMove(0, 1); // FLECHA ↑ = imagen baja
+                    break;
+                case 'ArrowDown':
+                    startContinuousMove(0, -1); // FLECHA ↓ = imagen sube
+                    break;
+                case 'ArrowLeft':
+                    startContinuousMove(-1, 0); // FLECHA ← = imagen va derecha
+                    break;
+                case 'ArrowRight':
+                    startContinuousMove(1, 0); // FLECHA → = imagen va izquierda
+                    break;
+            }
+        });
+
+        document.addEventListener('keyup', function(e) {
+            if (e.key === currentKey) {
+                currentKey = null;
+                stopContinuousMove();
+            }
+        });
+
+        // Detener movimiento si se pierde el foco de la ventana
+        window.addEventListener('blur', function() {
+            stopContinuousMove();
+            currentKey = null;
+        });
+
+        // Inicialización y debug
+        console.log('🚀 Sistema con movimiento continuo cargado');
+        console.log('📷 Imagen:', image ? 'Encontrada ✅' : 'No encontrada ❌');
+        console.log('📦 Container:', imageDisplay ? 'Encontrado ✅' : 'No encontrado ❌');
+        console.log('🎮 Controles:', moveControls ? 'Encontrados ✅' : 'No encontrados ❌');
+        console.log('');
+        console.log('📋 INSTRUCCIONES (NAVEGACIÓN CONTINUA):');
+        console.log('   🔍 Haz zoom con + o rueda del mouse');
+        console.log('   🎮 Aparecerán botones direccionales'); 
+        console.log('   🖱️ MANTÉN PRESIONADO cualquier flecha para movimiento continuo');
+        console.log('   ⌨️ MANTÉN PRESIONADA las flechas del teclado para movimiento continuo');
+        console.log('   🎯 = Centrar imagen al instante');
+        console.log('   (Navegación como videojuego!)');
+        
+        // Estado inicial
+        updateImage();
+        
+        // Configurar movimiento continuo cuando todo esté listo
+        setTimeout(() => {
+            setupContinuousMovement();
+            console.log('✅ Movimiento continuo configurado');
+        }, 100);
+    </script>
+</body>
+</html>

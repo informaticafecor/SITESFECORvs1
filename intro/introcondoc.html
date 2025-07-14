@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro - Carrusel de Documentos</title>
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Fondo */
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #0F2C52;
+            background-image: 
+                linear-gradient(rgba(15, 44, 82, 0.6), rgba(15, 44, 82, 0.6)),
+                url('https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/intro/fondo.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-top: 50px;
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 91.666667%;
+            max-width: 1200px;
+            height: 75%;
+            background-color: #FFD040;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .carousel-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+        }
+
+        /* Slides container */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Imagen slide */
+        .image-slide {
+            touch-action: pan-x pan-y pinch-zoom;
+        }
+
+        .main-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.1s ease-out;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .main-image.normal {
+            cursor: zoom-in;
+        }
+
+        .main-image.zoomed {
+            cursor: grab;
+        }
+
+        .main-image.zoomed:active,
+        .main-image.dragging {
+            cursor: grabbing !important;
+        }
+
+        /* PDF slide */
+        .pdf-slide {
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            border-radius: 8px;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Canvas para PDF.js */
+        #pdf-canvas {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Overlays para enlaces clickeables */
+        .pdf-link-overlay {
+            position: absolute;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .pdf-link-overlay:hover {
+            background-color: transparent;
+            border: none;
+        }
+
+        .pdf-link-overlay::after {
+            content: '🔗 Click para abrir';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .pdf-link-overlay:hover::after {
+            opacity: 1;
+        }
+
+        /* Controles de navegación del carrusel */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 20;
+        }
+
+        .carousel-nav:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 16px;
+        }
+
+        .carousel-nav.next {
+            right: 16px;
+        }
+
+        /* Indicadores de slide */
+        .slide-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background-color: #FFD040;
+            transform: scale(1.2);
+        }
+
+        /* Controles de zoom para imagen */
+        .zoom-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 15;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .zoom-controls.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .zoom-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .zoom-button:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        /* Controles de movimiento para imagen */
+        .move-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 16px;
+            display: none;
+            z-index: 15;
+        }
+
+        .move-controls.show {
+            display: block;
+        }
+
+        .move-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .move-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .move-button:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        .move-center {
+            background-color: rgba(255, 208, 64, 0.9);
+            color: #d97706;
+        }
+
+        .move-center:hover {
+            background-color: #FFD040;
+        }
+
+        /* Controles PDF */
+        .pdf-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 15;
+        }
+
+        .pdf-controls.show {
+            display: flex;
+        }
+
+        .pdf-nav-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .pdf-nav-button:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        .pdf-info {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        /* Información de zoom */
+        .zoom-info {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .zoom-info.show {
+            opacity: 1;
+        }
+
+        /* Decoraciones de esquinas */
+        .corner-decoration {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 4px solid #D97706;
+            z-index: 10;
+        }
+
+        .corner-decoration.top-left {
+            top: 8px;
+            left: 8px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 12px;
+        }
+
+        .corner-decoration.top-right {
+            top: 8px;
+            right: 8px;
+            border-left: none;
+            border-bottom: none;
+            border-top-right-radius: 12px;
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 8px;
+            left: 8px;
+            border-right: none;
+            border-top: none;
+            border-bottom-left-radius: 12px;
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 8px;
+            right: 8px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 12px;
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding-top: 20px;
+            }
+            
+            .carousel-wrapper {
+                width: 95%;
+                height: 65%;
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .move-controls {
+                bottom: 30px;
+                left: 12px;
+            }
+            
+            .move-grid {
+                width: 100px;
+                height: 100px;
+                gap: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-container {
+                padding-top: 15px;
+            }
+            
+            .carousel-wrapper {
+                width: 98%;
+                height: 60%;
+            }
+            
+            .move-controls {
+                bottom: 20px;
+                left: 10px;
+            }
+            
+            .move-grid {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        /* Titulo del documento actual */
+        .document-title {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .document-title.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-content">
+                <div class="slides-container">
+                    <!-- Slide 1: Organigrama -->
+                    <div class="slide image-slide active" id="slide1">
+                        <img class="main-image" src="https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/refs/heads/main/nosotros/foto/Organigrama.jpg" alt="Organigrama FECOR" id="mainImage">
+                    </div>
+
+                    <!-- Slide 2: PDF -->
+                    <div class="slide pdf-slide" id="slide2">
+                        <div class="pdf-container">
+                            <canvas id="pdf-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navegación del carrusel -->
+                <button class="carousel-nav prev" onclick="previousSlide()">‹</button>
+                <button class="carousel-nav next" onclick="nextSlide()">›</button>
+
+                <!-- Indicadores -->
+                <div class="slide-indicators">
+                    <div class="indicator active" onclick="goToSlide(0)"></div>
+                    <div class="indicator" onclick="goToSlide(1)"></div>
+                </div>
+
+                <!-- Titulo del documento -->
+                <div class="document-title" id="documentTitle">Organigrama FECOR</div>
+
+                <!-- Controles de zoom para imagen -->
+                <div class="zoom-controls" id="zoomControls">
+                    <button class="zoom-button" onclick="zoomIn()" title="Aumentar zoom">+</button>
+                    <button class="zoom-button" onclick="zoomOut()" title="Reducir zoom">−</button>
+                    <button class="zoom-button" onclick="resetZoom()" title="Restablecer zoom">⌂</button>
+                </div>
+
+                <!-- Controles de movimiento para imagen -->
+                <div class="move-controls" id="moveControls">
+                    <div class="move-grid">
+                        <button class="move-button" onclick="moveImage(-1, 1)" title="Mover imagen: abajo-derecha">↖</button>
+                        <button class="move-button" onclick="moveImage(0, 1)" title="Mover imagen: abajo">↑</button>
+                        <button class="move-button" onclick="moveImage(1, 1)" title="Mover imagen: abajo-izquierda">↗</button>
+                        <button class="move-button" onclick="moveImage(-1, 0)" title="Mover imagen: derecha">←</button>
+                        <button class="move-button move-center" onclick="centerImage()" title="Centrar imagen">🎯</button>
+                        <button class="move-button" onclick="moveImage(1, 0)" title="Mover imagen: izquierda">→</button>
+                        <button class="move-button" onclick="moveImage(-1, -1)" title="Mover imagen: arriba-derecha">↙</button>
+                        <button class="move-button" onclick="moveImage(0, -1)" title="Mover imagen: arriba">↓</button>
+                        <button class="move-button" onclick="moveImage(1, -1)" title="Mover imagen: arriba-izquierda">↘</button>
+                    </div>
+                </div>
+
+                <!-- Controles para PDF -->
+                <div class="pdf-controls" id="pdfControls">
+                    <button class="pdf-nav-button" onclick="previousPage()" id="prevPage">← Página Anterior</button>
+                    <div class="pdf-info" id="pageInfo">Página 1 de 2</div>
+                    <button class="pdf-nav-button" onclick="nextPage()" id="nextPage">Página Siguiente →</button>
+                </div>
+
+                <!-- Información de zoom -->
+                <div class="zoom-info" id="zoomInfo">
+                    Zoom: <span id="zoomLevel">100%</span>
+                </div>
+            </div>
+
+            <!-- Decoraciones de esquinas -->
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+        </div>
+    </div>
+
+    <script>
+        // Variables del carrusel
+        let currentSlide = 0;
+        const totalSlides = 2;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const documentTitles = ['Organigrama FECOR', 'Oficio Circular - Revista FECOR'];
+
+        // Variables para imagen (zoom y movimiento)
+        let currentZoom = 1;
+        let minZoom = 0.2;
+        let maxZoom = 3;
+        let imageOffsetX = 0;
+        let imageOffsetY = 0;
+        const moveStep = 30;
+
+        // Variables para PDF
+        let pdfDoc = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let canvas = null;
+        let ctx = null;
+
+        // Elementos DOM
+        const image = document.getElementById('mainImage');
+        const zoomInfo = document.getElementById('zoomInfo');
+        const zoomLevel = document.getElementById('zoomLevel');
+        const zoomControls = document.getElementById('zoomControls');
+        const moveControls = document.getElementById('moveControls');
+        const pdfControls = document.getElementById('pdfControls');
+        const documentTitle = document.getElementById('documentTitle');
+
+        // Configurar PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // === FUNCIONES DEL CARRUSEL ===
+        function updateSlide() {
+            // Actualizar slides
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+
+            // Actualizar indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+
+            // Actualizar título
+            documentTitle.textContent = documentTitles[currentSlide];
+            documentTitle.classList.add('show');
+            setTimeout(() => {
+                documentTitle.classList.remove('show');
+            }, 3000);
+
+            // Mostrar/ocultar controles según el slide
+            if (currentSlide === 0) {
+                // Slide de imagen
+                showImageControls();
+                hidePdfControls();
+                updateImageDisplay();
+            } else {
+                // Slide de PDF
+                hideImageControls();
+                showPdfControls();
+                if (!pdfDoc) {
+                    loadPDF();
+                }
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // === FUNCIONES PARA IMAGEN ===
+        function showImageControls() {
+            if (currentZoom > 1) {
+                zoomControls.classList.add('show');
+                moveControls.classList.add('show');
+            } else {
+                zoomControls.classList.remove('show');
+                moveControls.classList.remove('show');
+            }
+        }
+
+        function hideImageControls() {
+            zoomControls.classList.remove('show');
+            moveControls.classList.remove('show');
+        }
+
+        function updateImageDisplay() {
+            image.style.transform = `scale(${currentZoom}) translate(${imageOffsetX}px, ${imageOffsetY}px)`;
+            zoomLevel.textContent = Math.round(currentZoom * 100) + '%';
+
+            // Mostrar info de zoom temporalmente
+            zoomInfo.classList.add('show');
+            setTimeout(() => {
+                zoomInfo.classList.remove('show');
+            }, 2000);
+
+            // Actualizar controles
+            if (currentSlide === 0) {
+                showImageControls();
+            }
+
+            // Actualizar cursor
+            if (currentZoom > 1) {
+                image.classList.add('zoomed');
+                image.classList.remove('normal');
+            } else {
+                image.classList.add('normal');
+                image.classList.remove('zoomed');
+                imageOffsetX = 0;
+                imageOffsetY = 0;
+            }
+        }
+
+        function zoomIn() {
+            if (currentSlide === 0 && currentZoom < maxZoom) {
+                currentZoom = Math.min(currentZoom + 0.2, maxZoom);
+                updateImageDisplay();
+            }
+        }
+
+        function zoomOut() {
+            if (currentSlide === 0 && currentZoom > minZoom) {
+                currentZoom = Math.max(currentZoom - 0.2, minZoom);
+                if (currentZoom <= 1) {
+                    imageOffsetX = 0;
+                    imageOffsetY = 0;
+                }
+                updateImageDisplay();
+            }
+        }
+
+        function resetZoom() {
+            if (currentSlide === 0) {
+                currentZoom = 1;
+                imageOffsetX = 0;
+                imageOffsetY = 0;
+                updateImageDisplay();
+            }
+        }
+
+        function moveImage(dirX, dirY) {
+            if (currentSlide === 0 && currentZoom > 1) {
+                imageOffsetX -= dirX * moveStep;
+                imageOffsetY += dirY * moveStep;
+                
+                const maxTranslateX = 200 * currentZoom;
+                const maxTranslateY = 200 * currentZoom;
+                
+                imageOffsetX = Math.max(-maxTranslateX, Math.min(maxTranslateX, imageOffsetX));
+                imageOffsetY = Math.max(-maxTranslateY, Math.min(maxTranslateY, imageOffsetY));
+                
+                updateImageDisplay();
+            }
+        }
+
+        function centerImage() {
+            if (currentSlide === 0 && currentZoom > 1) {
+                imageOffsetX = 0;
+                imageOffsetY = 0;
+                updateImageDisplay();
+            }
+        }
+
+        // === FUNCIONES PARA PDF ===
+        function showPdfControls() {
+            pdfControls.classList.add('show');
+        }
+
+        function hidePdfControls() {
+            pdfControls.classList.remove('show');
+        }
+
+        async function loadPDF() {
+            const pdfUrl = 'https://raw.githubusercontent.com/informaticafecor/SITESFECORvs1/main/intro/documentos/oficio-fecor.pdf';
+            
+            try {
+                console.log('Cargando PDF...');
+                const loadingTask = pdfjsLib.getDocument(pdfUrl);
+                pdfDoc = await loadingTask.promise;
+                totalPages = pdfDoc.numPages;
+                
+                canvas = document.getElementById('pdf-canvas');
+                ctx = canvas.getContext('2d');
+                
+                console.log('PDF cargado:', totalPages, 'páginas');
+                renderPage(currentPage);
+                updatePdfInfo();
+            } catch (error) {
+                console.error('Error cargando PDF:', error);
+                // Fallback: mostrar mensaje de error
+                const pdfContainer = document.querySelector('.pdf-container');
+                pdfContainer.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <h3>Error al cargar el PDF</h3>
+                        <p>No se pudo cargar el documento.</p>
+                        <a href="${pdfUrl}" target="_blank" style="color: #0066cc;">Ver PDF en nueva ventana</a>
+                    </div>
+                `;
+            }
+        }
+
+        async function renderPage(pageNum) {
+            if (!pdfDoc) return;
+
+            try {
+                const page = await pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+                
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+                console.log('Página renderizada:', pageNum);
+
+                // Crear overlays para enlaces clickeables
+                await createLinkOverlays(page, viewport);
+                
+            } catch (error) {
+                console.error('Error renderizando página:', error);
+            }
+        }
+
+        async function createLinkOverlays(page, viewport) {
+            // Limpiar overlays existentes
+            const existingOverlays = document.querySelectorAll('.pdf-link-overlay');
+            existingOverlays.forEach(overlay => overlay.remove());
+
+            try {
+                // Obtener anotaciones (incluyendo enlaces)
+                const annotations = await page.getAnnotations();
+                console.log('Anotaciones encontradas:', annotations.length);
+
+                const canvasRect = canvas.getBoundingClientRect();
+                const pdfContainer = document.querySelector('.pdf-container');
+
+                annotations.forEach((annotation, index) => {
+                    if (annotation.subtype === 'Link' && annotation.url) {
+                        console.log('Enlace encontrado:', annotation.url);
+
+                        // Convertir coordenadas del PDF a coordenadas del canvas
+                        const rect = annotation.rect;
+                        const [x1, y1, x2, y2] = rect;
+
+                        // Transformar coordenadas del viewport
+                        const canvasX1 = x1 * viewport.scale;
+                        const canvasY1 = viewport.height - (y2 * viewport.scale); // PDF usa coordenadas invertidas
+                        const canvasX2 = x2 * viewport.scale;
+                        const canvasY2 = viewport.height - (y1 * viewport.scale);
+
+                        // Crear overlay clickeable
+                        const overlay = document.createElement('div');
+                        overlay.className = 'pdf-link-overlay';
+                        overlay.style.left = canvasX1 + 'px';
+                        overlay.style.top = canvasY1 + 'px';
+                        overlay.style.width = (canvasX2 - canvasX1) + 'px';
+                        overlay.style.height = (canvasY2 - canvasY1) + 'px';
+
+                        // Añadir evento click
+                        overlay.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            console.log('Click en enlace:', annotation.url);
+                            window.open(annotation.url, '_blank');
+                        });
+
+                        // Añadir overlay al contenedor del PDF
+                        pdfContainer.appendChild(overlay);
+                    }
+                });
+
+                // Si no encontramos enlaces automáticamente, crear uno manual para el Google Forms
+                if (annotations.length === 0 || !annotations.some(a => a.subtype === 'Link')) {
+                    console.log('No se encontraron enlaces automáticamente, creando overlay manual...');
+                    createManualLinkOverlay();
+                }
+
+            } catch (error) {
+                console.error('Error creando overlays de enlaces:', error);
+                // Fallback: crear overlay manual
+                createManualLinkOverlay();
+            }
+        }
+
+        function createManualLinkOverlay() {
+            // Crear overlay manual para el enlace del Google Forms en la página 2
+            if (currentPage === 2) {
+                const canvasRect = canvas.getBoundingClientRect();
+                const pdfContainer = document.querySelector('.pdf-container');
+
+                const overlay = document.createElement('div');
+                overlay.className = 'pdf-link-overlay';
+                
+                // Coordenadas aproximadas del enlace en la página 2 (ajustar según sea necesario)
+                const linkX = canvas.width * 0.18; // Aproximadamente 18% desde la izquierda
+                const linkY = canvas.height * 0.45; // Aproximadamente 45% desde arriba
+                const linkWidth = canvas.width * 0.64; // Aproximadamente 64% del ancho
+                const linkHeight = 25; // Altura fija
+
+                overlay.style.left = linkX + 'px';
+                overlay.style.top = linkY + 'px';
+                overlay.style.width = linkWidth + 'px';
+                overlay.style.height = linkHeight + 'px';
+
+                // URL del Google Forms
+                const formsUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfjMTUUwutzQ7W_WCb4L_vddE3N3fK2Rs9woZ5_E6QJGqNXAw/viewform';
+
+                overlay.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Click en enlace manual del Google Forms');
+                    window.open(formsUrl, '_blank');
+                });
+
+                pdfContainer.appendChild(overlay);
+                console.log('Overlay manual creado para Google Forms');
+            }
+        }
+
+        function updatePdfInfo() {
+            document.getElementById('pageInfo').textContent = `Página ${currentPage} de ${totalPages}`;
+            document.getElementById('prevPage').disabled = currentPage <= 1;
+            document.getElementById('nextPage').disabled = currentPage >= totalPages;
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+                updatePdfInfo();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+                updatePdfInfo();
+            }
+        }
+
+        // === EVENTOS ===
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    if (currentSlide === 0 && currentZoom > 1) {
+                        moveImage(-1, 0);
+                    } else if (currentSlide === 1) {
+                        previousPage();
+                    } else {
+                        previousSlide();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (currentSlide === 0 && currentZoom > 1) {
+                        moveImage(1, 0);
+                    } else if (currentSlide === 1) {
+                        nextPage();
+                    } else {
+                        nextSlide();
+                    }
+                    break;
+                case 'ArrowUp':
+                    if (currentSlide === 0 && currentZoom > 1) {
+                        moveImage(0, 1);
+                    } else {
+                        previousSlide();
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (currentSlide === 0 && currentZoom > 1) {
+                        moveImage(0, -1);
+                    } else {
+                        nextSlide();
+                    }
+                    break;
+                case '+':
+                case '=':
+                    if (currentSlide === 0) zoomIn();
+                    break;
+                case '-':
+                    if (currentSlide === 0) zoomOut();
+                    break;
+                case '0':
+                    if (currentSlide === 0) resetZoom();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+            }
+        });
+
+        // Zoom con rueda del mouse (solo para imagen)
+        document.querySelector('.image-slide').addEventListener('wheel', function(e) {
+            if (currentSlide === 0) {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            }
+        });
+
+        // Doble click para zoom (solo para imagen)
+        image.addEventListener('dblclick', function(e) {
+            if (currentSlide === 0) {
+                if (currentZoom === 1) {
+                    currentZoom = 2;
+                } else {
+                    resetZoom();
+                }
+                updateImageDisplay();
+                e.preventDefault();
+            }
+        });
+
+        // Soporte móvil para pinch zoom en imagen
+        let initialDistance = 0;
+        let initialZoom = 1;
+
+        document.querySelector('.image-slide').addEventListener('touchstart', function(e) {
+            if (currentSlide === 0 && e.touches.length === 2) {
+                initialDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                initialZoom = currentZoom;
+                e.preventDefault();
+            }
+        });
+
+        document.querySelector('.image-slide').addEventListener('touchmove', function(e) {
+            if (currentSlide === 0) {
+                e.preventDefault();
+                
+                if (e.touches.length === 2) {
+                    const currentDistance = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    
+                    const zoomFactor = currentDistance / initialDistance;
+                    currentZoom = Math.max(minZoom, Math.min(maxZoom, initialZoom * zoomFactor));
+                    updateImageDisplay();
+                }
+            }
+        });
+
+        // Doble tap móvil para imagen
+        let lastTapTime = 0;
+        document.querySelector('.image-slide').addEventListener('touchend', function(e) {
+            if (currentSlide === 0) {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTapTime;
+                
+                if (tapLength < 500 && tapLength > 0 && e.touches.length === 0) {
+                    if (currentZoom === 1) {
+                        currentZoom = 2;
+                    } else {
+                        resetZoom();
+                    }
+                    updateImageDisplay();
+                    e.preventDefault();
+                }
+                
+                lastTapTime = currentTime;
+                
+                if (e.touches.length === 0) {
+                    initialDistance = 0;
+                }
+            }
+        });
+
+        // Swipe para cambiar slides
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (!startX || !startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+
+            // Solo detectar swipe horizontal si es mayor que vertical
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide(); // Swipe izquierda
+                } else {
+                    previousSlide(); // Swipe derecha
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // === INICIALIZACIÓN ===
+        console.log('🚀 Carrusel con PDF.js cargado');
+        console.log('📱 Navegación:');
+        console.log('   ← → = Cambiar slides');
+        console.log('   Swipe = Cambiar slides (móvil)');
+        console.log('   Space = Siguiente slide');
+        console.log('   + - = Zoom (imagen)');
+        console.log('   Doble click/tap = Zoom toggle (imagen)');
+
+        // Configurar estado inicial
+        updateSlide();
+        
+        // Configurar movimiento continuo para los botones de imagen
+        setTimeout(() => {
+            const moveButtons = document.querySelectorAll('.move-button:not(.move-center)');
+            
+            moveButtons.forEach(button => {
+                const onclick = button.getAttribute('onclick');
+                if (onclick && onclick.includes('moveImage')) {
+                    const match = onclick.match(/moveImage\((-?\d+),\s*(-?\d+)\)/);
+                    if (match) {
+                        const dirX = parseInt(match[1]);
+                        const dirY = parseInt(match[2]);
+                        
+                        let isMoving = false;
+                        let moveInterval = null;
+                        
+                        function startMove() {
+                            moveImage(dirX, dirY);
+                            moveInterval = setInterval(() => {
+                                if (isMoving) moveImage(dirX, dirY);
+                            }, 150);
+                        }
+                        
+                        function stopMove() {
+                            isMoving = false;
+                            if (moveInterval) {
+                                clearInterval(moveInterval);
+                                moveInterval = null;
+                            }
+                            button.style.backgroundColor = '';
+                        }
+                        
+                        // Desktop
+                        button.addEventListener('mousedown', (e) => {
+                            e.preventDefault();
+                            isMoving = true;
+                            startMove();
+                            button.style.backgroundColor = '#d97706';
+                        });
+                        
+                        button.addEventListener('mouseup', stopMove);
+                        button.addEventListener('mouseleave', stopMove);
+                        
+                        // Móvil
+                        button.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            isMoving = true;
+                            startMove();
+                            button.style.backgroundColor = '#d97706';
+                        });
+                        
+                        button.addEventListener('touchend', stopMove);
+                        button.addEventListener('touchcancel', stopMove);
+                    }
+                }
+            });
+        }, 100);
+    </script>
+</body>
+</html>

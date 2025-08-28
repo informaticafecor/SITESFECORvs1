@@ -153,7 +153,7 @@ function selectYear(year) {
     }
 
     // Limpiar selección de meses
-    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]').forEach(btn => {
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"]').forEach(btn => {
         btn.classList.remove('active');
     });
 
@@ -166,7 +166,7 @@ function filterMonth(month) {
     currentMonth = month;
 
     // Remover clase activa de todos los botones de mes
-    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"]').forEach(btn => {
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"]').forEach(btn => {
         btn.classList.remove('active');
     });
     

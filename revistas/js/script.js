@@ -9,7 +9,8 @@
             const ediciones = {
                 '2022': '001',
                 '2023': '002',
-                '2024': '003'
+                '2024': '003',
+                '2025': '004'
             };
             
             // Mostrar vista previa antes de descargar
@@ -23,7 +24,8 @@
             const pdfs = {
                 '2022': '1zXa2cT2OMY-MYFdoNHgSxtH9RcF8xQXr',
                 '2023': '1Vlzu25YriW_CmUGYaKJMA-jGvyrRFYX7',
-                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y'
+                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y',
+                '2025': '1w4tEXK9Dl74j-q8SpAuqO0wps8kpZSA0'
             };
 
             const pdfId = pdfs[year];
@@ -76,7 +78,8 @@
             const pdfs = {
                 '2022': '1zXa2cT2OMY-MYFdoNHgSxtH9RcF8xQXr',
                 '2023': '1Vlzu25YriW_CmUGYaKJMA-jGvyrRFYX7',
-                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y'
+                '2024': '123lxcQjMU2sR3-dwNVhlEvWmJxFLFt6y',
+                '2025': '1w4tEXK9Dl74j-q8SpAuqO0wps8kpZSA0'
             };
 
             const fileId = pdfs[year];

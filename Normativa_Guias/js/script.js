@@ -65,7 +65,7 @@ function selectYear(year) {
     document.getElementById('monthGroup').style.display = 'flex';
 
     // Desactivar botones de mes
-    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"]').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"] , [id^="btn-agosto"], [id^="btn-setiembre"], [id^="btn-octubre"] [id^="btn-noviembre"], [id^="btn-diciembre"]' ).forEach(btn => btn.classList.remove('active'));
 
     // Aplicar filtros
     applyFilters();
@@ -76,7 +76,7 @@ function filterMonth(month) {
     currentMonth = month;
 
     // Resaltar solo el botón seleccionado
-    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"]').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('[id^="btn-enero"], [id^="btn-febrero"], [id^="btn-marzo"], [id^="btn-abril"], [id^="btn-mayo"], [id^="btn-junio"], [id^="btn-julio"] , [id^="btn-agosto"], [id^="btn-setiembre"], [id^="btn-octubre"] [id^="btn-noviembre"], [id^="btn-diciembre"]').forEach(btn => btn.classList.remove('active'));
     document.getElementById('btn-' + month).classList.add('active');
 
     // Aplicar filtros

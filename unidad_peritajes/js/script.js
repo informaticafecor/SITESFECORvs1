@@ -123,7 +123,7 @@
         ============================================ */
 
         // URL del directorio (CAMBIA ESTA URL POR LA TUYA)
-        const DIRECTORIO_URL = "https://drive.google.com/file/d/1Zgp4f2Dfe5itVzZx7ph8mpjClaoZqdjz/view";
+        const DIRECTORIO_URL = "https://drive.google.com/file/d/1mcLPkeMiE-2Sa94tnGJg0pqNZcBxHTF4/view";
 
         // Función para redirigir al directorio
         function redirectToDirectory() {
